@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scontrol xmlns="http://soap.sforce.com/2006/04/metadata">
+    <contentSource>HTML</contentSource>
+    <description>Changes the approver level of the next approver</description>
+    <encodingKey>UTF-8</encodingKey>
+    <fileName>aptsApproverChangeNextLevel</fileName>
+    <name>aptsApproverChangeNextLevel_OBSOLETE</name>
+    <supportsCaching>false</supportsCaching>
+</Scontrol>

@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fields>
+        <fullName>Accept__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Accept the quote/proposal</description>
+        <externalId>false</externalId>
+        <formula>IF (ISPICKVAL(Apttus_Proposal__Approval_Stage__c, &quot;Presented&quot;), HYPERLINK(&quot;/apex/Apttus_QPConfig__ProposalAccept?id=&quot;&amp;Id, IMAGE(&quot;/resource/Apttus_QPConfig__Button_Accept&quot;, &quot;Accept&quot;),&quot;_self&quot;), NULL)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Accept</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ConfigurationFinalizedDate__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Date when the configuration was finalized for the quote/proposal</description>
+        <externalId>false</externalId>
+        <label>Configuration Finalized Date</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>Configure__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Configure products for the quote/proposal</description>
+        <externalId>false</externalId>
+        <formula>IF ( LEN( PriceListId__c ) &gt; 0 , HYPERLINK(&quot;/apex/Apttus_QPConfig__ProposalConfiguration?id=&quot; &amp;Id, IMAGE(&quot;/resource/Apttus_QPConfig__Button_Configure&quot;, &quot;Configure Products&quot;),&quot;_self&quot;), NULL)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Configure Products</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>PriceListId__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <deprecated>false</deprecated>
+        <description>ID of the associated price list</description>
+        <externalId>false</externalId>
+        <label>Price List</label>
+        <referenceTo>Apttus_Config2__PriceList__c</referenceTo>
+        <relationshipLabel>Quotes/Proposals</relationshipLabel>
+        <relationshipName>Proposals</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>PricingDate__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The pricing date, The product list price is determined based on this date.</description>
+        <externalId>false</externalId>
+        <label>Pricing Date</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>SyncWithOpportunity__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Synchronize the quote/proposal with the associated opportunity</description>
+        <externalId>false</externalId>
+        <formula>IF ( AND(LEN(Apttus_Proposal__Opportunity__c ) &gt; 0, Apttus_Proposal__Primary__c) , HYPERLINK(&quot;/apex/Apttus_QPConfig__ProposalSyncWithOpportunity?id=&quot; &amp;Id, IMAGE(&quot;/resource/Apttus_QPConfig__Button_SynchronizeWithOpportunity&quot;, &quot;Sync with Opportunity&quot;),&quot;_self&quot;), NULL)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Synchronize with Opportunity</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+</CustomObject>

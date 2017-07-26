@@ -1,0 +1,64 @@
+<!-- 
+    Apttus Contract Management
+    RuleConditionEdit
+     
+    @2009-2010 Apttus Inc. All rights reserved.
+
+ -->
+<apex:page standardController="Apttus__Agreement_Rule_Condition__c" 
+		   extensions="Apttus.RuleConditionEditController" 
+           showHeader="true" 
+           sidebar="true" 
+           tabStyle="Apttus__Agreement_Rule__c" 
+           recordSetVar="ruleConditions">
+           
+	<style>
+		.comments_w {width:200px;}
+	</style>
+    
+    <apex:sectionHeader title="{!$ObjectType.Apttus__Agreement_Rule__c.Label}"/>
+	
+	<apex:form >
+	<apex:pageBlock title="{!$ObjectType.Apttus__Agreement_Rule_Condition__c.Label & ' ' & $Label.apttus__Edit}">
+		<apex:pageMessages />
+		<div>      
+			<table>
+	          	<tr><td>
+	          		<apex:outputText value="{!$Label.apttus__AgreementRuleConditionEditInstruction1}"/>
+				</td></tr>
+				<tr><td>
+					<apex:outputText value="{!$Label.apttus__AgreementRuleConditionEditInstruction2}"/>
+				</td></tr>
+			</table>
+		</div>
+	</apex:pageBlock>
+	<apex:pageBlock >
+		<apex:pageBlockButtons >
+		    <apex:commandButton action="{!save}" value="{!$Label.apttus__Save}" id="cmdButtonDoSave"/>
+		    <apex:commandButton action="{!cancel}" value="{!$Label.apttus__Cancel}" id="cmdButtonDoCancel"/>
+		</apex:pageBlockButtons>  
+		<apex:pageBlockSection title="{!$Label.apttus__RuleConditions}" columns="1" collapsible="false">
+		    <apex:pageBlockTable value="{!selected}" var="ruleCondition" >
+		    	<apex:column headerValue="{!$Label.apttus__Object}">
+		        	<apex:inputField value="{!ruleCondition.Apttus__Object__c}"/>
+		        </apex:column>
+		    	<apex:column headerValue="{!$Label.apttus__Field}">
+		        	<apex:inputField value="{!ruleCondition.Apttus__Field__c}"/>
+		        </apex:column>
+		    	<apex:column headerValue="{!$Label.apttus__Operator}">
+		        	<apex:inputField value="{!ruleCondition.Apttus__Operator__c}"/>
+		        </apex:column>
+		    	<apex:column headerValue="{!$Label.apttus__Value}">
+		        	<apex:inputField value="{!ruleCondition.Apttus__Value__c}"/>
+		        </apex:column>
+		    	<apex:column headerValue="{!$Label.apttus__Join}">
+		        	<apex:inputField value="{!ruleCondition.Apttus__Join__c}"/>
+		        </apex:column>
+		    	<apex:column headerValue="{!$Label.apttus__Desc}">
+		        	<apex:inputField value="{!ruleCondition.Apttus__Description__c}" styleClass="comments_w" />
+		        </apex:column>
+	    	</apex:pageBlockTable>
+		</apex:pageBlockSection>  
+	</apex:pageBlock>
+    </apex:form>    
+</apex:page>

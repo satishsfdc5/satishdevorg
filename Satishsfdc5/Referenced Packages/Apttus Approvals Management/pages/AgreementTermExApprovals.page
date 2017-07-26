@@ -1,0 +1,110 @@
+<!-- 
+    Apttus Approvals Management
+    AgreementTermExApprovals
+     
+    @2010-2011 Apttus Inc. All rights reserved.
+
+ -->
+<apex:page standardController="Apttus__Agreement_Term_Exception__c" 
+		   recordSetVar="arList"
+		   extensions="Apttus_Approval.AgreementTermExApprovalsController"
+		   showHeader="true" 
+		   sidebar="true"
+		   cache="false" 
+		   tabstyle="Apttus_Approval__Approval_Request__c" >
+
+	<apex:form >
+		<apex:outputPanel id="idAllBlocks" >
+			<apex:pageBlock title="{!$Label.apttus_approval__FilterApprovals}" >
+				<table>
+					<tr>
+						<td>
+							<b><apex:outputText value="{!$Label.apttus_approval__FilterBy}:" /></b>
+							&nbsp;
+							<apex:selectList value="{!filterBy}" size="1">
+								<apex:selectOptions value="{!filterOptions}"/>
+							</apex:selectList>
+							&nbsp;&nbsp;
+							<b><apex:outputText value="{!$Label.apttus_approval__SortBy}:" /></b>
+							&nbsp;
+							<apex:selectList value="{!sortBy}" size="1">
+								<apex:selectOptions value="{!sortOptions}"/>
+							</apex:selectList>
+							&nbsp;
+							<apex:commandButton action="{!refresh}" value="{!$Label.apttus_approval__Filter}"  status="idStatus" 
+									reRender="idRefreshStatus,idAgmtTermExApprovals"/>	
+							&nbsp;&nbsp;
+							<apex:outputPanel id="idRefreshStatus">
+								<b><apex:actionstatus id="idStatus" startText="{!$Label.apttus_approval__MessageFiltering}..."> 
+									<apex:facet name="stop">
+										<apex:outputPanel >{!qryMessage}</apex:outputPanel>
+									</apex:facet>
+								</apex:actionstatus></b>
+							</apex:outputPanel>
+						</td>
+					</tr>
+				</table>
+			</apex:pageBlock>
+			
+			<p/>
+			
+			<apex:pageBlock title="{!$Label.apttus_approval__Approvals}" >
+				<apex:pageMessages />
+	    		
+				<apex:pageBlockButtons >
+						<apex:commandButton action="{!doReturn}" value="{!$Label.apttus_approval__ReturnToAgreement}" />
+						<apex:commandButton action="{!doSubmit}" value="{!$Label.apttus_approval__Submit}" 
+									disabled="{!NOT(enableSubmit)}" />
+				</apex:pageBlockButtons>
+				
+				<apex:pageBlockTable id="idAgmtTermExApprovals" value="{!approvals}" var="request">
+				
+					<apex:column headerValue="{!$Label.apttus_approval__Exception}">
+						<apex:outputLink value="/{!request.agmtTermExId}">
+							{!request.termExName}
+						</apex:outputLink>
+					</apex:column>		  
+					
+					<apex:column value="{!request.ar.Apttus_Approval__StepSequence__c}"/>		
+					
+					<apex:column headerValue="{!$Label.apttus_approval__Action}" > 			
+						<apex:outputLink rendered="{!request.enableReassign == true}"
+										value="{!request.reassignLink}">{!$Label.apttus_approval__Reassign}<br/></apex:outputLink>					
+						<apex:outputLink rendered="{!request.enableApproveReject == true}"
+										value="{!request.approveRejectLink}">{!$Label.apttus_approval__ApproveReject}<br/></apex:outputLink>							
+						<apex:outputLink rendered="{!request.enableAddComment == true}"
+										value="{!request.addCommentLink}">{!$Label.apttus_approval__AddComment}</apex:outputLink>		
+					</apex:column>
+					
+					<apex:column value="{!request.ar.Apttus_Approval__Approval_Status__c}"/>
+					<apex:column value="{!request.ar.Apttus_Approval__Date__c}"/>
+					
+					<apex:column headerValue="{!$Label.apttus_approval__AssignedTo}">
+					
+						<apex:outputLink rendered="{!request.ar.Apttus_Approval__Assigned_To_Type__c='Queue'}"
+							value="{!queueURL}">{!request.ar.Apttus_Approval__Assigned_To_Name__c}
+							<apex:param name="id" value="{!request.ar.Apttus_Approval__Assigned_To_Id__c}"/>
+							<apex:param name="setupid" value="Queues"/>
+						</apex:outputLink>
+						
+						<apex:outputLink rendered="{!request.ar.Apttus_Approval__Assigned_To_Type__c != 'Queue'}"
+							value="/{!request.ar.Apttus_Approval__Assigned_To_Id__c}">
+								{!request.ar.Apttus_Approval__Assigned_To_Name__c}
+						</apex:outputLink>
+		
+					</apex:column>
+					
+					<apex:column value="{!request.ar.Apttus_Approval__Step_Name__c}"/>
+					<apex:column value="{!request.ar.Apttus_Approval__DependsOn__c}"/>
+					<apex:column value="{!request.ar.Apttus_Approval__Request_Comments__c}"/>	 
+					<apex:column value="{!request.ar.Apttus_Approval__Actual_Approver__c}" />
+					<apex:column value="{!request.ar.Apttus_Approval__Approver_Comments__c}"/>
+					
+				</apex:pageBlockTable>
+			</apex:pageBlock>
+			
+		</apex:outputPanel>
+		
+	</apex:form>
+	
+</apex:page>

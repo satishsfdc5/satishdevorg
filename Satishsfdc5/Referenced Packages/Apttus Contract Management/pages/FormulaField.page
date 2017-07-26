@@ -1,0 +1,109 @@
+<!-- 
+    Apttus Contract Management
+    FormulaField
+     
+    @2012-2013 Apttus Inc. All rights reserved.
+
+ -->
+<apex:page standardController="Apttus__FormulaField__c" 
+	  	   extensions="Apttus.FormulaFieldController" 
+           showHeader="true" 
+           sidebar="true" 
+           standardStylesheets="true"
+           tabStyle="Apttus__FormulaField__c">	
+    
+    <style>
+		textarea {
+			width: 40%;
+		}
+	</style>
+	
+	<apex:sectionHeader title="{!$ObjectType.Apttus__FormulaField__c.Label & ' ' & $Label.apttus__Edit}" 
+						subtitle="{!$Label.apttus__New & ' ' & $ObjectType.Apttus__FormulaField__c.Label}" 
+						rendered="{!ISBLANK(Apttus__FormulaField__c.Id)}" />
+						
+	<apex:sectionHeader title="{!$ObjectType.Apttus__FormulaField__c.Label & ' ' & $Label.apttus__Edit}" 
+						subtitle="{!Apttus__FormulaField__c.Name}" 
+						rendered="{!NOT(ISBLANK(Apttus__FormulaField__c.Id))}" />
+						
+	<apex:form id="idFormulaFieldSO">
+		
+		<!--  required fields -->
+		<apex:outputText value="{!Apttus__FormulaField__c.Apttus__Type__c}" rendered="false" />
+		<apex:outputText value="{!Apttus__FormulaField__c.Apttus__BusinessObject__c}" rendered="false" />
+		
+		<apex:pageBlock id="idFormulaFieldBlock" 
+						title="{!$ObjectType.Apttus__FormulaField__c.Label & ' ' & $Label.apttus__Edit}" 
+						mode="edit" >
+			<apex:pageMessages />
+			<apex:pageBlockButtons location="both">
+		        <apex:commandButton value="{!$Label.apttus__Save}" action="{!doSave}" />
+		        <apex:commandButton value="{!$Label.apttus__SaveAndNew}" action="{!doSaveAndNew}" />
+		        <apex:commandButton value="{!$Label.apttus__Cancel}" action="{!doCancel}" immediate="true"/>
+		    </apex:pageBlockButtons>
+		    <apex:pageBlockSection id="idFormulaFieldSection" 
+		    					   title="{!$Label.apttus__Information}" 
+		    					   columns="1" 
+		    					   collapsible="false" >
+		    	
+		    	<apex:pageBlockSectionItem >
+					<apex:outputLabel value="{!$ObjectType.Apttus__FormulaField__c.Fields.Name.Label}" 
+									  for="idName" />
+					<apex:outputPanel styleClass="requiredInput" layout="block">
+   						<apex:outputPanel styleClass="requiredBlock" layout="block"/>
+  						<apex:inputField id="idName" 
+  										 value="{!Apttus__FormulaField__c.Name}" 
+  										 required="false" />
+ 					</apex:outputPanel>
+				</apex:pageBlockSectionItem>
+				
+				<apex:pageBlockSectionItem >
+					<apex:outputLabel value="{!$ObjectType.Apttus__FormulaField__c.Fields.Apttus__Type__c.Label}" 
+									  for="idType" />
+					<apex:outputPanel styleClass="requiredInput" layout="block">
+   						<apex:outputPanel styleClass="requiredBlock" layout="block"/>
+  						<apex:selectList id="idType" 
+  										 value="{!Apttus__FormulaField__c.Apttus__Type__c}" 
+  										 multiselect="false" 
+  										 required="true" 
+  										 size="1" >
+							<apex:selectOptions value="{!typeItems}"></apex:selectOptions>
+						</apex:selectList>
+ 					</apex:outputPanel>
+				</apex:pageBlockSectionItem>
+				
+				<apex:pageBlockSectionItem >
+					<apex:outputLabel value="{!$ObjectType.Apttus__FormulaField__c.Fields.Apttus__BusinessObject__c.Label}" 
+									  for="idBusinessObject" />
+					<apex:outputPanel styleClass="requiredInput" layout="block">
+   						<apex:outputPanel styleClass="requiredBlock" layout="block"/>
+  						<apex:selectList id="idBusinessObject" 
+  										 value="{!Apttus__FormulaField__c.Apttus__BusinessObject__c}" 
+  										 multiselect="false" 
+  										 required="true" 
+  										 size="1" >
+							<apex:selectOptions value="{!businessObjectItems}"></apex:selectOptions>
+						</apex:selectList>
+ 					</apex:outputPanel>
+				</apex:pageBlockSectionItem>
+				
+				<apex:pageBlockSectionItem >
+					<apex:outputLabel value="{!$ObjectType.Apttus__FormulaField__c.Fields.Apttus__Formula__c.Label}" 
+									  for="idFormula" />
+					<apex:outputPanel styleClass="requiredInput" layout="block">
+   						<apex:outputPanel styleClass="requiredBlock" layout="block"/>
+  						<apex:inputText id="idFormula" 
+  										value="{!Apttus__FormulaField__c.Apttus__Formula__c}" 
+  										size="75" />
+ 					</apex:outputPanel>
+				</apex:pageBlockSectionItem>
+				
+		    	<apex:inputField value="{!Apttus__FormulaField__c.Apttus__Description__c}"/>
+	
+		    </apex:pageBlockSection>
+		    
+		</apex:pageBlock>
+		    			   
+	</apex:form>
+
+</apex:page>

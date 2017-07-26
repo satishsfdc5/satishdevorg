@@ -1,0 +1,4 @@
+<apex:page standardController="Lead">
+  <apex:sectionHeader title="Lead" subtitle="{!Lead.name}"/>
+  <c:AttachmentList ></c:AttachmentList>
+</apex:page>

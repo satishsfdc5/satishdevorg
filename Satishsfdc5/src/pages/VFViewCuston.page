@@ -1,0 +1,34 @@
+<apex:page standardController="Account" recordSetVar="Accounts">
+<apex:form >
+<apex:pageBlock >
+  <apex:pageBlockTable value="{!accounts}" var="a">
+      
+          <apex:column value="{!a.Name}"/>
+      
+  </apex:pageBlockTable>
+      <apex:panelGrid >
+          <apex:commandLink action="{!Previous}" value="Previous" rendered="{!HasPrevious}"/>
+          <apex:commandLink action="{!Next}" value="Next" rendered="{!HasNext}"/>
+            <apex:outputpanel >
+                <apex:outputText value="Records per Page"></apex:outputText>
+                <apex:selectList value="{!pageSize}" size="1">
+                    <apex:selectOption itemvalue="{!10}" itemLabel="10"/>
+                    <apex:selectOption itemvalue="{!20}" itemLabel="20"/>
+                    <apex:selectOption itemvalue="{!25}" itemLabel="25"/>
+                </apex:selectList>
+                <apex:commandButton value="Update" action="{!Null}" />
+            </apex:outputpanel>
+            <apex:outputPanel >
+                <apex:selectList value="{!filterId}" size="1">
+                    <apex:selectOptions value="{!listViewOptions}"/>
+                    
+                </apex:selectList>
+                <apex:commandButton value="Go" action="{!Null}"/>
+            </apex:outputPanel>
+            <apex:outputPanel >
+                <apex:outputText value="Page {!PageNumber} of {!Ceiling(ResultSize/PageSize)}"></apex:outputText>
+            </apex:outputPanel>
+      </apex:panelGrid>
+  </apex:pageBlock>
+ </apex:form> 
+</apex:page>

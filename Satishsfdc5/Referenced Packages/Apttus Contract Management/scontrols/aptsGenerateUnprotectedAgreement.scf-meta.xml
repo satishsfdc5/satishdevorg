@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scontrol xmlns="http://soap.sforce.com/2006/04/metadata">
+    <contentSource>HTML</contentSource>
+    <description>Generates an unprotected agreement</description>
+    <encodingKey>UTF-8</encodingKey>
+    <fileName>aptsGenerateUnprotectedAgreement</fileName>
+    <name>aptsGenerateUnprotectedAgreement (DEPRECATED)</name>
+    <supportsCaching>false</supportsCaching>
+</Scontrol>

@@ -1,0 +1,29 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+	<title>Apttus Contract Management</title>
+	<link href="/dCSS/Theme2/default/common.css" type="text/css" media="handheld,print,projection,screen,tty,tv" rel="stylesheet" />
+	<script language="javascript" type="text/javascript"> 
+
+	function initPage() {
+		
+		// agreement id
+		var agreementId = "{!SUBSTITUTE(SUBSTITUTE(APTS_Agreement__c.Id,'\\','\\\\'),'"','\\"')}";
+		
+		// build the url for the visualforce page with action
+		var url = "/apex/Apttus__SendEmail?id=" + agreementId;
+		url += "&action=Send_To_Other_Party_For_Review";
+
+		// redirect to the visualforce page
+		parent.frames.location.replace(url);
+	}
+
+	</script>
+</head>
+
+<body onload="initPage()" class="home  editPage">
+
+<div id="divMain"><h1>Please wait...</h1></div>
+
+</body>
+</html>

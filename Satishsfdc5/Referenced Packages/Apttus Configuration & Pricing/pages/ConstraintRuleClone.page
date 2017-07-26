@@ -1,0 +1,45 @@
+<!-- 
+    Apttus Config & Pricing
+    ConstraintRuleClone
+     
+    @2010-2011 Apttus Inc. All rights reserved.
+
+ -->
+<apex:page standardController="Apttus_Config2__ConstraintRule__c"  
+           extensions="Apttus_Config2.ConstraintRuleCloneController" 
+           showHeader="true"
+           sidebar="true"
+           cache="false"
+           action="{!doOK}"   
+           tabStyle="Apttus_Config2__ConstraintRule__c">    
+    
+    <apex:stylesheet value="{!$Resource.Apttus_Config2__ConfigStyles}" />
+    
+    <apex:sectionHeader title="{!$ObjectType.Apttus_Config2__ConstraintRule__c.Label}"   subtitle="{!Apttus_Config2__ConstraintRule__c.Name}"/>
+    
+    <apex:form id="idCloneRule">
+        <!--  required fields -->
+        <apex:outputText value="{!Apttus_Config2__ConstraintRule__c.Apttus_Config2__Sequence__c}" rendered="false" />
+        <apex:outputText value="{!Apttus_Config2__ConstraintRule__c.Apttus_Config2__Description__c}" rendered="false" />
+        <apex:outputText value="{!Apttus_Config2__ConstraintRule__c.Apttus_Config2__Active__c}" rendered="false" />
+        
+        <apex:pageBlock id="idCloneRuleBlock" title="Clone Rule" mode="edit">
+            <apex:pageMessages />
+            
+            <apex:pageBlockButtons location="both">
+                <apex:commandButton value="{!$Label.apttus_config2__Ok}" 
+                                    action="{!doOk}"
+                                    style="width: 70px"  />
+            </apex:pageBlockButtons>
+            <apex:pageBlockSection id="idEditRule"
+                                   title="Edit" 
+                                   columns="2" 
+                                   collapsible="false" >
+                                   
+ 				<apex:inputField value="{!clonedRule.Name}"
+ 						style="width: 200px;"/>                                  
+                                   
+ 			</apex:pageBlockSection>	                                  
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>

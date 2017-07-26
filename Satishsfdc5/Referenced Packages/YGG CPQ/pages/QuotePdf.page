@@ -1,0 +1,353 @@
+<apex:page standardController="YGGC__Quote__c" extensions="YGGC.QuotePdfController" showHeader="false" renderas="{!mode}">
+    <head>
+        <style type="text/css">
+        
+        
+        
+         body { 
+ 			 font-family: 'Helvetica' "Arial" "Sans-Serif"; 
+             padding:5px;
+             font-size: 12px;
+         }
+        .companyName {
+         font-family:gill sans mt, arial; 
+            font-weight:bold;
+            font-size:16px;
+        }
+        
+        .customerName {
+         font-family:gill sans mt, arial; 
+            text-transform:uppercase;
+            font-size:14px; 
+        } 
+        
+        .contactName {
+            font-weight:bold;
+            font-size:14px;
+            
+        }
+
+        .description {
+            font-size:10px;
+            
+        }
+        
+        .line {
+            background-image: url(/s.gif);
+            background-color:black;
+            height:3px;
+            margin:10px 3px;
+        }
+        
+        .lineSmall {
+            background-image: url(/s.gif);
+            background-color:black;
+            height:1px;
+            margin:10px 3px;
+        }
+        
+        .companyTable {
+            padding-top:15px;
+        }
+        
+        .left {
+            text-align:left;
+            vertical-align:top;
+        }
+        
+        .right {
+            text-align:right;
+            vertical-align:top;
+        }
+        
+        .middle {
+            text-align:center;
+            vertical-align:top;
+        }
+        
+        .headerLeft {
+            text-align:left;
+            vertical-align:top;
+            width:400px;
+        }
+        
+        .headerRight {
+        	text-align:right;
+            vertical-align:top;
+        }
+        
+        .quoteTableLeft {
+        	width:120px;
+         	text-align:left;
+            vertical-align:top;
+            white-space: nowrap;
+        }
+        
+        .quoteTableRight {
+        	text-align:right;
+        	vertical-align:top;
+        	white-space: nowrap;
+        }
+        
+        
+        
+        .billTo {
+            text-align:right;
+            vertical-align:top;        
+            text-decoration:underline;
+        }
+        
+        .shipTo {
+            text-align:right;
+            vertical-align:top;        
+			margin-right:150px;
+            text-decoration:underline;
+            height:200px;
+        }
+        
+        
+        .header {
+            text-align:left;
+            vertical-align:top;
+            padding:5px;
+        }
+
+        
+        .evenRow {
+            background-color:#F2F2F2;
+        }
+        
+        .oddRow {
+            background-color:#FFFFFF;
+        }
+        
+        .total {
+            width:20%;
+            font-weight:bold;
+            font-size:12px;
+        }
+        
+        .totalLabel {
+            width:80%;
+            font-weight:bold;
+            font-size:12px;
+        }
+        
+        .productNameParent {
+            text-decoration :underline;
+            font-weight:bold;
+            font-size:12px;
+        }
+        
+        .productName {
+            font-size:12px;
+        }
+
+        
+        .productDetail {
+            margin-left:10px;
+        }
+        
+        .poweredBy {
+            float:left;
+            margin-left:2px;
+            font-size: 9px;
+        }   
+        
+        .billingHeader {
+            vertical-align:top;
+            font-weight: bold;
+        }
+       
+        .addressSection {
+            width:100%;
+        }
+        
+        .linesCol {
+            padding-left:10px;
+        }
+        
+        .indexCol {
+        	vertical-align:top;
+        }
+        
+        .linesTable {
+            margin:4px;
+            width:687px;
+            
+        }
+        .linesTable td{
+            padding-top: 2px;
+            padding-bottom: 2px;
+            
+        }
+        
+        .footer {
+            margin:2px;
+        }
+        
+        .mid {
+            padding-left:5px;
+            display:block;
+        }
+    
+        </style>
+    </head>
+    <body>
+    <!-- <apex:image value="{!URLFOR($Resource.pdfLogo)}" rendered="{!ISNULL(logo)}"/> -->
+	<apex:outputText escape="false" value="{!logo}" rendered="{!NOT(ISNULL(logo))}"/>    
+
+    <apex:outputPanel layout="block" styleClass="line"/>
+
+    <apex:panelGrid columns="1" styleClass="centered" >
+        <apex:panelGrid columns="2" cellpadding="0" cellspacing="0" columnClasses="headerLeft,headerRight">
+        	<apex:panelGroup >
+	            <apex:outputText value="Quote# {!YGGC__Quote__c.name}"  styleClass="customerName"/><br/>
+		        <apex:outputPanel style="text-align:right" rendered="{!NOT(ISNULL(YGGC__Quote__c.YGGC__Valid_Until__c))}">
+        	         Valid Until: <apex:outputField value="{!YGGC__Quote__c.YGGC__Valid_Until__c}" style="text-align:right"/><br/>
+	        	</apex:outputPanel>
+	            <apex:outputPanel rendered="{!NOT(ISNULL(YGGC__Quote__c.YGGC__Quote_Billing_Customer__c))}">
+	                <apex:outputText value="{!YGGC__Quote__c.YGGC__Quote_Billing_Customer__c}"/><br/>
+	            </apex:outputPanel>
+	            <apex:outputPanel rendered="{!NOT(ISNULL(YGGC__Quote__c.YGGC__Billing_Street__c))}">
+	                <apex:outputText value="{!YGGC__Quote__c.YGGC__Billing_Street__c}"/><br/>
+	            </apex:outputPanel>
+	            <apex:outputPanel >
+	                <apex:outputText value="{!YGGC__Quote__c.YGGC__Billing_City__c}" rendered="{!NOT(ISNULL(YGGC__Quote__c.YGGC__Billing_City__c))}"/>
+	                <apex:outputText escape="false" value=",&nbsp;" rendered="{!AND(NOT(ISNULL(YGGC__Quote__c.YGGC__Billing_City__c)), NOT(ISNULL(YGGC__Quote__c.YGGC__Billing_State__c)))}"/>
+	                <apex:outputText value="{!YGGC__Quote__c.YGGC__Billing_State__c}"/><br/>
+	            </apex:outputPanel>
+	            <apex:outputPanel rendered="{!NOT(ISNULL(YGGC__Quote__c.YGGC__Billing_Zip_Code__c))}">
+	                <apex:outputText value="{!YGGC__Quote__c.YGGC__Billing_Zip_Code__c}"/><br/>
+	            </apex:outputPanel>
+	            <apex:outputPanel rendered="{!NOT(ISNULL(YGGC__Quote__c.YGGC__Billing_Country__c))}">
+	                <apex:outputText value="{!YGGC__Quote__c.YGGC__Billing_Country__c}"/><br/>
+	            </apex:outputPanel>
+	            <apex:outputPanel rendered="{!NOT(ISNULL(YGGC__Quote__c.YGGC__Billing_Phone__c))}">
+	                <apex:outputText value="{!YGGC__Quote__c.YGGC__Billing_Phone__c}"/><br/>
+	            </apex:outputPanel>
+        	</apex:panelGroup>
+        	<apex:panelGroup >
+       			<apex:panelGrid style="width:300px" columns="2"  cellpadding="0" cellspacing="0" columnClasses="quoteTableLeft,quoteTableRight">
+            		<apex:outputPanel >
+		                 Quote Date:
+			         </apex:outputPanel>
+			         <apex:outputField value="{!YGGC__Quote__c.lastmodifieddate}" />
+		        	<apex:outputPanel rendered="{!NOT(ISNULL(YGGC__Quote__c.YGGC__Customer_RFQ_No__c))}">
+			            <apex:outputText value="{!$ObjectType.YGGC__Quote__c.fields.YGGC__Customer_RFQ_No__c.label}:"/>
+			        </apex:outputPanel>
+			        <apex:outputField value="{!YGGC__Quote__c.YGGC__Customer_RFQ_No__c}" />
+		        	<apex:outputPanel rendered="{!NOT(ISNULL(YGGC__Quote__c.YGGC__Terms__c))}">
+			            <apex:outputText value="{!$ObjectType.YGGC__Quote__c.fields.YGGC__Terms__c.label}:"/>
+			        </apex:outputPanel>
+		            <apex:outputField value="{!YGGC__Quote__c.YGGC__Terms__c}" />
+			        <apex:outputPanel rendered="{!NOT(ISNULL(YGGC__Quote__c.YGGC__Shipping__c))}">
+			            <apex:outputText value="{!$ObjectType.YGGC__Quote__c.fields.YGGC__Shipping__c.label}:"/>
+			        </apex:outputPanel>
+		            <apex:outputField value="{!YGGC__Quote__c.YGGC__Shipping__c}" />
+		            <apex:outputPanel rendered="{!NOT(ISNULL(YGGC__Quote__c.YGGC__Attn__c))}">
+		                <apex:outputText value="{!$ObjectType.YGGC__Quote__c.fields.YGGC__Attn__c.label}:"/>
+		            </apex:outputPanel>
+		            <apex:outputField value="{!YGGC__Quote__c.YGGC__Attn__c}" />
+
+            		<apex:outputPanel rendered="{!NOT(ISNULL(YGGC__Quote__c.YGGC__Email_Address__c))}">
+		                 Email:
+			         </apex:outputPanel>
+		            <apex:outputPanel rendered="{!NOT(ISNULL(YGGC__Quote__c.YGGC__Email_Address__c))}">
+		                <apex:outputText value="{!YGGC__Quote__c.YGGC__Email_Address__c}"/>
+		            </apex:outputPanel>		            
+        		</apex:panelGrid>
+        	</apex:panelGroup>
+
+        </apex:panelGrid>
+    </apex:panelGrid>
+
+	<!-- 
+   	<apex:panelGrid columns="2" width="100%" style="vertical-align:text-top;">
+   		<apex:panelGroup >
+	        <div style="float:left;">
+		        
+		        <div>
+		            
+	            </div>
+	        </div>
+	    </apex:panelGroup>
+	    
+	    <apex:panelGroup >
+	        <div style="float:right;">
+		        
+	        </div>
+		</apex:panelGroup>
+	 </apex:panelGrid> -->
+	 <apex:outputPanel layout="block" styleClass="lineSmall"/>
+	 
+    <apex:dataTable value="{!QuoteLineItems}" var="qli" styleClass="linesTable" columnClasses="indexCol, linesCol, linesCol, linesCol, linesCol,none" rowClasses="evenRow,oddRow" headerClass="header" width="100%">
+    	<apex:column headerValue="Item No." style="width:6%;padding-left:5px;">
+    		<apex:outputText rendered="{!qli.IsParent}" value="{0,number,###,###,##0}">
+				<apex:param value="{!qli.QuoteLine.YGGC__Sort_Order__c}" />
+			</apex:outputText>﻿
+    	</apex:column>
+        <apex:column headerValue="Product" styleClass="left" >
+            <apex:outputPanel styleClass="productNameParent" rendered="{!qli.isParent}">
+                <apex:outputText value="{!qli.Product.Name}" />
+            </apex:outputPanel>
+            <apex:outputPanel styleClass="productName" rendered="{!NOT(qli.isParent)}">
+                <apex:outputText value="{!qli.Product.Name}"/>                
+            </apex:outputPanel>
+            <br/>
+            <apex:outputText value="{!qli.QuoteLine.YGGC__Description__c}" styleClass="description"/>
+        </apex:column>
+        <apex:column styleClass="right">
+        	<apex:facet name="header"><div class="right"><b>Product<br/>Code</b></div></apex:facet>
+            <apex:outputField value="{!qli.QuoteLine.Product__r.ProductCode}"/>
+        </apex:column>
+        <apex:column styleClass="middle" style="width:6%;">
+            <apex:facet name="header"><div class="right"><b>Qnty</b></div></apex:facet>
+            <!-- <apex:outputField value="{!qli.QuoteLine.YGGC__Quantity__c}" rendered="{!qli.isParent}"/> -->
+            <apex:outputField value="{!qli.QuoteLine.YGGC__Quantity__c}"/>
+        </apex:column>
+        <apex:column styleClass="right" style="width:6%;">
+            <apex:facet name="header"><div class="right"><b>Dscnt</b></div></apex:facet>  
+            <apex:outputText value="{0,number,#,###}%" rendered="{!AND(qli.QuoteLine.YGGC__Discount__c != 0, NOT(ISNULL(qli.QuoteLine.YGGC__Discount__c)))}">
+                    <apex:param value="{!qli.QuoteLine.YGGC__Discount__c}" /> 
+                </apex:outputText>  
+<!--            <apex:outputField value="{!qli.QuoteLine.YGGC__Discount__c}" rendered="{!qli.QuoteLine.Discount__c != 0}"/>-->
+        </apex:column>
+        <apex:column styleClass="right" style="width:19%;">
+            <apex:facet name="header"><div class="right"><b>Price Each</b></div></apex:facet>    
+            <apex:outputField value="{!qli.QuoteLine.YGGC__Unit_Price__c}" rendered="true"/>
+        </apex:column>
+        
+        <apex:column styleClass="right" style="width:19%;">
+            <apex:facet name="header"><div class="right"><b>Extended Price</b></div></apex:facet>    
+            <apex:outputField value="{!qli.QuoteLine.YGGC__Total_Price__c}" rendered="true"/>
+        </apex:column>
+    </apex:dataTable>
+
+    <apex:outputPanel layout="block" styleClass="lineSmall"/>
+    <apex:panelGrid columns="2" columnClasses="right" width="100%">
+        <apex:panelGrid columns="2" columnClasses="right totalLabel,right total" width="100%">
+            <apex:outputText value="Discount" rendered="{!NOT(ISNULL(YGGC__Quote__c.YGGC__Quote_Discount__c))}"/>
+            <apex:outputField value="{!YGGC__Quote__c.YGGC__Quote_Discount__c}" rendered="{!NOT(ISNULL(YGGC__Quote__c.YGGC__Quote_Discount__c))}"/>
+            <apex:outputText value="Total"/>
+            <apex:outputField value="{!YGGC__Quote__c.YGGC__Grand_Total__c}"/>
+        </apex:panelGrid>
+    </apex:panelGrid>
+    
+	 
+	 <apex:outputPanel rendered="{!NOT(ISNULL(YGGC__Quote__c.YGGC__Comment__c))}">
+	     <apex:panelGrid columns="1" styleClass="commentSection">
+	        <apex:panelGroup >
+	        	<apex:outputPanel >
+	                <apex:outputText value="{!YGGC__Quote__c.YGGC__Comment__c}"/><br/>
+	            </apex:outputPanel>
+	     	</apex:panelGroup>
+	     </apex:panelGrid>
+ 		<apex:outputPanel layout="block" styleClass="lineSmall"/>	     
+	</apex:outputPanel>
+    
+    <apex:outputText styleClass="footer" escape="false" value="{!footer}" rendered="{!NOT(ISNULL(footer))}"/>
+    <apex:outputPanel layout="block" styleClass="line" rendered="false"/>
+    <apex:outputText styleClass="poweredBy" escape="false" value="Powered by YP Quotes &copy; 2010" rendered="false"/>
+    </body>
+</apex:page>

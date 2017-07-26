@@ -1,0 +1,123 @@
+<!-- 
+    Apttus Chatter
+    CreateOfflineAgreement
+     
+    @2011-2013 Apttus Inc. All rights reserved.
+
+ -->
+<apex:page standardController="Apttus__APTS_Agreement__c" 
+	  	   extensions="Apttus.CreateOfflineAgreementController" 
+           showHeader="false" 
+           sidebar="false" 
+           cache="false"
+           standardStylesheets="true"
+           tabStyle="Apttus__APTS_Agreement__c" >	
+           
+	<style>
+		textarea {
+			width: 35%;
+		}
+		
+	</style>
+	
+	<script type="text/javascript">
+    	
+    	/**
+		 * Callback after a partial page update
+		 */
+		function afterPageUpdate() {
+			
+			// delay to allow the page to be rendered	
+           	setTimeout(function() {
+           		
+           		// callback the object
+				try {
+					window.external.PageRefreshed();
+				} catch(ex) {
+					// object not available
+				}
+          	}, 0);
+           	
+		}
+		
+		// register to invoke the function after the page load
+    	window.onload = function() { 
+    		// make the window visible
+			try {
+				window.external.MakeVisible();
+			} catch(ex) {
+				// object not available
+			}
+			
+    	}
+    	
+    </script>
+    
+    <apex:form id="idBrowseSObjects">
+		
+		<apex:pageBlock id="idAgreementBlock" title="{!$Label.apttus__NewOfflineAgreement}" mode="edit">
+			<apex:pageMessages />
+			
+			<apex:pageBlockButtons location="both">
+				<apex:commandButton value="{!$Label.apttus__Save}" 
+		        					action="{!doSave}" 
+		        					reRender="idAgreementBlock" />
+		        <apex:commandButton value="{!$Label.apttus__Cancel}" 
+		        					action="{!doCancel}" 
+		        					immediate="true" 
+		        					reRender="idOutputPanel" />
+		        <apex:commandButton value="{!$Label.apttus__Return}" 
+		        					action="{!doReturn}" 
+		        					immediate="true" 
+		        					rendered="{!IsTestMode}"/>
+		    </apex:pageBlockButtons>
+		    
+		    <apex:pageBlockSection id="idDetail" 
+		    					   title="{!$Label.apttus__Information}" 
+								   columns="1" >
+				
+				<apex:pageBlockSectionItem rendered="{!IsRecordTypeEnabled}" >
+					<apex:outputLabel value="RecordType" 
+									  for="idRecordType" />
+					<c:RecordTypeList id="idRecordType" 
+								  	  recordType="{!recordType}" 
+								      sObjectType="Apttus__APTS_Agreement__c" />
+				
+				</apex:pageBlockSectionItem>
+					
+				<!--  Offline Agreement Field Set  -->
+				<apex:repeat value="{!$ObjectType.Apttus__APTS_Agreement__c.FieldSets.Apttus__OfflineAgreementFieldSet}" 
+							 var="fd">
+					<apex:inputField value="{!Apttus__APTS_Agreement__c[fd.FieldPath]}"
+									 required="{!(fd.Required || fd.DBRequired)}" />
+				</apex:repeat>	   
+				
+			</apex:pageBlockSection>	
+			
+			<apex:outputPanel id="idOutputPanel">
+			
+				<apex:outputPanel id="idResponsePanel" 
+			        				  rendered="{!NOT(hasErrors) && (hasResponseXml)}" >
+					<script>
+						
+						try {
+							
+							// get the response xml
+							var responseXml = "{!JSENCODE(responseXml)}";
+							//alert(responseXml);
+							
+							// set the response xml
+							window.external.SetResponse(responseXml);
+							
+						} catch(ex) {
+							// object not available
+						} 
+						
+					</script>
+				</apex:outputPanel>
+				
+			</apex:outputPanel>
+		</apex:pageBlock>
+		
+	</apex:form>            
+</apex:page>

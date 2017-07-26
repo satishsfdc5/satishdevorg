@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customSettingsType>List</customSettingsType>
+    <description>Comply System properties</description>
+    <enableEnhancedLookup>false</enableEnhancedLookup>
+    <enableFeeds>false</enableFeeds>
+    <fields>
+        <fullName>AdminUser__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The admin user name (format = first name, last name)</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The admin user is the default owner of activities created by a user who is not allowed to be the owner (for e.g. customer portal user).</inlineHelpText>
+        <label>Admin User</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>BypassSharing__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <description>Indicates whether apex code can bypass record sharing</description>
+        <externalId>false</externalId>
+        <label>Bypass Sharing</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>ContractSummaryTemplate__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The name of the contract summary template.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The name of the contract summary template.</inlineHelpText>
+        <label>Contract Summary Template</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>DefaultOpportunityAgreementOwner__c</fullName>
+        <defaultValue>&quot;Opportunity Owner&quot;</defaultValue>
+        <deprecated>false</deprecated>
+        <description>The default owner for the agreement created from an opportunity. Valid values are Opportunity Owner and Current User. If not set, the Opportunity Owner will become the owner of the new agreement</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The default owner for the agreement created from an opportunity. Valid values are Opportunity Owner and Current User. If not set, the Opportunity Owner will become the owner of the new agreement</inlineHelpText>
+        <label>Default Opportunity Agreement Owner</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>EmailTemplateForCheckinNotification__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The email template for sending checkin notifications.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The email template for sending checkin notifications.</inlineHelpText>
+        <label>Email Template For Checkin Notification</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>EnableMultipleCheckout__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <description>Indicates whether multiple checkout is allowed. Only applicable when version control is in effect.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Indicates whether multiple checkout is allowed. Only applicable when version control is in effect.</inlineHelpText>
+        <label>Enable Multiple Checkout</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>EnablePDFSecurity__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <description>Enabling pdf security lets users apply security settings to pdf documents and protect them with a password.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Enabling pdf security lets users apply security settings to pdf documents and protect them with a password.</inlineHelpText>
+        <label>Enable PDF Security</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>EnableSubmitMergeCall__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <description>Indicates whether merge calls may be submitted for processing. If enabled, a Submit button is displayed during document generation.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Indicates whether merge calls may be submitted for processing. If enabled, a Submit button is displayed during document generation.</inlineHelpText>
+        <label>Enable Submit Merge Call</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>EnableVersionControl__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <description>Indicates whether version control is in effect. If enabled, checkout/check-in policy is enforced for agreement documents.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Indicates whether version control is in effect. If enabled, checkout/check-in policy is enforced for agreement documents.</inlineHelpText>
+        <label>Enable Version Control</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>InstanceUrl__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The Salesforce instance url for redirecting to custom pages</description>
+        <externalId>false</externalId>
+        <label>Instance Url</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Url</type>
+    </fields>
+    <fields>
+        <fullName>MaxChildLevel__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The maximum level to generate the merge data for</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The maximum level to generate the merge data for</inlineHelpText>
+        <label>Max Child Level</label>
+        <precision>1</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>MergeCallTimeoutMillis__c</fullName>
+        <defaultValue>60000</defaultValue>
+        <deprecated>false</deprecated>
+        <description>The timeout in milliseconds for the merge request</description>
+        <externalId>false</externalId>
+        <label>Merge Call Timeout Millis</label>
+        <precision>6</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>MergeWebserviceEndpoint__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The Apttus merge web service endpoint</description>
+        <externalId>false</externalId>
+        <label>Merge Webservice Endpoint</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Url</type>
+    </fields>
+    <fields>
+        <fullName>PDFOwnerPwd__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The password required to change permissions of the PDF document like printing or editing.</description>
+        <externalId>false</externalId>
+        <label>PDF Owner Password</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>PublishMergeEvents__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <description>Indicates whether merge events should be published. If enabled, a record is inserted in the Merge Event table.</description>
+        <externalId>false</externalId>
+        <label>Publish Merge Events</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <label>Comply System Properties</label>
+    <visibility>Public</visibility>
+</CustomObject>

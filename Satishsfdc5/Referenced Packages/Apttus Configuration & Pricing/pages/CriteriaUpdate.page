@@ -1,0 +1,58 @@
+<!-- 
+    Apttus Config & Pricing
+    CriteriaUpdate
+     
+    @2010-2011 Apttus Inc. All rights reserved.
+
+ -->
+<apex:page standardController="Apttus_Config2__BatchJob__c" 
+		   extensions="Apttus_Config2.CriteriaUpdateController" 
+           showHeader="true"
+           sidebar="true"
+           cache="false"  
+           tabStyle="CategoryUpdate__tab">	
+    
+    <apex:sectionHeader title="{!$Label.apttus_config2__CriteriaUpdate}" />
+						
+    <apex:form id="idBatchJobSO">
+		
+		<apex:pageBlock id="idBatchJobBlock" mode="edit">
+			<apex:pageMessages />
+			
+			<p/>
+			<apex:outputText value="{!$Label.apttus_config2__SelectCriteriaForUpdate}" /> 
+			<p/>
+			
+			<apex:pageBlockSection id="idBatchJobSection"   
+		    					   columns="2" 
+		    					   collapsible="false" >
+				<apex:pageBlockSectionItem >
+					<apex:outputLabel value="{!$Label.apttus_config2__Select}" 
+									  for="idJobStep" />
+					<apex:panelGrid columns="2">
+  						<apex:inputField id="idJobStep" 
+  										 value="{!Apttus_Config2__BatchJob__c.Apttus_Config2__JobStep__c}">
+							<apex:actionSupport event="onchange" reRender="idBatchJobBlock" />
+						</apex:inputField>
+						<apex:commandButton value="{!$Label.apttus_config2__UpdateCriteria}" 
+		        							action="{!doUpdateCriteria}" 
+		        							disabled="{!ISBLANK(Apttus_Config2__BatchJob__c.Apttus_Config2__JobStep__c)}" />
+	                        		
+					</apex:panelGrid>
+				</apex:pageBlockSectionItem>
+			</apex:pageBlockSection> 	
+			
+			<apex:outputPanel >
+				<apex:outputText style="font-weight: bold" value="{!statusText}" />
+			</apex:outputPanel>    	
+					 
+		</apex:pageBlock>
+		
+		<!--  batch job monitor -->
+	    <c:BatchJobMonitor id="idBatchJobMonitor" 
+	    				   pageController="{!this}" 
+	    				   jobClassName="CriteriaUpdateJob" />
+		
+	</apex:form>
+	
+</apex:page>

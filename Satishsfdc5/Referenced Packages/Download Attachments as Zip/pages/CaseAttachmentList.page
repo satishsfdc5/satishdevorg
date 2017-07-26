@@ -1,0 +1,4 @@
+<apex:page standardController="Case">
+  <apex:sectionHeader title="Case {!Case.CaseNumber}" subtitle="{!Case.Subject}"/>
+  <c:AttachmentList ></c:AttachmentList>
+</apex:page>

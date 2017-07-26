@@ -1,0 +1,66 @@
+<!--
+ 	Apttus Config & Pricing
+ 	ProductOptionGroupReorder
+ 	 
+ 	@2010-2011 Apttus Inc. All rights reserved.
+ -->
+<apex:page controller="Apttus_Config2.ProductOptionGroupReorderController"  
+			showHeader="false" 
+			sidebar="false" 
+			cache="false" 
+			tabStyle="Product2">
+
+	<apex:form >
+
+		<apex:pageBlock id="idGroupsBlock" title="{!productName}">
+
+			<apex:outputPanel id="idErrorMsg" >
+				<apex:pageMessages />
+			</apex:outputPanel>
+			
+			<apex:pageBlockButtons location="both">
+				<apex:commandButton value="{!$Label.apttus_config2__Done}" action="{!doDone}"/>
+				<b><apex:actionStatus startText="{!$Label.apttus_config2__StatusMessageUpdatingPage}..."
+					id="idStatusSelect" /></b>
+			</apex:pageBlockButtons>
+
+			<apex:outputPanel id="idRecordSetPanel" >
+				<apex:pageBlockSection title="{!$Label.apttus_config2__ProductOptionGroups}" >
+
+					<apex:pageBlockTable value="{!pogList}"
+						var="pog" width="50%" >
+
+						<apex:column headerValue="{!$ObjectType.Apttus_Config2__ProductOptionGroup__c.Label}">
+							<apex:outputField value="{!pog.OptionGroupId__r.Name}" />
+						</apex:column>
+						
+						<apex:column width="20px">
+					   		<apex:commandLink action="{!doMoveUpRow}" 
+									  	  	  reRender="idGroupsBlock" 
+									  	  	  rendered="{!pog.Id != firstRowId}" 
+									  	  	  status="idStatusSelect" >
+								<apex:param name="param1" assignTo="{!ctxGroupId}" value="{!pog.Id}" />
+								<apex:image url="{!$Resource.Apttus_Config2__Image_MoveUp}" 
+		                       				title="{!$Label.apttus_config2__MoveUp}" 
+		                       				alt="{!$Label.apttus_config2__MoveUp}" />
+							</apex:commandLink>
+							<apex:commandLink action="{!doMoveDownRow}" 
+									  	  	  reRender="idGroupsBlock" 
+									  	  	  rendered="{!pog.Id != lastRowId}" 
+									  	  	  status="idStatusSelect" >
+								<apex:param name="param1" assignTo="{!ctxGroupId}" value="{!pog.Id}" />
+								<apex:image url="{!$Resource.Apttus_Config2__Image_MoveDown}" 
+		                       				title="{!$Label.apttus_config2__MoveDown}" 
+		                       				alt="{!$Label.apttus_config2__MoveDown}" />
+							</apex:commandLink>
+					   	</apex:column>
+					   	
+					</apex:pageBlockTable>					
+
+				</apex:pageBlockSection>
+
+			</apex:outputPanel>	
+			
+		</apex:pageBlock>	
+	</apex:form>
+</apex:page>

@@ -1,0 +1,23 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+	<title>Apttus Contract Management</title>
+	<link href="/dCSS/Theme2/default/common.css" type="text/css" media="handheld,print,projection,screen,tty,tv" rel="stylesheet" />
+	<script language="javascript" type="text/javascript"> 
+
+	function initPage() {
+		
+		// build the url for a new agreement
+		var url = "{!URLFOR($Action.APTS_Agreement__c.New,null,[retURL=URLFOR("/home/home.jsp")])}";
+		
+		// redirect to the new page
+		parent.frames.location.replace(url);
+	}
+
+	</script>
+</head>
+
+<body onload="initPage()" class="home  editPage">
+	<div id="divMain"><h1>Please wait...</h1></div>
+</body>
+</html>

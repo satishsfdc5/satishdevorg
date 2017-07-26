@@ -1,0 +1,211 @@
+<!-- 
+    Apttus Comply-Config Integration
+    AgreementClone
+     
+    @2010-2011 Apttus Inc. All rights reserved.
+	
+	Summary
+ 	-------
+  	Clones the agreement including the finalized product configuration.
+ 	
+	parameters
+    ==========
+    Name			| Required | Description
+    ================|==========|======================================================================================
+    id 				| Yes      | The record id of the agreement to clone
+                    |          |
+    pageMode        | No       | The display mode for the new agreement record after it is created. 
+                    |          | Valid values are : edit, detail. The default value is edit. 
+    ===================================================================================================================
+    
+ -->
+<apex:page standardController="Apttus__APTS_Agreement__c" 
+		   extensions="Apttus_CMConfig.AgreementCloneController" >
+	
+	<script type="text/javascript" src="/soap/ajax/25.0/connection.js"></script>
+	<script type="text/javascript" src="/soap/ajax/25.0/apex.js"></script>
+ 	<apex:include pageName="Apttus__ComplyJSLibInclude" />
+ 	<apex:include pageName="Apttus_CMConfig__ComplyConfigJSLibInclude" />
+ 	
+	<apex:stylesheet value="{!URLFOR($Resource.Apttus__YUILibrary, '/yui/build/assets/skins/sam/skin.css')}" />
+ 	
+	<apex:includescript value="{!URLFOR($Resource.Apttus__YUILibrary, '/yui/build/yahoo-dom-event/yahoo-dom-event.js')}" />
+	<apex:includescript value="{!URLFOR($Resource.Apttus__YUILibrary, '/yui/build/dragdrop/dragdrop-min.js')}" />
+	<apex:includescript value="{!URLFOR($Resource.Apttus__YUILibrary, '/yui/build/container/container-min.js')}" />
+	<apex:includescript value="{!URLFOR($Resource.Apttus__YUILibrary, '/yui/build/animation/animation-min.js')}" />
+	
+	<script type="text/javascript">
+			
+		// Create a namespace for our custom functions
+		YAHOO.namespace("force.com");
+		
+		// wait panel
+		
+		/**
+		 * Builds the wait panel.
+		 */
+	    YAHOO.force.com.buildWaitPanel = function() {
+	        document.body.className = document.body.className + " yui-skin-sam";
+	        YAHOO.force.com.waitPanel = new YAHOO.widget.Panel(
+	            "waitPanel",  // The id of our dialog container
+	            { 
+	                    width           :   "300px", // You can play with this until it's right
+	                    visible         :   false,   // Should be invisible when rendered
+	                    draggable       :   false,   // Make the dialog draggable
+	                    close           :   false,   // Don't include a close title button
+	                    modal           :   true,    // Make it modal
+	                    fixedCenter     :   true,    // Keep centered if window is scrolled
+	                    zindex          :   40,      // Make sure it's on top of everything
+	                    constraintoviewport: true,
+	                    
+	                    // This line adds the appear/disapper fade effect
+	                    effect			:   {effect:YAHOO.widget.ContainerEffect.FADE,duration:0.25}
+        							
+	            }
+	        );
+	        
+	        // header
+	        YAHOO.force.com.waitPanel.setHeader("{!$Label.CloneAgreement}");
+			// set image
+			YAHOO.force.com.waitPanel.setBody('<center><img src="{!URLFOR($Resource.Apttus_Config2__Image_LoadingPage)}" /></center>');
+	        // Render the dialog to the document.body level of the DOM
+	        YAHOO.force.com.waitPanel.render(document.body);
+	        
+	    }
+    	
+    	/**
+         * Clones the original agreement
+         */
+        function doCloneAgreement() {
+            
+            // get parameters
+            
+            // original agreement id
+			var originalId = "{!JSENCODE(OriginalId)}";
+            // page mode
+            var pageMode = "{!JSENCODE(PageMode)}";
+            
+            // STEP I - initialize the call
+            {!ClassName}.doCloneAgreement(originalId, function(result, event) {
+            
+                try {
+                    // check response status
+                    if (event.status) {
+                        // ok response
+                        // get the clone id
+                        var cloneId = result;
+                        // STEP I - initialize the call
+						initCall();
+						// STEP II - copy child objects from original agreement to the agreement clone
+						doCopyAgreementChildSObjects(originalId, cloneId);
+						// STEP III - update document properties
+						updateClonedAgreementDocs(cloneId);
+                        // STEP IV - go to finish page
+                        goToFinishPage(originalId, cloneId, pageMode);
+                        
+                    } else {
+                        // throw exception
+                        alert(event.message);
+                        // hide modal panel
+        				YAHOO.force.com.waitPanel.hide();
+                        // back to detail page
+                        goBack();
+                        
+                    }
+                    
+                } catch(ex) {
+                    // hide modal panel
+                    YAHOO.force.com.waitPanel.hide();
+                    // display the error
+                    cc_erroralert(cc_cERROR_UNKNOWN, ex);
+                    // back to detail page
+                    goBack();
+                      
+                } 
+                
+            }, {escape:true});
+                  
+        }
+            
+        /**
+         * Goto the finish pageusing the given parameters
+         * @param originalId the id of the original agreement object 
+		 * @param cloneId the id of the agreement clone object
+		 * @param pageMode the page mode
+         */
+        function goToFinishPage(originalId, cloneId, pageMode) {
+    
+            // STEP I - initialize the call
+             {!ClassName}.getFinishPage(originalId, cloneId, pageMode, function(result, event) {
+             
+                try {
+                    // check response status
+                    if (event.status) {
+                        // ok response 
+						// get the finish page
+						var finishPage = result;
+						// go to finish page
+						cc_navigateTo(finishPage);
+						
+                    } else {
+                        // throw exception
+                        alert(event.message);
+                        
+                    } 
+                } catch(ex) {
+                       // display the error
+                       cc_erroralert(cc_cERROR_UNKNOWN, ex);
+                       // back to detail page
+                   	   goBack();
+                   
+                } 
+                
+            }, {escape:true});
+                   
+        }
+        
+        /**
+		 * Go back to the detail page
+		 */
+		function goBack() {
+			// get the agreement id
+			var originalId = "{!JSENCODE(OriginalId)}";
+			// go back to the detail page
+			cc_navigateTo("/" + originalId);
+			
+		}
+		
+		/**
+		 * Initializes the call
+		 */
+		function initCall() {
+		
+			try {
+				sforce.connection.sessionId = "{!$Api.Session_ID}"; //to avoid session timeout
+			} catch(e) {
+				cc_erroralert(cc_cERROR_UNKNOWN,e);
+				
+			}
+		
+		}
+		
+	    // Function called when the DOM is ready to create the dialog,
+    	// render the dialog into the document body, add our dialog skin
+    	// css to the body tag, and wire up the buttons on our dialog   
+		YAHOO.force.com.onDOMReady = function() {
+			
+			// build the wait panel
+			YAHOO.force.com.buildWaitPanel();
+			// show modal panel
+			YAHOO.force.com.waitPanel.show();
+			// invoke clone function
+			doCloneAgreement();	
+			
+		}
+		
+	    // build the tree as soon as the DOM is in a usable state
+		YAHOO.util.Event.onDOMReady(YAHOO.force.com.onDOMReady);   	
+		
+	</script>
+	
+</apex:page>

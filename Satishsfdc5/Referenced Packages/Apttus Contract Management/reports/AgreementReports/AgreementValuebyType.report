@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <field>APTS_Agreement__c.FF_Agreement_Number__c</field>
+    </columns>
+    <columns>
+        <field>CUST_NAME</field>
+    </columns>
+    <columns>
+        <field>APTS_Agreement__c.Account__c</field>
+    </columns>
+    <columns>
+        <field>APTS_Agreement__c.Status__c</field>
+    </columns>
+    <columns>
+        <field>APTS_Agreement__c.Status_Category__c</field>
+    </columns>
+    <columns>
+        <aggregateTypes>Sum</aggregateTypes>
+        <field>APTS_Agreement__c.Total_Contract_Value__c</field>
+    </columns>
+    <description>Lists all agreements by their type along with the contract value</description>
+    <format>Summary</format>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>APTS_Agreement__c.Subtype__c</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <name>Agreement Value by Type</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>CustomEntity$APTS_Agreement__c</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <timeFrameFilter>
+        <dateColumn>APTS_Agreement__c.Company_Signed_Date__c</dateColumn>
+        <interval>INTERVAL_CUSTOM</interval>
+    </timeFrameFilter>
+</Report>

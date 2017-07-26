@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <comment>Edit Search Filter</comment>
+        <content>SearchFilter</content>
+        <skipRecordTypeSelect>false</skipRecordTypeSelect>
+        <type>Visualforce</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Follow</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <comment>Create Search Filter</comment>
+        <content>SearchFilter</content>
+        <skipRecordTypeSelect>false</skipRecordTypeSelect>
+        <type>Visualforce</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <comment>View Search Filter</comment>
+        <content>SearchFilterDetail</content>
+        <skipRecordTypeSelect>false</skipRecordTypeSelect>
+        <type>Visualforce</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <deprecated>false</deprecated>
+    <description>Represents a search filter</description>
+    <enableActivities>true</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableEnhancedLookup>false</enableEnhancedLookup>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>false</enableHistory>
+    <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <fields>
+        <fullName>BusinessObject__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The business object which provides the context for the filter</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The business object which provides the context for the filter</inlineHelpText>
+        <label>Business Object</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Apttus__AgreementLineItem__c</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>CriteriaFieldNames__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The list of field names used in the filter criteria</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The list of field names used in the filter criteria</inlineHelpText>
+        <label>Criteria Field Names</label>
+        <length>1024</length>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Criteria__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The filter criteria specification</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The filter criteria specification</inlineHelpText>
+        <label>Criteria</label>
+        <length>4000</length>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>5</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Datetime__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Search datetime</description>
+        <externalId>false</externalId>
+        <label>Datetime</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>Description__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The description for the filter</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The description for the filter</inlineHelpText>
+        <label>Description</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>GroupType__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The collaboration type</description>
+        <externalId>false</externalId>
+        <label>Group Type</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Public</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Private</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>PeopleType__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The people type</description>
+        <externalId>false</externalId>
+        <label>People Type</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Following</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Followers</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>SObjectName__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The sobject to query</description>
+        <externalId>false</externalId>
+        <label>Object Name</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Opportunity</fullName>
+                <default>true</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Account</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>SearchType__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The search type</description>
+        <externalId>false</externalId>
+        <label>Search Type</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Files</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Attachments</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <label>Search Filter (Comply)</label>
+    <listViews>
+        <fullName>All</fullName>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+    </listViews>
+    <nameField>
+        <label>Filter Name</label>
+        <type>Text</type>
+    </nameField>
+    <pluralLabel>Search Filters (Comply)</pluralLabel>
+    <searchLayouts>
+        <customTabListAdditionalFields>BusinessObject__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Description__c</customTabListAdditionalFields>
+        <lookupDialogsAdditionalFields>BusinessObject__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>Description__c</lookupDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>BusinessObject__c</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>Description__c</lookupPhoneDialogsAdditionalFields>
+        <searchFilterFields>NAME</searchFilterFields>
+        <searchFilterFields>BusinessObject__c</searchFilterFields>
+        <searchFilterFields>Description__c</searchFilterFields>
+        <searchResultsAdditionalFields>BusinessObject__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Description__c</searchResultsAdditionalFields>
+    </searchLayouts>
+    <sharingModel>ReadWrite</sharingModel>
+</CustomObject>

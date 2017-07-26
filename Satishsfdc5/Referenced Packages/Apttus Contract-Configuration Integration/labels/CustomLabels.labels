@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomLabels xmlns="http://soap.sforce.com/2006/04/metadata">
+    <labels>
+        <fullName>Cancel</fullName>
+        <categories>Button Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Cancel</shortDescription>
+        <value>Cancel</value>
+    </labels>
+    <labels>
+        <fullName>CloneAgreement</fullName>
+        <categories>Status Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Clone Agreement</shortDescription>
+        <value>Cloning the agreement... Please wait</value>
+    </labels>
+    <labels>
+        <fullName>ErrorUnknown</fullName>
+        <categories>Error Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Error Unknown</shortDescription>
+        <value>ERROR: unknown error</value>
+    </labels>
+    <labels>
+        <fullName>FinalizeAgreement</fullName>
+        <categories>Button Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Finalize Agreement</shortDescription>
+        <value>Finalize Agreement</value>
+    </labels>
+    <labels>
+        <fullName>NoPriceBookWithOpportunity</fullName>
+        <categories>Error Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>No Price Book With Opportunity</shortDescription>
+        <value>No Price Book associated with the Opportunity</value>
+    </labels>
+    <labels>
+        <fullName>PleaseWait</fullName>
+        <categories>Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Please Wait</shortDescription>
+        <value>Please Wait</value>
+    </labels>
+    <labels>
+        <fullName>RequiredParamsAreMissing</fullName>
+        <categories>Error Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Required parameters are missing</shortDescription>
+        <value>Required parameters are missing</value>
+    </labels>
+    <labels>
+        <fullName>StatusMessageFinalizingAgreement</fullName>
+        <categories>Status Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Status Message Finalizing Agreement</shortDescription>
+        <value>Finalizing the agreement... Please wait</value>
+    </labels>
+    <labels>
+        <fullName>SynchronizingWithOpportunity</fullName>
+        <categories>Status Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Synchronizing with Opportunity</shortDescription>
+        <value>Synchronizing with Opportunity... Please wait</value>
+    </labels>
+</CustomLabels>

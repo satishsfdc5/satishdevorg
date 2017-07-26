@@ -1,0 +1,59 @@
+<apex:page standardController="YGGC__Quote__c" extensions="YGGC.EmailQuoteController" showHeader="false">
+    <head>
+    	<apex:stylesheet value="{!URLFOR($Resource.YGGC__applicationStyle, 'applicationstyle.css')}"/>
+        <style type="text/css">
+         .emailRow {
+            vertical-align:top; 
+         }
+         
+         .emailLinks {
+            font-size:10px; 
+         }
+        </style>
+    </head>
+    <apex:form >
+        <apex:tabPanel switchType="server" selectedTab="emailTab">
+            <apex:tab label="Email" name="emailTab">
+                <apex:pageBlock >
+                    <apex:pageBlockButtons >
+                        <apex:commandButton value="Email" action="{!email}" status="emailStatus" rerender="messages"/>
+                        <input type="button" value="Close" class="btn" onclick="javascript:window.close()"/>
+                        <apex:actionStatus id="emailStatus">
+                            <apex:facet name="start">
+                                <img src="{!$Resource.YGGC__loading}"/>
+                            </apex:facet>
+                        </apex:actionStatus>
+                    </apex:pageBlockButtons>
+                    <apex:pageMessages id="messages"/>
+                    <apex:panelGrid columns="2" rowClasses="emailRow">
+                        <apex:outputText value="From:"/>
+                        <apex:inputText value="{!myEmail}" size="50"/>
+        
+                        <apex:outputText value="Display Name:"/>
+                        <apex:inputText value="{!myName}" size="50"/>
+                     
+                        <apex:outputText value="To:"/>
+                        <apex:inputText value="{!e.YGGC__To__c}" size="50"/>
+            
+                        <apex:outputText value="Cc:"/>
+                        <apex:inputText value="{!e.YGGC__Cc__c}" size="50"/>
+            
+                        <apex:outputText value="Bcc:"/>
+                        <apex:inputText value="{!e.YGGC__Bcc__c}" size="50"/>
+            
+                        <apex:outputText value="Subject:"/>
+                        <apex:inputText value="{!e.YGGC__Subject__c}" size="99"/>
+             
+                        <apex:outputText value="Body:"/>
+                        <apex:inputTextArea richText="true" value="{!e.YGGC__Body__c}" rows="20" cols="115"/>
+                    </apex:panelGrid>
+                </apex:pageBlock>
+            </apex:tab>
+            <apex:tab label="View Attachment">
+                <apex:pageBlock >
+                    <apex:iframe src="{!URLFOR($Page.YGGC__QuotePdf, null, [id=Id, mode='html'])}" scrolling="true" id="previewFrame" width="720"/>
+                </apex:pageBlock>
+            </apex:tab>
+        </apex:tabPanel>
+    </apex:form>
+</apex:page>

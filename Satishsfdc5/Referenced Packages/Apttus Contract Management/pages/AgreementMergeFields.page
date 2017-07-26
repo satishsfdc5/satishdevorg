@@ -1,0 +1,22 @@
+<!-- 
+    Apttus Contract Management
+    AgreementMergeFields
+     
+    @2009-2010 Apttus Inc. All rights reserved.
+
+ -->
+<apex:page standardController="Apttus__APTS_Agreement__c" 
+		   extensions="Apttus.ServerInfoController" 
+		   showHeader="false" 
+		   contentType="text/xml">
+		   
+	<MergeFields>
+	  <APTS_AGREEMENT_LINK>{!FQDNUrl}/{!Apttus__APTS_Agreement__c.Id}</APTS_AGREEMENT_LINK>
+	  <APTS_AGREEMENTOWNER_EMAIL>{!TRIM(Apttus__APTS_Agreement__c.Owner.Email)}</APTS_AGREEMENTOWNER_EMAIL>
+	  <APTS_AGREEMENTOWNER_FIRSTNAME>{!TRIM(Apttus__APTS_Agreement__c.Owner.FirstName)}</APTS_AGREEMENTOWNER_FIRSTNAME>
+	  <APTS_AGREEMENTOWNER_FULLNAME>{!TRIM(Apttus__APTS_Agreement__c.Owner.Name)}</APTS_AGREEMENTOWNER_FULLNAME>
+	  <APTS_AGREEMENTOWNER_LASTNAME>{!TRIM(Apttus__APTS_Agreement__c.Owner.LastName)}</APTS_AGREEMENTOWNER_LASTNAME>
+	  <APTS_AGREEMENTOWNER_PHONE>{!TRIM(Apttus__APTS_Agreement__c.Owner.Phone)}</APTS_AGREEMENTOWNER_PHONE>
+	  <APTS_AGREEMENTOWNER_TITLE>{!TRIM(Apttus__APTS_Agreement__c.Owner.Title)}</APTS_AGREEMENTOWNER_TITLE>
+	</MergeFields>
+</apex:page>

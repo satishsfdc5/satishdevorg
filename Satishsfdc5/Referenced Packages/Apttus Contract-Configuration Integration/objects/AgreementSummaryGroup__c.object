@@ -1,0 +1,428 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Follow</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <deprecated>false</deprecated>
+    <description>Represents a summary of line items associated with an agreement</description>
+    <enableActivities>true</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>false</enableHistory>
+    <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <fields>
+        <fullName>AdHocGroupDescription__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The ad hoc group description</description>
+        <externalId>false</externalId>
+        <label>Ad Hoc Group Description</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>AdjustedPrice__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The adjusted price (including option price)</description>
+        <externalId>false</externalId>
+        <label>Adjusted Price</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>5</scale>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>AdjustmentAmount__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The price adjustment amount.</description>
+        <externalId>false</externalId>
+        <label>Adjustment Amount</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>5</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>AdjustmentType__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The price adjustment type</description>
+        <externalId>false</externalId>
+        <label>Adjustment Type</label>
+        <picklist>
+            <picklistValues>
+                <fullName>% Discount</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Discount Amount</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>% Markup</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Markup Amount</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Price Override</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>AgreementId__c</fullName>
+        <deprecated>false</deprecated>
+        <description>ID of the associated agreement</description>
+        <externalId>false</externalId>
+        <label>Agreement</label>
+        <referenceTo>Apttus__APTS_Agreement__c</referenceTo>
+        <relationshipLabel>Summary Groups</relationshipLabel>
+        <relationshipName>AgreementSummaryGroups</relationshipName>
+        <relationshipOrder>0</relationshipOrder>
+        <reparentableMasterDetail>false</reparentableMasterDetail>
+        <trackTrending>false</trackTrending>
+        <type>MasterDetail</type>
+        <writeRequiresMasterRead>false</writeRequiresMasterRead>
+    </fields>
+    <fields>
+        <fullName>BaseExtendedPrice__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The rolled up base extended price of products and options that belong to the group</description>
+        <externalId>false</externalId>
+        <label>Base Extended Price</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>5</scale>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>ChargeType__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The charge type  associated with the group</description>
+        <externalId>false</externalId>
+        <label>Charge Type</label>
+        <picklist>
+            <picklistValues>
+                <fullName>License Fee</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Subscription Fee</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Implementation Fee</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Installation Fee</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Maintenance Fee</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Adjustment</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Comments__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Memo text entered by the user</description>
+        <externalId>false</externalId>
+        <label>Comments</label>
+        <length>4000</length>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>5</visibleLines>
+    </fields>
+    <fields>
+        <fullName>ConfigurationId__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <deprecated>false</deprecated>
+        <description>ID of the associated configuration</description>
+        <externalId>false</externalId>
+        <label>Configuration</label>
+        <referenceTo>Apttus_Config2__ProductConfiguration__c</referenceTo>
+        <relationshipLabel>Agreement Summary Groups</relationshipLabel>
+        <relationshipName>AgreementSummaryGroups</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Description__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The group description</description>
+        <externalId>false</externalId>
+        <label>Description</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>ExtendedPrice__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The rolled up extended price of products that belong to the group</description>
+        <externalId>false</externalId>
+        <label>Extended Price</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>5</scale>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Frequency__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The frequency associated with the recurring or usage price</description>
+        <externalId>false</externalId>
+        <label>Frequency</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Hourly</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Daily</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Monthly</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Quarterly</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Half Yearly</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Yearly</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>GroupAdjustmentPercent__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The group adjustment percent</description>
+        <externalId>false</externalId>
+        <label>Group Adjustment (%)</label>
+        <precision>14</precision>
+        <required>false</required>
+        <scale>4</scale>
+        <trackTrending>false</trackTrending>
+        <type>Percent</type>
+    </fields>
+    <fields>
+        <fullName>GroupType__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The group type</description>
+        <externalId>false</externalId>
+        <label>Group Type</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Category</fullName>
+                <default>true</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Ad Hoc</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>ItemSequence__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The sequence of items belonging to a group</description>
+        <externalId>false</externalId>
+        <label>Item Sequence</label>
+        <precision>5</precision>
+        <required>true</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>LineNumber__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The line number</description>
+        <externalId>false</externalId>
+        <label>Line Number</label>
+        <precision>5</precision>
+        <required>true</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>LineType__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The line type</description>
+        <externalId>false</externalId>
+        <label>Line Type</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Category Total</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Group Total</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Subtotal</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Total</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Adjustment</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Grand Total</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>NetAdjustmentPercent__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The net adjustment percent</description>
+        <externalId>false</externalId>
+        <label>Net Adjustment (%)</label>
+        <precision>14</precision>
+        <required>false</required>
+        <scale>4</scale>
+        <trackTrending>false</trackTrending>
+        <type>Percent</type>
+    </fields>
+    <fields>
+        <fullName>NetPrice__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The net price for the group is the Adjusted Price after applying the Group Adjustment %</description>
+        <externalId>false</externalId>
+        <label>Net Price</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>5</scale>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>OptionPrice__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The rolled up adjusted price of options that belong to the group</description>
+        <externalId>false</externalId>
+        <label>Option Price</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>5</scale>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>PriceAdjustment__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The rolled up price adjustment of products that belong to the group</description>
+        <externalId>false</externalId>
+        <label>Price Adjustment</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>5</scale>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <label>Agreement Summary Group</label>
+    <nameField>
+        <label>Group Name</label>
+        <type>Text</type>
+    </nameField>
+    <pluralLabel>Agreement Summary Groups</pluralLabel>
+    <searchLayouts/>
+    <sharingModel>ControlledByParent</sharingModel>
+</CustomObject>

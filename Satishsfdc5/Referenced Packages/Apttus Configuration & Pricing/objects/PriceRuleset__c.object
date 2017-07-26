@@ -1,0 +1,389 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <comment>Edit a price ruleset</comment>
+        <content>PriceRuleset</content>
+        <skipRecordTypeSelect>false</skipRecordTypeSelect>
+        <type>Visualforce</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Follow</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <comment>Create a price ruleset</comment>
+        <content>PriceRuleset</content>
+        <skipRecordTypeSelect>false</skipRecordTypeSelect>
+        <type>Visualforce</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <deprecated>false</deprecated>
+    <description>Represents a rule set that contains the a list of rules to modify prices of products the organization sells.</description>
+    <enableActivities>true</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>false</enableHistory>
+    <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <fields>
+        <fullName>Active__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <description>Indicates whether the ruleset is active</description>
+        <externalId>false</externalId>
+        <label>Active</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>AdjustmentAppliesTo__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Indicates the price field the adjustment should be applied to. Not applicable to price override adjustments. This field is deprecated. The Adjustment applies to is moved to the Price Rule.</description>
+        <externalId>false</externalId>
+        <label>Adjustment Applies To (Deprecated)</label>
+        <picklist>
+            <controllingField>UseType__c</controllingField>
+            <picklistValues>
+                <fullName>Base Price</fullName>
+                <default>true</default>
+                <controllingFieldValues>Line Item</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>List Price</fullName>
+                <default>false</default>
+                <controllingFieldValues>Line Item</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Base Extended Price</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>ApplicationMethod__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The ruleset application method. Only applicable to aggregate price rules.</description>
+        <externalId>false</externalId>
+        <label>Application Method</label>
+        <picklist>
+            <controllingField>UseType__c</controllingField>
+            <picklistValues>
+                <fullName>Apply to Line Items</fullName>
+                <default>false</default>
+                <controllingFieldValues>Aggregate</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Create Summary Lines</fullName>
+                <default>false</default>
+                <controllingFieldValues>Aggregate</controllingFieldValues>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Category__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The category associated with the ruleset.</description>
+        <externalId>false</externalId>
+        <label>Category</label>
+        <picklist>
+            <picklistValues>
+                <fullName>All</fullName>
+                <default>true</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Agreement</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Proposal</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>ChargeType__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The charge type associated with the rule set</description>
+        <externalId>false</externalId>
+        <label>Charge Type</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Standard Price</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>License Fee</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Subscription Fee</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Implementation Fee</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Installation Fee</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Maintenance Fee</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Criteria__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The ruleset criteria specification</description>
+        <externalId>false</externalId>
+        <label>Ruleset Criteria</label>
+        <length>32000</length>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>5</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Description__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The description of the rule set</description>
+        <externalId>false</externalId>
+        <label>Description</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>EffectiveDate__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The rule set effective date. The rule set becomes effective on this date and time.</description>
+        <externalId>false</externalId>
+        <label>Effective Date</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>ExpirationDate__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The rule set expiration date. The rule set becomes ineffective after this date and time.</description>
+        <externalId>false</externalId>
+        <label>Expiration Date</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>PriceListId__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <deprecated>false</deprecated>
+        <description>ID of the price list associated with the ruleset</description>
+        <externalId>false</externalId>
+        <label>Price List</label>
+        <referenceTo>PriceList__c</referenceTo>
+        <relationshipLabel>Price Rulesets</relationshipLabel>
+        <relationshipName>PriceRulesets</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>ProductCategory__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The product category associated with the rule set</description>
+        <externalId>false</externalId>
+        <label>Product Category</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ProductFamily__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The product family associated with the rule set</description>
+        <externalId>false</externalId>
+        <label>Product Family</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ProductGroupId__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <deprecated>false</deprecated>
+        <description>ID of the product group associated with the ruleset</description>
+        <externalId>false</externalId>
+        <label>Product Group</label>
+        <referenceTo>ProductGroup__c</referenceTo>
+        <relationshipLabel>Price Rulesets</relationshipLabel>
+        <relationshipName>PriceRulesets</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Sequence__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <inlineHelpText>The rule set evaluation sequence</inlineHelpText>
+        <label>Sequence</label>
+        <precision>5</precision>
+        <required>true</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>StopProcessingMoreRules__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <description>Indicator to prevent subsequent rules from processing</description>
+        <externalId>false</externalId>
+        <label>Stop Processing More Rules</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>UseType__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The rule set use type</description>
+        <externalId>false</externalId>
+        <label>Application Level</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Line Item</fullName>
+                <default>true</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Bundle</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Aggregate</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <label>Price Ruleset</label>
+    <listViews>
+        <fullName>All</fullName>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+    </listViews>
+    <nameField>
+        <label>Ruleset Name</label>
+        <type>Text</type>
+    </nameField>
+    <pluralLabel>Price Rulesets</pluralLabel>
+    <searchLayouts>
+        <customTabListAdditionalFields>Sequence__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Category__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>UseType__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Description__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Active__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>StopProcessingMoreRules__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>EffectiveDate__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>ExpirationDate__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Criteria__c</customTabListAdditionalFields>
+        <excludedStandardButtons>Accept</excludedStandardButtons>
+        <lookupDialogsAdditionalFields>Sequence__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>Category__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>UseType__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>Description__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>Active__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>StopProcessingMoreRules__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>EffectiveDate__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>ExpirationDate__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>Criteria__c</lookupDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>Sequence__c</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>Category__c</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>UseType__c</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>Description__c</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>Active__c</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>StopProcessingMoreRules__c</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>EffectiveDate__c</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>ExpirationDate__c</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>Criteria__c</lookupPhoneDialogsAdditionalFields>
+        <searchFilterFields>NAME</searchFilterFields>
+        <searchFilterFields>Category__c</searchFilterFields>
+        <searchFilterFields>Description__c</searchFilterFields>
+        <searchFilterFields>Active__c</searchFilterFields>
+        <searchFilterFields>StopProcessingMoreRules__c</searchFilterFields>
+        <searchFilterFields>EffectiveDate__c</searchFilterFields>
+        <searchFilterFields>ExpirationDate__c</searchFilterFields>
+        <searchResultsAdditionalFields>Sequence__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Category__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>UseType__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Description__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Active__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>StopProcessingMoreRules__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>EffectiveDate__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>ExpirationDate__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Criteria__c</searchResultsAdditionalFields>
+    </searchLayouts>
+    <sharingModel>ReadWrite</sharingModel>
+</CustomObject>

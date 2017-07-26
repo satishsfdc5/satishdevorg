@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Package xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Download Attachments as Zip</fullName>
+    <apiAccessLevel>Unrestricted</apiAccessLevel>
+    <namespacePrefix>attachmentzip</namespacePrefix>
+    <types>
+        <members>AttachmentListController</members>
+        <members>AttachmentListControllerTest</members>
+        <name>ApexClass</name>
+    </types>
+    <types>
+        <members>AttachmentList</members>
+        <name>ApexComponent</name>
+    </types>
+    <types>
+        <members>AccountAttachmentList</members>
+        <members>CaseAttachmentList</members>
+        <members>ContactAttachmentList</members>
+        <members>LeadAttachmentList</members>
+        <members>OpportunityAttachmentList</members>
+        <name>ApexPage</name>
+    </types>
+    <types>
+        <members>js_zip</members>
+        <name>StaticResource</name>
+    </types>
+    <types>
+        <members>Account.Download_Attachments</members>
+        <members>Case.Download_Attachments</members>
+        <members>Contact.Download_Attachments</members>
+        <members>Lead.Download_Attachments</members>
+        <members>Opportunity.Download_Attachments</members>
+        <name>WebLink</name>
+    </types>
+    <version>36.0</version>
+</Package>

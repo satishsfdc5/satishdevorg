@@ -1,0 +1,48 @@
+<messaging:emailTemplate recipientType="User"
+    relatedToType="Apttus_Approval__Approval_Request__c"
+    subject="New Comments Entered for Approval Request {!relatedTo.Name}"
+    replyTo="{!recipient.email}">
+    
+<messaging:htmlEmailBody >        
+<html>
+    <body>
+        <style type="text/css">
+            MsoNormal {
+                text-align:left;
+                border:solid black 1.0pt;
+                border-collapse:collapse;
+                font-size:11.0pt;
+                font-family:"Calibri","sans-serif";
+            }
+        </style>
+
+        <!--email body-->
+        <span class="MsoNormal">
+        <p>
+        You are receiving this notification because new comments have been entered for approval request "{!relatedTo.Name}"
+        <br>
+        <br>Approval Request Number: <apex:outputField value="{!relatedTo.Name}"/>
+        <br>Assigned To Type: <apex:outputField value="{!relatedTo.Apttus_Approval__Assigned_To_Type__c}"/>
+        <br>Assigned To Name: <apex:outputField value="{!relatedTo.Apttus_Approval__Assigned_To_Name__c}"/>
+        <br>Approval Details: <apex:outputField value="{!relatedTo.Apttus_Approval__Request_Comments__c}"/>
+        <br>Approval Status: <apex:outputField value="{!relatedTo.Apttus_Approval__Approval_Status__c}"/>
+        <br>Initial Submitter: <apex:outputField value="{!relatedTo.Apttus_Approval__Initial_Submitter__r.Name}"/>
+        <br>Related Object Type: <apex:outputField value="{!relatedTo.Apttus_Approval__Object_Type__c}"/>
+        <br>Related Object Name: <apex:outputField value="{!relatedTo.Apttus_Approval__Object_Name__c}"/>
+        <p>
+        New comments entered for this request:
+        <p>
+        <apex:outputField value="{!relatedTo.Apttus_Approval__Approver_Comments__c}"/>
+        <p>
+        <p>
+        Click on this link to access the {!relatedTo.Apttus_Approval__Object_Type__c}:<br>
+        <a href="https://na6.salesforce.com/{!relatedTo.Apttus_Approval__Object_Id__c}">https://na6.salesforce.com/{!relatedTo.Apttus_Approval__Object_Id__c}</a>
+        </span>
+    </body>
+</html>
+</messaging:htmlEmailBody> 
+
+<messaging:plainTextEmailBody >
+</messaging:plainTextEmailBody>
+
+</messaging:emailTemplate>

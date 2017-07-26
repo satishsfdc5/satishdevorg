@@ -1,0 +1,42 @@
+<messaging:emailTemplate subject="{!$Label.apttus_approval__ApprovalRequestForAgreement} '{!relatedTo.Related_Agreement__r.Name}' {!$Label.apttus_approval__PreviouslyAssignedTo} {!relatedTo.Apttus_Approval__PrevAssignedToName__c} {!$Label.apttus_approval__HasBeenReassignedToYou}" 
+                         recipientType="User" 
+                         relatedToType="Apttus_Approval__Approval_Request__c"
+                         language="{!recipient.LanguageLocaleKey}">
+                         
+    <messaging:htmlEmailBody >
+        <html>
+            <body>
+                <!--  required fields -->
+                <apex:outputText value="{!relatedTo.Apttus_Approval__Object_Type__c}" rendered="false" />
+                <apex:outputText value="{!relatedTo.Apttus_Approval__Object_Id__c}" rendered="false" />
+                <apex:outputText value="{!relatedTo.Apttus_Approval__Approval_Status__c}" rendered="false" />
+                <apex:outputText value="{!relatedTo.Apttus_Approval__Date__c}" rendered="false" />
+                <apex:outputText value="{!relatedTo.Apttus_Approval__Assigned_To_Name__c}" rendered="false" />
+                <apex:outputText value="{!relatedTo.Apttus_Approval__PrevAssignedToName__c}" rendered="false" />
+                <apex:outputText value="{!relatedTo.Apttus_Approval__Request_Comments__c}" rendered="false" />
+                <apex:outputText value="{!relatedTo.Apttus_Approval__Approver_Comments__c}" rendered="false" />     
+                <apex:outputText value="{!relatedTo.Related_Agreement__r.Name}" rendered="false" />
+                <apex:outputText value="{!relatedTo.Related_Agreement__r.Apttus__Account__c}" rendered="false" />
+                <apex:outputText value="{!relatedTo.Related_Agreement__r.Apttus__Account__r.Name}" rendered="false" />
+                <apex:outputText value="{!relatedTo.Related_Agreement__r.RecordTypeId}" rendered="false" />
+                <apex:outputText value="{!relatedTo.Related_Agreement__r.RecordType.Name}" rendered="false" />           
+                <apex:outputText value="{!relatedTo.Related_Agreement__r.Owner.Name}" rendered="false" />   
+                <apex:outputText value="{!relatedTo.Related_Agreement__r.Apttus__Description__c}" rendered="false" />
+                <apex:outputText value="{!relatedTo.Related_Agreement__r.Apttus__FF_Agreement_Number__c}" rendered="false" />
+                <apex:outputText value="{!relatedTo.Related_Agreement__r.Apttus__Status_Category__c}" rendered="false" />
+                <apex:outputText value="{!relatedTo.Related_Agreement__r.Apttus__Status__c}" rendered="false" />
+                <apex:outputText value="{!relatedTo.Related_Agreement__r.Apttus__Contract_Start_Date__c}" rendered="false" />
+                <apex:outputText value="{!relatedTo.Related_Agreement__r.Apttus__Contract_End_Date__c}" rendered="false" />
+                <apex:outputText value="{!relatedTo.Related_Agreement__r.Apttus__Total_Contract_Value__c}" rendered="false" />
+                
+                Dear {!recipient.Name}:
+                <br/><br/>
+                {!$Label.apttus_approval__ApprovalRequestForAgreement} '{!relatedTo.Related_Agreement__r.Name}' {!$Label.apttus_approval__PreviouslyAssignedTo} {!relatedTo.Apttus_Approval__PrevAssignedToName__c} {!$Label.apttus_approval__HasBeenReassignedToYou}.
+                <br/><br/>
+                <c:AgreementApprovalEmail ApprovalRequestSO="{!relatedTo}" ApprovalRecipientSO="{!recipient}" />
+                <br/>
+    
+            </body>
+        </html>
+    </messaging:htmlEmailBody>
+</messaging:emailTemplate>

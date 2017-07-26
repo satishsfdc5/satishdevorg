@@ -1,0 +1,183 @@
+<!-- 
+    Apttus Approvals Management
+    AgreementTermExCancel
+     
+    @2010-2011 Apttus Inc. All rights reserved.
+
+ -->
+<apex:page standardController="Apttus__Agreement_Term_Exception__c"
+		   extensions="Apttus_Approval.AgreementTermExCancelController" 
+		   recordSetVar="AgmtTermExList" 
+		   action="{!doCancelAgmtTermEx}">
+
+	<script type="text/javascript" src="/soap/ajax/22.0/connection.js"></script>
+	<script type="text/javascript" src="/soap/ajax/22.0/apex.js"></script>
+	<apex:include pageName="Apttus_Approval__ApprovalsJSLibInclude" />
+	
+	<apex:stylesheet value="{!URLFOR($Resource.Apttus_Approval__YUILibrary, '/yui/build/assets/skins/sam/skin.css')}" />
+ 
+	<apex:includescript value="{!URLFOR($Resource.Apttus_Approval__YUILibrary, '/yui/build/yahoo-dom-event/yahoo-dom-event.js')}" />
+	<apex:includescript value="{!URLFOR($Resource.Apttus_Approval__YUILibrary, '/yui/build/dragdrop/dragdrop-min.js')}" />
+	<apex:includescript value="{!URLFOR($Resource.Apttus_Approval__YUILibrary, '/yui/build/container/container-min.js')}" />
+	<apex:includescript value="{!URLFOR($Resource.Apttus_Approval__YUILibrary, '/yui/build/animation/animation-min.js')}" />
+	
+	<script type="text/javascript">
+			
+		// Create a namespace for our custom functions
+		YAHOO.namespace("force.com");
+    	
+    	
+	   	/**
+		 * Initializes the call
+		 */
+		function initCall() {
+		
+			try {
+				sforce.connection.sessionId = "{!$Api.Session_ID}"; //to avoid session timeout
+			} catch(e) {
+				ap_erroralert(ap_cERROR_UNKNOWN,e);
+			}
+		
+		}
+
+		/**
+		 * Builds the wait panel.
+		 */
+	    YAHOO.force.com.buildWaitPanel = function() {
+	        document.body.className = document.body.className + " yui-skin-sam";
+	        YAHOO.force.com.waitPanel = new YAHOO.widget.Panel(
+	            "waitPanel",  // The id of our dialog container
+	            { 
+	                    width           :   "300px", // You can play with this until it's right
+	                    visible         :   false,   // Should be invisible when rendered
+	                    draggable       :   false,   // Make the dialog draggable
+	                    close           :   false,   // Don't include a close title button
+	                    modal           :   true,    // Make it modal
+	                    fixedCenter     :   true,    // Keep centered if window is scrolled
+	                    zindex          :   40,      // Make sure it's on top of everything
+	                    constraintoviewport: true,
+	                    
+	                    // This line adds the appear/disapper fade effect
+	                    effect			:   {effect:YAHOO.widget.ContainerEffect.FADE,duration:0.25}
+        							
+	            }
+	        );
+	         
+			// set image
+			YAHOO.force.com.waitPanel.setBody('<center><img src="{!URLFOR($Resource.Image_LoadingPage)}" /></center>');
+	        // Render the dialog to the document.body level of the DOM
+	        YAHOO.force.com.waitPanel.render(document.body);
+	        
+	    }
+	    	
+    	/**
+		 * Callback to show message
+		 */
+		function showWaitPanel(headerMsg) {
+	        // header
+	        YAHOO.force.com.waitPanel.setHeader(headerMsg);
+			// show the modal panel
+			YAHOO.force.com.waitPanel.show();
+			// return false to allow the action to proceed
+			return false;
+			
+		}
+		
+		/**
+		 * Callback to hide message
+		 */
+		function hideWaitPanel() {
+			// hide the modal panel
+			YAHOO.force.com.waitPanel.hide();
+			
+		}
+	    // build wait panel
+		YAHOO.force.com.buildWaitPanel(); 
+	</script>
+		
+    <apex:form >
+        <apex:outputPanel id="idCancelPage" >
+	        <apex:pageBlock title="{!pageTitle}" rendered="{!NOT(doCancelEach)}" >
+	            <apex:pageMessages />
+	    		
+	            <apex:pageBlockButtons >
+	                   <apex:commandButton action="{!doCancel}" value="{!$Label.apttus_approval__Return}" />
+	            </apex:pageBlockButtons>
+	        	 
+				<apex:pageBlockTable value="{!cancelATEList}" var="cancelATE" >
+				    <apex:column value="{!cancelATE.Apttus__Exception_Name__c}"/>
+				    <apex:column value="{!cancelATE.Apttus__Exception__c}"/>
+				</apex:pageBlockTable>
+					
+			</apex:pageBlock>
+        
+			<apex:outputPanel rendered="{!doCancelEach}" >
+				<script type="text/javascript">
+					
+					// init 
+					initCall();
+					
+					// get agreement term exception SObject type
+					var sObjectType = "{!agmtTermExSObjectType}";
+									
+					// get valid agreement term exceptions
+					var agmtTermExList = new Array();
+					
+				</script>	
+				
+				<apex:repeat value="{!cancelATEList}" var="cancelATE">
+				
+					<script  type="text/javascript">
+					  	var agmtTermEx = new Object();
+					  	
+					  	agmtTermEx.id = "{!cancelATE.Id}";
+					  	agmtTermEx.name = "{!JSENCODE(cancelATE.Apttus__Exception__c)}";
+			  			
+					  	agmtTermExList.push(agmtTermEx);
+					</script>	
+				
+				</apex:repeat>
+				
+				<script type="text/javascript">
+					
+					if (agmtTermExList.length > 0) {
+					
+						// display progress message
+			    		showWaitPanel("{!busyMessage}");
+			    		
+			    		// delay to allow the progress bar to be shown	
+		           		setTimeout(function() {
+							try {
+								
+								var count = agmtTermExList.length;
+								
+								// invoke cancel for each
+								for (var i = 0; i < count; i++) {
+									ap_cancelApprovals(sObjectType, agmtTermExList[i].id);
+														 
+								}
+								
+							} catch(e) {
+								ap_erroralert(ap_cERROR_UNKNOWN,e);
+							} finally {
+								
+								// hide the progress section
+								hideWaitPanel();
+								
+								// done cancel, show confirmation
+								invokeDoCancelEachDone();
+							}
+		         			
+		          		}, 500);	
+	          		}
+				</script>	
+				
+			</apex:outputPanel>
+			
+		</apex:outputPanel>
+        
+		<apex:actionFunction name="invokeDoCancelEachDone" action="{!doCancelEachDone}"
+							 immediate="true" />
+    </apex:form>
+    
+</apex:page>

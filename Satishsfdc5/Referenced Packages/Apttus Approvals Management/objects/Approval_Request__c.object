@@ -1,0 +1,1157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Follow</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <deprecated>false</deprecated>
+    <description>Designates an approval request created from an approval process</description>
+    <enableActivities>true</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>false</enableHistory>
+    <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <fields>
+        <fullName>Action_Approve_Id__c</fullName>
+        <defaultValue>&quot;00b70000000xoxK&quot;</defaultValue>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Action Approve Id</label>
+        <length>18</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Action_Reassign_Id__c</fullName>
+        <defaultValue>&quot;00b70000000xoxJ&quot;</defaultValue>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Action Reassign Id</label>
+        <length>18</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Action__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <formula>IF (AND(OR(ISPICKVAL(Approval_Status__c ,&quot;Assigned&quot;),ISPICKVAL(Approval_Status__c ,&quot;Reassigned&quot;)), OR(OwnerId=$User.Id, PrevAssignedToId__c=$User.Id, $Profile.Name=&quot;System Administrator&quot;, $Profile.Name=&quot;Apttus Standard User&quot;)), HYPERLINK(&quot;/apex/Apttus_Approval__ApprovalSummaryLaunch?id=&quot;&amp;Id&amp;&quot;&amp;pageMode=reassign&quot;, &quot;Reassign&quot;&amp;BR(), &quot;_top&quot;),NULL) 
+&amp; 
+IF (AND(OR(ISPICKVAL(Approval_Status__c ,&quot;Assigned&quot;),ISPICKVAL(Approval_Status__c ,&quot;Reassigned&quot;)), OR(OwnerId=$User.Id, PrevAssignedToId__c=$User.Id, $Profile.Name=&quot;System Administrator&quot;, $Profile.Name=&quot;Apttus Standard User&quot;)), HYPERLINK(&quot;/apex/Apttus_Approval__ApprovalSummaryLaunch?id=&quot;&amp;Id&amp;&quot;&amp;pageMode=approveReject&quot;, &quot;Approve / Reject&quot;&amp;BR(), &quot;_top&quot;),NULL) 
+&amp; 
+IF (OR(ISPICKVAL(Approval_Status__c ,&quot;Assigned&quot;),ISPICKVAL(Approval_Status__c ,&quot;Reassigned&quot;)), HYPERLINK(&quot;/apex/Apttus_Approval__ApprovalSummaryLaunch?id=&quot;&amp;Id&amp;&quot;&amp;pageMode=addComment&quot;, &quot;Add Comment&quot;, &quot;_top&quot;),NULL)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Approval Action</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Active__c</fullName>
+        <defaultValue>true</defaultValue>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Active</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Actual_Approver__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Actual Approver</label>
+        <referenceTo>User</referenceTo>
+        <relationshipName>R00N70000001lyC7EAI</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Approval_Process__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Approval Process</label>
+        <length>20</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Approval_Status__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Approval Status</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Not Submitted</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Notified</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Submitted</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Assigned</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Approved</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Rejected</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Reassigned</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Cancelled</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>On Hold</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Approver_Comments__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Approver Comments</label>
+        <length>32000</length>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>6</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Assigned_To_Id__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Assigned To Id</label>
+        <length>18</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Assigned_To_Link__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <formula>IF (ISPICKVAL(Assigned_To_Type__c,&quot;Queue&quot;),
+HYPERLINK(&quot;/p/own/Queue/d?id=&quot;&amp;Assigned_To_Id__c&amp;&quot;&amp;setupid=Queues&quot;,Assigned_To_Name__c,&quot;_top&quot;),HYPERLINK(Assigned_To_Id__c,Assigned_To_Name__c,&quot;_top&quot;))</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Assigned To</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Assigned_To_Name__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Assigned To</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Assigned_To_Type__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Assigned To Type</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Queue</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Role</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>User</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Assigned_To__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Reassigned To</label>
+        <referenceTo>User</referenceTo>
+        <relationshipName>R00N70000001m4PKEAY</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Auto_Complete__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <description>Indicates whether the step was auto completed</description>
+        <externalId>false</externalId>
+        <label>Auto Complete</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Backup_From_User__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Backup From User</label>
+        <referenceTo>User</referenceTo>
+        <relationshipName>R00N700000028npvEAA</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>DateApproved__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The date when the approval request was approved</description>
+        <externalId>false</externalId>
+        <label>Date Approved</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>DateAssigned__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The date when the approval request was assigned</description>
+        <externalId>false</externalId>
+        <label>Date Assigned</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>DateCancelled__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The date when the approval request was cancelled</description>
+        <externalId>false</externalId>
+        <label>Date Cancelled</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>DateReassigned__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The date when the approval request was last reassigned</description>
+        <externalId>false</externalId>
+        <label>Date Reassigned</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>DateRejected__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The date when the approval request was rejected</description>
+        <externalId>false</externalId>
+        <label>Date Rejected</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>Date__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Date</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>DependsOn__c</fullName>
+        <deprecated>false</deprecated>
+        <description>List of steps which must be completed before this step</description>
+        <externalId>false</externalId>
+        <label>Depends On</label>
+        <length>2048</length>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>5</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Group_Unique_Id__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Group Unique Id</label>
+        <length>25</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Group__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Group</label>
+        <length>20</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>HasAttachments__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <description>Indicates whether the approval request has one or more attachment(s).</description>
+        <externalId>false</externalId>
+        <label>Has Attachments</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Initial_Submitter__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Initial Submitter</label>
+        <referenceTo>User</referenceTo>
+        <relationshipName>R00N70000001my9pEAA</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Internal_Comments__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Internal Comments</label>
+        <length>10000</length>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>IsSubprocess__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <description>Indicates whether the step represents a subprocess</description>
+        <externalId>false</externalId>
+        <label>Is Subprocess</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Notify_Only__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <description>Designates whether the term exception approver receives a notification only for the approval request (when set to true) or gets the request assigned to them and receives notification as well (false, which is the default).</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Designates whether the term exception approver receives a notification only for the approval request (when set to true) or gets the request assigned to them and receives notification as well (false, which is the default).</inlineHelpText>
+        <label>Notify Only</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Object_Id_Link__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <formula>IF( Object_Type__c = &apos;Apttus__Agreement_Term_Exception__c&apos;, HYPERLINK(Object_Id__c , &quot;View Agreement Term Exception&quot;), HYPERLINK(Object_Id__c , &quot;View &quot; &amp; Object_Type__c))</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Object Link</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Object_Id__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Object Id</label>
+        <length>18</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Object_Name__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Object Name</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Object_Type__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Object Type</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Parent_Agreement__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <deprecated>false</deprecated>
+        <description>ID of the parent agreement associated with the approval request. Only valid for agreement term exception related approval requests.</description>
+        <externalId>false</externalId>
+        <label>Parent Agreement</label>
+        <referenceTo>Apttus__APTS_Agreement__c</referenceTo>
+        <relationshipLabel>Child Approval Requests</relationshipLabel>
+        <relationshipName>Child_Approval_Requests</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>PrevAssignedToId__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The id of the assignee the request was previously assigned to</description>
+        <externalId>false</externalId>
+        <label>Prev Assigned To Id</label>
+        <length>25</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>PrevAssignedToName__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The name of the assignee the request was previously assigned to</description>
+        <externalId>false</externalId>
+        <label>Prev Assigned To</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>PrevAssignedToType__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The type of assignee the request was previously assigned to</description>
+        <externalId>false</externalId>
+        <label>Prev Assigned To Type</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Queue</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Role</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>User</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>ProcessInstanceId__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <deprecated>false</deprecated>
+        <description>ID of the approval process instance associated with the approval request</description>
+        <externalId>false</externalId>
+        <label>Approval Process Instance</label>
+        <referenceTo>ApprovalProcessInstance__c</referenceTo>
+        <relationshipLabel>Approval Requests</relationshipLabel>
+        <relationshipName>ApprovalRequests</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Rejection_Action__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Rejection Action</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Group Rejection</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Final Rejection</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>None</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Group &amp; Final Rejection</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Related_Agreement_Owner__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <deprecated>false</deprecated>
+        <description>This field is used to indicate a user who is the agreement owner when the request is for an agreement or agreement term exception.  This value is populated at runtime by the approvals engine when the request is assigned and is used the Approval Request Comments Modified email alert to send additional notifications to the Agreement Owner, Requestor, and Opportunity owner.</description>
+        <externalId>false</externalId>
+        <label>Related Agreement Owner</label>
+        <referenceTo>User</referenceTo>
+        <relationshipName>Approval_Requests</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Related_Agreement_Requestor__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <deprecated>false</deprecated>
+        <description>This field is used to indicate a user who is the agreement owner when the request is for an agreement or agreement term exception.  This value is populated at runtime by the approvals engine when the request is assigned and is used the Approval Request Comments Modified email alert to send additional notifications to the Agreement Owner, Requestor, and Opportunity owner.</description>
+        <externalId>false</externalId>
+        <label>Related Agreement Requestor</label>
+        <referenceTo>User</referenceTo>
+        <relationshipName>Approval_Requests2</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Related_Agreement_Term_Exception__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Related Agreement Term Exception</label>
+        <referenceTo>Apttus__Agreement_Term_Exception__c</referenceTo>
+        <relationshipLabel>Approvals</relationshipLabel>
+        <relationshipName>R00N70000002CXCIEA4</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Related_Agreement__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Related Agreement</label>
+        <referenceTo>Apttus__APTS_Agreement__c</referenceTo>
+        <relationshipLabel>Approvals</relationshipLabel>
+        <relationshipName>R00N70000001lyBVEAY</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Related_Opportunity_Owner__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <deprecated>false</deprecated>
+        <description>This field is used to indicate a user who is the agreement owner when the request is for an agreement or agreement term exception.  This value is populated at runtime by the approvals engine when the request is assigned and is used the Approval Request Comments Modified email alert to send additional notifications to the Agreement Owner, Requestor, and Opportunity owner.</description>
+        <externalId>false</externalId>
+        <label>Related Opportunity Owner</label>
+        <referenceTo>User</referenceTo>
+        <relationshipName>Approval_Requests3</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Related_Opportunity__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Related Opportunity</label>
+        <referenceTo>Opportunity</referenceTo>
+        <relationshipLabel>Approvals</relationshipLabel>
+        <relationshipName>R00N70000001lyBlEAI</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Request_Comments__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Approval Details</label>
+        <length>5000</length>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>6</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Send_Email__c</fullName>
+        <defaultValue>true</defaultValue>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Send Email</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Sequence__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Seq</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Status_Link__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <formula>HYPERLINK(Id,
+CASE(Approval_Status__c,
+&quot;Not Submitted&quot;,&quot;Not Submitted&quot;,
+&quot;Notified&quot;,&quot;Notified&quot;,
+&quot;Submitted&quot;,&quot;Submitted&quot;,
+&quot;Assigned&quot;,&quot;Assigned&quot;,
+&quot;Reassigned&quot;,&quot;Reassigned&quot;,
+&quot;Approved&quot;,&quot;Approved&quot;,
+&quot;Rejected&quot;,&quot;Rejected&quot;,
+&quot;Cancelled&quot;,&quot;Cancelled&quot;,
+&quot;On Hold&quot;,&quot;On Hold&quot;, 
+&quot;None&quot;),
+&quot;_top&quot;
+)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Status</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>StepNameLink__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <formula>IF (OR(ISPICKVAL(Approval_Status__c ,&quot;Assigned&quot;),ISPICKVAL(Approval_Status__c ,&quot;Reassigned&quot;)), HYPERLINK(&quot;/apex/Apttus_Approval__ApprovalSummaryLaunch?Id=&quot;&amp;Id&amp;&quot;&amp;pageMode=approveReject&quot;, Step_Name__c, &quot;_top&quot;), Step_Name__c)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Step</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>StepSequence__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The step execution sequence</description>
+        <externalId>false</externalId>
+        <label>Sequence</label>
+        <precision>11</precision>
+        <required>false</required>
+        <scale>3</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Step_Group_Seq_Number__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Step Group Seq Number</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Step_Name__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The step name</description>
+        <externalId>false</externalId>
+        <label>Step Name</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Step__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Step Definition Reference</label>
+        <length>20</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>SubprocessDependsOn__c</fullName>
+        <deprecated>false</deprecated>
+        <description>List of sub processes (belonging to the same step) which must be completed before this sub process. The list contains a comma separated subprocess sequence numbers</description>
+        <externalId>false</externalId>
+        <label>Subprocess Depends On</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>SubprocessName__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The name of the subprocess the step is associated with</description>
+        <externalId>false</externalId>
+        <label>Subprocess Name</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>SubprocessSequence__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The subprocess execution sequence</description>
+        <externalId>false</externalId>
+        <label>Subprocess Sequence</label>
+        <precision>11</precision>
+        <required>false</required>
+        <scale>3</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>SubstepDependsOn__c</fullName>
+        <deprecated>false</deprecated>
+        <description>List of sub steps (belonging to the same subprocess) which must be completed before this substep. The list contains a comma separated substep sequence numbers</description>
+        <externalId>false</externalId>
+        <label>Substep Depends On</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>SubstepSequence__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The substep execution sequence within a subprocess</description>
+        <externalId>false</externalId>
+        <label>Substep Sequence</label>
+        <precision>11</precision>
+        <required>false</required>
+        <scale>3</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Workflow_Trigger_Added_Comments__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <description>Flag that gets set by the ApprovalAction visualforce page when comments are added to an approval request without actually approving or rejecting the request. This flag then becomes the trigger for workflow rules that get fired to send a notification to parties that comments have been entered for the request.</description>
+        <externalId>false</externalId>
+        <label>Workflow Trigger Added Comments</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <label>Approval Request</label>
+    <listViews>
+        <fullName>AllApprovals</fullName>
+        <columns>NAME</columns>
+        <columns>Action__c</columns>
+        <columns>Approval_Status__c</columns>
+        <columns>Date__c</columns>
+        <columns>Assigned_To_Name__c</columns>
+        <columns>Object_Type__c</columns>
+        <filterScope>Everything</filterScope>
+        <label>All Approvals</label>
+    </listViews>
+    <listViews>
+        <fullName>MyApprovals</fullName>
+        <columns>NAME</columns>
+        <columns>Action__c</columns>
+        <columns>Approval_Status__c</columns>
+        <columns>Date__c</columns>
+        <columns>Assigned_To_Name__c</columns>
+        <columns>Object_Type__c</columns>
+        <filterScope>Mine</filterScope>
+        <label>My Approvals</label>
+    </listViews>
+    <nameField>
+        <displayFormat>{0000000}</displayFormat>
+        <label>Name</label>
+        <type>AutoNumber</type>
+    </nameField>
+    <pluralLabel>Approval Requests</pluralLabel>
+    <recordTypes>
+        <fullName>Agreement</fullName>
+        <active>true</active>
+        <description>Agreement</description>
+        <label>Agreement</label>
+        <picklistValues>
+            <picklist>Approval_Status__c</picklist>
+            <values>
+                <fullName>Approved</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Assigned</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Cancelled</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Not Submitted</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Notified</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>On Hold</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Reassigned</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Rejected</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Submitted</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Assigned_To_Type__c</picklist>
+            <values>
+                <fullName>Queue</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Role</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>User</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>PrevAssignedToType__c</picklist>
+            <values>
+                <fullName>Queue</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Role</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>User</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Rejection_Action__c</picklist>
+            <values>
+                <fullName>Final Rejection</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Group %26 Final Rejection</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Group Rejection</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>None</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <searchLayouts>
+        <customTabListAdditionalFields>Sequence__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Action__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Status_Link__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Date__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Assigned_To_Name__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Request_Comments__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Actual_Approver__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Approver_Comments__c</customTabListAdditionalFields>
+        <excludedStandardButtons>New</excludedStandardButtons>
+        <excludedStandardButtons>Accept</excludedStandardButtons>
+        <excludedStandardButtons>ChangeOwner</excludedStandardButtons>
+        <lookupDialogsAdditionalFields>Sequence__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>Action__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>Status_Link__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>Date__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>Assigned_To_Name__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>Request_Comments__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>Actual_Approver__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>Approver_Comments__c</lookupDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>Sequence__c</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>Action__c</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>Status_Link__c</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>Date__c</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>Assigned_To_Name__c</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>Request_Comments__c</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>Actual_Approver__c</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>Approver_Comments__c</lookupPhoneDialogsAdditionalFields>
+        <searchFilterFields>Sequence__c</searchFilterFields>
+        <searchFilterFields>Action__c</searchFilterFields>
+        <searchFilterFields>Status_Link__c</searchFilterFields>
+        <searchFilterFields>Date__c</searchFilterFields>
+        <searchFilterFields>Assigned_To_Name__c</searchFilterFields>
+        <searchFilterFields>Actual_Approver__c</searchFilterFields>
+        <searchResultsAdditionalFields>Sequence__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Action__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Status_Link__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Date__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Assigned_To_Name__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Request_Comments__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Actual_Approver__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Approver_Comments__c</searchResultsAdditionalFields>
+    </searchLayouts>
+    <sharingModel>ReadWrite</sharingModel>
+    <webLinks>
+        <fullName>ApproveReject</fullName>
+        <availability>online</availability>
+        <displayType>button</displayType>
+        <linkType>sControl</linkType>
+        <masterLabel>Approve / Reject (Deprecated)</masterLabel>
+        <openType>replace</openType>
+        <protected>false</protected>
+        <scontrol>aptsApprovalRequestAction</scontrol>
+    </webLinks>
+    <webLinks>
+        <fullName>ApproveRejectLink</fullName>
+        <availability>online</availability>
+        <displayType>link</displayType>
+        <encodingKey>UTF-8</encodingKey>
+        <linkType>url</linkType>
+        <masterLabel>Approve / Reject (Deprecated)</masterLabel>
+        <openType>replace</openType>
+        <protected>false</protected>
+        <url>apex/Apttus_Approval__ApprovalRequestAction?requestId={!Approval_Request__c.Id}</url>
+    </webLinks>
+    <webLinks>
+        <fullName>Cancel</fullName>
+        <availability>online</availability>
+        <displayType>massActionButton</displayType>
+        <encodingKey>UTF-8</encodingKey>
+        <height>600</height>
+        <linkType>url</linkType>
+        <masterLabel>Cancel</masterLabel>
+        <openType>sidebar</openType>
+        <protected>false</protected>
+        <requireRowSelection>true</requireRowSelection>
+        <url>/apex/Apttus_Approval__ApprovalContextCancel?sObjectType=Opportunity&amp;sObjectId={!Opportunity.Id}</url>
+    </webLinks>
+    <webLinks>
+        <fullName>CancelAgreementApprovals</fullName>
+        <availability>online</availability>
+        <description>Cancel agreement approvals</description>
+        <displayType>massActionButton</displayType>
+        <encodingKey>UTF-8</encodingKey>
+        <height>600</height>
+        <linkType>url</linkType>
+        <masterLabel>Cancel Agreement Approvals</masterLabel>
+        <openType>sidebar</openType>
+        <protected>false</protected>
+        <requireRowSelection>false</requireRowSelection>
+        <url>/apex/Apttus_Approval__ApprovalContextCancel?sObjectType=Apttus__APTS_Agreement__c&amp;sObjectId={!Apttus__APTS_Agreement__c.Id}</url>
+    </webLinks>
+    <webLinks>
+        <fullName>Delete</fullName>
+        <availability>online</availability>
+        <displayType>massActionButton</displayType>
+        <height>600</height>
+        <linkType>sControl</linkType>
+        <masterLabel>Reset (Dev) (Deprecated)</masterLabel>
+        <openType>sidebar</openType>
+        <protected>false</protected>
+        <requireRowSelection>true</requireRowSelection>
+        <scontrol>aptsApprovalRequestDelete</scontrol>
+    </webLinks>
+    <webLinks>
+        <fullName>DeleteAll</fullName>
+        <availability>online</availability>
+        <displayType>massActionButton</displayType>
+        <height>600</height>
+        <linkType>sControl</linkType>
+        <masterLabel>Reset All (Dev) (Deprecated)</masterLabel>
+        <openType>sidebar</openType>
+        <protected>false</protected>
+        <requireRowSelection>true</requireRowSelection>
+        <scontrol>aptsApprovalRequestDeleteAll</scontrol>
+    </webLinks>
+    <webLinks>
+        <fullName>Preview</fullName>
+        <availability>online</availability>
+        <displayType>massActionButton</displayType>
+        <encodingKey>UTF-8</encodingKey>
+        <height>600</height>
+        <linkType>url</linkType>
+        <masterLabel>Preview</masterLabel>
+        <openType>sidebar</openType>
+        <protected>false</protected>
+        <requireRowSelection>true</requireRowSelection>
+        <url>/apex/Apttus_Approval__ApprovalContextPreview?sObjectType=Opportunity&amp;sObjectId={!Opportunity.Id}</url>
+    </webLinks>
+    <webLinks>
+        <fullName>PreviewAgreementApprovals</fullName>
+        <availability>online</availability>
+        <description>Preview agreement approvals</description>
+        <displayType>massActionButton</displayType>
+        <encodingKey>UTF-8</encodingKey>
+        <height>600</height>
+        <linkType>url</linkType>
+        <masterLabel>Preview Agreement Approvals</masterLabel>
+        <openType>sidebar</openType>
+        <protected>false</protected>
+        <requireRowSelection>false</requireRowSelection>
+        <url>/apex/Apttus_Approval__ApprovalContextPreview?sObjectType=Apttus__APTS_Agreement__c&amp;sObjectId={!Apttus__APTS_Agreement__c.Id}</url>
+    </webLinks>
+    <webLinks>
+        <fullName>Reassign</fullName>
+        <availability>online</availability>
+        <displayType>link</displayType>
+        <height>600</height>
+        <linkType>sControl</linkType>
+        <masterLabel>Reassign (Deprecated)</masterLabel>
+        <openType>sidebar</openType>
+        <protected>false</protected>
+        <scontrol>aptsApprovalRequestReassign</scontrol>
+    </webLinks>
+    <webLinks>
+        <fullName>Submit</fullName>
+        <availability>online</availability>
+        <displayType>massActionButton</displayType>
+        <encodingKey>UTF-8</encodingKey>
+        <height>600</height>
+        <linkType>url</linkType>
+        <masterLabel>Submit</masterLabel>
+        <openType>sidebar</openType>
+        <protected>false</protected>
+        <requireRowSelection>true</requireRowSelection>
+        <url>/apex/Apttus_Approval__ApprovalContextSubmit?sObjectType=Opportunity&amp;sObjectId={!Opportunity.Id}</url>
+    </webLinks>
+    <webLinks>
+        <fullName>SubmitAgreementApprovals</fullName>
+        <availability>online</availability>
+        <description>Submit agreement approvals</description>
+        <displayType>massActionButton</displayType>
+        <encodingKey>UTF-8</encodingKey>
+        <height>600</height>
+        <linkType>url</linkType>
+        <masterLabel>Submit Agreement Approvals</masterLabel>
+        <openType>sidebar</openType>
+        <protected>false</protected>
+        <requireRowSelection>false</requireRowSelection>
+        <url>/apex/Apttus_Approval__ApprovalContextSubmit?sObjectType=Apttus__APTS_Agreement__c&amp;sObjectId={!Apttus__APTS_Agreement__c.Id}</url>
+    </webLinks>
+    <webLinks>
+        <fullName>SubmitAgreementApprovalsWithAttachments</fullName>
+        <availability>online</availability>
+        <description>Submit Agreement Approvals with attachments</description>
+        <displayType>massActionButton</displayType>
+        <encodingKey>UTF-8</encodingKey>
+        <height>600</height>
+        <linkType>url</linkType>
+        <masterLabel>Submit Agreement Approvals (With Attachments)</masterLabel>
+        <openType>sidebar</openType>
+        <protected>false</protected>
+        <requireRowSelection>false</requireRowSelection>
+        <url>/apex/Apttus_Approval__ApprovalContextSubmit?sObjectType=Apttus__APTS_Agreement__c&amp;sObjectId={!Apttus__APTS_Agreement__c.Id}&amp;enableAttachments=true</url>
+    </webLinks>
+</CustomObject>

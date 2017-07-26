@@ -1,0 +1,262 @@
+<!-- 
+    Apttus Approvals Management
+    ApprovalContextSubmit
+     
+    @2010-2011 Apttus Inc. All rights reserved.
+
+ -->
+<apex:page standardController="Apttus_Approval__Approval_Request__c"
+		   extensions="Apttus_Approval.ApprovalContextSubmitController" 
+		   recordSetVar="ApprovalReqList" 
+		   action="{!doCheckAndSubmit}">
+	
+	<script type="text/javascript" src="/soap/ajax/22.0/connection.js"></script>
+	<script type="text/javascript" src="/soap/ajax/22.0/apex.js"></script>
+	<apex:include pageName="Apttus_Approval__ApprovalsJSLibInclude" />
+	
+	<apex:stylesheet value="{!URLFOR($Resource.Apttus_Approval__YUILibrary, '/yui/build/assets/skins/sam/skin.css')}" />
+ 
+	<apex:includescript value="{!URLFOR($Resource.Apttus_Approval__YUILibrary, '/yui/build/yahoo-dom-event/yahoo-dom-event.js')}" />
+	<apex:includescript value="{!URLFOR($Resource.Apttus_Approval__YUILibrary, '/yui/build/dragdrop/dragdrop-min.js')}" />
+	<apex:includescript value="{!URLFOR($Resource.Apttus_Approval__YUILibrary, '/yui/build/container/container-min.js')}" />
+	<apex:includescript value="{!URLFOR($Resource.Apttus_Approval__YUILibrary, '/yui/build/animation/animation-min.js')}" />
+	
+	<script>
+    
+	    // Create a namespace for our custom functions
+	    YAHOO.namespace("force.com");
+		
+		// wait panel
+		
+		/**
+		 * Builds the wait panel.
+		 */
+	    YAHOO.force.com.buildWaitPanel = function() {
+	        document.body.className = document.body.className + " yui-skin-sam";
+	        YAHOO.force.com.waitPanel = new YAHOO.widget.Panel(
+	            "waitPanel",  // The id of our dialog container
+	            { 
+	                    width           :   "300px", // You can play with this until it's right
+	                    visible         :   false,   // Should be invisible when rendered
+	                    draggable       :   false,   // Make the dialog draggable
+	                    close           :   false,   // Don't include a close title button
+	                    modal           :   true,    // Make it modal
+	                    fixedCenter     :   true,    // Keep centered if window is scrolled
+	                    zindex          :   40,      // Make sure it's on top of everything
+	                    constraintoviewport: true,
+	                    
+	                    // This line adds the appear/disapper fade effect
+	                    effect			:   {effect:YAHOO.widget.ContainerEffect.FADE,duration:0.25}
+        							
+	            }
+	        );
+	        
+	        // header
+	        YAHOO.force.com.waitPanel.setHeader("{!$Label.SubmittingApprovals2}");
+			// set image
+			YAHOO.force.com.waitPanel.setBody('<center><img src="{!URLFOR($Resource.Image_LoadingPage)}" /></center>');
+	        // Render the dialog to the document.body level of the DOM
+	        YAHOO.force.com.waitPanel.render(document.body);
+	        
+	    }
+	    
+	    /**
+		 * Callback when the submit action button is clicked
+		 */
+		function onSubmitActionClick() {
+			// show the modal panel
+			YAHOO.force.com.waitPanel.show();
+			// return false to allow the action to proceed
+			return false;
+			
+		}
+		
+		/**
+		 * Callback when the submit action is completed
+		 */
+		function onSubmitActionComplete() {
+			// hide the modal panel
+			YAHOO.force.com.waitPanel.hide();
+			
+		}
+		
+	    // Function called when the DOM is ready to create the dialog,
+    	// render the dialog into the document body, add our dialog skin
+    	// css to the body tag, and wire up the buttons on our dialog   
+		YAHOO.force.com.onDOMReady = function() {
+			
+			// build the wait panel
+			YAHOO.force.com.buildWaitPanel();
+			
+		}
+		
+	    // build the tree as soon as the DOM is in a usable state
+		YAHOO.util.Event.onDOMReady(YAHOO.force.com.onDOMReady);   	
+		
+	</script>
+	
+	<script type="text/javascript">	
+		
+		/**
+		 * Initializes the call
+		 */
+		function initCall() {
+		
+			try {
+				sforce.connection.sessionId = "{!$Api.Session_ID}"; //to avoid session timeout
+			} catch(e) {
+				ap_errorAlert(ap_cERROR_UNKNOWN,e);
+			}
+		
+		}
+		
+		/**
+		 * Copies attachments to the list of email templates
+		 * @param templateIds the email template ids to copy attachments to
+		 * @param docIds the attachment ids to copy
+		 */
+		function copyAttachmentsAsync(templateIds, docIds) {
+			
+			// show the modal panel
+			YAHOO.force.com.waitPanel.show();
+			// copy attachments
+			// delay to display progress message	
+           	setTimeout(function() {
+         		copyAttachments(templateIds, docIds);
+          	}, 500);
+			          	
+		}
+		
+    	/**
+		 * Copies attachments to the list of email templates
+		 * @param templateIds the email template ids to copy attachments to
+		 * @param docIds the attachment ids to copy
+		 */
+		function copyAttachments(templateIds, docIds) {
+			
+			try {
+				// STEP I - initialize the call
+				initCall();
+				// STEP II - copy attachments
+				var numTemplates = templateIds.length;
+				var numDocs = docIds.length;
+				
+				for (var i = 0; i < numTemplates; i++) {
+					// copy each attachment
+					for (var j = 0; j < numDocs; j++) {
+						ap_copyAttachment(templateIds[i], docIds[j]);
+						
+					}
+									 
+				}
+				
+				// STEP IV - submit
+				doSubmit();
+				
+			} catch(ex) {
+				// hide the modal panel
+				//YAHOO.force.com.waitPanel.hide();;
+				// display the error
+				ap_erroralert(ap_cERROR_UNKNOWN, ex);
+				// back to context object
+				doReturn();
+				
+			} 
+			
+		}
+		
+	</script>
+	
+    <apex:form >
+    
+        <apex:pageBlock id="idApprovalContextSubmitBlock" title="{!pageTitle}">
+        
+            <apex:pageMessages />
+            
+            <apex:pageBlockButtons location="bottom" >
+                <apex:outputPanel >
+                	<apex:commandButton action="{!doNext}" 
+                						value="{!$Label.apttus_approval__Submit}" 
+                						onclick="onSubmitActionClick();"
+                						oncomplete="onSubmitActionComplete();"
+                    					rendered="{!NOT(hasErrors) && 
+                    							   (IsReSubmitStep || IsAttachmentStep)}" 
+                    					reRender="idApprovalContextSubmitBlock" />
+                    
+                    <apex:commandButton action="{!doSubmit}" 
+                						value="{!$Label.apttus_approval__Yes}" 
+                						onclick="onSubmitActionClick();"
+                						oncomplete="onSubmitActionComplete();"
+                    					rendered="{!NOT(hasErrors) && IsAttachmentWarningStep}" 
+                    					reRender="idApprovalContextSubmitBlock" />
+                    
+                    <apex:commandButton action="{!doCancel}" 
+                    					value="{!$Label.apttus_approval__No}" 
+                    					rendered="{!NOT(hasErrors) && IsAttachmentWarningStep}" />												
+                    <apex:commandButton action="{!doCancel}" 
+                    					value="{!$Label.apttus_approval__Cancel}" 
+                    					rendered="{!NOT(hasErrors) && 
+                    								NOT(IsConfirmationStep) && 
+                    								NOT(IsAttachmentWarningStep) && 
+                    								NOT(IsPrepareStep)}" />
+                    <apex:commandButton action="{!doCancel}" 
+                    					value="{!$Label.apttus_approval__Return}" 
+                    					rendered="{!hasErrors || IsConfirmationStep}" />
+                    
+                </apex:outputPanel>
+            </apex:pageBlockButtons>
+            
+            <apex:outputPanel >
+                <apex:pageBlockSection title="{!$Label.apttus_approval__SelectAttachments}" columns="1"
+                    				   collapsible="false" 
+                    				   rendered="{!IsAttachmentStep}" >
+                    <apex:pageBlockTable value="{!Attachments}" var="attachInfo" >
+                        <apex:column >
+                            <apex:facet name="header">{!$Label.apttus_approval__Select}</apex:facet>
+                            <apex:inputCheckbox selected="{!attachInfo.selected}"
+                                				value="{!attachInfo.selected}" />
+                        </apex:column>
+                        <apex:column value="{!attachInfo.attachmentSO.Name}" />
+                        <apex:column value="{!attachInfo.attachmentSO.BodyLength}" />
+                        <apex:column value="{!attachInfo.attachmentSO.SystemModstamp}" />
+                    </apex:pageBlockTable>
+                </apex:pageBlockSection>
+            </apex:outputPanel>
+            
+            <apex:outputPanel >
+	            <apex:outputPanel rendered="{!IsPrepareStep}" >
+					<script>
+					
+						// get the comma separated list of email template ids
+						var templateIdStr = "{!JSENCODE(EmailTemplateIdsCsv)}";
+						// get the comma separated list of selected document ids
+						var docIdStr = "{!JSENCODE(SelectedDocIdsCsv)}";
+						// show the modal panel
+						//YAHOO.force.com.waitPanel.show();
+						// copy attachments
+						// delay to display progress message	
+			           	setTimeout(function() {
+			         		copyAttachmentsAsync(templateIdStr.split(","), docIdStr.split(","));
+			          	}, 500);
+						
+					</script>
+				</apex:outputPanel>
+			</apex:outputPanel>
+			
+		</apex:pageBlock>
+		
+		<!--  Javascript functions -->
+    	<apex:actionFunction name="doSubmit" 
+    						 action="{!doSubmit}" 
+    						 oncomplete="YAHOO.force.com.waitPanel.hide();" 
+    						 reRender="idApprovalContextSubmitBlock" >
+     	</apex:actionFunction>    	
+     	
+     	<apex:actionFunction name="doReturn" 
+    						 action="{!doCancel}" 
+    						 oncomplete="YAHOO.force.com.waitPanel.hide();" >
+     	</apex:actionFunction>    	
+     	
+    </apex:form>
+    
+</apex:page>

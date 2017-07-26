@@ -1,0 +1,13 @@
+<apex:page standardController="Opportunity" extensions="YGGC.QuoteController">
+<apex:stylesheet value="{!URLFOR($Resource.YGGC__applicationStyle, 'applicationstyle.css')}"/>
+<apex:pageMessages />
+<apex:form >
+	<apex:pageBlock title="Create Quote for {!opptyName}">
+		<apex:pageBlockButtons location="top">
+			<apex:commandButton action="{!doCreateQuote}" value="Create" />
+			<apex:commandButton action="{!cancelCreate}" value="Cancel" />
+		</apex:pageBlockButtons>
+		<apex:outputText value="Quote Name: "/><apex:inputText value="{!quoteName}"/>
+	</apex:pageBlock>
+</apex:form>
+</apex:page>

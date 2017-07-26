@@ -1,0 +1,691 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Follow</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <deprecated>false</deprecated>
+    <description>Specifies user approval levels and authorized discount percentages</description>
+    <enableActivities>true</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>false</enableHistory>
+    <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <fields>
+        <fullName>Approval_Level__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Approval Level</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Level 1</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Level 2</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Level 3</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Level 4</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Level 5</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Level 6</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Approver_1_Authorized_Discount__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Approver 1 Authorized Discount</label>
+        <precision>7</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackTrending>false</trackTrending>
+        <type>Percent</type>
+    </fields>
+    <fields>
+        <fullName>Approver_1_Level__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Approver 1 Level</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Level 1</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Level 2</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Level 3</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Level 4</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Level 5</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Level 6</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Approver_1__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Approver 1</label>
+        <referenceTo>User</referenceTo>
+        <relationshipName>R00N70000001lyCtEAI</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Approver_2_Authorized_Discount__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Approver 2 Authorized Discount</label>
+        <precision>7</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackTrending>false</trackTrending>
+        <type>Percent</type>
+    </fields>
+    <fields>
+        <fullName>Approver_2_Level__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Approver 2 Level</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Level 1</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Level 2</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Level 3</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Level 4</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Level 5</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Level 6</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Approver_2__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Approver 2</label>
+        <referenceTo>User</referenceTo>
+        <relationshipName>R00N70000001lyBQEAY</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Approver_3_Authorized_Discount__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Approver 3 Authorized Discount</label>
+        <precision>7</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackTrending>false</trackTrending>
+        <type>Percent</type>
+    </fields>
+    <fields>
+        <fullName>Approver_3_Level__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Approver 3 Level</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Level 1</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Level 2</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Level 3</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Level 4</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Level 5</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Level 6</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Approver_3__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Approver 3</label>
+        <referenceTo>User</referenceTo>
+        <relationshipName>R00N70000001lyBdEAI</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Approver_4_Authorized_Discount__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Approver 4 Authorized Discount</label>
+        <precision>7</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackTrending>false</trackTrending>
+        <type>Percent</type>
+    </fields>
+    <fields>
+        <fullName>Approver_4_Level__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Approver 4 Level</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Level 1</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Level 2</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Level 3</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Level 4</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Level 5</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Level 6</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Approver_4__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Approver 4</label>
+        <referenceTo>User</referenceTo>
+        <relationshipName>R00N70000001lyC4EAI</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Approver_5_Authorized_Discount__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Approver 5 Authorized Discount</label>
+        <precision>7</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackTrending>false</trackTrending>
+        <type>Percent</type>
+    </fields>
+    <fields>
+        <fullName>Approver_5_Level__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Approver 5 Level</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Level 1</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Level 2</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Level 3</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Level 4</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Level 5</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Level 6</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Approver_5__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Approver 5</label>
+        <referenceTo>User</referenceTo>
+        <relationshipName>R00N70000001lyCJEAY</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Approver_6_Authorized_Discount__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Approver 6 Authorized Discount</label>
+        <precision>7</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackTrending>false</trackTrending>
+        <type>Percent</type>
+    </fields>
+    <fields>
+        <fullName>Approver_6_Level__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Approver 6 Level</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Level 1</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Level 2</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Level 3</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Level 4</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Level 5</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Level 6</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Approver_6__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Approver 6</label>
+        <referenceTo>User</referenceTo>
+        <relationshipName>R00N70000001lyCAEAY</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Description__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Description</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>Error_Log__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Error Log</label>
+        <length>4000</length>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Is_Active__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Is Active</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Is_Valid__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Is Valid</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Matrix_Owner__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <deprecated>false</deprecated>
+        <description>Approval matrix owner</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Approval matrix owner</inlineHelpText>
+        <label>Matrix Owner</label>
+        <referenceTo>User</referenceTo>
+        <relationshipName>Approval_Matrices</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Next_Level_Approver__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Next Level Approver</label>
+        <referenceTo>User</referenceTo>
+        <relationshipName>R00N700000028YyHEAU</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>User__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>User</label>
+        <referenceTo>User</referenceTo>
+        <relationshipName>R00N70000001lyCBEAY</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <label>Approval Matrix</label>
+    <listViews>
+        <fullName>All</fullName>
+        <columns>NAME</columns>
+        <columns>Is_Active__c</columns>
+        <columns>Is_Valid__c</columns>
+        <columns>User__c</columns>
+        <columns>Approval_Level__c</columns>
+        <columns>Next_Level_Approver__c</columns>
+        <columns>Approver_1__c</columns>
+        <columns>Approver_1_Authorized_Discount__c</columns>
+        <columns>Approver_1_Level__c</columns>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+    </listViews>
+    <nameField>
+        <displayFormat>AL-{0000}</displayFormat>
+        <label>Name</label>
+        <type>AutoNumber</type>
+    </nameField>
+    <pluralLabel>Approval Matrix</pluralLabel>
+    <searchLayouts>
+        <customTabListAdditionalFields>User__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Is_Active__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Is_Valid__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Approval_Level__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Approver_2__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Approver_3__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Approver_4__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Approver_5__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Approver_6__c</customTabListAdditionalFields>
+        <excludedStandardButtons>Accept</excludedStandardButtons>
+        <excludedStandardButtons>ChangeOwner</excludedStandardButtons>
+        <lookupDialogsAdditionalFields>User__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>Is_Active__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>Is_Valid__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>Approval_Level__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>Next_Level_Approver__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>Approver_1__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>Approver_1_Authorized_Discount__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>Approver_1_Level__c</lookupDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>User__c</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>Is_Active__c</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>Is_Valid__c</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>Approval_Level__c</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>Next_Level_Approver__c</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>Approver_1__c</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>Approver_1_Authorized_Discount__c</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>Approver_1_Level__c</lookupPhoneDialogsAdditionalFields>
+        <searchFilterFields>NAME</searchFilterFields>
+        <searchFilterFields>User__c</searchFilterFields>
+        <searchFilterFields>Is_Active__c</searchFilterFields>
+        <searchFilterFields>Is_Valid__c</searchFilterFields>
+        <searchFilterFields>Approval_Level__c</searchFilterFields>
+        <searchFilterFields>Next_Level_Approver__c</searchFilterFields>
+        <searchFilterFields>Approver_1__c</searchFilterFields>
+        <searchFilterFields>Approver_1_Authorized_Discount__c</searchFilterFields>
+        <searchFilterFields>Approver_1_Level__c</searchFilterFields>
+        <searchResultsAdditionalFields>User__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Is_Active__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Is_Valid__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Approval_Level__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Approver_2__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Approver_3__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Approver_4__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Approver_5__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Approver_6__c</searchResultsAdditionalFields>
+    </searchLayouts>
+    <sharingModel>ReadWrite</sharingModel>
+    <validationRules>
+        <fullName>Approval_Level</fullName>
+        <active>false</active>
+        <description>Approval Level cannot be empty</description>
+        <errorConditionFormula>ISPICKVAL(Approval_Level__c, &apos;&apos;)</errorConditionFormula>
+        <errorDisplayField>Approval_Level__c</errorDisplayField>
+        <errorMessage>Approval Level cannot be empty</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Next_Level_Approver_For_Level_6</fullName>
+        <active>true</active>
+        <description>Next Level Approver should not be specified for Level 6 users.</description>
+        <errorConditionFormula>AND((ISPICKVAL(Approval_Level__c, &apos;Level 6&apos;)) , NOT(Next_Level_Approver__c = &quot;&quot;))</errorConditionFormula>
+        <errorDisplayField>Next_Level_Approver__c</errorDisplayField>
+        <errorMessage>Next Level Approver should not be specified for Level 6 users.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Next_Level_Approver_Required</fullName>
+        <active>true</active>
+        <description>Next Level Approver required for all except Level 6 users.</description>
+        <errorConditionFormula>AND(NOT(ISPICKVAL(Approval_Level__c, &apos;Level 6&apos;) ) , Next_Level_Approver__c = &quot;&quot; )</errorConditionFormula>
+        <errorDisplayField>Next_Level_Approver__c</errorDisplayField>
+        <errorMessage>You have to specify a Next Level Approver for all except Level 6 users.</errorMessage>
+    </validationRules>
+    <webLinks>
+        <fullName>ChangeApprover</fullName>
+        <availability>online</availability>
+        <displayType>link</displayType>
+        <height>600</height>
+        <linkType>sControl</linkType>
+        <masterLabel>Change Approver (Deprecated)</masterLabel>
+        <openType>sidebar</openType>
+        <protected>false</protected>
+        <scontrol>aptsApprovalMatrixChangeApprover</scontrol>
+    </webLinks>
+    <webLinks>
+        <fullName>GenerateApprovalMatrix</fullName>
+        <availability>online</availability>
+        <description>Generate Approval Matrix</description>
+        <displayType>link</displayType>
+        <encodingKey>UTF-8</encodingKey>
+        <height>600</height>
+        <linkType>url</linkType>
+        <masterLabel>Generate Approval Matrix</masterLabel>
+        <openType>sidebar</openType>
+        <protected>false</protected>
+        <url>/apex/Apttus_Approval__ApprovalMatrixGenerate?matrixOwnerId={!Approval_Matrix__c.Matrix_OwnerId__c}&amp;generateMatrixFor=user</url>
+    </webLinks>
+    <webLinks>
+        <fullName>GenerateApprovalMatrixForAll</fullName>
+        <availability>online</availability>
+        <description>Generate Approval Matrix For All</description>
+        <displayType>link</displayType>
+        <encodingKey>UTF-8</encodingKey>
+        <height>600</height>
+        <linkType>url</linkType>
+        <masterLabel>Generate Approval Matrix For All</masterLabel>
+        <openType>sidebar</openType>
+        <protected>false</protected>
+        <url>/apex/Apttus_Approval__ApprovalMatrixGenerate?matrixOwnerId={!Approval_Matrix__c.Matrix_OwnerId__c}&amp;generateMatrixFor=all</url>
+    </webLinks>
+    <webLinks>
+        <fullName>GenerateApprovalMatrixForRange</fullName>
+        <availability>online</availability>
+        <description>Generate Approval Matrix For Range</description>
+        <displayType>link</displayType>
+        <encodingKey>UTF-8</encodingKey>
+        <height>600</height>
+        <linkType>url</linkType>
+        <masterLabel>Generate Approval Matrix For Range</masterLabel>
+        <openType>sidebar</openType>
+        <protected>false</protected>
+        <url>/apex/Apttus_Approval__ApprovalMatrixGenerate?matrixOwnerId={!Approval_Matrix__c.Matrix_OwnerId__c}&amp;generateMatrixFor=range</url>
+    </webLinks>
+    <webLinks>
+        <fullName>SetNextLevelApprover</fullName>
+        <availability>online</availability>
+        <description>Set Next Level Approver</description>
+        <displayType>link</displayType>
+        <height>600</height>
+        <linkType>page</linkType>
+        <masterLabel>Set Next Level Approver</masterLabel>
+        <openType>sidebar</openType>
+        <page>NextLevelApprover</page>
+        <protected>false</protected>
+    </webLinks>
+    <webLinks>
+        <fullName>ValidateApprovalLevelMatrix</fullName>
+        <availability>online</availability>
+        <displayType>link</displayType>
+        <height>600</height>
+        <linkType>sControl</linkType>
+        <masterLabel>Validate Approval Level Matrix_OBSOLETE</masterLabel>
+        <openType>sidebar</openType>
+        <protected>false</protected>
+        <scontrol>aptsApprovalMatrixValidate</scontrol>
+    </webLinks>
+</CustomObject>

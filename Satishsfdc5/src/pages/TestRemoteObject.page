@@ -1,0 +1,67 @@
+<apex:page >
+     
+    <!-- Remote Objects definition to set accessible sObjects and fields -->
+    <apex:remoteObjects >
+        <apex:remoteObjectModel name="Merchandise__c" jsShorthand="Merchandise"
+            fields="Name,Id">
+           <apex:remoteObjectField name="Price__c" jsShorthand="Price"/>
+        </apex:remoteObjectModel>
+    </apex:remoteObjects>
+ 
+    <!-- JavaScript to make Remote Objects calls -->
+    <script>
+        var fetchWarehouses = function(){
+            // Create a new Remote Object
+            var wh = new SObjectModel.Merchandise();
+             
+            // Use the Remote Object to query for 10 warehouse records
+            wh.retrieve({ limit: 10 }, function(err, records, event){
+                if(err) {
+                    alert(err.message);
+                }
+                else {
+                    var ul = document.getElementById("warehousesList");
+                    records.forEach(function(record) {
+                        // Build the text for a warehouse line item
+                        var whText = record.get("Name");
+                        whText += " -- ";
+                        whText += record.get("Price");
+                         
+                        // Add the line item to the warehouses list
+                        var li = document.createElement("li");
+                        li.appendChild(document.createTextNode(whText));
+                        ul.appendChild(li);
+                    });
+                }
+            });
+        };
+    </script>
+     <script>
+        function changeFont(input, textid) {
+            if(input.checked) {
+                document.getElementById(textid).style.fontWeight = "bold";
+            }
+            else {
+                document.getElementById(textid).style.fontWeight = "normal";
+            }
+        }
+    </script>
+    <h1>Retrieve Warehouses via Remote Objects</h1> 
+    <p>Warehouses:</p>
+    <ul id="warehousesList">
+    </ul>
+    <button onclick="fetchWarehouses()">Retrieve Warehouses</button>
+    <!-- This outputPanel calls the function, passing in the
+         checkbox itself, and the DOM ID of the target component. -->
+    <apex:outputPanel layout="block">
+        <label for="checkbox">Click this box to change text font:</label>
+        <input id="checkbox" type="checkbox"
+            onclick="changeFont(this,'{!$Component.thePanel}');"/>
+    </apex:outputPanel>
+
+    <!-- This outputPanel is the target, and contains 
+         text that will be changed. -->
+    <apex:outputPanel id="thePanel" layout="block">
+        Change my font weight!
+    </apex:outputPanel>
+</apex:page>

@@ -1,0 +1,2333 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomLabels xmlns="http://soap.sforce.com/2006/04/metadata">
+    <labels>
+        <fullName>Account</fullName>
+        <categories>Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Account</shortDescription>
+        <value>Account</value>
+    </labels>
+    <labels>
+        <fullName>AccountName</fullName>
+        <categories>Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Account Name</shortDescription>
+        <value>Account Name</value>
+    </labels>
+    <labels>
+        <fullName>Action</fullName>
+        <categories>Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Action</shortDescription>
+        <value>Action</value>
+    </labels>
+    <labels>
+        <fullName>ActivityHistory</fullName>
+        <categories>Title</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Activity History</shortDescription>
+        <value>Activity History</value>
+    </labels>
+    <labels>
+        <fullName>Add</fullName>
+        <categories>Link</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Add</shortDescription>
+        <value>Add</value>
+    </labels>
+    <labels>
+        <fullName>AddComment</fullName>
+        <categories>Button Title, Link</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Add Comment</shortDescription>
+        <value>Add Comment</value>
+    </labels>
+    <labels>
+        <fullName>AddCommentsToRequest</fullName>
+        <categories>Title</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Add Comments to Request</shortDescription>
+        <value>Add Comments to Request</value>
+    </labels>
+    <labels>
+        <fullName>AddRow</fullName>
+        <categories>Link</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Add Row</shortDescription>
+        <value>Add Row</value>
+    </labels>
+    <labels>
+        <fullName>AddTermExceptions</fullName>
+        <categories>Title</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Add Term Exceptions</shortDescription>
+        <value>Add Term Exceptions</value>
+    </labels>
+    <labels>
+        <fullName>AdvancedFilterCondition</fullName>
+        <categories>Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Advanced Filter Condition</shortDescription>
+        <value>Advanced Filter Condition</value>
+    </labels>
+    <labels>
+        <fullName>AdvancedOptions</fullName>
+        <categories>Link</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Advanced Options</shortDescription>
+        <value>Advanced Options</value>
+    </labels>
+    <labels>
+        <fullName>Agreement</fullName>
+        <categories>Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Agreement</shortDescription>
+        <value>Agreement</value>
+    </labels>
+    <labels>
+        <fullName>AgreementExpiredTerminated</fullName>
+        <categories>Error Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Agreement Expired Terminated</shortDescription>
+        <value>You cannot submit agreement term exceptions for an agreement in Expired or Terminated status.</value>
+    </labels>
+    <labels>
+        <fullName>AgreementName</fullName>
+        <categories>Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Agreement Name</shortDescription>
+        <value>Agreement Name</value>
+    </labels>
+    <labels>
+        <fullName>AgreementOwner</fullName>
+        <categories>Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Agreement Owner</shortDescription>
+        <value>Agreement Owner</value>
+    </labels>
+    <labels>
+        <fullName>AgreementRequestor</fullName>
+        <categories>Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Agreement Requestor</shortDescription>
+        <value>Agreement Requestor</value>
+    </labels>
+    <labels>
+        <fullName>AgreementTermEx</fullName>
+        <categories>Title</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Agreement Term Ex</shortDescription>
+        <value>Agreement Term Exception</value>
+    </labels>
+    <labels>
+        <fullName>AgreementTermExEdit</fullName>
+        <categories>Title</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Agreement Term Ex Edit</shortDescription>
+        <value>Agreement Term Exceptitions Edit</value>
+    </labels>
+    <labels>
+        <fullName>AgreementTermExEditMessage1</fullName>
+        <categories>Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Agreement Term Ex Edit Message1</shortDescription>
+        <value>Edit multiple Agreement Term Exception properties for this agreement at once.</value>
+    </labels>
+    <labels>
+        <fullName>AgreementTermExEditMessage2</fullName>
+        <categories>Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Agreement Term Ex Edit Message 2</shortDescription>
+        <value>Click Save to update all records. Click Cancel to abort all changes.</value>
+    </labels>
+    <labels>
+        <fullName>AgreementType</fullName>
+        <categories>Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Agreement Type</shortDescription>
+        <value>Agreement Type</value>
+    </labels>
+    <labels>
+        <fullName>AllApprovals</fullName>
+        <categories>Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>All Approvals</shortDescription>
+        <value>All Approvals</value>
+    </labels>
+    <labels>
+        <fullName>Amount</fullName>
+        <categories>Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amount</shortDescription>
+        <value>Amount</value>
+    </labels>
+    <labels>
+        <fullName>ApexClass</fullName>
+        <categories>Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Apex Class</shortDescription>
+        <value>Apex Class Name</value>
+    </labels>
+    <labels>
+        <fullName>ApexMethod</fullName>
+        <categories>Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Apex Method</shortDescription>
+        <value>Apex Method Name</value>
+    </labels>
+    <labels>
+        <fullName>ApprovalActionLinkInstruction</fullName>
+        <categories>Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Approval Action Link Instruction</shortDescription>
+        <value>Click on the link below to reassign, approve, or reject the request:</value>
+    </labels>
+    <labels>
+        <fullName>ApprovalActionLinkInstructionForEmailResponse1</fullName>
+        <categories>Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Approval Action Link Instruction for Email Response (Header)</shortDescription>
+        <value>To approve or reject this request, reply to this email with
+the word APPROVE, APPROVED, YES, REJECT, REJECTED, or NO
+in the first line of the email message, or click on the link below:</value>
+    </labels>
+    <labels>
+        <fullName>ApprovalActionLinkInstructionForEmailResponse2</fullName>
+        <categories>Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Approval Action Link Instruction for Email Response (Footer)</shortDescription>
+        <value>If replying via email you can also add comments on the 
+second line. The comments will be stored with the approval 
+request.</value>
+    </labels>
+    <labels>
+        <fullName>ApprovalActionLinkInstructionForEmailResponse3</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Approval Action Link  Instruction for Email Response (Footer 2)</shortDescription>
+        <value>Note: For Apttus to process your response the word
+APPROVE, APPROVED, YES, REJECT, REJECTED, or NO must be in
+the very first line of the reply email. Also, any comment
+must be in the second line.</value>
+    </labels>
+    <labels>
+        <fullName>ApprovalDetails</fullName>
+        <categories>Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Approval Details</shortDescription>
+        <value>Approval Details</value>
+    </labels>
+    <labels>
+        <fullName>ApprovalMatrixCircualarReference</fullName>
+        <categories>Error Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Approval Matrix Circualar Reference</shortDescription>
+        <value>Circular reference found for User: {0}</value>
+    </labels>
+    <labels>
+        <fullName>ApprovalMatrixEnd</fullName>
+        <categories>Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Approval Matrix End</shortDescription>
+        <value>Approval Matrix End</value>
+    </labels>
+    <labels>
+        <fullName>ApprovalMatrixGenerationJob</fullName>
+        <categories>Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Approval Matrix Generation Job</shortDescription>
+        <value>Approval Matrix generation job submitted. Job ID: {0}</value>
+    </labels>
+    <labels>
+        <fullName>ApprovalMatrixLevelMissing</fullName>
+        <categories>Error Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Approval Matrix Level Missing</shortDescription>
+        <value>Approver level and next level approver should be set.</value>
+    </labels>
+    <labels>
+        <fullName>ApprovalMatrixStart</fullName>
+        <categories>Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Approval Matrix Start</shortDescription>
+        <value>Approval Matrix Start</value>
+    </labels>
+    <labels>
+        <fullName>ApprovalRecordLinkInstruction</fullName>
+        <categories>Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Approval Record Link Instruction</shortDescription>
+        <value>Click on the link below to access the {0}:</value>
+    </labels>
+    <labels>
+        <fullName>ApprovalRequest</fullName>
+        <categories>Title</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Approval Request</shortDescription>
+        <value>Approval Request</value>
+    </labels>
+    <labels>
+        <fullName>ApprovalRequestDetail</fullName>
+        <categories>Title</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Approval Request Detail</shortDescription>
+        <value>Approval Request Detail</value>
+    </labels>
+    <labels>
+        <fullName>ApprovalRequestForAgreement</fullName>
+        <categories>Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Approval Request for Agreement</shortDescription>
+        <value>Approval Request for Agreement</value>
+    </labels>
+    <labels>
+        <fullName>ApprovalRequestForAgreementTermException</fullName>
+        <categories>Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Approval Request for Agreement Term Exception</shortDescription>
+        <value>Approval Request for Agreement Term Exception</value>
+    </labels>
+    <labels>
+        <fullName>ApprovalRequestForOpportunity</fullName>
+        <categories>Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Approval Request for Opportunity</shortDescription>
+        <value>Approval Request for Opportunity</value>
+    </labels>
+    <labels>
+        <fullName>ApprovalRequestID</fullName>
+        <categories>Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Approval Request ID</shortDescription>
+        <value>Approval Request ID</value>
+    </labels>
+    <labels>
+        <fullName>ApprovalRequestNotFound</fullName>
+        <categories>Error Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Approval Request Not Found</shortDescription>
+        <value>Could not locate request for ID: {0}</value>
+    </labels>
+    <labels>
+        <fullName>ApprovalRequestNumber</fullName>
+        <categories>Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Approval Request Number</shortDescription>
+        <value>Approval Request Number</value>
+    </labels>
+    <labels>
+        <fullName>ApprovalRequestReassign</fullName>
+        <categories>Title</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Approval Request Reassign</shortDescription>
+        <value>Approval Request Reassign</value>
+    </labels>
+    <labels>
+        <fullName>ApprovalStatus</fullName>
+        <categories>Title</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Approval Status</shortDescription>
+        <value>Approval Status</value>
+    </labels>
+    <labels>
+        <fullName>ApprovalUserID</fullName>
+        <categories>Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Approval User ID</shortDescription>
+        <value>Approval User ID</value>
+    </labels>
+    <labels>
+        <fullName>Approvals</fullName>
+        <categories>Title</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Approvals</shortDescription>
+        <value>Approvals</value>
+    </labels>
+    <labels>
+        <fullName>Approve</fullName>
+        <categories>Button Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Approve</shortDescription>
+        <value>Approve</value>
+    </labels>
+    <labels>
+        <fullName>ApproveReject</fullName>
+        <categories>Link</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Approve/Reject</shortDescription>
+        <value>Approve/Reject</value>
+    </labels>
+    <labels>
+        <fullName>ApproveRejectRequest</fullName>
+        <categories>Title</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Approve Reject Request</shortDescription>
+        <value>Approve/Reject Request</value>
+    </labels>
+    <labels>
+        <fullName>Approved</fullName>
+        <categories>Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Approved</shortDescription>
+        <value>Approved</value>
+    </labels>
+    <labels>
+        <fullName>Approver</fullName>
+        <categories>Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Approver</shortDescription>
+        <value>Approver</value>
+    </labels>
+    <labels>
+        <fullName>ApproverChangedToBackup</fullName>
+        <categories>Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Approver Changed To Backup</shortDescription>
+        <value>Approver changed to backup admin &apos;{0}&apos;.</value>
+    </labels>
+    <labels>
+        <fullName>ApproverChangedToNextLevel</fullName>
+        <categories>Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Approver Changed To Next Level</shortDescription>
+        <value>Approver changed to next level approver &apos;{0}&apos;</value>
+    </labels>
+    <labels>
+        <fullName>ApproverReplacedWith</fullName>
+        <categories>Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Approver Replaced With</shortDescription>
+        <value>&apos;{0}&apos; replaced with &apos;{1}&apos;.</value>
+    </labels>
+    <labels>
+        <fullName>ApprovlMatrixAlreadyExists</fullName>
+        <categories>Error Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Approvl Matrix Already Exists</shortDescription>
+        <value>An approval matrix record already exists for this user.</value>
+    </labels>
+    <labels>
+        <fullName>Ascending</fullName>
+        <categories>Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Ascending</shortDescription>
+        <value>Ascending</value>
+    </labels>
+    <labels>
+        <fullName>AssignedApprover</fullName>
+        <categories>Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Assigned Approver</shortDescription>
+        <value>Assigned Approver</value>
+    </labels>
+    <labels>
+        <fullName>AssignedTo</fullName>
+        <categories>Title</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Assigned To</shortDescription>
+        <value>Assigned To</value>
+    </labels>
+    <labels>
+        <fullName>AssignedToName</fullName>
+        <categories>Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Assigned To Name</shortDescription>
+        <value>Assigned To Name</value>
+    </labels>
+    <labels>
+        <fullName>AssignedToType</fullName>
+        <categories>Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Assigned To Type</shortDescription>
+        <value>Assigned To Type</value>
+    </labels>
+    <labels>
+        <fullName>AssigneeValue</fullName>
+        <categories>Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Assignee Value</shortDescription>
+        <value>Assignee Value</value>
+    </labels>
+    <labels>
+        <fullName>Assignees</fullName>
+        <categories>Column Heading</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Assignees</shortDescription>
+        <value>Assignees</value>
+    </labels>
+    <labels>
+        <fullName>AttachFile</fullName>
+        <categories>Button Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Attach File</shortDescription>
+        <value>Attach File</value>
+    </labels>
+    <labels>
+        <fullName>AttachStepOne</fullName>
+        <categories>Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Attach Step One</shortDescription>
+        <value>1. Select the File</value>
+    </labels>
+    <labels>
+        <fullName>AttachStepOneHelp</fullName>
+        <categories>Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Attach Step One Help</shortDescription>
+        <value>Type the path of the file or click the Browse/Choose File button to find the file.</value>
+    </labels>
+    <labels>
+        <fullName>AttachStepThree</fullName>
+        <categories>Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Attach Step Three</shortDescription>
+        <value>3. Click the Done button to return to Approval Request.</value>
+    </labels>
+    <labels>
+        <fullName>AttachStepThreeHelp</fullName>
+        <categories>Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Attach Step Three Help</shortDescription>
+        <value>( This will cancel an in-progress upload. )</value>
+    </labels>
+    <labels>
+        <fullName>AttachStepTwo</fullName>
+        <categories>Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Attach Step Two</shortDescription>
+        <value>2. Click the &quot;Attach File&quot; button</value>
+    </labels>
+    <labels>
+        <fullName>AttachStepTwoHelp</fullName>
+        <categories>Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Attach Step Two Help</shortDescription>
+        <value>Repeat steps 1 and 2 to attach multiple files.</value>
+    </labels>
+    <labels>
+        <fullName>AttachStepTwoHelp2</fullName>
+        <categories>Message</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Attach Step Two Help 2</shortDescription>
+        <value>( When the upload is complete the file information will appear below. )</value>
+    </labels>
+    <labels>
+        <fullName>BackupAdminNotFound</fullName>
+        <categories>Error Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Backup Admin Not Found</shortDescription>
+        <value>Unable to locate backup admin user.</value>
+    </labels>
+    <labels>
+        <fullName>BackupApprover</fullName>
+        <categories>Title</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Backup Approver</shortDescription>
+        <value>Backup Approver</value>
+    </labels>
+    <labels>
+        <fullName>BackupApproverDeactivated</fullName>
+        <categories>Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Backup Approver Deactivated</shortDescription>
+        <value>Backup approver record cancelled/deactivated</value>
+    </labels>
+    <labels>
+        <fullName>BackupApproverDeactivatedDetail</fullName>
+        <categories>Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Backup Approver Deactivated Detail</shortDescription>
+        <value>Backup approver record cancelled/deactivated due to &apos;{0}&apos; being inactivated.</value>
+    </labels>
+    <labels>
+        <fullName>BackupApproverDetail</fullName>
+        <categories>Title</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Backup Approver Detail</shortDescription>
+        <value>Backup Approver Detail</value>
+    </labels>
+    <labels>
+        <fullName>BackupHasActiveBackup</fullName>
+        <categories>Error Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Backup Has Active Backup</shortDescription>
+        <value>Backup user has an active backup approver in the system</value>
+    </labels>
+    <labels>
+        <fullName>BackupUser</fullName>
+        <categories>Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Backup User</shortDescription>
+        <value>Backup User</value>
+    </labels>
+    <labels>
+        <fullName>BackupUserApprovalLevelShouldBeGreaterOrEqual</fullName>
+        <categories>Error Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Backup User Approval Level Should Be Greater Or Equal</shortDescription>
+        <value>Backup user must have an approval level greater than or equal to the current user</value>
+    </labels>
+    <labels>
+        <fullName>BackupUserChanged</fullName>
+        <categories>Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Backup User Changed</shortDescription>
+        <value>Backup user &apos;{0}&apos; changed to &apos;{1}&apos;</value>
+    </labels>
+    <labels>
+        <fullName>BackupUserChangedDetail</fullName>
+        <categories>Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Backup User Changed Detail</shortDescription>
+        <value>{0} due to &apos;{1}&apos; being inactivated</value>
+    </labels>
+    <labels>
+        <fullName>BackupUserChangedToAdmin</fullName>
+        <categories>Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Backup User Changed To Admin</shortDescription>
+        <value>Backup user &apos;{0}&apos; changed to backup admin &apos;{1}&apos;</value>
+    </labels>
+    <labels>
+        <fullName>BackupUserNotSpecified</fullName>
+        <categories>Error Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Backup User Not Specified</shortDescription>
+        <value>Backup user is not specified</value>
+    </labels>
+    <labels>
+        <fullName>BackupUserSameAsCurrentUser</fullName>
+        <categories>Error Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Backup User Same As Current User</shortDescription>
+        <value>Backup user cannot be the same as the Current user</value>
+    </labels>
+    <labels>
+        <fullName>BackupUserSearch</fullName>
+        <categories>Title</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Backup User Search</shortDescription>
+        <value>Backup User Search</value>
+    </labels>
+    <labels>
+        <fullName>BatchJobQueueFull</fullName>
+        <categories>Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Batch Job Queue Full</shortDescription>
+        <value>Maximum allowed batch jobs are currently active.  Please try submitting you job later.</value>
+    </labels>
+    <labels>
+        <fullName>Cancel</fullName>
+        <categories>Button Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Cancel</shortDescription>
+        <value>Cancel</value>
+    </labels>
+    <labels>
+        <fullName>CancelPageTitle</fullName>
+        <categories>Title</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Cancel Page Title</shortDescription>
+        <value>Cancel {0}</value>
+    </labels>
+    <labels>
+        <fullName>CancellingApprovals</fullName>
+        <categories>Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Cancelling Approvals</shortDescription>
+        <value>Cancelling {0} Approvals.</value>
+    </labels>
+    <labels>
+        <fullName>CannotBeSameApprover</fullName>
+        <categories>Error Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Cannot be same approver</shortDescription>
+        <value>Reassigned approver cannot be same as current assignee.</value>
+    </labels>
+    <labels>
+        <fullName>CannotModifyBackupUser</fullName>
+        <categories>Error Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Cannot Modify Backup User</shortDescription>
+        <value>Backup user cannot be modified in the current state</value>
+    </labels>
+    <labels>
+        <fullName>CannotModifyCurrentUser</fullName>
+        <categories>Error Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Cannot Modify Current User</shortDescription>
+        <value>Current user cannot be modified</value>
+    </labels>
+    <labels>
+        <fullName>CannotModifyEffectiveDate</fullName>
+        <categories>Error Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Cannot Modify Effective Date</shortDescription>
+        <value>Effective date cannot be modified in the current state</value>
+    </labels>
+    <labels>
+        <fullName>CannotSetNextLevelApprover</fullName>
+        <categories>Error Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Cannot Set Next Level Approver</shortDescription>
+        <value>User is at the maximum level.</value>
+    </labels>
+    <labels>
+        <fullName>ChangeNextLevelApprover</fullName>
+        <categories>Title</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Change Next Level Approver</shortDescription>
+        <value>Change Next Level Approver</value>
+    </labels>
+    <labels>
+        <fullName>ClearAdvancedOptions</fullName>
+        <categories>Link</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Clear Advanced Options</shortDescription>
+        <value>Clear Advanced Options</value>
+    </labels>
+    <labels>
+        <fullName>ClearCriteria</fullName>
+        <categories>Button Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Clear Filter Criteria</shortDescription>
+        <value>Clear Criteria</value>
+    </labels>
+    <labels>
+        <fullName>Comments</fullName>
+        <categories>Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Comments</shortDescription>
+        <value>Comments</value>
+    </labels>
+    <labels>
+        <fullName>ConfigureRule</fullName>
+        <categories>Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Configure Rule</shortDescription>
+        <value>Configure Rule</value>
+    </labels>
+    <labels>
+        <fullName>ContextAlreadyApproved</fullName>
+        <categories>Warning Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Context Already Approved</shortDescription>
+        <value>Cannot cancel {0} that has already been approved.</value>
+    </labels>
+    <labels>
+        <fullName>ContextProcessAlreadyActive</fullName>
+        <categories>Warning Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Context Process Already Active</shortDescription>
+        <value>There are requests in pending status.
+Click Submit to cancel pending request(s) and resubmit for approval.</value>
+    </labels>
+    <labels>
+        <fullName>ContextStatusShouldBeNotSubmitted</fullName>
+        <categories>Warning Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Context Status should be Not Submitted</shortDescription>
+        <value>{0} should be in Not Submitted status before it can be previewed.</value>
+    </labels>
+    <labels>
+        <fullName>CouldNotResolveApprovalMatrix</fullName>
+        <categories>Error Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Could Not Resolve Approval Matrix</shortDescription>
+        <value>Could not resove Approval Matrix for User: {0}.</value>
+    </labels>
+    <labels>
+        <fullName>CouldNotResolveApprovalProcess</fullName>
+        <categories>Error Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Could Not Resolve Approval Process</shortDescription>
+        <value>Could not resolve Approval Process for Context: {0}.</value>
+    </labels>
+    <labels>
+        <fullName>CreateApprovalRequestsFailed</fullName>
+        <categories>Error Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Create Approval Requests Failed</shortDescription>
+        <value>Error creating approval requests</value>
+    </labels>
+    <labels>
+        <fullName>CreatedBy</fullName>
+        <categories>Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Created By</shortDescription>
+        <value>Created By</value>
+    </labels>
+    <labels>
+        <fullName>CurrentUserAlreadyActiveBackup</fullName>
+        <categories>Error Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Current User Already Active Backup</shortDescription>
+        <value>Current user is an active backup approver for another user in the system</value>
+    </labels>
+    <labels>
+        <fullName>CurrentUserAlreadyHasBackup</fullName>
+        <categories>Error Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Current User Already Has Backup</shortDescription>
+        <value>Current user already has a backup approver in the system</value>
+    </labels>
+    <labels>
+        <fullName>Date</fullName>
+        <categories>Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Date</shortDescription>
+        <value>Date</value>
+    </labels>
+    <labels>
+        <fullName>DependsOn</fullName>
+        <categories>Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Depends On</shortDescription>
+        <value>Depends On</value>
+    </labels>
+    <labels>
+        <fullName>Descending</fullName>
+        <categories>Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Descending</shortDescription>
+        <value>Descending</value>
+    </labels>
+    <labels>
+        <fullName>Description</fullName>
+        <categories>Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Description</shortDescription>
+        <value>Description</value>
+    </labels>
+    <labels>
+        <fullName>Details</fullName>
+        <categories>Title</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Details</shortDescription>
+        <value>Details</value>
+    </labels>
+    <labels>
+        <fullName>DiscountPolicyNotSetup</fullName>
+        <categories>Error Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Discount Policy Not Setup</shortDescription>
+        <value>Global Discount Policies not setup.</value>
+    </labels>
+    <labels>
+        <fullName>Done</fullName>
+        <categories>Button Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Done</shortDescription>
+        <value>Done</value>
+    </labels>
+    <labels>
+        <fullName>Edit</fullName>
+        <categories>Title</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Edit</shortDescription>
+        <value>Edit</value>
+    </labels>
+    <labels>
+        <fullName>EditCriteria</fullName>
+        <categories>Title</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Edit Criteria</shortDescription>
+        <value>Edit Criteria</value>
+    </labels>
+    <labels>
+        <fullName>EditTermExceptionApproval</fullName>
+        <categories>Title</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Edit Term Exception Approval</shortDescription>
+        <value>Edit Term Exception Approval</value>
+    </labels>
+    <labels>
+        <fullName>EmailLinkInstCommentsEntered</fullName>
+        <categories>Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Email Link Instruction Comments Entered</shortDescription>
+        <value>Click on this link to access the</value>
+    </labels>
+    <labels>
+        <fullName>EmailPurposeCommentsEntered</fullName>
+        <categories>Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Email Purpose Comments Entered</shortDescription>
+        <value>You are receiving this notification because new comments have been entered for approval request</value>
+    </labels>
+    <labels>
+        <fullName>EmailSubCommentsEntered</fullName>
+        <categories>Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Email Subject Comments Entered</shortDescription>
+        <value>New Comments Entered for Approval Request</value>
+    </labels>
+    <labels>
+        <fullName>EmailTextCommentsEntered</fullName>
+        <categories>Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Email Text Comments Entered</shortDescription>
+        <value>New comments entered for this request</value>
+    </labels>
+    <labels>
+        <fullName>EnterMatrixRange</fullName>
+        <categories>Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Enter Matrix Range</shortDescription>
+        <value>Please enter approval matrix range.</value>
+    </labels>
+    <labels>
+        <fullName>EntryCriteriaNotSatisified</fullName>
+        <categories>Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Entry Criteria Not Satisified</shortDescription>
+        <value>Approval Process entry criteria not satisfied for {0}.</value>
+    </labels>
+    <labels>
+        <fullName>Error</fullName>
+        <categories>Error Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Error</shortDescription>
+        <value>Error</value>
+    </labels>
+    <labels>
+        <fullName>ErrorCancellingApprovals</fullName>
+        <categories>Error Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Error Cancelling Approvals</shortDescription>
+        <value>ERROR: cancelling approvals</value>
+    </labels>
+    <labels>
+        <fullName>ErrorCopyingAttachments</fullName>
+        <categories>Error Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Error Copying Attachments</shortDescription>
+        <value>ERROR: copying attachments</value>
+    </labels>
+    <labels>
+        <fullName>ErrorPreviewingApprovals</fullName>
+        <categories>Error Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Error Previewing Approvals</shortDescription>
+        <value>ERROR: previewing approvals</value>
+    </labels>
+    <labels>
+        <fullName>ErrorSubmittingApprovals</fullName>
+        <categories>Error Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Error Submitting Approvals</shortDescription>
+        <value>ERROR: submitting approvals</value>
+    </labels>
+    <labels>
+        <fullName>ErrorUnknown</fullName>
+        <categories>Error Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Error Unknown</shortDescription>
+        <value>ERROR: unknown error</value>
+    </labels>
+    <labels>
+        <fullName>Exception</fullName>
+        <categories>Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Exception</shortDescription>
+        <value>Exception</value>
+    </labels>
+    <labels>
+        <fullName>ExpirationDateShouldBeAfterEffectiveDate</fullName>
+        <categories>Error Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Expiration Date Should Be After Effective Date</shortDescription>
+        <value>Expiration date must be later than the Effective date</value>
+    </labels>
+    <labels>
+        <fullName>Field</fullName>
+        <categories>Column Heading</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Field</shortDescription>
+        <value>Field</value>
+    </labels>
+    <labels>
+        <fullName>FileName</fullName>
+        <categories>Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>File Name</shortDescription>
+        <value>File Name</value>
+    </labels>
+    <labels>
+        <fullName>FileNameLengthExceeded</fullName>
+        <categories>Error Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>FileNameLengthExceeded</shortDescription>
+        <value>Error: The filename exceeds the maximum length allowed, which is 80 characters</value>
+    </labels>
+    <labels>
+        <fullName>Filter</fullName>
+        <categories>Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Filter</shortDescription>
+        <value>Filter</value>
+    </labels>
+    <labels>
+        <fullName>FilterApprovals</fullName>
+        <categories>Title</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Filter Approvals</shortDescription>
+        <value>Filter Approvals</value>
+    </labels>
+    <labels>
+        <fullName>FilterBy</fullName>
+        <categories>Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Filter By</shortDescription>
+        <value>Filter By</value>
+    </labels>
+    <labels>
+        <fullName>FilterInstruction</fullName>
+        <categories>Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>FilterInstruction</shortDescription>
+        <value>Enter your filter criteria and click Find to begin your search.</value>
+    </labels>
+    <labels>
+        <fullName>Find</fullName>
+        <categories>Button Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Find</shortDescription>
+        <value>Find</value>
+    </labels>
+    <labels>
+        <fullName>FindTermExceptions</fullName>
+        <categories>Title</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Find Term Exceptions</shortDescription>
+        <value>Find Term Exceptions</value>
+    </labels>
+    <labels>
+        <fullName>GenerateApprovalMatrix</fullName>
+        <categories>Title</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Generate Approval Matrix</shortDescription>
+        <value>Generate Approval Matrix</value>
+    </labels>
+    <labels>
+        <fullName>GenerateMatrix</fullName>
+        <categories>Button Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Generate Matrix</shortDescription>
+        <value>Generate Matrix</value>
+    </labels>
+    <labels>
+        <fullName>Go</fullName>
+        <categories>Button Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Go</shortDescription>
+        <value>Go</value>
+    </labels>
+    <labels>
+        <fullName>HasBeenCancelled</fullName>
+        <categories>Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Has Been Cancelled</shortDescription>
+        <value>has been cancelled</value>
+    </labels>
+    <labels>
+        <fullName>HasBeenReassignedToYou</fullName>
+        <categories>Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Has Been Reassigned to You</shortDescription>
+        <value>has been reassigned to you</value>
+    </labels>
+    <labels>
+        <fullName>HasBeenSubmitted</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Has Been Submitted</shortDescription>
+        <value>has been submitted</value>
+    </labels>
+    <labels>
+        <fullName>HasBeenSubmittedForApproval</fullName>
+        <categories>Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Has Been Submitted for Approval</shortDescription>
+        <value>has been submitted for your approval</value>
+    </labels>
+    <labels>
+        <fullName>Information</fullName>
+        <categories>Title</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Information</shortDescription>
+        <value>Information</value>
+    </labels>
+    <labels>
+        <fullName>InitialSubmitter</fullName>
+        <categories>Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Initial Submitter</shortDescription>
+        <value>Initial Submitter</value>
+    </labels>
+    <labels>
+        <fullName>InvalidBackupApprover</fullName>
+        <categories>Error Message</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Invalid Backup Approver</shortDescription>
+        <value>Backup approver cannot be same as current user.</value>
+    </labels>
+    <labels>
+        <fullName>InvalidCharacter</fullName>
+        <categories>Error Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Invalid Character</shortDescription>
+        <value>Invalid character string: {0}</value>
+    </labels>
+    <labels>
+        <fullName>InvalidCurrentUser</fullName>
+        <categories>Error Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Invalid Current User</shortDescription>
+        <value>Current user is not specified</value>
+    </labels>
+    <labels>
+        <fullName>InvalidEffectiveDate</fullName>
+        <categories>Error Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Invalid Effective Date</shortDescription>
+        <value>Effective date cannot be in the past</value>
+    </labels>
+    <labels>
+        <fullName>InvalidExpirationDate</fullName>
+        <categories>Error Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Invalid Expiration Date</shortDescription>
+        <value>Expiration date cannot be in the past</value>
+    </labels>
+    <labels>
+        <fullName>InvalidNextLevelApproverChain</fullName>
+        <categories>Error Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Invalid Next Level Approver Chain</shortDescription>
+        <value>Invalid Next Level Approver Chain at : {0}</value>
+    </labels>
+    <labels>
+        <fullName>InvalidOperator</fullName>
+        <categories>Error Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Invalid Operator</shortDescription>
+        <value>Inequality operator not allowed for this field: {0}</value>
+    </labels>
+    <labels>
+        <fullName>InvalidPageParameter</fullName>
+        <categories>Error Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Invalid Page Parameter</shortDescription>
+        <value>Invalid visualforce page parameter: {0}</value>
+    </labels>
+    <labels>
+        <fullName>Label</fullName>
+        <categories>Column Heading</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Label</shortDescription>
+        <value>Label</value>
+    </labels>
+    <labels>
+        <fullName>Level</fullName>
+        <categories>Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Level</shortDescription>
+        <value>Level</value>
+    </labels>
+    <labels>
+        <fullName>MatrixInactivated</fullName>
+        <categories>Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Matrix Inactivated</shortDescription>
+        <value>Matrix changed to inactive as User was deactivated</value>
+    </labels>
+    <labels>
+        <fullName>MatrixUserSearch</fullName>
+        <categories>Title</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Matrix User Search</shortDescription>
+        <value>Approval Matrix User Search</value>
+    </labels>
+    <labels>
+        <fullName>MaximumRowsMessage</fullName>
+        <categories>Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Maximum Rows Message</shortDescription>
+        <value>Displaying maximum allowed ({0}) rows.  Pease refine your search.</value>
+    </labels>
+    <labels>
+        <fullName>MessageFiltering</fullName>
+        <categories>Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Message Filtering</shortDescription>
+        <value>Filtering</value>
+    </labels>
+    <labels>
+        <fullName>MissingDiscountPercent</fullName>
+        <categories>Error Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Missing Discount Percent</shortDescription>
+        <value>Authorized Discount Percent not specified for ALL 6 LEVELS.</value>
+    </labels>
+    <labels>
+        <fullName>MoveDown</fullName>
+        <categories>Title</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Move Down</shortDescription>
+        <value>Move Down</value>
+    </labels>
+    <labels>
+        <fullName>MoveUp</fullName>
+        <categories>Title</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Move Up</shortDescription>
+        <value>Move Up</value>
+    </labels>
+    <labels>
+        <fullName>MultipleQueuesFound</fullName>
+        <categories>Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Multiple Queues Found</shortDescription>
+        <value>Multiple queues found. Please refine search.</value>
+    </labels>
+    <labels>
+        <fullName>MyApprovals</fullName>
+        <categories>Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>My Approvals</shortDescription>
+        <value>My Approvals</value>
+    </labels>
+    <labels>
+        <fullName>Name</fullName>
+        <categories>Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Name</shortDescription>
+        <value>Name</value>
+    </labels>
+    <labels>
+        <fullName>New</fullName>
+        <categories>Title</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>New</shortDescription>
+        <value>New</value>
+    </labels>
+    <labels>
+        <fullName>NewAttachments</fullName>
+        <categories>Title</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>New Attachments</shortDescription>
+        <value>New Attachments</value>
+    </labels>
+    <labels>
+        <fullName>Next</fullName>
+        <categories>Button Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Next</shortDescription>
+        <value>Next</value>
+    </labels>
+    <labels>
+        <fullName>NextLevelApproverCannotBeSame</fullName>
+        <categories>Error Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Next Level Approver Cannot Be Same</shortDescription>
+        <value>Next level approver cannot be same as current user.</value>
+    </labels>
+    <labels>
+        <fullName>NextPage</fullName>
+        <categories>Link</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Next Page</shortDescription>
+        <value>Next Page</value>
+    </labels>
+    <labels>
+        <fullName>No</fullName>
+        <categories>Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>No</shortDescription>
+        <value>No</value>
+    </labels>
+    <labels>
+        <fullName>NoApprovalMatrixForBackupUser</fullName>
+        <categories>Error Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>No Approval Matrix For Backup User</shortDescription>
+        <value>Backup user does not have an approval matrix</value>
+    </labels>
+    <labels>
+        <fullName>NoApprovalMatrixForUser</fullName>
+        <categories>Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>No Approval Matrix For User</shortDescription>
+        <value>No approval matrix found for this user. To generate an approval matrix for this user; setup approver level and next level approver in approval matrix and click on the custom link &apos;Generate Approval Matrix&apos;.</value>
+    </labels>
+    <labels>
+        <fullName>NoApprovalProcessForBusinessObject</fullName>
+        <categories>Error Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>No Approval Process for Business Object</shortDescription>
+        <value>This record does not meet the entry criteria of any active approval processes. Please contact your administrator for assistance.</value>
+    </labels>
+    <labels>
+        <fullName>NoAttachmentsMessage</fullName>
+        <categories>Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>No Attachments Message</shortDescription>
+        <value>You are submitting for approvals without attaching a document. 
+
+Do you want to Proceed ?</value>
+    </labels>
+    <labels>
+        <fullName>NoDimensionsToDisplay</fullName>
+        <categories>Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>No Dimensions to display</shortDescription>
+        <value>No Dimensions to display</value>
+    </labels>
+    <labels>
+        <fullName>NoMatchingQueuesFound</fullName>
+        <categories>Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>No Matching Queues Found</shortDescription>
+        <value>No matching queues found.</value>
+    </labels>
+    <labels>
+        <fullName>NoMatchingUsersFound</fullName>
+        <categories>Messge</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>No Matching Users Found</shortDescription>
+        <value>No matching users found.</value>
+    </labels>
+    <labels>
+        <fullName>NoQueuesAvailable</fullName>
+        <categories>Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>No Queues Available</shortDescription>
+        <value>No queues available</value>
+    </labels>
+    <labels>
+        <fullName>NoTermExceptionsForAgreement</fullName>
+        <categories>Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>No Term Exceptions For Agreement</shortDescription>
+        <value>There are no Agreement Term Exceptions to process.</value>
+    </labels>
+    <labels>
+        <fullName>NoneInPendingApprovalStatus</fullName>
+        <categories>Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>None in Pending Approval status</shortDescription>
+        <value>There are no approval requests in Pending Approval status.</value>
+    </labels>
+    <labels>
+        <fullName>NotApplicable</fullName>
+        <categories>Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Not Applicable</shortDescription>
+        <value>NA</value>
+    </labels>
+    <labels>
+        <fullName>NullEmailTemplate</fullName>
+        <categories>Error Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Email Template is null</shortDescription>
+        <value>The email template is null or invalid</value>
+    </labels>
+    <labels>
+        <fullName>NumberOfRowsFound</fullName>
+        <categories>Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Number of rows found</shortDescription>
+        <value>{0} rows found.</value>
+    </labels>
+    <labels>
+        <fullName>OK</fullName>
+        <categories>Button Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Ok</shortDescription>
+        <value>Ok</value>
+    </labels>
+    <labels>
+        <fullName>OnHoldComments</fullName>
+        <categories>Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>On Hold Comments</shortDescription>
+        <value>Waiting for Approval Step: {0}</value>
+    </labels>
+    <labels>
+        <fullName>Operator</fullName>
+        <categories>Column Heading</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Operator</shortDescription>
+        <value>Operator</value>
+    </labels>
+    <labels>
+        <fullName>OperatorValueContains</fullName>
+        <categories>Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Operator Value Contains</shortDescription>
+        <value>contains</value>
+    </labels>
+    <labels>
+        <fullName>OperatorValueDoesNotContain</fullName>
+        <categories>Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Operator Value Does Not Contain</shortDescription>
+        <value>does not contain</value>
+    </labels>
+    <labels>
+        <fullName>OperatorValueEqual</fullName>
+        <categories>Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Operator Value Equal</shortDescription>
+        <value>equal</value>
+    </labels>
+    <labels>
+        <fullName>OperatorValueNotEqual</fullName>
+        <categories>Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Operator Value Not Equal</shortDescription>
+        <value>not equal to</value>
+    </labels>
+    <labels>
+        <fullName>OperatorValueStartsWith</fullName>
+        <categories>Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Operator Value Starts With</shortDescription>
+        <value>starts with</value>
+    </labels>
+    <labels>
+        <fullName>Opportunity</fullName>
+        <categories>Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Opportunity</shortDescription>
+        <value>Opportunity</value>
+    </labels>
+    <labels>
+        <fullName>OpportunityName</fullName>
+        <categories>Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Opportunity Name</shortDescription>
+        <value>Opportunity Name</value>
+    </labels>
+    <labels>
+        <fullName>OpportunityOwner</fullName>
+        <categories>Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Opportunity Owner</shortDescription>
+        <value>Opportunity Owner</value>
+    </labels>
+    <labels>
+        <fullName>OpportunityPartners</fullName>
+        <categories>Title</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Opportunity Partners</shortDescription>
+        <value>Opportunity Partners</value>
+    </labels>
+    <labels>
+        <fullName>OpportunityProducts</fullName>
+        <categories>Title</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Opportunity Products</shortDescription>
+        <value>Opportunity Products</value>
+    </labels>
+    <labels>
+        <fullName>OutOf</fullName>
+        <categories>Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>out of</shortDescription>
+        <value>out of</value>
+    </labels>
+    <labels>
+        <fullName>OwnerFullName</fullName>
+        <categories>Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Owner Full Name</shortDescription>
+        <value>Owner Full Name</value>
+    </labels>
+    <labels>
+        <fullName>PageNbr</fullName>
+        <categories>Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Page #</shortDescription>
+        <value>Page #</value>
+    </labels>
+    <labels>
+        <fullName>Partners</fullName>
+        <categories>Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Partners</shortDescription>
+        <value>Partners</value>
+    </labels>
+    <labels>
+        <fullName>PicklistValueNone</fullName>
+        <categories>Picklist Value</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Picklist value none</shortDescription>
+        <value>--None--</value>
+    </labels>
+    <labels>
+        <fullName>PleaseSelectAFile</fullName>
+        <categories>Error Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>PleaseSelectAFile</shortDescription>
+        <value>Please select a file to upload.</value>
+    </labels>
+    <labels>
+        <fullName>PreviewPageTitle</fullName>
+        <categories>Title</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Preview Page Title</shortDescription>
+        <value>Preview {0}</value>
+    </labels>
+    <labels>
+        <fullName>PreviewingApprovals</fullName>
+        <categories>Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Previewing Approvals</shortDescription>
+        <value>Previewing {0} Approvals.</value>
+    </labels>
+    <labels>
+        <fullName>Previous</fullName>
+        <categories>Button Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Previous</shortDescription>
+        <value>Previous</value>
+    </labels>
+    <labels>
+        <fullName>PreviousPage</fullName>
+        <categories>LInk</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Previous Page</shortDescription>
+        <value>Previous Page</value>
+    </labels>
+    <labels>
+        <fullName>PreviouslyAssignedTo</fullName>
+        <categories>Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Previously Assigned To</shortDescription>
+        <value>previously assigned to</value>
+    </labels>
+    <labels>
+        <fullName>Products</fullName>
+        <categories>Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Products</shortDescription>
+        <value>Products</value>
+    </labels>
+    <labels>
+        <fullName>Queues</fullName>
+        <categories>Title</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Queues</shortDescription>
+        <value>Queues</value>
+    </labels>
+    <labels>
+        <fullName>Reassign</fullName>
+        <categories>Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Reassign</shortDescription>
+        <value>Reassign</value>
+    </labels>
+    <labels>
+        <fullName>ReassignUserCannotBeSame</fullName>
+        <categories>Error Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Reassign User Cannot Be Same</shortDescription>
+        <value>Reassigned approver cannot be same as current assignee.</value>
+    </labels>
+    <labels>
+        <fullName>ReassignUserSearch</fullName>
+        <categories>Title</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Reassign User Search</shortDescription>
+        <value>Reassign User Search</value>
+    </labels>
+    <labels>
+        <fullName>ReassignedApproverLevel</fullName>
+        <categories>Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Reassigned Approver Level</shortDescription>
+        <value>Reassigned Approver Level = {0}</value>
+    </labels>
+    <labels>
+        <fullName>ReassignedBackupActivated</fullName>
+        <categories>Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Reassigned Backup Activated</shortDescription>
+        <value>Reassigned due to backup Approver activaton for {0}.</value>
+    </labels>
+    <labels>
+        <fullName>ReassignedBackupDeactivated</fullName>
+        <categories>Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Reassigned Backup Deactivated</shortDescription>
+        <value>Reassigned due to backup Approver deactivation for {0}.</value>
+    </labels>
+    <labels>
+        <fullName>ReassignedInactiveUser</fullName>
+        <categories>Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Reassigned Inactive User</shortDescription>
+        <value>Reassigned due to inactivation of User: {0}.</value>
+    </labels>
+    <labels>
+        <fullName>ReassignedMessage</fullName>
+        <categories>Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Reassigned Message</shortDescription>
+        <value>Reassigned due to active backup Approver for {0}.</value>
+    </labels>
+    <labels>
+        <fullName>ReassignedToBackupAdmin</fullName>
+        <categories>Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Reassigned To Backup Admin</shortDescription>
+        <value>Reassigned to BACKUP ADMIN from invalid assignee: {0}</value>
+    </labels>
+    <labels>
+        <fullName>Reject</fullName>
+        <categories>Button Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Reject</shortDescription>
+        <value>Reject</value>
+    </labels>
+    <labels>
+        <fullName>Rejected</fullName>
+        <categories>Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Rejected</shortDescription>
+        <value>Rejected</value>
+    </labels>
+    <labels>
+        <fullName>RelatedObjectName</fullName>
+        <categories>Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Related Object Name</shortDescription>
+        <value>Related Object Name</value>
+    </labels>
+    <labels>
+        <fullName>RelatedObjectType</fullName>
+        <categories>Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Related Object Type</shortDescription>
+        <value>Related Object Type</value>
+    </labels>
+    <labels>
+        <fullName>RelatedTo</fullName>
+        <categories>Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Related To</shortDescription>
+        <value>Related To</value>
+    </labels>
+    <labels>
+        <fullName>Remove</fullName>
+        <categories>Title, Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Remove</shortDescription>
+        <value>Remove</value>
+    </labels>
+    <labels>
+        <fullName>RemoveRow</fullName>
+        <categories>Link</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Remove Row</shortDescription>
+        <value>Remove Row</value>
+    </labels>
+    <labels>
+        <fullName>RequestAlreadyApproved</fullName>
+        <categories>Error Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Request Already Approved</shortDescription>
+        <value>This request has already been approved.  No further action can be taken.</value>
+    </labels>
+    <labels>
+        <fullName>RequestAlreadyCancelled</fullName>
+        <categories>Error Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Request Already Cancelled</shortDescription>
+        <value>This request has already been cancelled.  No further action can be taken.</value>
+    </labels>
+    <labels>
+        <fullName>RequestAlreadyRejected</fullName>
+        <categories>Error Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Request Already Rejected</shortDescription>
+        <value>This request has already been rejected.  No further action can be taken.</value>
+    </labels>
+    <labels>
+        <fullName>RequestCancelled</fullName>
+        <categories>Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Request Cancelled</shortDescription>
+        <value>Your request(s) have been cancelled.</value>
+    </labels>
+    <labels>
+        <fullName>RequiredFieldsAreMissing</fullName>
+        <categories>Error Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Required fields are missing</shortDescription>
+        <value>Required fields are missing</value>
+    </labels>
+    <labels>
+        <fullName>Return</fullName>
+        <categories>Button Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Return</shortDescription>
+        <value>Return</value>
+    </labels>
+    <labels>
+        <fullName>ReturnToAgreement</fullName>
+        <categories>Button Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Return To Agreement</shortDescription>
+        <value>Return To Agreement</value>
+    </labels>
+    <labels>
+        <fullName>Role</fullName>
+        <categories>Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Role</shortDescription>
+        <value>Role</value>
+    </labels>
+    <labels>
+        <fullName>RuleCriteria</fullName>
+        <categories>Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Rule Criteria</shortDescription>
+        <value>Rule Criteria</value>
+    </labels>
+    <labels>
+        <fullName>RuleEntries</fullName>
+        <categories>Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Rule Entries</shortDescription>
+        <value>Rule Entries</value>
+    </labels>
+    <labels>
+        <fullName>RuleInformation</fullName>
+        <categories>Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Rule Information</shortDescription>
+        <value>Rule Information</value>
+    </labels>
+    <labels>
+        <fullName>Save</fullName>
+        <categories>Button Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Save</shortDescription>
+        <value>Save</value>
+    </labels>
+    <labels>
+        <fullName>SaveAndNew</fullName>
+        <categories>Button Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Save &amp; New</shortDescription>
+        <value>Save &amp; New</value>
+    </labels>
+    <labels>
+        <fullName>Search</fullName>
+        <categories>Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Search</shortDescription>
+        <value>Search</value>
+    </labels>
+    <labels>
+        <fullName>SearchStatusMessage</fullName>
+        <categories>message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Search Status Message</shortDescription>
+        <value>Searching...Please Wait</value>
+    </labels>
+    <labels>
+        <fullName>Select</fullName>
+        <categories>Button Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Select</shortDescription>
+        <value>Select</value>
+    </labels>
+    <labels>
+        <fullName>SelectAUser</fullName>
+        <categories>Error Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Select A User</shortDescription>
+        <value>Please select a valid user.</value>
+    </labels>
+    <labels>
+        <fullName>SelectAtLeastOneRow</fullName>
+        <categories>Error Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Select at least one row</shortDescription>
+        <value>Select at leas one row.</value>
+    </labels>
+    <labels>
+        <fullName>SelectAttachments</fullName>
+        <categories>Title</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Select Attachments</shortDescription>
+        <value>Select Attachments</value>
+    </labels>
+    <labels>
+        <fullName>SelectObject</fullName>
+        <categories>Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Select Object</shortDescription>
+        <value>Select Object</value>
+    </labels>
+    <labels>
+        <fullName>SelectRuleObjectInstruction</fullName>
+        <categories>Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Select Rule Object Instruction</shortDescription>
+        <value>Select the object to which this rule applies.</value>
+    </labels>
+    <labels>
+        <fullName>Seq</fullName>
+        <categories>Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Seq</shortDescription>
+        <value>Seq</value>
+    </labels>
+    <labels>
+        <fullName>Sequence</fullName>
+        <categories>Column Heading</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Sequence</shortDescription>
+        <value>Sequence</value>
+    </labels>
+    <labels>
+        <fullName>SortBy</fullName>
+        <categories>Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Sort By</shortDescription>
+        <value>Sort By</value>
+    </labels>
+    <labels>
+        <fullName>Status</fullName>
+        <categories>Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Status</shortDescription>
+        <value>Status</value>
+    </labels>
+    <labels>
+        <fullName>StatusApproved</fullName>
+        <categories>Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Status Approved</shortDescription>
+        <value>Status Approved</value>
+    </labels>
+    <labels>
+        <fullName>StatusAssigned</fullName>
+        <categories>Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Status Assigned</shortDescription>
+        <value>Status Assigned</value>
+    </labels>
+    <labels>
+        <fullName>StatusPleaseWait</fullName>
+        <categories>Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Status Please Wait</shortDescription>
+        <value>please wait</value>
+    </labels>
+    <labels>
+        <fullName>StatusReassigned</fullName>
+        <categories>Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Status Reassigned</shortDescription>
+        <value>Status Reassigned</value>
+    </labels>
+    <labels>
+        <fullName>StatusRejected</fullName>
+        <categories>Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Status Rejected</shortDescription>
+        <value>Status Rejected</value>
+    </labels>
+    <labels>
+        <fullName>Step</fullName>
+        <categories>Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Step</shortDescription>
+        <value>Step</value>
+    </labels>
+    <labels>
+        <fullName>StepStats</fullName>
+        <categories>Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Step Stats</shortDescription>
+        <value>Step {0} of {1}</value>
+    </labels>
+    <labels>
+        <fullName>Submit</fullName>
+        <categories>Button Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Submit</shortDescription>
+        <value>Submit</value>
+    </labels>
+    <labels>
+        <fullName>SubmitPageTitle</fullName>
+        <categories>Title</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Submit Page Title</shortDescription>
+        <value>Submit {0}</value>
+    </labels>
+    <labels>
+        <fullName>SubmitWithAttachments</fullName>
+        <categories>Button Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Submit With Attachments</shortDescription>
+        <value>Submit (With Attachments)</value>
+    </labels>
+    <labels>
+        <fullName>SubmittedBy</fullName>
+        <categories>Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Submitted By</shortDescription>
+        <value>Submitted By</value>
+    </labels>
+    <labels>
+        <fullName>SubmittedDate</fullName>
+        <categories>Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Submitted Date</shortDescription>
+        <value>Submitted Date</value>
+    </labels>
+    <labels>
+        <fullName>SubmittedForApprovals</fullName>
+        <categories>Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Submitted for Approvals</shortDescription>
+        <value>Your request(s) have been submitted for approval.
+You will be notified when approvals are complete.</value>
+    </labels>
+    <labels>
+        <fullName>SubmittingApprovals</fullName>
+        <categories>Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Submitting Approvals</shortDescription>
+        <value>Submitting {0} for Approvals.</value>
+    </labels>
+    <labels>
+        <fullName>SubmittingApprovals2</fullName>
+        <categories>Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Submitting Approvals (Wait)</shortDescription>
+        <value>Submitting Approvals - Please wait...</value>
+    </labels>
+    <labels>
+        <fullName>TermExApprovalQueueSearch</fullName>
+        <categories>Title</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Term Ex Approval Queue Search</shortDescription>
+        <value>Term Exception Approval Queue Search</value>
+    </labels>
+    <labels>
+        <fullName>TermExceptionApprovalClone</fullName>
+        <categories>Title</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Term Exception Approval Clone</shortDescription>
+        <value>Term Exception Approval Clone</value>
+    </labels>
+    <labels>
+        <fullName>TermExceptionComments</fullName>
+        <categories>Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Term Exception Comments</shortDescription>
+        <value>Term Exception Comments</value>
+    </labels>
+    <labels>
+        <fullName>TermExceptionDescription</fullName>
+        <categories>Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Term Exception Description</shortDescription>
+        <value>Term Exception Description</value>
+    </labels>
+    <labels>
+        <fullName>TermExceptionName</fullName>
+        <categories>Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Term Exception Name</shortDescription>
+        <value>Term Exception Name</value>
+    </labels>
+    <labels>
+        <fullName>TermExceptionProcessAlreadyActive</fullName>
+        <categories>Warning Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Term Exception Process Already Active</shortDescription>
+        <value>Agreement Term Exception(s) have pending request(s) or already complete.
+Select to submit for approval.</value>
+    </labels>
+    <labels>
+        <fullName>Type</fullName>
+        <categories>Column Heading</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Type</shortDescription>
+        <value>Type</value>
+    </labels>
+    <labels>
+        <fullName>UnitPrice</fullName>
+        <categories>Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Unit Price</shortDescription>
+        <value>Unit Price</value>
+    </labels>
+    <labels>
+        <fullName>UnsupportedAssigneeType</fullName>
+        <categories>Error Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Unsupported Assignee Type</shortDescription>
+        <value>Unsupported assignee type: {0}</value>
+    </labels>
+    <labels>
+        <fullName>UserDeactivated</fullName>
+        <categories>Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>User Deactivated</shortDescription>
+        <value>User &apos;{0}&apos; deactivated.</value>
+    </labels>
+    <labels>
+        <fullName>UserNotAuthorized</fullName>
+        <categories>Error Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>User Not Authorized</shortDescription>
+        <value>User {0} IS NOT authorized to approve/reject this request.</value>
+    </labels>
+    <labels>
+        <fullName>UserQueueMembershipNotAuthorized</fullName>
+        <categories>Error Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>User Queue Membership Not Authorized</shortDescription>
+        <value>User {0} IS NOT a member of the queue authorized to approve/reject this request.</value>
+    </labels>
+    <labels>
+        <fullName>UserRequired</fullName>
+        <categories>Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>User Required</shortDescription>
+        <value>You must specify a user.</value>
+    </labels>
+    <labels>
+        <fullName>UserRoleNotAuthorized</fullName>
+        <categories>Error Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>User Role Not Authorized</shortDescription>
+        <value>User {0}&apos;s role IS NOT authorized to approve/reject this request.</value>
+    </labels>
+    <labels>
+        <fullName>Value</fullName>
+        <categories>Column Heading</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Value</shortDescription>
+        <value>Value</value>
+    </labels>
+    <labels>
+        <fullName>ValueIsMissing</fullName>
+        <categories>Error Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Value is Missing</shortDescription>
+        <value>You must enter a value</value>
+    </labels>
+    <labels>
+        <fullName>ViewApprovalMatrix</fullName>
+        <categories>Title</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>View Approval Matrix</shortDescription>
+        <value>View Approval Matrix</value>
+    </labels>
+    <labels>
+        <fullName>Yes</fullName>
+        <categories>Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Yes</shortDescription>
+        <value>Yes</value>
+    </labels>
+</CustomLabels>

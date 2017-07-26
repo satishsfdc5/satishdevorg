@@ -1,0 +1,2420 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomLabels xmlns="http://soap.sforce.com/2006/04/metadata">
+    <labels>
+        <fullName>Abandon</fullName>
+        <categories>Button Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Abandon</shortDescription>
+        <value>Abandon</value>
+    </labels>
+    <labels>
+        <fullName>Action</fullName>
+        <categories>Title</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Action</shortDescription>
+        <value>Action</value>
+    </labels>
+    <labels>
+        <fullName>Actions</fullName>
+        <categories>Title</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Actions</shortDescription>
+        <value>Actions</value>
+    </labels>
+    <labels>
+        <fullName>Add</fullName>
+        <categories>Link, Button Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Add</shortDescription>
+        <value>Add</value>
+    </labels>
+    <labels>
+        <fullName>AddCategory</fullName>
+        <categories>Button Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Add Category</shortDescription>
+        <value>Add Category</value>
+    </labels>
+    <labels>
+        <fullName>AddMiscellaneousItem</fullName>
+        <categories>Button Label, Title</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Add Miscellaneous Item</shortDescription>
+        <value>Add Miscellaneous Item</value>
+    </labels>
+    <labels>
+        <fullName>AddMoreProducts</fullName>
+        <categories>Button Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Add More Products</shortDescription>
+        <value>Add More Products</value>
+    </labels>
+    <labels>
+        <fullName>AddRow</fullName>
+        <categories>Link</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Add Row</shortDescription>
+        <value>Add Row</value>
+    </labels>
+    <labels>
+        <fullName>Adjusted</fullName>
+        <categories>Title</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Adjusted</shortDescription>
+        <value>Adjusted</value>
+    </labels>
+    <labels>
+        <fullName>Adjustment</fullName>
+        <categories>Title</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Adjustment</shortDescription>
+        <value>Adj.</value>
+    </labels>
+    <labels>
+        <fullName>AdjustmentPercent</fullName>
+        <categories>Title</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Adjustment percent</shortDescription>
+        <value>Adj. (%)</value>
+    </labels>
+    <labels>
+        <fullName>Adjustments</fullName>
+        <categories>Button Label, Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Adjustments</shortDescription>
+        <value>Adjustments</value>
+    </labels>
+    <labels>
+        <fullName>AdvancedFilterCondition</fullName>
+        <categories>Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Advanced Filter Condition</shortDescription>
+        <value>Advanced Filter Condition:</value>
+    </labels>
+    <labels>
+        <fullName>AdvancedOptions</fullName>
+        <categories>Link</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Advanced Options</shortDescription>
+        <value>Advanced Options</value>
+    </labels>
+    <labels>
+        <fullName>AdvancedSearch</fullName>
+        <categories>Command Button</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Advanced Search</shortDescription>
+        <value>Advanced Search</value>
+    </labels>
+    <labels>
+        <fullName>Amount</fullName>
+        <categories>Title</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amount</shortDescription>
+        <value>Amount</value>
+    </labels>
+    <labels>
+        <fullName>ApplyAdjustments</fullName>
+        <categories>Button Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Apply Adjustments</shortDescription>
+        <value>Apply All Adjustments</value>
+    </labels>
+    <labels>
+        <fullName>ApplyTo</fullName>
+        <categories>Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Apply To</shortDescription>
+        <value>Apply To</value>
+    </labels>
+    <labels>
+        <fullName>Asset</fullName>
+        <categories>Title</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Asset</shortDescription>
+        <value>Asset</value>
+    </labels>
+    <labels>
+        <fullName>AssetItemsfor</fullName>
+        <categories>Title</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AssetItemsfor</shortDescription>
+        <value>Installed Products for</value>
+    </labels>
+    <labels>
+        <fullName>Associate</fullName>
+        <categories>Button Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Associate</shortDescription>
+        <value>Associate</value>
+    </labels>
+    <labels>
+        <fullName>AssociateOptions</fullName>
+        <categories>Button Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Associate Options</shortDescription>
+        <value>Associate Options</value>
+    </labels>
+    <labels>
+        <fullName>AssociateProducts</fullName>
+        <categories>Button Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Associate Products</shortDescription>
+        <value>Associate Products</value>
+    </labels>
+    <labels>
+        <fullName>AssociatedGroups</fullName>
+        <categories>Title</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Associated Groups</shortDescription>
+        <value>Associated Groups</value>
+    </labels>
+    <labels>
+        <fullName>AssociatedOptions</fullName>
+        <categories>Title</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Associated Options</shortDescription>
+        <value>Associated Options</value>
+    </labels>
+    <labels>
+        <fullName>AttachIcon</fullName>
+        <categories>Icon</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Attach Icon</shortDescription>
+        <value>Attach Icon</value>
+    </labels>
+    <labels>
+        <fullName>Attributes</fullName>
+        <categories>Link</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Attributes</shortDescription>
+        <value>Attributes</value>
+    </labels>
+    <labels>
+        <fullName>AutoSelected</fullName>
+        <categories>Title</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Auto Selected</shortDescription>
+        <value>Auto Selected</value>
+    </labels>
+    <labels>
+        <fullName>AutoSelectedProducts</fullName>
+        <categories>Title</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Auto Selected Products</shortDescription>
+        <value>Auto Selected Products</value>
+    </labels>
+    <labels>
+        <fullName>AvailableGroups</fullName>
+        <categories>Title</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Available Groups</shortDescription>
+        <value>Available Groups</value>
+    </labels>
+    <labels>
+        <fullName>AvailableOptions</fullName>
+        <categories>Title</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Available Options</shortDescription>
+        <value>Available Options</value>
+    </labels>
+    <labels>
+        <fullName>BackToDetail</fullName>
+        <categories>Button Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Back to Detail</shortDescription>
+        <value>Back to Detail</value>
+    </labels>
+    <labels>
+        <fullName>BackToPricing</fullName>
+        <categories>Button Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Back to Pricing</shortDescription>
+        <value>Back to Pricing</value>
+    </labels>
+    <labels>
+        <fullName>BackToSelection</fullName>
+        <categories>Button Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Back to Selection</shortDescription>
+        <value>Back to Selection</value>
+    </labels>
+    <labels>
+        <fullName>Base</fullName>
+        <categories>Title</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Base</shortDescription>
+        <value>Base</value>
+    </labels>
+    <labels>
+        <fullName>BatchJobs</fullName>
+        <categories>Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Batch Jobs</shortDescription>
+        <value>Batch Jobs</value>
+    </labels>
+    <labels>
+        <fullName>Browse</fullName>
+        <categories>Config and Pricing</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Browse</shortDescription>
+        <value>Browse</value>
+    </labels>
+    <labels>
+        <fullName>BrowseCategories</fullName>
+        <categories>Title</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Browse Categories</shortDescription>
+        <value>Browse</value>
+    </labels>
+    <labels>
+        <fullName>Cancel</fullName>
+        <categories>Button Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Cancel</shortDescription>
+        <value>Cancel</value>
+    </labels>
+    <labels>
+        <fullName>CancelWithAddNotAllowed</fullName>
+        <categories>Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CancelWithAddNotAllowed</shortDescription>
+        <value>Cannot cancel while adding new quantity.</value>
+    </labels>
+    <labels>
+        <fullName>CannotAddClassification</fullName>
+        <categories>Error Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Cannot Add Classification</shortDescription>
+        <value>Selected Cateogry has products associated with it. Please disassociate products before adding lower level Category.</value>
+    </labels>
+    <labels>
+        <fullName>CannotAssignProducts</fullName>
+        <categories>Error Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Cannot Assign Products</shortDescription>
+        <value>Products can only be associated lowest level (leaf) Categories in the hierarchy.</value>
+    </labels>
+    <labels>
+        <fullName>CannotFinalizeWithConstraintError</fullName>
+        <categories>Error Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Cannot Finalize With Constraint Error</shortDescription>
+        <value>Cannot finalize with constraint error</value>
+    </labels>
+    <labels>
+        <fullName>CannotFinalizeWithPendingChanges</fullName>
+        <categories>Error Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Cannot Finalize With Pending Changes</shortDescription>
+        <value>Cannot finalize with pending changes. Please complete pricing.</value>
+    </labels>
+    <labels>
+        <fullName>CannotFinalizeWithPendingConfiguration</fullName>
+        <categories>Error Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Cannot Finalize With Pending Configuration</shortDescription>
+        <value>Unable to Finalize due to errors on items that require configuration. All items below that have the Error icon (red ! icon)  in the Actions column require your selections. Please click on the Error icon (red ! icon)   in the Actions column to select configurations and resolve the error.</value>
+    </labels>
+    <labels>
+        <fullName>CannotFinalizeWithPendingConstraint</fullName>
+        <categories>Error Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Cannot Finalize With Pending Constraint</shortDescription>
+        <value>Unable to Finalize due to errors on items that require constraint check.</value>
+    </labels>
+    <labels>
+        <fullName>Cart</fullName>
+        <categories>Title</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Cart</shortDescription>
+        <value>Cart</value>
+    </labels>
+    <labels>
+        <fullName>CartLineItem</fullName>
+        <categories>Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Cart Line Item</shortDescription>
+        <value>Cart Line Item</value>
+    </labels>
+    <labels>
+        <fullName>CatalogProducts</fullName>
+        <categories>Title</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CatalogProducts</shortDescription>
+        <value>Catalog Products</value>
+    </labels>
+    <labels>
+        <fullName>Categories</fullName>
+        <categories>Title</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Categories</shortDescription>
+        <value>Categories</value>
+    </labels>
+    <labels>
+        <fullName>CategoryHierarchy</fullName>
+        <categories>Title</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Category Hierarchy</shortDescription>
+        <value>Category Hierarchy</value>
+    </labels>
+    <labels>
+        <fullName>Charge</fullName>
+        <categories>Title</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Charge</shortDescription>
+        <value>Charge</value>
+    </labels>
+    <labels>
+        <fullName>CheckItemsBeforeFinalize</fullName>
+        <categories>Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Check Items Before Finalize</shortDescription>
+        <value>Check Items before Finalizing</value>
+    </labels>
+    <labels>
+        <fullName>ClassificationIsInUse</fullName>
+        <categories>Error Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Classification Is In Use</shortDescription>
+        <value>Category is currntly associated as Option Group to Product(s).</value>
+    </labels>
+    <labels>
+        <fullName>ClassificationNameAlreadyExists</fullName>
+        <categories>Error Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Classification Name Already Exists</shortDescription>
+        <value>Category name should be unique within the hierarchy</value>
+    </labels>
+    <labels>
+        <fullName>ClearAdvancedOptions</fullName>
+        <categories>Link</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Clear Advanced Options</shortDescription>
+        <value>Clear Advanced Options</value>
+    </labels>
+    <labels>
+        <fullName>Close</fullName>
+        <categories>Button Label, Link</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Close</shortDescription>
+        <value>Close</value>
+    </labels>
+    <labels>
+        <fullName>CollapseAll</fullName>
+        <categories>Link</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Collapse All</shortDescription>
+        <value>Collapse All</value>
+    </labels>
+    <labels>
+        <fullName>ConfigSettings</fullName>
+        <categories>Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Config Settings</shortDescription>
+        <value>Config Settings</value>
+    </labels>
+    <labels>
+        <fullName>ConfigurationDetail</fullName>
+        <categories>Title</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Configuration Detail</shortDescription>
+        <value>Configuration Detail</value>
+    </labels>
+    <labels>
+        <fullName>Configure</fullName>
+        <categories>Button Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Configure</shortDescription>
+        <value>Configure</value>
+    </labels>
+    <labels>
+        <fullName>ConfigureOptionsFor</fullName>
+        <categories>Title</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Configure Options For</shortDescription>
+        <value>Configure Options for</value>
+    </labels>
+    <labels>
+        <fullName>ConfirmRebuildHierarchy</fullName>
+        <categories>Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Confirm Rebuild Hierarchy</shortDescription>
+        <value>This action is going to rebuild the category hierarchy. Are you sure you want to continue?</value>
+    </labels>
+    <labels>
+        <fullName>ConfirmRemoveClassification</fullName>
+        <categories>Dialog Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Confirm Remove Classification</shortDescription>
+        <value>Are you sure you want to remove this classification and it&apos;s descendants?</value>
+    </labels>
+    <labels>
+        <fullName>ConfirmRemoveOptionComponent</fullName>
+        <categories>Dialog Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Confirm Remove Option Component</shortDescription>
+        <value>Are you sure you want to remove this component?</value>
+    </labels>
+    <labels>
+        <fullName>ConfirmRemoveOptionGroup</fullName>
+        <categories>Dialog Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Confirm Remove Option Group</shortDescription>
+        <value>Are you sure you want to remove this option group and associated components</value>
+    </labels>
+    <labels>
+        <fullName>ConstraintRuleAlert</fullName>
+        <categories>Config and Pricing</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>ConstraintRuleAlert</shortDescription>
+        <value>Constraint Rule Message</value>
+    </labels>
+    <labels>
+        <fullName>Continue</fullName>
+        <categories>Button Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Continue</shortDescription>
+        <value>Continue</value>
+    </labels>
+    <labels>
+        <fullName>ContinueSelection</fullName>
+        <categories>Button Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Continue Selection</shortDescription>
+        <value>Continue Selection</value>
+    </labels>
+    <labels>
+        <fullName>Copy</fullName>
+        <categories>Button Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Copy</shortDescription>
+        <value>Copy</value>
+    </labels>
+    <labels>
+        <fullName>CorrectMatchCondition</fullName>
+        <categories>Config and Pricing</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CorrectMatchCondition</shortDescription>
+        <value>Please select one or more from {0}, {1} and {2}.</value>
+    </labels>
+    <labels>
+        <fullName>CorrectMatchRule</fullName>
+        <categories>Config and Pricing</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CorrectMatchRule</shortDescription>
+        <value>Please correct match rule specification.</value>
+    </labels>
+    <labels>
+        <fullName>CouldNotRemoveFile</fullName>
+        <categories>Icon</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Could not Remove File</shortDescription>
+        <value>Could not remove the file.</value>
+    </labels>
+    <labels>
+        <fullName>CouldNotRenew</fullName>
+        <categories>Error Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CouldNotRenew</shortDescription>
+        <value>Could not renew item.</value>
+    </labels>
+    <labels>
+        <fullName>CouldNotUploadFile</fullName>
+        <categories>Error Message Icon</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Could not Upload File</shortDescription>
+        <value>Could not upload file.</value>
+    </labels>
+    <labels>
+        <fullName>CriteriaUpdate</fullName>
+        <categories>Title</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Criteria Update</shortDescription>
+        <value>Criteria Update</value>
+    </labels>
+    <labels>
+        <fullName>CriteriaUpdateJobSubmitted</fullName>
+        <categories>Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Criteria Update Job Submitted</shortDescription>
+        <value>Criteria Update Job {0} for {1} has been submitted for processing.</value>
+    </labels>
+    <labels>
+        <fullName>CumulativeRangeLimitExceeded</fullName>
+        <categories>Error Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Cumulative Range Limit Exceeded</shortDescription>
+        <value>Only one cumulative range may be defined for a matrix</value>
+    </labels>
+    <labels>
+        <fullName>DefineSummaryGroups</fullName>
+        <categories>Title</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Define Summary Groups</shortDescription>
+        <value>Define Summary Groups</value>
+    </labels>
+    <labels>
+        <fullName>Del</fullName>
+        <categories>Link</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Delete</shortDescription>
+        <value>Del</value>
+    </labels>
+    <labels>
+        <fullName>DescEmbedCode</fullName>
+        <categories>ProductInformation</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Desc Embed Code</shortDescription>
+        <value>Embed code is a set of html tags that help you include the video from external websites.</value>
+    </labels>
+    <labels>
+        <fullName>Detail</fullName>
+        <categories>Title, Button Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Detail</shortDescription>
+        <value>Detail</value>
+    </labels>
+    <labels>
+        <fullName>DisplayColumSettings</fullName>
+        <categories>Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Display Column Settings</shortDescription>
+        <value>Display Column Settings</value>
+    </labels>
+    <labels>
+        <fullName>Done</fullName>
+        <categories>Button Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Done</shortDescription>
+        <value>Done</value>
+    </labels>
+    <labels>
+        <fullName>Edit</fullName>
+        <categories>Button Label, Title</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Edit</shortDescription>
+        <value>Edit</value>
+    </labels>
+    <labels>
+        <fullName>EditCategory</fullName>
+        <categories>Button Label, Title</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Edit Category</shortDescription>
+        <value>Edit Category</value>
+    </labels>
+    <labels>
+        <fullName>EditCriteria</fullName>
+        <categories>Title</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Edit Criteria</shortDescription>
+        <value>Edit Criteria</value>
+    </labels>
+    <labels>
+        <fullName>EditOption</fullName>
+        <categories>Button Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Edit Option</shortDescription>
+        <value>Edit Option</value>
+    </labels>
+    <labels>
+        <fullName>EditOptionGroup</fullName>
+        <categories>Context MenuItem</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Edit Option Group</shortDescription>
+        <value>Edit Option Group</value>
+    </labels>
+    <labels>
+        <fullName>EditOptionGroups</fullName>
+        <categories>Button Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>EditOptionGroups</shortDescription>
+        <value>Edit Option Groups</value>
+    </labels>
+    <labels>
+        <fullName>EditOptionProperties</fullName>
+        <categories>Title</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Edit Option Properties</shortDescription>
+        <value>Edit Option Properties</value>
+    </labels>
+    <labels>
+        <fullName>EditOptions</fullName>
+        <categories>Context MenuItems</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Edit Options</shortDescription>
+        <value>Edit Options</value>
+    </labels>
+    <labels>
+        <fullName>EditProperties</fullName>
+        <categories>Button Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Edit Properties</shortDescription>
+        <value>Edit Properties</value>
+    </labels>
+    <labels>
+        <fullName>EditRuleActionCriteria</fullName>
+        <categories>Title</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>EditRuleActionCriteria</shortDescription>
+        <value>Edit Rule Action Criteria</value>
+    </labels>
+    <labels>
+        <fullName>EditRuleConditionCriteria</fullName>
+        <categories>Config and Pricing</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>EditRuleConditionCriteria</shortDescription>
+        <value>Edit Rule Condition Criteria</value>
+    </labels>
+    <labels>
+        <fullName>EditRuleCriteria</fullName>
+        <categories>Title</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>EditRuleCriteria</shortDescription>
+        <value>Edit Rule Criteria</value>
+    </labels>
+    <labels>
+        <fullName>EmbedCodeExample</fullName>
+        <categories>ProductInformation</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Embed Code Example</shortDescription>
+        <value>&lt;iframe title=&quot;Video Player&quot; width=&quot;640&quot; height=&quot;390&quot; 
+  src=&quot;http://www.example.com/video_url&quot; frameborder=&quot;0&quot; allowfullscreen&gt;&lt;/iframe&gt;</value>
+    </labels>
+    <labels>
+        <fullName>EndDateAfterStartDate</fullName>
+        <categories>Error Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>EndDateAfterStartDate</shortDescription>
+        <value>End date should be after start date.</value>
+    </labels>
+    <labels>
+        <fullName>EnterURLAddress</fullName>
+        <categories>ProductInformation</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Enter URL Address</shortDescription>
+        <value>Enter the URL address of the page where the product information can be found.</value>
+    </labels>
+    <labels>
+        <fullName>EnterValueForProductScope</fullName>
+        <categories>Config and Pricing</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>EnterValueForProductScope</shortDescription>
+        <value>Please enter value for product scope.</value>
+    </labels>
+    <labels>
+        <fullName>Error</fullName>
+        <categories>Error Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Error</shortDescription>
+        <value>Error</value>
+    </labels>
+    <labels>
+        <fullName>ErrorRelated</fullName>
+        <categories>Title</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Error Related</shortDescription>
+        <value>Error Related</value>
+    </labels>
+    <labels>
+        <fullName>ErrorRelatedProducts</fullName>
+        <categories>Title</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Error Related Products</shortDescription>
+        <value>Error Related Products</value>
+    </labels>
+    <labels>
+        <fullName>ErrorUnknown</fullName>
+        <categories>Error Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Error Unknown</shortDescription>
+        <value>ERROR: unknown error</value>
+    </labels>
+    <labels>
+        <fullName>ExpandAll</fullName>
+        <categories>Link</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Expand All</shortDescription>
+        <value>Expand All</value>
+    </labels>
+    <labels>
+        <fullName>Extended</fullName>
+        <categories>Title</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Extended</shortDescription>
+        <value>Extended</value>
+    </labels>
+    <labels>
+        <fullName>Field</fullName>
+        <categories>Column Heading</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Field</shortDescription>
+        <value>Field</value>
+    </labels>
+    <labels>
+        <fullName>FifteenPerPage</fullName>
+        <categories>Title</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>15 Per Page</shortDescription>
+        <value>15 Per Page</value>
+    </labels>
+    <labels>
+        <fullName>FiftyPerPage</fullName>
+        <categories>Title</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Fifty Per Page</shortDescription>
+        <value>50 Per Page</value>
+    </labels>
+    <labels>
+        <fullName>FileNameLengthExceeded</fullName>
+        <categories>Error Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>File Name Length Exceeded</shortDescription>
+        <value>Error: The filename exceeds the maximum length allowed, which is 80 characters</value>
+    </labels>
+    <labels>
+        <fullName>FileToUpload</fullName>
+        <categories>Icon</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>File to Upload</shortDescription>
+        <value>File to upload</value>
+    </labels>
+    <labels>
+        <fullName>Filter</fullName>
+        <categories>Title, Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Filter</shortDescription>
+        <value>Filter</value>
+    </labels>
+    <labels>
+        <fullName>Finalize</fullName>
+        <categories>Button Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Finalize</shortDescription>
+        <value>Finalize</value>
+    </labels>
+    <labels>
+        <fullName>FivePerPage</fullName>
+        <categories>Title</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>5 Per Page</shortDescription>
+        <value>5 Per Page</value>
+    </labels>
+    <labels>
+        <fullName>ForExample</fullName>
+        <categories>ProductInformation</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>For Example</shortDescription>
+        <value>For example:</value>
+    </labels>
+    <labels>
+        <fullName>Frequency</fullName>
+        <categories>Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Frequency</shortDescription>
+        <value>Frequency</value>
+    </labels>
+    <labels>
+        <fullName>Go</fullName>
+        <categories>Button Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Go</shortDescription>
+        <value>Go</value>
+    </labels>
+    <labels>
+        <fullName>GoToPricing</fullName>
+        <categories>Title</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Go to Pricing</shortDescription>
+        <value>Go to Pricing</value>
+    </labels>
+    <labels>
+        <fullName>Group</fullName>
+        <categories>Title</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Group</shortDescription>
+        <value>Group</value>
+    </labels>
+    <labels>
+        <fullName>GuideMe</fullName>
+        <categories>Config and Pricing</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>GuideMe</shortDescription>
+        <value>Guide Me</value>
+    </labels>
+    <labels>
+        <fullName>HelpMeChoose</fullName>
+        <categories>Button Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Help Me Choose</shortDescription>
+        <value>Help Me Choose</value>
+    </labels>
+    <labels>
+        <fullName>HideDuration</fullName>
+        <categories>Link</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Hide Duration</shortDescription>
+        <value>Hide Duration</value>
+    </labels>
+    <labels>
+        <fullName>Hiding</fullName>
+        <categories>Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Hiding</shortDescription>
+        <value>Hiding...</value>
+    </labels>
+    <labels>
+        <fullName>Hierarchy</fullName>
+        <categories>Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Hierarchy</shortDescription>
+        <value>Hierarchy</value>
+    </labels>
+    <labels>
+        <fullName>HierarchyView</fullName>
+        <categories>Button Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Hierarchy View</shortDescription>
+        <value>Hierarchy View</value>
+    </labels>
+    <labels>
+        <fullName>HierarchyViewDelete</fullName>
+        <categories>Title</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Hierarchy View Delete</shortDescription>
+        <value>Hierarchy View Delete</value>
+    </labels>
+    <labels>
+        <fullName>HierarchyViewDeleteJobSubmitted</fullName>
+        <categories>Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Hierarchy View Delete Job Submitted</shortDescription>
+        <value>Hierarchy View Delete Job {0} for {1} has been submitted for processing.</value>
+    </labels>
+    <labels>
+        <fullName>HierarchyViewUpdate</fullName>
+        <categories>Title</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Hierarchy View Update</shortDescription>
+        <value>Hierarchy View Update</value>
+    </labels>
+    <labels>
+        <fullName>HierarchyViewUpdateJobSubmitted</fullName>
+        <categories>Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Hierarchy View Update Job Submitted</shortDescription>
+        <value>Hierarchy View Update Job {0} for {1} has been submitted for processing.</value>
+    </labels>
+    <labels>
+        <fullName>HundredPerPage</fullName>
+        <categories>Title</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Hundred Per Page</shortDescription>
+        <value>100 Per Page</value>
+    </labels>
+    <labels>
+        <fullName>IconAttachment</fullName>
+        <categories>Icon Title</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Icon Attachment</shortDescription>
+        <value>Icon Attachment</value>
+    </labels>
+    <labels>
+        <fullName>IconNotSupported</fullName>
+        <categories>Error Message Icon</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Icon not Supported</shortDescription>
+        <value>Icon is not supported for this object.</value>
+    </labels>
+    <labels>
+        <fullName>IconStepOne</fullName>
+        <categories>Icon</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Icon Step One</shortDescription>
+        <value>1. Enter the path of the File</value>
+    </labels>
+    <labels>
+        <fullName>IconStepOneHelp</fullName>
+        <categories>Icon Help</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Icon Step One Help</shortDescription>
+        <value>Click on the browse button to find the path for the file. The icon image should be {0}x{1} pixels in size.</value>
+    </labels>
+    <labels>
+        <fullName>IconStepThree</fullName>
+        <categories>Icon</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Icon Step Three</shortDescription>
+        <value>3. Click the &quot;{0}&quot; button to return to the previous page.</value>
+    </labels>
+    <labels>
+        <fullName>IconStepThreeHelp</fullName>
+        <categories>Icon</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Icon Step Three Help</shortDescription>
+        <value>( This will cancel an in-progress upload. )</value>
+    </labels>
+    <labels>
+        <fullName>IconStepTwo</fullName>
+        <categories>Icon</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Icon Step Two</shortDescription>
+        <value>2. Click on the &quot;{0}&quot; button</value>
+    </labels>
+    <labels>
+        <fullName>IconStepTwoHelp</fullName>
+        <categories>Icon</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Icon Step Two Help</shortDescription>
+        <value>( When the upload is complete the icon will appear here. )</value>
+    </labels>
+    <labels>
+        <fullName>IconView</fullName>
+        <categories>Button Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Icon View</shortDescription>
+        <value>Icon View</value>
+    </labels>
+    <labels>
+        <fullName>Image</fullName>
+        <categories>Button Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Image</shortDescription>
+        <value>Image</value>
+    </labels>
+    <labels>
+        <fullName>IncorrectProductSpefication</fullName>
+        <categories>Config and Pricing</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IncorrectProductSpefication</shortDescription>
+        <value>Please correct product specification. Product specification should match product scope.</value>
+    </labels>
+    <labels>
+        <fullName>Information</fullName>
+        <categories>Title</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Information</shortDescription>
+        <value>Information</value>
+    </labels>
+    <labels>
+        <fullName>InformationContentInstruction</fullName>
+        <categories>Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Information Content Instruction</shortDescription>
+        <value>Either upload a file or enter the url for the content or enter the embed code for video.</value>
+    </labels>
+    <labels>
+        <fullName>InstalledProduct</fullName>
+        <categories>Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Installed Product</shortDescription>
+        <value>Installed Product</value>
+    </labels>
+    <labels>
+        <fullName>InstalledProducts</fullName>
+        <categories>Title</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Installed Products</shortDescription>
+        <value>Installed Products</value>
+    </labels>
+    <labels>
+        <fullName>InvalidCharacter</fullName>
+        <categories>Error Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Invalid Character</shortDescription>
+        <value>Invalid character string: {0}</value>
+    </labels>
+    <labels>
+        <fullName>InvalidOperator</fullName>
+        <categories>Config and Pricing</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>InvalidOperator</shortDescription>
+        <value>Invalid Operator</value>
+    </labels>
+    <labels>
+        <fullName>InvalidValue</fullName>
+        <categories>Error Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Invalid Value</shortDescription>
+        <value>Invalid value</value>
+    </labels>
+    <labels>
+        <fullName>Item</fullName>
+        <categories>Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Item</shortDescription>
+        <value>Item</value>
+    </labels>
+    <labels>
+        <fullName>Items</fullName>
+        <categories>Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Items</shortDescription>
+        <value>Items</value>
+    </labels>
+    <labels>
+        <fullName>IteratorNext</fullName>
+        <categories>Link</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IteratorNext</shortDescription>
+        <value>Next</value>
+    </labels>
+    <labels>
+        <fullName>IteratorPrevious</fullName>
+        <categories>Link</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IteratorPrevious</shortDescription>
+        <value>Previous</value>
+    </labels>
+    <labels>
+        <fullName>JobName</fullName>
+        <categories>Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Job Name</shortDescription>
+        <value>Job Name</value>
+    </labels>
+    <labels>
+        <fullName>LineItem</fullName>
+        <categories>Link</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Line Item</shortDescription>
+        <value>Line Item</value>
+    </labels>
+    <labels>
+        <fullName>List</fullName>
+        <categories>Title</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>List</shortDescription>
+        <value>List</value>
+    </labels>
+    <labels>
+        <fullName>ListView</fullName>
+        <categories>Button Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>List View</shortDescription>
+        <value>List View</value>
+    </labels>
+    <labels>
+        <fullName>Loading</fullName>
+        <categories>Status Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Loading</shortDescription>
+        <value>Loading...</value>
+    </labels>
+    <labels>
+        <fullName>LoadingPage</fullName>
+        <categories>Status Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Loading Page</shortDescription>
+        <value>Loading, please wait...</value>
+    </labels>
+    <labels>
+        <fullName>Lookup</fullName>
+        <categories>Title</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Lookup</shortDescription>
+        <value>Lookup</value>
+    </labels>
+    <labels>
+        <fullName>Matrices</fullName>
+        <categories>Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Matrices</shortDescription>
+        <value>Matrices</value>
+    </labels>
+    <labels>
+        <fullName>MaxCannotBeLess</fullName>
+        <categories>Config Admin</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>MaxCannotBeLess</shortDescription>
+        <value>{0} cannot be less than {1}.</value>
+    </labels>
+    <labels>
+        <fullName>MaximumOptionsViolated</fullName>
+        <categories>Error Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>MaximumOptionsViolated</shortDescription>
+        <value>Maximum {0} options can be selected  within the {1} group</value>
+    </labels>
+    <labels>
+        <fullName>MaximumProductsConstraintFailed</fullName>
+        <categories>Error Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Maximum Products Constraint Failed</shortDescription>
+        <value>You may select only {0} of the following products: {1}</value>
+    </labels>
+    <labels>
+        <fullName>MinimumOptionsViolated</fullName>
+        <categories>Error Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>MinimumOptionsViolated</shortDescription>
+        <value>Minimum {0} options should be selected within the {1} group</value>
+    </labels>
+    <labels>
+        <fullName>MinimumProductsConstraintFailed</fullName>
+        <categories>Error Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Minimum Products Constraint Failed</shortDescription>
+        <value>{2} needs {0} of the following products to be selected: {1}</value>
+    </labels>
+    <labels>
+        <fullName>ModifyAsset</fullName>
+        <categories>Button Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>ModifyAsset</shortDescription>
+        <value>Modify</value>
+    </labels>
+    <labels>
+        <fullName>MoveDown</fullName>
+        <categories>Title</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Move Down</shortDescription>
+        <value>Move Down</value>
+    </labels>
+    <labels>
+        <fullName>MoveUp</fullName>
+        <categories>Title</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Move Up</shortDescription>
+        <value>Move Up</value>
+    </labels>
+    <labels>
+        <fullName>MyCart</fullName>
+        <categories>Title</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>MyCart</shortDescription>
+        <value>My Cart</value>
+    </labels>
+    <labels>
+        <fullName>MyOptions</fullName>
+        <categories>Title</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>My Options</shortDescription>
+        <value>My Options</value>
+    </labels>
+    <labels>
+        <fullName>MySelections</fullName>
+        <categories>Button Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>My Selections</shortDescription>
+        <value>My Selections</value>
+    </labels>
+    <labels>
+        <fullName>Net</fullName>
+        <categories>Title</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Net</shortDescription>
+        <value>Net</value>
+    </labels>
+    <labels>
+        <fullName>New</fullName>
+        <categories>Title, Button Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>New</shortDescription>
+        <value>New</value>
+    </labels>
+    <labels>
+        <fullName>NewCategory</fullName>
+        <categories>Title</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>New Category</shortDescription>
+        <value>New Category</value>
+    </labels>
+    <labels>
+        <fullName>Next</fullName>
+        <categories>Button Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Next</shortDescription>
+        <value>Next</value>
+    </labels>
+    <labels>
+        <fullName>NextPage</fullName>
+        <categories>Link</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Next Page</shortDescription>
+        <value>Next Page</value>
+    </labels>
+    <labels>
+        <fullName>No</fullName>
+        <categories>Button Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>No</shortDescription>
+        <value>No</value>
+    </labels>
+    <labels>
+        <fullName>NoCriteriaForChargeType</fullName>
+        <categories>Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>No Criteria for Charge Type</shortDescription>
+        <value>No condition specified for the charge type.</value>
+    </labels>
+    <labels>
+        <fullName>NoCriteriaForRuleset</fullName>
+        <categories>Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>No Criteria for Ruleset</shortDescription>
+        <value>No condition specified for the ruleset.</value>
+    </labels>
+    <labels>
+        <fullName>NoDimensionsToDisplay</fullName>
+        <categories>Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>No Dimensions to display</shortDescription>
+        <value>No Dimensions to display</value>
+    </labels>
+    <labels>
+        <fullName>NoMoreMessages</fullName>
+        <categories>Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>No More Messages</shortDescription>
+        <value>No more messages to display</value>
+    </labels>
+    <labels>
+        <fullName>NoMoreProducts</fullName>
+        <categories>Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>NoMoreProducts</shortDescription>
+        <value>No more products to display</value>
+    </labels>
+    <labels>
+        <fullName>NoRecordsToDisplay</fullName>
+        <categories>Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>No Records to display</shortDescription>
+        <value>No records to display</value>
+    </labels>
+    <labels>
+        <fullName>None</fullName>
+        <categories>Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>None</shortDescription>
+        <value>None</value>
+    </labels>
+    <labels>
+        <fullName>NotSubmitted</fullName>
+        <categories>Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Not Submitted</shortDescription>
+        <value>Not Submitted</value>
+    </labels>
+    <labels>
+        <fullName>NowViewing</fullName>
+        <categories>Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Now viewing</shortDescription>
+        <value>Now viewing</value>
+    </labels>
+    <labels>
+        <fullName>Ok</fullName>
+        <categories>Button Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Ok</shortDescription>
+        <value>OK</value>
+    </labels>
+    <labels>
+        <fullName>OnlyOneCategoryExists</fullName>
+        <categories>Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Only One Category Exists</shortDescription>
+        <value>Only one Category exists</value>
+    </labels>
+    <labels>
+        <fullName>Operator</fullName>
+        <categories>Column Heading</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Operator</shortDescription>
+        <value>Operator</value>
+    </labels>
+    <labels>
+        <fullName>Option</fullName>
+        <categories>Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Option</shortDescription>
+        <value>Option</value>
+    </labels>
+    <labels>
+        <fullName>OptionConfiguration</fullName>
+        <categories>Title</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Option Configuration</shortDescription>
+        <value>Option Configuration</value>
+    </labels>
+    <labels>
+        <fullName>OptionGroups</fullName>
+        <categories>Button Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Option Groups</shortDescription>
+        <value>Option Groups</value>
+    </labels>
+    <labels>
+        <fullName>Options</fullName>
+        <categories>Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Options</shortDescription>
+        <value>Options</value>
+    </labels>
+    <labels>
+        <fullName>OutOf</fullName>
+        <categories>Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>out of</shortDescription>
+        <value>of</value>
+    </labels>
+    <labels>
+        <fullName>Page</fullName>
+        <categories>Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Page</shortDescription>
+        <value>Page</value>
+    </labels>
+    <labels>
+        <fullName>PageNbr</fullName>
+        <categories>Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Page #</shortDescription>
+        <value>Page #</value>
+    </labels>
+    <labels>
+        <fullName>PicklistValueAllCategories</fullName>
+        <categories>Picklist Value</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Picklist value all Categories</shortDescription>
+        <value>All Categories</value>
+    </labels>
+    <labels>
+        <fullName>PicklistValueAllProducts</fullName>
+        <categories>Picklist Values</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>PicklistValueAllProducts</shortDescription>
+        <value>All Products</value>
+    </labels>
+    <labels>
+        <fullName>PicklistValueNone</fullName>
+        <categories>Picklist Value</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Picklist value none</shortDescription>
+        <value>--None--</value>
+    </labels>
+    <labels>
+        <fullName>PleaseEnterEmbedCode</fullName>
+        <categories>Error Message ProductInformation</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Please Enter Embed Code</shortDescription>
+        <value>Please enter Embed Code.</value>
+    </labels>
+    <labels>
+        <fullName>PleaseEnterURL</fullName>
+        <categories>Error Message ProductInformation</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Please Enter URL</shortDescription>
+        <value>Please enter URL Address.</value>
+    </labels>
+    <labels>
+        <fullName>PleaseSaveChanges</fullName>
+        <categories>Error Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Please Save Changes</shortDescription>
+        <value>Please save changes before exiting this page.</value>
+    </labels>
+    <labels>
+        <fullName>PleaseSelectFile</fullName>
+        <categories>Error Message Icon</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Please Select File</shortDescription>
+        <value>Please select a file to upload.</value>
+    </labels>
+    <labels>
+        <fullName>PleaseTryAgain</fullName>
+        <categories>Error Message Icon</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Please Try Again</shortDescription>
+        <value>Please try again.</value>
+    </labels>
+    <labels>
+        <fullName>Previous</fullName>
+        <categories>Button Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Previous</shortDescription>
+        <value>Previous</value>
+    </labels>
+    <labels>
+        <fullName>PreviousPage</fullName>
+        <categories>Link</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Previous Page</shortDescription>
+        <value>Previous Page</value>
+    </labels>
+    <labels>
+        <fullName>Price</fullName>
+        <categories>Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Price</shortDescription>
+        <value>Price</value>
+    </labels>
+    <labels>
+        <fullName>PricingAdjustments</fullName>
+        <categories>Title</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Pricing Adjustments</shortDescription>
+        <value>Pricing Adjustments</value>
+    </labels>
+    <labels>
+        <fullName>ProductClassifications</fullName>
+        <categories>Title</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Product Classifications</shortDescription>
+        <value>Product Classifications</value>
+    </labels>
+    <labels>
+        <fullName>ProductHasNoOptions</fullName>
+        <categories>Error Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Product Has No Options</shortDescription>
+        <value>Product does not have any configurable Options</value>
+    </labels>
+    <labels>
+        <fullName>ProductOptionGroups</fullName>
+        <categories>Title</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Product Option Groups</shortDescription>
+        <value>Product Option Groups</value>
+    </labels>
+    <labels>
+        <fullName>ProductOptions</fullName>
+        <categories>Button Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Product Options</shortDescription>
+        <value>Product Options</value>
+    </labels>
+    <labels>
+        <fullName>ProductSelection</fullName>
+        <categories>Title</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Product Selection</shortDescription>
+        <value>Product Selection</value>
+    </labels>
+    <labels>
+        <fullName>Products</fullName>
+        <categories>Title</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Products</shortDescription>
+        <value>Products</value>
+    </labels>
+    <labels>
+        <fullName>ProductsAlreadyAssigned</fullName>
+        <categories>Error Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Product(s) Already Assigned</shortDescription>
+        <value>Following product(s) have already been associated with this Category</value>
+    </labels>
+    <labels>
+        <fullName>QuantityShouldBePositive</fullName>
+        <categories>Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>QuantityShouldBePositive</shortDescription>
+        <value>The quantity should be more than zero.</value>
+    </labels>
+    <labels>
+        <fullName>RebuildConfirmation</fullName>
+        <categories>Title</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>RebuildConfirmation</shortDescription>
+        <value>Rebuild Category Hierarchy</value>
+    </labels>
+    <labels>
+        <fullName>RebuildHierarchy</fullName>
+        <categories>Title</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Rebuild Hierarchy</shortDescription>
+        <value>Rebuild Hierarchy</value>
+    </labels>
+    <labels>
+        <fullName>Related</fullName>
+        <categories>Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Related</shortDescription>
+        <value>Related</value>
+    </labels>
+    <labels>
+        <fullName>Remove</fullName>
+        <categories>Button Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Remove</shortDescription>
+        <value>Remove</value>
+    </labels>
+    <labels>
+        <fullName>RemoveCategory</fullName>
+        <categories>Button Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Remove Category</shortDescription>
+        <value>Remove Category</value>
+    </labels>
+    <labels>
+        <fullName>RemoveConfirmation</fullName>
+        <categories>Dialog Title</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Remove Confirmation</shortDescription>
+        <value>Remove Confirmation</value>
+    </labels>
+    <labels>
+        <fullName>RemoveIcon</fullName>
+        <categories>Icon Button</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Remove Icon</shortDescription>
+        <value>Remove Icon</value>
+    </labels>
+    <labels>
+        <fullName>RemoveItem</fullName>
+        <categories>Button Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Remove Item</shortDescription>
+        <value>Remove Item</value>
+    </labels>
+    <labels>
+        <fullName>RemoveOption</fullName>
+        <categories>Button Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Remove Option</shortDescription>
+        <value>Remove Option</value>
+    </labels>
+    <labels>
+        <fullName>RemoveOptionGroup</fullName>
+        <categories>Context MenuItem</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Remove Option Group</shortDescription>
+        <value>Remove Option Group</value>
+    </labels>
+    <labels>
+        <fullName>RemoveOptionGroups</fullName>
+        <categories>Button Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Remove Option Groups</shortDescription>
+        <value>Remove Option Groups</value>
+    </labels>
+    <labels>
+        <fullName>RemoveProductMessage</fullName>
+        <categories>Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Remove Product Message</shortDescription>
+        <value>Are you sure you want to remove this product from current selection ?</value>
+    </labels>
+    <labels>
+        <fullName>RemoveRow</fullName>
+        <categories>Link</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Remove Row</shortDescription>
+        <value>Remove Row</value>
+    </labels>
+    <labels>
+        <fullName>RenewAllOrCancelSome</fullName>
+        <categories>Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>RenewAllOrCancelSome</shortDescription>
+        <value>Please renew all or cancel the remaining.</value>
+    </labels>
+    <labels>
+        <fullName>RenewAssetItem</fullName>
+        <categories>Title</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>RenewAssetItem</shortDescription>
+        <value>Renew Installed Product</value>
+    </labels>
+    <labels>
+        <fullName>ReorderCategories</fullName>
+        <categories>Button Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Reorder Categories</shortDescription>
+        <value>Reorder Categories</value>
+    </labels>
+    <labels>
+        <fullName>ReorderOptionGroups</fullName>
+        <categories>Button Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Reorder Option Groups</shortDescription>
+        <value>Reorder Option Groups</value>
+    </labels>
+    <labels>
+        <fullName>ReplaceIcon</fullName>
+        <categories>Icon Button</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Replace Icon</shortDescription>
+        <value>Replace Icon</value>
+    </labels>
+    <labels>
+        <fullName>Reprice</fullName>
+        <categories>Button Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Reprice</shortDescription>
+        <value>Reprice</value>
+    </labels>
+    <labels>
+        <fullName>RepriceAll</fullName>
+        <categories>Button Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Reprice All</shortDescription>
+        <value>Reprice All</value>
+    </labels>
+    <labels>
+        <fullName>Repricing</fullName>
+        <categories>Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Repricing</shortDescription>
+        <value>Repricing - Please wait...</value>
+    </labels>
+    <labels>
+        <fullName>RequiredField</fullName>
+        <categories>Config and Pricing</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>RequiredField</shortDescription>
+        <value>{0} is required.</value>
+    </labels>
+    <labels>
+        <fullName>RequiredFieldsAreMissing</fullName>
+        <categories>Error Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Required fields are missing</shortDescription>
+        <value>Required fields are missing</value>
+    </labels>
+    <labels>
+        <fullName>RequiredInputParametersMissing</fullName>
+        <categories>Error Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Required input parameters are missing</shortDescription>
+        <value>Required Input Parameter(s) Missing</value>
+    </labels>
+    <labels>
+        <fullName>Reset</fullName>
+        <categories>Config and Pricing</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Reset</shortDescription>
+        <value>Reset</value>
+    </labels>
+    <labels>
+        <fullName>ResolveConfigurationErrors</fullName>
+        <categories>Command Link Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Resolve Configuration Errors</shortDescription>
+        <value>Resolve Configuration Errors</value>
+    </labels>
+    <labels>
+        <fullName>ResolveConfigurationWarnings</fullName>
+        <categories>Command Link Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Resolve Configuration Warnings</shortDescription>
+        <value>Resolve Configuration Warnings</value>
+    </labels>
+    <labels>
+        <fullName>Return</fullName>
+        <categories>Button Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Return</shortDescription>
+        <value>Return</value>
+    </labels>
+    <labels>
+        <fullName>Review</fullName>
+        <categories>Button Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Review</shortDescription>
+        <value>Review</value>
+    </labels>
+    <labels>
+        <fullName>ReviewAndFinalize</fullName>
+        <categories>Button Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Review &amp; Finalize</shortDescription>
+        <value>Review &amp; Finalize</value>
+    </labels>
+    <labels>
+        <fullName>RuleError</fullName>
+        <categories>Config and Pricing</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>RuleError</shortDescription>
+        <value>Error</value>
+    </labels>
+    <labels>
+        <fullName>RuleInformation</fullName>
+        <categories>Config and Pricing</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Rule Information</shortDescription>
+        <value>Information</value>
+    </labels>
+    <labels>
+        <fullName>RuleMessage</fullName>
+        <categories>Title</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Rule Message</shortDescription>
+        <value>Rule Message</value>
+    </labels>
+    <labels>
+        <fullName>RuleWarning</fullName>
+        <categories>Config and Pricing</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Rule Warning</shortDescription>
+        <value>Warning</value>
+    </labels>
+    <labels>
+        <fullName>STEP</fullName>
+        <categories>General</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>STEP</shortDescription>
+        <value>STEP</value>
+    </labels>
+    <labels>
+        <fullName>Save</fullName>
+        <categories>Button Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Save</shortDescription>
+        <value>Save</value>
+    </labels>
+    <labels>
+        <fullName>SaveAndExit</fullName>
+        <categories>Button Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Save &amp; Exit</shortDescription>
+        <value>Save &amp; Exit</value>
+    </labels>
+    <labels>
+        <fullName>SaveAndNew</fullName>
+        <categories>Button Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Save &amp; New</shortDescription>
+        <value>Save &amp; New</value>
+    </labels>
+    <labels>
+        <fullName>Search</fullName>
+        <categories>Button Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Search</shortDescription>
+        <value>Search</value>
+    </labels>
+    <labels>
+        <fullName>SearchDefault</fullName>
+        <categories>Config and Pricing</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>SearchDefault</shortDescription>
+        <value>All</value>
+    </labels>
+    <labels>
+        <fullName>Select</fullName>
+        <categories>Button Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Select</shortDescription>
+        <value>Select</value>
+    </labels>
+    <labels>
+        <fullName>SelectCheckboxesToRenew</fullName>
+        <categories>Help Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>SelectCheckboxesToRenew</shortDescription>
+        <value>Please select one or more checkboxes to renew.</value>
+    </labels>
+    <labels>
+        <fullName>SelectConfiguration</fullName>
+        <categories>Title</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Select Configuration</shortDescription>
+        <value>Select Configuration</value>
+    </labels>
+    <labels>
+        <fullName>SelectCriteriaForUpdate</fullName>
+        <categories>Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Select Criteria For Update</shortDescription>
+        <value>Select one or more criteria to update the settings for</value>
+    </labels>
+    <labels>
+        <fullName>SelectFutureDate</fullName>
+        <categories>Error Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>SelectFutureDate</shortDescription>
+        <value>Please select a future end date.</value>
+    </labels>
+    <labels>
+        <fullName>SelectHierarchyForUpdate</fullName>
+        <categories>Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Select Hierarchy For Update</shortDescription>
+        <value>Select a Hierarchy to update the view for</value>
+    </labels>
+    <labels>
+        <fullName>SelectOneOfTheRenewChoices</fullName>
+        <categories>Error Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>SelectOneOfTheRenewChoices</shortDescription>
+        <value>Please select one of the choices or close the renew dialog.</value>
+    </labels>
+    <labels>
+        <fullName>SelectProducts</fullName>
+        <categories>Title</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Select Products</shortDescription>
+        <value>Select Products</value>
+    </labels>
+    <labels>
+        <fullName>SelectResourceFileInstruction</fullName>
+        <categories>Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Select Resource File Instruction</shortDescription>
+        <value>Click the Browse button to select a file to attach to this resource.</value>
+    </labels>
+    <labels>
+        <fullName>Selected</fullName>
+        <categories>Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Selected</shortDescription>
+        <value>Selected</value>
+    </labels>
+    <labels>
+        <fullName>SelectedProducts</fullName>
+        <categories>Config and Pricing</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>SelectedProducts</shortDescription>
+        <value>Selected Products</value>
+    </labels>
+    <labels>
+        <fullName>Selection</fullName>
+        <categories>Title</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Selection</shortDescription>
+        <value>Selection</value>
+    </labels>
+    <labels>
+        <fullName>Seq</fullName>
+        <categories>Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Seq</shortDescription>
+        <value>Seq</value>
+    </labels>
+    <labels>
+        <fullName>ShowDuration</fullName>
+        <categories>Link</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Show Duration</shortDescription>
+        <value>Show Duration</value>
+    </labels>
+    <labels>
+        <fullName>Showing</fullName>
+        <categories>Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Showing</shortDescription>
+        <value>Showing...</value>
+    </labels>
+    <labels>
+        <fullName>SortedAscending</fullName>
+        <categories>Title</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Sorted Ascending</shortDescription>
+        <value>Sorted Ascending</value>
+    </labels>
+    <labels>
+        <fullName>SortedDescending</fullName>
+        <categories>Title</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Sorted Descending</shortDescription>
+        <value>Sorted Descending</value>
+    </labels>
+    <labels>
+        <fullName>SpecifyDetailsFor</fullName>
+        <categories>Title</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Specify Details For</shortDescription>
+        <value>Specify Details for</value>
+    </labels>
+    <labels>
+        <fullName>StageConfigure</fullName>
+        <categories>Title</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Stage Configure</shortDescription>
+        <value>Configure</value>
+    </labels>
+    <labels>
+        <fullName>StageFinalize</fullName>
+        <categories>Title</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Stage Finalize</shortDescription>
+        <value>Finalize</value>
+    </labels>
+    <labels>
+        <fullName>StagePrice</fullName>
+        <categories>Title</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Stage Price</shortDescription>
+        <value>Price</value>
+    </labels>
+    <labels>
+        <fullName>StageSelect</fullName>
+        <categories>Title</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Stage Select</shortDescription>
+        <value>Select</value>
+    </labels>
+    <labels>
+        <fullName>StatusMessageUpdatingPage</fullName>
+        <categories>Status Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Status Message Updating Page</shortDescription>
+        <value>Updating page</value>
+    </labels>
+    <labels>
+        <fullName>Summary</fullName>
+        <categories>Link</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Summary</shortDescription>
+        <value>Summary</value>
+    </labels>
+    <labels>
+        <fullName>TabView</fullName>
+        <categories>Button Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Tab View</shortDescription>
+        <value>Tab View</value>
+    </labels>
+    <labels>
+        <fullName>TenPerPage</fullName>
+        <categories>Title</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>10 Per Page</shortDescription>
+        <value>10 Per Page</value>
+    </labels>
+    <labels>
+        <fullName>Term</fullName>
+        <categories>Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Term</shortDescription>
+        <value>Term</value>
+    </labels>
+    <labels>
+        <fullName>TitleFor</fullName>
+        <categories>Icon</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Title For</shortDescription>
+        <value>{0} for</value>
+    </labels>
+    <labels>
+        <fullName>Totals</fullName>
+        <categories>Title</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Totals</shortDescription>
+        <value>Totals</value>
+    </labels>
+    <labels>
+        <fullName>TwentyFivePerPage</fullName>
+        <categories>Title</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>25 Per Page</shortDescription>
+        <value>25 Per Page</value>
+    </labels>
+    <labels>
+        <fullName>TwentyPerPage</fullName>
+        <categories>Title</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>20 Per Page</shortDescription>
+        <value>20 Per Page</value>
+    </labels>
+    <labels>
+        <fullName>Type</fullName>
+        <categories>Title</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Type</shortDescription>
+        <value>Type</value>
+    </labels>
+    <labels>
+        <fullName>UOM</fullName>
+        <categories>Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>UOM</shortDescription>
+        <value>UOM</value>
+    </labels>
+    <labels>
+        <fullName>Update</fullName>
+        <categories>Button Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Update</shortDescription>
+        <value>Update</value>
+    </labels>
+    <labels>
+        <fullName>UpdateCriteria</fullName>
+        <categories>Button Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Update Criteria</shortDescription>
+        <value>Update Criteria</value>
+    </labels>
+    <labels>
+        <fullName>UpdateView</fullName>
+        <categories>Button Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Update View</shortDescription>
+        <value>Update View</value>
+    </labels>
+    <labels>
+        <fullName>ValidationErrorMessages</fullName>
+        <categories>Title</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Validation Error Messages</shortDescription>
+        <value>Validation Error Messages</value>
+    </labels>
+    <labels>
+        <fullName>ValidationWarningMessages</fullName>
+        <categories>Title</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Validation Warning Messages</shortDescription>
+        <value>Validation Warning Messages</value>
+    </labels>
+    <labels>
+        <fullName>Value</fullName>
+        <categories>Column Heading</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Value</shortDescription>
+        <value>Value</value>
+    </labels>
+    <labels>
+        <fullName>ValueIsMissing</fullName>
+        <categories>Error Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Value is Missing</shortDescription>
+        <value>You must enter a value</value>
+    </labels>
+    <labels>
+        <fullName>ViewAutoSelectedProducts</fullName>
+        <categories>Command Link Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>View Auto Selected Products</shortDescription>
+        <value>View Auto Selected Products</value>
+    </labels>
+    <labels>
+        <fullName>ViewConfiguration</fullName>
+        <categories>Button Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>View Configuration</shortDescription>
+        <value>View Configuration</value>
+    </labels>
+    <labels>
+        <fullName>WarningRelated</fullName>
+        <categories>Title</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Warning Related</shortDescription>
+        <value>Warning Related</value>
+    </labels>
+    <labels>
+        <fullName>WarningRelatedProducts</fullName>
+        <categories>Title</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Warning Related Products</shortDescription>
+        <value>Warning Related Products</value>
+    </labels>
+    <labels>
+        <fullName>WeightedRangeLimitExceeded</fullName>
+        <categories>Error Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Weighted Range Limit Exceeded</shortDescription>
+        <value>Only one weighted range may be defined for a matrix or rule</value>
+    </labels>
+    <labels>
+        <fullName>Yes</fullName>
+        <categories>Button Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Yes</shortDescription>
+        <value>Yes</value>
+    </labels>
+</CustomLabels>

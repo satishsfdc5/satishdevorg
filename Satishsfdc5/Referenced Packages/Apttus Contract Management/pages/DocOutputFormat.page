@@ -1,0 +1,200 @@
+<!-- 
+    Apttus Contract Management
+    DocOutputFormat
+     
+    @2009-2011 Apttus Inc. All rights reserved.
+
+ -->
+<apex:page controller="Apttus.DocOutputFormatController" 
+		   showHeader="true"
+		   sidebar="true" 
+		   action="{!doLoad}">
+	
+	<apex:form >
+    	<apex:sectionHeader title="{!$Label.apttus__SetupDocumentOutputFormats}" />
+	
+		<apex:pageBlock >     
+			<b><apex:outputLabel value="{!$Label.apttus__SelectProfile & ' '}" for="idProfileList" /></b>
+			<apex:selectList id="idProfileList" 
+							 value="{!curProfileId}" 
+							 size="1" 
+							 multiselect="false" 
+					 		 disabled="{!editMode}">
+	            <apex:selectOptions value="{!profiles}" />
+	        </apex:selectList>
+
+			<apex:commandButton action="{!doEdit}" 
+								value="{!$Label.apttus__Edit}" 
+								disabled="{!editMode}" />
+		</apex:pageBlock>
+
+		<apex:pageBlock id="idEditBlock" rendered="{!editMode}" >
+			<apex:pageBlockButtons location="top">
+				<apex:outputPanel id="idButtonsTopPanel" >
+					<apex:commandButton action="{!doSave}" value="{!$Label.apttus__Save}" />
+					<apex:commandButton action="{!doCancel}" value="{!$Label.apttus__Cancel}" />
+				</apex:outputPanel>										
+			</apex:pageBlockButtons>
+			
+			<apex:outputPanel >
+				<apex:pageBlockSection title="{!$Label.apttus__AgreementTypeFormatsForProfile & ' ' & curProfileName}" 
+									   columns="1" 
+									   collapsible="false" >
+									   
+					<apex:pageBlockTable value="{!editFormats}" 
+										 var="editFormat"
+										 width="100%" >
+										 
+						<apex:column headerValue="{!$Label.apttus__AgreementType}" >
+							<apex:outputText value="{!editFormat.recordType.Name}"
+											 style="font-size: 90%;font-weight: bold;" />
+						</apex:column>
+						
+						<apex:column headerValue="{!format_none}">
+							<apex:outputPanel rendered="{!(editFormat.none)}">
+								<input type="radio" 
+									   checked="{!(editFormat.none)}"
+									   onclick="invokeDoSelectFormat('{!editFormat.recordType.Id}', '{!format_none}');">
+								</input>
+							</apex:outputPanel>
+							<apex:outputPanel rendered="{!(NOT(editFormat.none))}">
+								<input type="radio"
+									   onclick="invokeDoSelectFormat('{!editFormat.recordType.Id}', '{!format_none}');">
+								</input>
+							</apex:outputPanel>
+						</apex:column>
+						
+						<apex:column headerValue="{!format_doc}">
+							<apex:outputPanel rendered="{!(editFormat.doc)}">
+								<input type="radio" 
+									   checked="{!(editFormat.doc)}"
+									   onclick="invokeDoSelectFormat('{!editFormat.recordType.Id}', '{!format_doc}');">
+								</input>
+							</apex:outputPanel>
+							<apex:outputPanel rendered="{!(NOT(editFormat.doc))}">
+								<input type="radio"
+									   onclick="invokeDoSelectFormat('{!editFormat.recordType.Id}', '{!format_doc}');">
+								</input>
+							</apex:outputPanel>
+						</apex:column>
+						
+						<apex:column headerValue="{!format_pdf}">
+							<apex:outputPanel rendered="{!(editFormat.pdf)}">
+								<input type="radio" 
+									   checked="{!(editFormat.pdf)}"
+									   onclick="invokeDoSelectFormat('{!editFormat.recordType.Id}', '{!format_pdf}');">
+								</input>
+							</apex:outputPanel>
+							<apex:outputPanel rendered="{!(NOT(editFormat.pdf))}">
+								<input type="radio"
+									   onclick="invokeDoSelectFormat('{!editFormat.recordType.Id}', '{!format_pdf}');">
+								</input>
+							</apex:outputPanel>
+						</apex:column>
+						
+						<apex:column headerValue="{!format_rtf}">
+							<apex:outputPanel rendered="{!(editFormat.rtf)}">
+								<input type="radio" 
+									   checked="{!(editFormat.rtf)}"
+									   onclick="invokeDoSelectFormat('{!editFormat.recordType.Id}', '{!format_rtf}');">
+								</input>
+							</apex:outputPanel>
+							<apex:outputPanel rendered="{!(NOT(editFormat.rtf))}">
+								<input type="radio"
+									   onclick="invokeDoSelectFormat('{!editFormat.recordType.Id}', '{!format_rtf}');">
+								</input>
+							</apex:outputPanel>
+						</apex:column>
+						
+						<apex:column headerValue="{!$ObjectType.Apttus__Document_Output_Format__c.Fields.Apttus__Allow_Override__c.Label}">
+							<apex:outputPanel >
+								<apex:inputCheckbox value="{!editFormat.allowOverride}"
+										            selected="{!editFormat.allowOverride}" />
+							</apex:outputPanel>
+						</apex:column>
+						
+						<apex:column headerValue="{!$ObjectType.Apttus__Document_Output_Format__c.Fields.Apttus__IncludeWatermark__c.Label}">
+							<apex:outputPanel >
+								<apex:inputCheckbox value="{!editFormat.includeWatermark}"
+										            selected="{!editFormat.includeWatermark}" />
+							</apex:outputPanel>
+						</apex:column>
+						
+						<apex:column headerValue="{!$ObjectType.Apttus__Document_Output_Format__c.Fields.Apttus__AllowOverrideWatermark__c.Label}">
+							<apex:outputPanel >
+								<apex:inputCheckbox value="{!editFormat.allowOverrideWatermark}"
+										            selected="{!editFormat.allowOverrideWatermark}" />
+							</apex:outputPanel>
+						</apex:column>
+						
+					</apex:pageBlockTable>
+				</apex:pageBlockSection>
+			</apex:outputPanel>
+		</apex:pageBlock>
+
+		<apex:pageBlock id="idViewBlock" rendered="{!NOT(editMode)}" >		
+		
+			<apex:outputPanel >
+				<table align="right" bgcolor="white">
+					<tr>
+						<td>
+							<apex:commandLink action="{!doPrevious}" rendered="{!NOT(profileStartNbr = 1)}"> <b>{!$Label.apttus__Prev}</b></apex:commandLink>
+							<b>({!profileStartNbr}-{!profileEndNbr} of {!profileCount})</b>
+							<apex:commandLink action="{!doNext}" rendered="{!hasMoreProfiles}"> <b>{!$Label.apttus__Next}</b></apex:commandLink>
+						</td>
+					</tr>
+				</table>
+					
+				<apex:pageBlockSection title="{!$Label.apttus__AssignedFormatsForAllProfiles}" columns="1" collapsible="false" >
+					<apex:pageBlockTable value="{!viewFormats}" 
+										 var="viewFormat"
+										 width="100%" >
+										 
+						<apex:column headerValue="{!$Label.apttus__AgreementType}" >
+							<apex:outputText value="{!viewFormat.recordType.Name}" 
+											 style="font-size: 90%;font-weight: bold;" />
+						</apex:column>
+						
+						<apex:column headerValue="{!profile1}" rendered="{!NOT(profile1 == '')}">
+							<apex:outputText value="{!viewFormat.profile1Format}" 
+											 style="font-size: 90%;"
+											 escape="false" />
+						</apex:column>
+						
+						<apex:column headerValue="{!profile2}" rendered="{!NOT(profile2 == '')}">
+							<apex:outputText value="{!viewFormat.profile2Format}"
+											 style="font-size: 90%;"
+											 escape="false" />
+						</apex:column>
+						
+						<apex:column headerValue="{!profile3}" rendered="{!NOT(profile3 == '')}">
+							<apex:outputText value="{!viewFormat.profile3Format}"
+											 style="font-size: 90%;"
+											 escape="false" />
+						</apex:column>
+						
+						<apex:column headerValue="{!profile4}" rendered="{!NOT(profile4 == '')}">
+							<apex:outputText value="{!viewFormat.profile4Format}"
+											 style="font-size: 90%;"
+											 escape="false" />
+						</apex:column>
+						
+						<apex:column headerValue="{!profile5}" rendered="{!NOT(profile5 == '')}">
+							<apex:outputText value="{!viewFormat.profile5Format}"
+											 style="font-size: 90%;"
+											 escape="false" />
+						</apex:column>
+						
+					</apex:pageBlockTable>
+				</apex:pageBlockSection>
+			</apex:outputPanel>
+		</apex:pageBlock>			
+
+    	<apex:actionFunction name="invokeDoSelectFormat" 
+    						 action="{!doSelectFormat}" 
+    						 reRender="idEditBlock" >
+        	<apex:param name="selectedId" value="" />		
+        	<apex:param name="selectedFormat" value="" />
+        </apex:actionFunction>					 		 
+	</apex:form>	
+</apex:page>

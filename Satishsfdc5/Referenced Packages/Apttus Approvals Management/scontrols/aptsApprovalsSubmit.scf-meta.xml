@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scontrol xmlns="http://soap.sforce.com/2006/04/metadata">
+    <contentSource>HTML</contentSource>
+    <description>Submits an approval request for an approval object process</description>
+    <encodingKey>UTF-8</encodingKey>
+    <fileName>aptsApprovalsSubmit</fileName>
+    <name>aptsApprovalsSubmit_OBSOLETE</name>
+    <supportsCaching>false</supportsCaching>
+</Scontrol>

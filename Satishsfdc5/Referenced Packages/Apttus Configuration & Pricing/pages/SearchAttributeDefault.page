@@ -1,0 +1,550 @@
+<!-- 
+    Apttus Config & Pricing
+    SearchAttributeDefault
+     
+    @2010-2011 Apttus Inc. All rights reserved. 
+
+ -->
+<apex:page standardController="Apttus_Config2__ProductConfiguration__c" 
+	  	   extensions="Apttus_Config2.SearchAttributeDefaultController"  
+           showHeader="false" 
+           sidebar="false"  
+           tabStyle="Product2">	  
+    
+	<apex:stylesheet value="{!$Resource.Apttus_Config2__ConfigStyles}" />
+	<apex:stylesheet value="{!URLFOR($Resource.Apttus_Config2__YUILibrary, '/yui/build/assets/skins/sam/skin.css')}" />
+	
+	<apex:includescript value="{!URLFOR($Resource.Apttus_Config2__YUILibrary, '/yui/build/yahoo-dom-event/yahoo-dom-event.js')}" />
+	<apex:includescript value="{!URLFOR($Resource.Apttus_Config2__YUILibrary, '/yui/build/dragdrop/dragdrop-min.js')}" />
+	<apex:includescript value="{!URLFOR($Resource.Apttus_Config2__YUILibrary, '/yui/build/container/container-min.js')}" />
+	<apex:includescript value="{!URLFOR($Resource.Apttus_Config2__YUILibrary, '/yui/build/animation/animation-min.js')}" />
+	
+    <style>  
+		textarea {
+			width: 40%;
+		}
+	</style>
+	
+	<script type="text/javascript" src="/soap/ajax/25.0/connection.js"></script>
+	<script type="text/javascript" src="/soap/ajax/25.0/apex.js"></script>
+	
+	<apex:includeScript value="{!$Resource.Apttus_Config2__ConfigJSLib}"/>
+	<!-- 
+	<apex:includeScript value="{!$Resource.ConfigPromptJSLib}"/>
+	<apex:includeScript value="{!$Resource.ConfigSelectJSLib}"/>
+	 -->
+	<script type="text/javascript">
+		//set the title and progress bar icon
+		var aptLoadingPageHeader = "{!$Label.LoadingPage}";
+		var aptRuleAlertHeader = "{!$Label.ConstraintRuleAlert}";
+		var aptDialogBody = '<center><img src="{!URLFOR($Resource.Image_LoadingPage)}" /></center>';
+		
+		YAHOO.namespace("force.com");
+		// detail panel
+		YAHOO.force.com.globalCtx = new Object();
+		YAHOO.force.com.clsNodes = new Array();
+		YAHOO.force.com.selectedNode = new Object();
+				
+		//for IE load the script into DOM
+		function loadJSFile(filename){
+			var fileref = document.createElement('script');
+		 	if (typeof fileref != "undefined"){
+			 	fileref.setAttribute("type","text/javascript");
+			 	fileref.setAttribute("src", filename);
+		  		document.getElementsByTagName("head")[0].appendChild(fileref);
+		 	}
+		}
+		//load the JavaScript file. This is necessary for IE
+		loadJSFile("{!$Resource.ConfigPromptJSLib}");
+		//loadJSFile("{!$Resource.ConfigSelectJSLib}");
+		
+	</script>
+	
+	<script type="text/javascript">
+		/**
+         * Initializes the call to webservices api
+         */
+        function initCall() {
+        	try {
+            	sforce.connection.sessionId = "{!$Api.Session_ID}"; //to avoid session timeout
+                        
+            } catch(ex) {
+            	cp_erroralert(cp_cERROR_UNKNOWN,ex);
+                        
+			}
+        }
+						
+	</script>
+	
+	<apex:form id="idProductSearch" >
+		
+		<!--  required fields -->
+		<apex:outputText value="{!Apttus_Config2__ProductConfiguration__c.Id}" rendered="false" />
+		
+		<table style="width: 100%; background-color: #F7F7F7;" width="100%">
+			<tr>
+				<td>
+				<table width="100%">
+					<tr style="background-color: #FFFFFF;">
+						<td><apex:outputPanel style="text-align: left;" layout="block">
+							<apex:panelGrid columns="1">
+								<apex:panelGroup >
+									<apex:outputText escape="false" 
+													 value="&nbsp;{!fromBizType}:"
+													 style="text-transform:uppercase;font-weight:bold;color:#5487B9" />
+									&nbsp;
+									<apex:outputField value="{!ConfigSO[BOLookupFieldName]}" 
+													  rendered="{!ShowBOLookupField}" />
+													  
+									<apex:outputText escape="false"
+													 value="&nbsp;{!fromBizTitle}&nbsp;&nbsp;"
+													 style="font-weight:bold;color:#5487B9;" 
+													 rendered="{!ShowBOTitle}" />
+									
+								</apex:panelGroup>
+							</apex:panelGrid>
+						</apex:outputPanel></td>
+						<td> 
+						<apex:outputPanel style="text-align: right;" layout="block">
+							<apex:image url="{!$Resource.Apttus_Config2__Apttus_Logo}" title="" alt="" />
+						</apex:outputPanel></td>
+					</tr>
+				</table>
+				</td>
+			</tr>
+			<tr>
+				<td>
+				<table width="100%">
+					<tr> 
+						<td>
+							<apex:outputPanel id="idTopNavStage"
+											  style="text-align: left;" 
+											  layout="block">
+
+								<apex:panelGrid columns="1" style="line-height:80%">
+
+									<apex:panelGroup >
+
+										<apex:outputText escape="false" 
+														 value="STEP"
+														 style="font-weight:bold;font-size:90%" />
+
+										&nbsp;&nbsp;
+										<apex:outputText escape="false"
+														 value="&nbsp;&nbsp;{!$Label.StageSelect}&nbsp;&nbsp;"
+														 styleClass="aptsConfigStage" />
+			
+										&nbsp;&nbsp;
+										<apex:image url="{!$Resource.Apttus_Config2__Chevron}" title="" alt="" />
+										&nbsp;&nbsp;
+						
+
+										<apex:outputText escape="false"
+														 value="&nbsp;&nbsp;{!$Label.StageConfigure}&nbsp;&nbsp;"
+														 styleClass="aptsCurrentConfigStage" />
+			
+										&nbsp;&nbsp;
+										<apex:image url="{!$Resource.Apttus_Config2__Chevron}" title="" alt="" />
+										&nbsp;&nbsp;
+			
+										<apex:outputText escape="false"
+														 value="&nbsp;&nbsp;{!$Label.StagePrice}&nbsp;&nbsp;"
+														 styleClass="aptsConfigStage" />
+
+
+										&nbsp;&nbsp;
+										<apex:image url="{!$Resource.Apttus_Config2__Chevron}" title="" alt="" />
+										&nbsp;&nbsp;
+
+										<apex:outputText escape="false"
+														 value="&nbsp;&nbsp;{!$Label.StageFinalize}&nbsp;&nbsp;"
+														 styleClass="aptsConfigStage"  />
+			
+										<b><apex:actionStatus id="idStatusSelect" 
+															  startText="{!$Label.apttus_config2__StatusMessageUpdatingPage}..." /></b>
+															  
+									</apex:panelGroup>
+
+								</apex:panelGrid>
+
+							</apex:outputPanel>
+						</td>
+						
+						<td>
+							<apex:outputPanel id="idTopNavActions" 
+											  style="text-align: right;"
+											  layout="block" >
+								<apex:commandButton value="{!$Label.apttus_config2__Abandon}"
+													action="{!doAbandon}" 
+													immediate="true"
+													style="background-color:#657383;background-image:none;color:white;"/>
+								&nbsp;
+								&nbsp;
+								<apex:image url="{!$Resource.Apttus_Config2__Cart}" 
+											title="{!$Label.apttus_config2__Cart}"
+											alt="{!$Label.apttus_config2__Cart}" />
+								<apex:commandLink value="{!$Label.apttus_config2__MySelections}"
+												  action="{!doViewCart}" 
+												  style="color:blue;font-weight:bold" 
+												  reRender="idErrorMsg, idSearchResultBlock"
+												  />
+								&nbsp;
+								<apex:outputText value="({!cartSummaryInfo})" />
+								&nbsp;
+							</apex:outputPanel>
+		
+						</td>
+					</tr>
+				</table>
+				</td>
+			</tr>
+		</table>
+		<table width="100%"><tr>
+		<td width="60%" valign="top">
+<!-- Start Search Attribute Value -->		
+		<apex:pageBlock id="idSearchInputBlock"  >
+			<apex:outputPanel id="idErrorMsg">
+				<apex:pageMessages />
+			</apex:outputPanel>
+			
+			<apex:pageBlockButtons location="top">
+				<apex:commandButton value="{!$Label.apttus_config2__Previous}" 
+		        					action="{!doPrevious}" 
+								    onclick="onActionClick();" 
+								    oncomplete="onActionComplete();"
+		        					style="width: 70px;"
+		        					rendered="false" 
+		        					reRender="idErrorMsg, idSearchInputBlock, idSearchResultBlock"
+		        					/>
+
+				<apex:commandButton value="{!$Label.apttus_config2__AddMoreProducts}"
+									action="{!showProductSelection}"
+									onclick="onActionClick();" 
+									oncomplete="onActionComplete();" />
+					
+		        					
+				<apex:commandButton value="{!$Label.apttus_config2__BackToPricing}" 
+                                    action="{!showCart}" 
+                                    onclick="onActionClick();" 
+                                    oncomplete="onActionComplete();"
+                                    reRender="idErrorMsg, idRulesBlock, idSelectedProductsBlock" 
+                                    />
+                                    
+		        <apex:commandButton value="{!$Label.apttus_config2__Next}"
+		        					action="{!doNext}" 
+								    onclick="onActionClick();" 
+								    oncomplete="onActionComplete();"
+		        					style="width: 70px;"
+		        					rendered="false"
+		        					reRender="idErrorMsg, idSearchInputBlock, idSearchResultBlock" 
+		        					/>
+		    </apex:pageBlockButtons>
+		    
+			<apex:outputPanel >
+				<table width="100%"><tr><td>
+                <apex:panelGrid columns="3">    
+                    <apex:outputText style="font-weight:bold;color:#5487B9;text-transform:uppercase"
+                                     value="{!$Label.apttus_config2__SpecifyDetailsFor}" />
+                    &nbsp;               
+                    <apex:outputText style="font-weight:bold;color:#5487B9;" 
+                                     value="Default Search Values" />
+                	<!-- <apex:outputField value="{!attributeValueSO.Id}"/>  -->
+                </apex:panelGrid>
+                </td><td width="70px" align="right">
+                  	
+                  	<apex:commandButton value="{!$Label.apttus_config2__Reset}"
+				        					action="{!doReset}"  
+										    onclick="onActionClick();" 
+										    oncomplete="onActionComplete();"
+				        					style="width: 70px;"
+				        					reRender="idErrorMsg, idSearchInputBlock, idSearchResultBlock"  
+				        					/>
+				</td><td width="70px" align="right">					        					
+					    <apex:commandButton value="{!$Label.apttus_config2__Search}"
+				        					action="{!doSearch}" 
+										    onclick="onActionClick();" 
+										    oncomplete="onActionComplete();"
+				        					style="width: 70px;"
+				        					reRender="idErrorMsg, idSearchResultBlock" 
+				        					/> 
+                </td></tr></table>
+            </apex:outputPanel> 
+		    <!--  Search Attributes 1 -->
+		    <apex:outputPanel >
+			    <apex:pageBlockSection title="Search Attributes" 
+			    					   columns="2" 
+			    					   collapsible="true" 
+			    					   showHeader="true">
+		    	
+			    	<!-- attribute value fields -->
+		    		<apex:pageBlockSectionItem >
+						<apex:outputLabel value="Product Code" for="idProductCode"/>
+		    			<apex:inputField id="idProductCode"
+										 value="{!attributeValueSO.Apttus_Config2__ProductCode__c}"/>
+			    	</apex:pageBlockSectionItem>
+		    		<apex:pageBlockSectionItem >
+						<apex:outputLabel value="Product Family" for="idProductFamily"/>
+		    			<apex:inputField id="idProductFamily"
+										 value="{!attributeValueSO.Apttus_Config2__Family__c}"/>
+			    	</apex:pageBlockSectionItem>
+
+			    </apex:pageBlockSection>
+					    
+			</apex:outputPanel>
+		    <!--  Line Item Defaults 1 -->
+		    <apex:outputPanel >
+			    <apex:pageBlockSection title="Line Item Defaults" 
+			    					   columns="2" 
+			    					   collapsible="true" 
+			    					   showHeader="true">
+		    	
+			    	<!-- attribute value fields -->
+		    		<apex:pageBlockSectionItem >
+						<apex:outputLabel value="Start Date" for="idStartDate"/>
+		    			<apex:inputField id="idStartDate"
+										 value="{!attributeValueSO.Apttus_Config2__StartDate__c}"/>
+			    	</apex:pageBlockSectionItem> 
+		    		<apex:pageBlockSectionItem >
+						<apex:outputLabel value="End Date" for="idEndDate"/>
+		    			<apex:inputField id="idEndDate"
+										 value="{!attributeValueSO.Apttus_Config2__EndDate__c}"/>
+			    	</apex:pageBlockSectionItem>
+
+			    </apex:pageBlockSection>
+					    
+			</apex:outputPanel>
+
+		    <apex:outputPanel >
+				<table width="100%"><tr><td>
+	                &nbsp;
+                </td><td width="70px" align="right">
+                  	<apex:commandButton value="{!$Label.apttus_config2__Reset}"
+				        					action="{!doReset}"  
+										    onclick="onActionClick();" 
+										    oncomplete="onActionComplete();"
+				        					style="width: 70px;"
+				        					reRender="idErrorMsg, idSearchInputBlock, idSearchResultBlock"  
+				        					/>
+				</td><td width="70px" align="right">					        					
+					    <apex:commandButton value="{!$Label.apttus_config2__Search}"
+				        					action="{!doSearch}" 
+										    onclick="onActionClick();" 
+										    oncomplete="onActionComplete();"
+				        					style="width: 70px;"
+				        					reRender="idErrorMsg, idSearchResultBlock" 
+				        					/>
+                </td></tr></table>
+            </apex:outputPanel> 
+		</apex:pageBlock>
+<!-- End Search Attribute Value -->		
+		</td>
+		<td width="40%" valign="top"> 
+<!-- Start Searched Products -->
+				<apex:pageBlock id="idSearchResultBlock">
+					<script>
+						 //cannot define var in js for IE8
+						 var aptAddedCheckboxes = [];
+					</script>	
+					<apex:pageBlockSection columns="1" 
+										   collapsible="false"
+										   title="Searched Products">
+						<!-- Start Next/Previous page scrolling -->	
+						<apex:outputPanel id="idResultStatsPanel" 
+										  styleClass="aptsPaginator"
+										  layout="block"
+										  rendered="{!hasSearchedProducts}">
+							<apex:outputPanel id="idNavigationPanel" 
+											  layout="inline"
+											  style="text-align: right; width: 100%;">
+								<table width="100%"><tr>
+									<td style="text-align: left; vertical-align: middle;">			  
+										<apex:outputText value="{!pageStartIndex}-{!pageEndIndex} {!$Label.apttus_config2__OutOf} {!totalRecords}" />
+											&nbsp;&nbsp;
+										<apex:selectList size="1"
+														 value="{!pageSize}" 
+														 multiselect="false"
+														 onchange="invokeLoadPage();"
+														 styleClass="aptsPageInputSize"
+														>
+												<apex:selectOptions value="{!rowsPerPageList}" />
+										</apex:selectList>
+									</td>
+									<td style="text-align: center; vertical-align: middle; text-color: red;">
+										<apex:actionStatus id="idPageChangeStatus" 
+						                          startText="{!$Label.apttus_config2__Loading}"
+						                          stopText=""/>
+						               </td>
+									<td style="text-align: right; vertical-align: middle;">		  
+										<apex:outputPanel rendered="{!NOT(hasPreviousPage)}"
+														  styleClass="aptsPagingGreyed">&lt;{!$Label.IteratorPrevious}</apex:outputPanel>
+										<apex:commandLink action="{!previousPage}" 
+														  rendered="{!hasPreviousPage}" 
+														  reRender="idSearchResultBlock" 
+														  status="idPageChangeStatus">&lt;{!$Label.IteratorPrevious}</apex:commandLink>
+										<span> | </span>
+										<apex:outputPanel layout="inline" 
+													  	  style="text-align: right; width: 100%;">
+											<apex:outputText value="{!$Label.apttus_config2__Page}"/>
+											<apex:inputText id="idCurrentPageNumber" 
+															value="{!currentPageNumber}" 
+															styleClass="aptsPageInput"
+															onkeypress="return aptIgnoreEnterKey(event, invokeLoadPage);"
+															>
+												<apex:actionSupport event="onchange" action="{!loadPage}" 
+																	rerender="idSearchResultBlock" 
+																	status="idPageChangeStatus"/>
+											</apex:inputText> 
+											<apex:outputText value="{!$Label.apttus_config2__OutOf} {!totalPages}" />
+										</apex:outputPanel>
+										<span> | </span>
+										<apex:outputPanel rendered="{!NOT(hasNextPage)}"
+													      styleClass="aptsPagingGreyed">{!$Label.IteratorNext}&gt;</apex:outputPanel>
+										<apex:commandLink action="{!nextPage}" 
+														  rendered="{!hasNextPage}"
+											 			  reRender="idSearchResultBlock" 
+											 			  status="idPageChangeStatus">{!$Label.IteratorNext}&gt;</apex:commandLink>
+									</td></tr>
+								</table>	 			  
+							</apex:outputPanel>
+										 
+						</apex:outputPanel>							
+						<!-- End Next/Previous page scrolling -->										 
+						<apex:pageBlockTable value="{!searchedProducts}" 
+											 var="prodInfo"
+											 width="100%" 
+											 rules="rows" 
+											 rowClasses="oddRow, evenRow"
+											 rendered="{!hasSearchedProducts}">
+							<!-- Select Checkbox column -->
+							<apex:column >
+								<apex:facet name="header">
+	                                <apex:inputCheckbox id="idSelectAllAdded" value="{!selectAll}" 
+	                                onclick="aptToggleSelectAll(this, 'searched')" 
+	                                onchange="aptToggleSelectAll(this, 'searched')"/>
+	                            </apex:facet>
+	                            <apex:inputCheckbox value="{!prodInfo.IsSelected}" id="idSelectAdded"
+	                              	onchange="aptUncheckSelectAll('searched');"/>
+	                            <script>aptSearchedCheckboxes.push("{!$Component.idSelectAdded}");</script>
+							</apex:column>
+							<apex:column style="width: 28px; max-width: 36px;">
+									<apex:commandLink rendered="{!prodInfo.IsInCart}" rerender="dummy">
+										<apex:image url="{!$Resource.Apttus_Config2__Image_Remove}" alt="{!$Label.apttus_config2__Remove}"
+													onclick="YAHOO.force.com.showRemoveConfirmation('{!prodInfo.product.Id}');return false;"/>
+									</apex:commandLink>	
+							</apex:column>
+							<apex:column >
+								<apex:facet name="header">
+	                                <apex:outputText value="Product Item"/>
+	                            </apex:facet>
+	                            <apex:commandLink rerender="dummy">
+									<apex:image url="{!$Resource.Apttus_Config2__Image_Info}"
+												onclick="getProductDetail({!ClassName}, '{!prodInfo.product.Id}');"/>
+								</apex:commandLink>
+								&nbsp;
+	                            <apex:outputText value="{!prodInfo.product.Name}"/>
+	                            <apex:outputText rendered="{!prodInfo.IsInCart}"><br></br>&nbsp;&radic;&nbsp;&nbsp;
+									<apex:outputText style="color:blue" value="{!$Label.apttus_config2__Selected}" />
+								</apex:outputText>
+							</apex:column>
+							<apex:column >
+								<apex:facet name="header">
+	                                <apex:outputText value="Item Description"/>
+	                            </apex:facet>
+	                            <apex:outputText value="{!prodInfo.product.Description}"/>
+							</apex:column>
+							<apex:column value="{!prodInfo.product.Family}"/>
+						</apex:pageBlockTable>
+			
+						<apex:outputText value="{!$Label.apttus_config2__NoRecordsToDisplay}"
+										 rendered="{!NOT(hasSearchedProducts)}" />
+							
+						<apex:outputPanel >
+							<div style="text-align: left">					
+								        <apex:commandButton value="{!$Label.apttus_config2__Select}" 
+								        					action="{!doSelectProducts}" 
+														    onclick="onActionClick();" 
+														    oncomplete="onActionComplete();"
+								        					style="width: 70px;"
+								        					reRender="idErrorMsg, idSearchResultBlock, idTopNavActions" 
+								        					/>
+							</div>	        					
+						</apex:outputPanel>					 
+
+						</apex:pageBlockSection>
+					</apex:pageBlock>
+<!-- End Searched Products -->					
+		</td>
+		</tr></table>
+		
+		<apex:actionFunction name="invokeDoDeleteLineItem" 
+							 action="{!doRemoveProduct}"
+							 reRender="idErrorMsg, idSearchInputBlock, idSearchResultBlock, idTopNavActions" 
+							 oncomplete="YAHOO.force.com.waitPanel.hide();">
+			<apex:param name="firstParam" assignTo="{!selectedProductId}" value="" />
+		</apex:actionFunction>
+		
+		<apex:actionFunction name="invokeLoadPage" 
+							 action="{!loadPage}"
+							 reRender="idSearchResultBlock"
+							 status="idPageChangeStatus">
+		</apex:actionFunction>
+		 
+<!-- This is the product details dialog -->
+		<apex:outputPanel >
+			<div id="productDetailPanel" style="display: none">
+				<apex:outputPanel id="idCtxProductDetail">
+				    <div class="hd">
+				    	<apex:outputPanel >
+				    		<span id="ctxProductName">Hello Name</span>
+				        </apex:outputPanel>	
+				    </div> 
+				    <div class="bd">
+			    		<apex:pageBlock >
+			    			<apex:pageBlockSection columns="1">
+			    				<apex:pageBlockSectionItem >
+                    				<apex:outputLabel value="{!$ObjectType.Product2.Fields.Description.Label}" for="ctxProductDescription"/>
+			    					<span id="ctxProductDescription">Hello Description</span>
+				    			</apex:pageBlockSectionItem>
+			    			</apex:pageBlockSection>
+			    		</apex:pageBlock>
+				    </div> 
+				</apex:outputPanel>	
+			</div>
+		</apex:outputPanel>					
+
+<!-- This is the content of the confirmation dialog -->
+
+		<apex:outputPanel >
+			<div id="confirmationPanel" style="display: none">
+			    <div class="hd">
+			        <apex:outputText value="{!$Label.apttus_config2__RemoveConfirmation}" />
+			    </div> 
+			    <div class="bd">
+			    	<apex:outputText value="{!$Label.apttus_config2__RemoveProductMessage}" />
+			    </div>
+			    <div class="bd">
+		            <apex:actionRegion >
+		                <div style="text-align: center; padding-left: 4px;" >
+		                    <apex:commandButton value="{!$Label.apttus_config2__Yes}"
+		                    					onclick="YAHOO.force.com.remove();"
+		                    					style="width: 50px;"   
+		                    					immediate="true" 
+		                    					oncomplete="YAHOO.force.com.confirmationPanel.hide();" />
+		                    <apex:commandButton value="{!$Label.apttus_config2__No}" 
+		                    					style="width: 50px;"   
+		                    					onclick="YAHOO.force.com.confirmationPanel.hide();return false;" />
+		                </div>
+		            </apex:actionRegion>
+			    </div>
+			</div>
+		</apex:outputPanel>
+
+	</apex:form>
+	<script type="text/javascript">
+	  	var aptsOnload = function(){
+			YAHOO.util.Event.onDOMReady(YAHOO.force.com.onDOMReady);
+	  	}
+	  	window.onload = combineFunction(window.onload, aptsOnload);
+	</script>
+	
+</apex:page>

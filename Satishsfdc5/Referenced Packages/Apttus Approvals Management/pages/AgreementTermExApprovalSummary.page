@@ -1,0 +1,37 @@
+<!-- 
+    Apttus Approvals Management
+    AgreementTermExApprovalSummary
+     
+    @2010-2011 Apttus Inc. All rights reserved.
+
+ -->
+<apex:page standardController="Apttus_Approval__Approval_Request__c"
+		showHeader="true" 
+		sidebar="true"
+		cache="false" 
+		tabstyle="Apttus_Approval__Approval_Request__c" >
+		
+	<apex:sectionHeader title="{!$Label.apttus_approval__ApprovalRequest}" 
+			subtitle="{!$ObjectType.Apttus__Agreement_Term_Exception__c.Label} {!Apttus_Approval__Approval_Request__c.Related_Agreement_Term_Exception__r.Name}"/>
+	
+	<apex:pageBlock title="{!$ObjectType.Apttus__Agreement_Term_Exception__c.Label} {!$Label.apttus_approval__Information}">
+		
+		<apex:pageBlockSection columns="1">
+			<apex:outputField value="{!Apttus_Approval__Approval_Request__c.Related_Agreement_Term_Exception__r.Apttus__Agreement__c}"/>
+			<apex:outputField value="{!Apttus_Approval__Approval_Request__c.Related_Agreement_Term_Exception__r.Apttus__Agreement__r.Apttus__Account__c}"/>
+			<apex:outputField value="{!Apttus_Approval__Approval_Request__c.Related_Agreement_Term_Exception__r.Apttus__Agreement__r.RecordType.Name}"/>
+			<apex:outputField value="{!Apttus_Approval__Approval_Request__c.Related_Agreement_Term_Exception__r.Apttus__Agreement__r.OwnerId}"/>
+			<apex:outputField value="{!Apttus_Approval__Approval_Request__c.Related_Agreement_Term_Exception__r.Apttus__Exception_Name__c}"/>
+			<apex:outputField value="{!Apttus_Approval__Approval_Request__c.Related_Agreement_Term_Exception__r.Apttus__Exception__c}"/>
+			<apex:outputField value="{!Apttus_Approval__Approval_Request__c.Related_Agreement_Term_Exception__r.Apttus__Description__c}"/>
+			<apex:outputField value="{!Apttus_Approval__Approval_Request__c.Related_Agreement_Term_Exception__r.Apttus__Comments__c}"/>
+			<p/>&nbsp;
+		</apex:pageBlockSection>
+		
+		<apex:include pageName="Apttus_Approval__ApprovalAction" />
+		
+	</apex:pageBlock>
+	
+	<apex:include pageName="Apttus_Approval__ApprovalRequestsList"/>
+		
+</apex:page>

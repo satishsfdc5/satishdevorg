@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fields>
+        <fullName>Approval_Level__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Field moved to Approval Matrix table</description>
+        <externalId>false</externalId>
+        <label>Approval Level_OBSOLETE</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Level 1</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Level 2</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Level 3</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Level 4</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Level 5</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Level 6</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Next_Level_Approver__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Field moved to Approval Matrix table</description>
+        <externalId>false</externalId>
+        <label>Next Level Approver_OBSOLETE</label>
+        <relationshipName>Users</relationshipName>
+        <restrictedAdminField>false</restrictedAdminField>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Hierarchy</type>
+    </fields>
+    <webLinks>
+        <fullName>ChangeNextLevelApprover</fullName>
+        <availability>online</availability>
+        <displayType>link</displayType>
+        <height>600</height>
+        <linkType>sControl</linkType>
+        <masterLabel>Change Next Level Approver_OBSOLETE</masterLabel>
+        <openType>sidebar</openType>
+        <protected>false</protected>
+        <scontrol>aptsApproverChangeNextLevel</scontrol>
+    </webLinks>
+    <webLinks>
+        <fullName>GenerateApprovalMatrix</fullName>
+        <availability>online</availability>
+        <displayType>link</displayType>
+        <height>600</height>
+        <linkType>sControl</linkType>
+        <masterLabel>Generate Approval Matrix_OBSOLETE</masterLabel>
+        <openType>sidebar</openType>
+        <protected>false</protected>
+        <scontrol>aptsApprovalMatrixValidate</scontrol>
+    </webLinks>
+    <webLinks>
+        <fullName>GetBackupApprover</fullName>
+        <availability>online</availability>
+        <displayType>link</displayType>
+        <height>600</height>
+        <linkType>sControl</linkType>
+        <masterLabel>Set Backup Approver (Deprecated)</masterLabel>
+        <openType>sidebar</openType>
+        <protected>false</protected>
+        <scontrol>aptsApprovalBackupApprover</scontrol>
+    </webLinks>
+    <webLinks>
+        <fullName>InactivateUserApprovalMatrix</fullName>
+        <availability>online</availability>
+        <description>Inactivates the current user&apos;s approval matrix and transfers all inflight requests to the next level approver or backup admin user.  This action will happen automatically if a user is inactivated by unchecking the Active flag in the user record.</description>
+        <displayType>link</displayType>
+        <height>600</height>
+        <linkType>sControl</linkType>
+        <masterLabel>Inactivate User Approval Matrix</masterLabel>
+        <openType>sidebar</openType>
+        <protected>false</protected>
+        <scontrol>aptsApprovalInactivateUser</scontrol>
+    </webLinks>
+    <webLinks>
+        <fullName>SetBackupApprover</fullName>
+        <availability>online</availability>
+        <description>Set Backup Approver</description>
+        <displayType>link</displayType>
+        <height>600</height>
+        <linkType>page</linkType>
+        <masterLabel>Set Backup Approver</masterLabel>
+        <openType>sidebar</openType>
+        <page>BackupApprover</page>
+        <protected>false</protected>
+    </webLinks>
+    <webLinks>
+        <fullName>ViewApprovalMatrix</fullName>
+        <availability>online</availability>
+        <description>View approval matrix for the user</description>
+        <displayType>link</displayType>
+        <height>600</height>
+        <linkType>page</linkType>
+        <masterLabel>View Approval Matrix</masterLabel>
+        <openType>sidebar</openType>
+        <page>ApprovalMatrixView</page>
+        <protected>false</protected>
+    </webLinks>
+</CustomObject>

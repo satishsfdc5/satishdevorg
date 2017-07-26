@@ -1,0 +1,17 @@
+<table height="400" width="550" cellpadding="5" border="0" cellspacing="5" >
+<tr height="400" valign="top" >
+<td style=" color:#000000; font-size:12pt; background-color:#FFFFFF; font-family:arial; bLabel:main; bEditID:r3st1;" tEditID="c1r1" locked="0" aEditID="c1r1" >
+<![CDATA[<style>p{margin-top:0px; margin-bottom:0px;}</style><p>This email is to inform you that the following Agreement has been submitted 
+for review to the {!APTS_Agreement__c.OwnerFullName} Queue.&nbsp; You are 
+receiving the email because you are a member of this Queue.</p>
+<p>&nbsp;</p>
+<p>Agreement Name : {!APTS_Agreement__c.Name}</p>
+<p>Account : {!APTS_Agreement__c.Account__c}<br>Agreement Number 
+: {!APTS_Agreement__c.FF_Agreement_Number__c}<br>Start Date : 
+{!APTS_Agreement__c.Contract_Start_Date__c}<br>Requestor : 
+{!APTS_Agreement__c.Requestor__c}<br>&nbsp;</p>
+<p>Please click on the following link to review the details and to take 
+ownership as necessary&nbsp;<br><br>{!APTS_Agreement__c.Link}</p>
+<p><br><br>Thanks <br></p>]]></td>
+</tr>
+</table>

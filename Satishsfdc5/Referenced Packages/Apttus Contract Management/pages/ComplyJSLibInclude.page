@@ -1,0 +1,45 @@
+<!-- 
+    Apttus Contract Management
+    ComplyJSLibInclude
+     
+    @2010-2011 Apttus Inc. All rights reserved.
+
+ -->
+<apex:page >
+	
+	<script>
+
+		// error labels
+		cERROR_COPY_CHILD_OBJECTS = "{!$Label.ErrorCopyingChildObjects}"; // "ERROR: copying child objects for the agreement:\n";
+		cERROR_COPY_TEMPLATE_CHILD_OBJECTS = "{!$Label.ErrorCopyingChildObjects}"; // "ERROR: copying child objects for the template:\n";
+		cERROR_COPY_AGREEMENTRULE_CHILD_OBJECTS = "{!$Label.ErrorCopyingChildObjects}"; // "ERROR: copying child objects for the agreement rule:\n";
+		cERROR_COPY_QUERYTEMPLATE_CHILD_OBJECTS = "{!$Label.ErrorCopyingChildObjects}"; // "ERROR: copying child objects for the query template:\n";	
+		cERROR_AFTER_CLONE = "{!$Label.ErrorCloningObject}"; // "ERROR: cloning the agreement:\n";
+		cERROR_AFTER_TEMPLATE_CLONE = "{!$Label.ErrorCloningObject}"; // "ERROR: cloning the template:\n";
+		cERROR_AFTER_AGREEMENTRULE_CLONE = "{!$Label.ErrorCloningObject}"; // "ERROR: cloning the agreement rule:\n";
+		cERROR_EMAILTEMPLATE_CLONE = "{!$Label.ErrorCloningObject}"; // "ERROR: cloning the email template:\n";
+		cERROR_AFTER_EMAILTEMPLATE_CLONE = "{!$Label.ErrorCloningObject}"; // "ERROR: cloning the email template:\n";
+		cERROR_AFTER_QUERYTEMPLATE_CLONE = "{!$Label.ErrorCloningObject}"; // "ERROR: cloning the query template:\n";
+		cERROR_AFTER_CREATE_AGREEMENT = "{!$Label.ErrorCreatingAgreement}"; // "ERROR: creating the agreement:\n";
+		cERROR_AFTER_AMEND = "{!$Label.ErrorAmendingAgreement}"; // "ERROR: amending the agreement:\n";
+		cERROR_AFTER_RENEW = "{!$Label.ErrorRenewingAgreement}"; // "ERROR: renewing the agreement:\n";
+		cERROR_AFTER_SENT_FOR_REVIEW = "{!$Label.ErrorSendingAgreement}"; // "ERROR: sending the agreement for review:\n";
+		cERROR_AFTER_SENT_FOR_SIGNATURES = "{!$Label.ErrorSendingAgreement}"; // "ERROR: sending the agreement for signatures:\n";
+		cERROR_ATTACHMENT_COPY = "{!$Label.ErrorCopyingAttachments}"; // "ERROR: copying attachments:\n";
+		cERROR_ATTACHMENT_DELETE = "{!$Label.ErrorDeletingAttachments}"; // "ERROR: deleting attachments:\n";
+		cERROR_EMAILTEMPLATE_DELETE = "{!$Label.ErrorDeletingEmailTemplate}"; // "ERROR: deleting email template:\n";
+		cERROR_CREATE_TEMPOBJECT = "{!$Label.ErrorCreatingTempObject}"; // "ERROR: creating temporary object:\n";
+		cERROR_PROTECT_DOC = "{!$Label.ErrorProtectingDocuments}"; // "ERROR: protecting documents:\n";
+		cERROR_UNPROTECT_DOC = "{!$Label.ErrorUnprotectingDocuments}"; // "ERROR: unprotecting documents:\n";
+		cERROR_UPDATE_DOC = "{!$Label.ErrorUpdatingDocuments}"; // "ERROR: updating documents:\n";
+		cERROR_UPDATE_AGREEMENT = "{!$Label.ErrorUpdatingAgreement}"; // "ERROR: updating the agreement:\n";
+		cERROR_BUILD_PAGE = "{!$Label.ErrorBuildingPage}"; // "Error building the page:\n";
+		cERROR_CREATE_AGREEMENT_DOC = "{!$Label.ErrorCreatingAgreementDocument}"; // "Error creating the agreement document:\n";
+		cERROR_CREATE_CHATTER_FEED = "{!$Label.ErrorCreatingChatterFeed}"; // "Error creating the chatter feed:\n";
+		cERROR_UNKNOWN = "{!$Label.ErrorUnknown}"; // "ERROR: Unknown error:\n";
+	    
+	</script>
+	
+	<apex:includescript value="{!$Resource.Apttus__ComplyJSLib}" />
+	
+</apex:page>

@@ -1,0 +1,300 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Follow</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <deprecated>false</deprecated>
+    <description>Represents a single entry in a product constraint</description>
+    <enableActivities>true</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>false</enableHistory>
+    <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <fields>
+        <fullName>ExcludeProductGroupId__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <deprecated>false</deprecated>
+        <description>ID of the product group to exclude for selected products or options</description>
+        <externalId>false</externalId>
+        <label>Exclude Product Group</label>
+        <referenceTo>ProductGroup__c</referenceTo>
+        <relationshipLabel>Product Constraint Entries (Exclude Product Group)</relationshipLabel>
+        <relationshipName>ExcludeProductConstraintEntries</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>ExcludeProductId__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <deprecated>false</deprecated>
+        <description>ID of the product or option to exclude for selected products or options</description>
+        <externalId>false</externalId>
+        <label>Exclude Product</label>
+        <referenceTo>Product2</referenceTo>
+        <relationshipLabel>Product Constraint Entries (Exclude Product)</relationshipLabel>
+        <relationshipName>ExcludeProductConstraintEntries</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>IncludeDefaultQuantity__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The default quantity of the product to include</description>
+        <externalId>false</externalId>
+        <label>Include Default Quantity</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>5</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>IncludeMaxProducts__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The maximum number of products that may be included from the list of products. Setting the maximum products constrains the number of products the user can include from the list of products.</description>
+        <externalId>false</externalId>
+        <label>Include Max Products</label>
+        <precision>5</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>IncludeMaxQuantity__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The maximum quantity of the product to include</description>
+        <externalId>false</externalId>
+        <label>include Max Quantity</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>5</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>IncludeMinProducts__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The minimum number of products that must be included from the list of products. Setting the minimum products to greater than 0 means the user is required to include a product from the list products. This creates an &quot;inclusion&quot; rule. Setting the minimum products to 0 means the user is not required to include a product from the list of products.</description>
+        <externalId>false</externalId>
+        <label>Include Min Products</label>
+        <precision>5</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>IncludeMinQuantity__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The minimum quantity of the product to include</description>
+        <externalId>false</externalId>
+        <label>Include Min Quantity</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>5</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>IncludeProductGroupId__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <deprecated>false</deprecated>
+        <description>ID of the product group to include for selected products or options</description>
+        <externalId>false</externalId>
+        <label>Include Product Group</label>
+        <referenceTo>ProductGroup__c</referenceTo>
+        <relationshipLabel>Product Constraint Entries (Include Product Group)</relationshipLabel>
+        <relationshipName>IncludeProductConstraintEntries</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>IncludeProductId__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <deprecated>false</deprecated>
+        <description>ID of the product or option to include for selected products or options</description>
+        <externalId>false</externalId>
+        <label>Include Product</label>
+        <referenceTo>Product2</referenceTo>
+        <relationshipLabel>Product Constraint Entries (Include Product)</relationshipLabel>
+        <relationshipName>IncludeProductConstraintEntries</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>ProductConstraintId__c</fullName>
+        <deprecated>false</deprecated>
+        <description>ID of the associated constraint</description>
+        <externalId>false</externalId>
+        <label>Product Constraint</label>
+        <referenceTo>ProductConstraint__c</referenceTo>
+        <relationshipLabel>Constraint Entries</relationshipLabel>
+        <relationshipName>ConstraintEntries</relationshipName>
+        <relationshipOrder>0</relationshipOrder>
+        <reparentableMasterDetail>false</reparentableMasterDetail>
+        <trackTrending>false</trackTrending>
+        <type>MasterDetail</type>
+        <writeRequiresMasterRead>false</writeRequiresMasterRead>
+    </fields>
+    <fields>
+        <fullName>RelatedProductId__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <deprecated>false</deprecated>
+        <description>ID of the related product</description>
+        <externalId>false</externalId>
+        <label>Related Product</label>
+        <referenceTo>Product2</referenceTo>
+        <relationshipLabel>Related Constraints</relationshipLabel>
+        <relationshipName>RelatedConstraints</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>SelectedProduct1Id__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <deprecated>false</deprecated>
+        <description>ID of the selected product or option</description>
+        <externalId>false</externalId>
+        <label>Selected Product 1</label>
+        <referenceTo>Product2</referenceTo>
+        <relationshipLabel>Product Constraint Entries (Selected Product 1)</relationshipLabel>
+        <relationshipName>SelectedProductContraintEntries1</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>SelectedProduct2Id__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <deprecated>false</deprecated>
+        <description>ID of the selected product or option</description>
+        <externalId>false</externalId>
+        <label>Selected Product 2</label>
+        <referenceTo>Product2</referenceTo>
+        <relationshipLabel>Product Constraint Entries (Selected Product 2)</relationshipLabel>
+        <relationshipName>SelectedProductContraintEntries2</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>SelectedProduct3Id__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <deprecated>false</deprecated>
+        <description>ID of the selected product or option</description>
+        <externalId>false</externalId>
+        <label>Selected Product 3</label>
+        <referenceTo>Product2</referenceTo>
+        <relationshipLabel>Product Constraint Entries (Selected Product 3)</relationshipLabel>
+        <relationshipName>SelectedProductContraintEntries3</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>SelectedProductCategory__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The selected product category</description>
+        <externalId>false</externalId>
+        <label>Selected Product Category</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>SelectedProductGroupId__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <deprecated>false</deprecated>
+        <description>ID of the selected product group</description>
+        <externalId>false</externalId>
+        <label>Selected Product Group</label>
+        <referenceTo>ProductGroup__c</referenceTo>
+        <relationshipLabel>Product Constraint Entries (Selected Product Group)</relationshipLabel>
+        <relationshipName>SelectedProductConstraintEntries</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Sequence__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The constraint entry sequence</description>
+        <externalId>false</externalId>
+        <label>Sequence</label>
+        <precision>5</precision>
+        <required>true</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <label>Product Constraint Entry</label>
+    <nameField>
+        <displayFormat>CE-{0000000000}</displayFormat>
+        <label>Constraint Entry Id</label>
+        <type>AutoNumber</type>
+    </nameField>
+    <pluralLabel>Product Constraint Entries</pluralLabel>
+    <searchLayouts/>
+    <sharingModel>ControlledByParent</sharingModel>
+</CustomObject>

@@ -1,0 +1,666 @@
+<!-- 
+    Apttus Contract Management
+    DocumentGenerate
+     
+    @2012-2013 Apttus Inc. All rights reserved.
+
+	parameters
+    ==========
+    Name			   	| Required | Description
+    ====================|==========|======================================================================================
+    id 				   	| Yes      | The record id of the sobject to generate the document for
+                       	|          |
+    action             	| Yes      | The document action 
+                       	|          | Valid values are : Preview_Document, Generate_Document.
+                       	|          |
+    templateType    	| Yes      | The template type 
+                    	|          | 
+    queryTemplateType	| No	   | The query template type (for template filters)
+    					|		   |
+    ===================================================================================================================
+    
+ -->
+<apex:page controller="Apttus.DocumentGenerateController" 
+           showHeader="true" 
+           sidebar="true" >	
+		
+	<apex:include pageName="Apttus__ComplyJSLibInclude" />
+	
+	<apex:stylesheet value="{!URLFOR($Resource.Apttus__YUILibrary, '/yui/build/assets/skins/sam/skin.css')}" />
+ 
+	<apex:includescript value="{!URLFOR($Resource.Apttus__YUILibrary, '/yui/build/yahoo-dom-event/yahoo-dom-event.js')}" />
+	<apex:includescript value="{!URLFOR($Resource.Apttus__YUILibrary, '/yui/build/dragdrop/dragdrop-min.js')}" />
+	<apex:includescript value="{!URLFOR($Resource.Apttus__YUILibrary, '/yui/build/container/container-min.js')}" />
+	<apex:includescript value="{!URLFOR($Resource.Apttus__YUILibrary, '/yui/build/animation/animation-min.js')}" />
+	
+	<script>
+    
+	    // Create a namespace for our custom functions
+	    YAHOO.namespace("force.com");
+		
+		// load panel
+		
+		/**
+		 * Builds the load panel.
+		 */
+	    YAHOO.force.com.buildLoadPanel = function() {
+	       
+	        YAHOO.force.com.loadPanel = new YAHOO.widget.Panel(
+	            "loadPanel",  // The id of our dialog container
+	            { 
+	                    width           :   "300px", // You can play with this until it's right
+	                    visible         :   false,   // Should be invisible when rendered
+	                    draggable       :   false,   // Make the dialog draggable
+	                    close           :   false,   // Don't include a close title button
+	                    modal           :   true,    // Make it modal
+	                    fixedCenter     :   true,    // Keep centered if window is scrolled
+	                    zindex          :   40,      // Make sure it's on top of everything
+	                    constraintoviewport: true,
+	                    
+	                    // This line adds the appear/disapper fade effect
+	                    effect			:   {effect:YAHOO.widget.ContainerEffect.FADE,duration:0.25}
+        							
+	            }
+	        );
+	        
+	        // header
+	        YAHOO.force.com.loadPanel.setHeader("{!$Label.LoadingPage}");
+			// set image
+			YAHOO.force.com.loadPanel.setBody('<center><img src="{!URLFOR($Resource.Image_LoadingPage)}" /></center>');
+	        // Render the dialog to the document.body level of the DOM
+	        YAHOO.force.com.loadPanel.render(document.body);
+	        
+	    }
+	    
+	    // wait panel
+	    
+	    /**
+		 * Builds the wait panel.
+		 */
+	    YAHOO.force.com.buildWaitPanel = function() {
+	        document.body.className = document.body.className + " yui-skin-sam";
+	        YAHOO.force.com.waitPanel = new YAHOO.widget.Panel(
+	            "waitPanel",  // The id of our dialog container
+	            { 
+	                    width           :   "300px", // You can play with this until it's right
+	                    visible         :   false,   // Should be invisible when rendered
+	                    draggable       :   false,   // Make the dialog draggable
+	                    close           :   false,   // Don't include a close title button
+	                    modal           :   true,    // Make it modal
+	                    fixedCenter     :   true,    // Keep centered if window is scrolled
+	                    zindex          :   40,      // Make sure it's on top of everything
+	                    constraintoviewport: true,
+	                    
+	                    // This line adds the appear/disapper fade effect
+	                    effect			:   {effect:YAHOO.widget.ContainerEffect.FADE,duration:0.25}
+        							
+	            }
+	        );
+	        
+	        // header
+	        YAHOO.force.com.waitPanel.setHeader("{!$Label.GeneratingDocument}");
+			// set image
+			YAHOO.force.com.waitPanel.setBody('<center><img src="{!URLFOR($Resource.Image_LoadingPage)}" /></center>');
+	        // Render the dialog to the document.body level of the DOM
+	        YAHOO.force.com.waitPanel.render(document.body);
+	        
+	    }
+	    
+	    /**
+		 * Builds the pdf panel
+		 */
+		YAHOO.force.com.buildPdfPanel = function() {
+			
+		    YAHOO.force.com.pdfPanel = new YAHOO.widget.Panel(
+	            "pdfPanel",  // The id of our dialog container
+	            { 
+	                    width           :   "800px", // You can play with this until it's right
+	                    visible         :   false,   // Should be invisible when rendered
+	                    draggable       :   false,    // Make the dialog draggable
+	                    close           :   false,   // Don't include a close title button
+	                    modal           :   true,    // Make it modal
+	                    fixedCenter     :   true,    // Keep centered if window is scrolled
+	                    zindex          :   40,      // Make sure it's on top of everything
+	                    constraintoviewport: true,
+	                    
+	                    // This line adds the appear/disapper fade effect
+	                    effect          :   {effect:YAHOO.widget.ContainerEffect.FADE,duration:0.25} 
+	            }
+	         );
+		    
+	        // Render the dialog to the document.body level of the DOM
+	        YAHOO.force.com.pdfPanel.render(document.body);
+  
+	    }
+		    
+	    // Function called when the DOM is ready to create the dialog,
+    	// render the dialog into the document body, add our dialog skin
+    	// css to the body tag, and wire up the buttons on our dialog   
+		YAHOO.force.com.onDOMReady = function() {
+			
+			// build the load panel
+			YAHOO.force.com.buildLoadPanel();
+			// build the wait panel
+			YAHOO.force.com.buildWaitPanel();
+			// build the pdf panel
+			YAHOO.force.com.buildPdfPanel();
+			
+		}
+		
+	    // build the tree as soon as the DOM is in a usable state
+		YAHOO.util.Event.onDOMReady(YAHOO.force.com.onDOMReady);   	
+		
+	</script>
+	
+	<script type="text/javascript">	
+		
+		/**
+		 * Callback after a template is selected
+		 * templateId the selected template id
+		 */
+		function onSelectTemplate(templateId) {
+			
+			// show modal panel
+			YAHOO.force.com.loadPanel.show();
+			
+			// call the action
+			doSelect(""+ templateId +"");
+			
+		}
+		
+		/**
+		 * Callback when the async generate action button is clicked
+		 */
+		function onAsyncGenerateActionClick() {
+			// show the modal panel
+			YAHOO.force.com.waitPanel.show();
+			// return false to allow the action to proceed
+			return false;
+			
+		}
+		
+		/**
+		 * Callback when the submit action button is clicked
+		 */
+		function onSubmitActionClick() {
+			// show the modal panel
+			YAHOO.force.com.loadPanel.show();
+			// return false to allow the action to proceed
+			return false;
+			
+		}
+		
+		/**
+		 * Go back to the detail page
+		 */
+		function goBack() {
+			// get the sobject id
+			var sObjectId = "{!JSENCODE(SObjectId)}";
+		
+			// go back to the detail page
+			navigateTo("/" + sObjectId);
+			
+		}
+		
+		/**
+		 * Cancel the generation
+		 */
+		function cancel() {
+			// Go back to the detail page
+			goBack();
+			
+		}
+		
+		/**
+		 * Callback after the document was downloaded
+		 */
+		function afterDownload() {
+			
+			// delay to allow the document to be downloaded	
+           	setTimeout(function() {
+           		
+           		// return to the agreement detail page
+         		doReturn();
+          	}, 5000);
+           	
+           	// return true to allow the download to proceed
+           	return true;
+           	
+		}
+		
+		/**
+		 * Callback after the timeout occurred
+		 */
+		function afterTimeout() {
+			
+			try {
+				
+				// get the timeout message
+				var cMsg = "{!JSENCODE(TimeoutMessage)}";
+				var message = "";
+				var lines = cMsg.split("\\n");
+				for (var i = 0; i < lines.length; i++) {
+					if (i > 0) {
+						message += "\n";
+					}
+					message += lines[i];
+				}
+				
+				// hide modal panel
+				YAHOO.force.com.waitPanel.hide();
+   				
+				// show timeout message
+				if (confirm(message)) {
+					// back to detail page
+					goBack();
+					
+				}
+				
+			} catch(ex) {
+				erroralert(cERROR_UNKNOWN, ex);
+				// back to detail page
+				goBack();
+				
+			} 
+           	
+		}
+		
+		/**
+		 * Callback after generate is done
+		 */
+		function afterGenerate() {
+			
+			// cancel timeout
+			cancelTimeout();
+			// hide modal panel
+			YAHOO.force.com.waitPanel.hide();
+			
+		}
+		
+		/**
+		 * Callback after the submit is done
+		 */
+		function afterSubmit() {
+			
+			try {
+				
+				// hide modal panel
+				YAHOO.force.com.loadPanel.hide();
+				// get the confirmation message
+				var message = "{!JSENCODE($Label.SubmitDocStatusMessage)}";
+				// show confirmation message
+				alert(message);
+				
+			} catch(ex) {
+				erroralert(cERROR_UNKNOWN, ex);
+				
+			} finally {
+				// back to detail page
+				goBack();
+				
+			}
+           	
+		}
+		
+		/**
+		 * Cancel the timeout
+		 */
+		function cancelTimeout() {
+		
+			if (gTimeoutId != null) {
+				clearTimeout(gTimeoutId);
+				gTimeoutId = null;
+				
+			}
+			
+		}
+		
+		/**
+		 * Generate the document
+		 */
+		function doGenerateDoc() {
+            
+            var exception = null;
+           
+            try {
+            
+            	var timeoutMillis = parseInt("{!CallTimeoutMillis}") + 5000;
+            	
+            	// show modal panel
+				YAHOO.force.com.waitPanel.show();
+            	
+            	// delay to allow prepare step to run	
+            	setTimeout(function() {
+           			try {
+           				// generate the document
+           				generateDoc();
+           			} catch (e) {
+           				erroralert("generateDoc():", e);
+           				// back to detail page
+           				goBack();
+           				
+           			} 
+           			
+           		}, 5000);
+            	
+            	// delay until timeout	
+            	gTimeoutId = setTimeout(function() {
+           						try {
+           							// handle timeout
+          							afterTimeout();
+			           			} catch (e) {
+			           				erroralert("afterTimeout():", e);
+			           				// back to detail page
+			           				goBack();
+			           				
+			           			} 
+          			
+          					 }, timeoutMillis);
+          					 
+            } catch(ex) {
+            	exception = ex;
+            	// hide modal panel
+				YAHOO.force.com.waitPanel.hide();
+				
+            	erroralert("generateDoc():", ex);
+            	
+            } finally {
+				if (exception != null) {
+           			// back to detail page
+					goBack();
+					
+				} 
+				
+            }
+            
+        }
+        
+    </script>
+    
+    <apex:sectionHeader title="{!pageTitle}" subtitle="{!SObjectRecordName}"/>
+    
+    <apex:form id="generateDocument" >
+    	<!--  required fields -->
+		
+    	<apex:outputPanel id="idSelectTemplatePanel">
+    		
+    		<apex:outputPanel rendered="{!NOT(isInitialized)}">
+		        <script>
+		           // register to invoke the function after the page load
+				    window.onload = function() { 
+				       	// initialize the controller
+				        doInit();
+				        
+				    };
+		           
+		        </script>
+		    </apex:outputPanel>
+		    
+		    <apex:outputPanel rendered="{!isInitialized}" >
+		    	
+		    	<apex:pageBlock mode="edit" rendered="{!NOT(canEditSObject)}" >
+					<apex:pageMessages />
+					<apex:outputText value="{!$Label.apttus__InsufficientPrivileges}" 
+									 style="font-family: Arial, Helvetica, sans-serif;font-weight: bold;font-size: 12pt;" /><p/>
+					<apex:outputText value="{!$Label.apttus__InsufficientPrivilegesDetail}" /><br/>
+					<apex:pageBlockButtons location="bottom" >
+						<apex:commandButton action="{!doReturn}" value="{!$Label.apttus__Return}" immediate="true" />
+					</apex:pageBlockButtons>
+				</apex:pageBlock>
+				
+		    	<apex:outputPanel id="idInputPanel" 
+		    					  rendered="{!canEditSObject}" >
+		    	
+			    	<apex:pageBlock mode="edit" rendered="{!NOT(DocGenerated)}">
+			        	<apex:pageMessages />
+						
+				        <apex:pageBlockSection title="{!$Label.apttus__Options}" columns="1">
+				        
+					        <apex:panelGrid columns="1" rendered="{!showOutputFormats}" >
+					            <apex:outputLabel value="{!step1}{!$Label.apttus__SelectOutputFormat}" 
+					            				  for="idOutputFormat" 
+					            				  style="font-weight:bold" />
+					            <apex:selectRadio id="idOutputFormat" value="{!outputFormat}" >
+					                <apex:selectOptions value="{!outputFormats}" />
+					            </apex:selectRadio>
+					        	<p/>
+					        </apex:panelGrid>
+					        
+					        <apex:panelGrid columns="1" rendered="{!showProtectionLevel}">
+					            <apex:outputLabel value="{!step2}{!$Label.apttus__SelectDocumentProtection}" 
+					            				  for="idProtectionLevel" 
+					            				  style="font-weight:bold" />
+					            <apex:selectRadio id="idProtectionLevel" value="{!protectionLevel}"  >
+					                <apex:selectOptions value="{!protectionLevels}" />
+					            </apex:selectRadio>
+					        	<p/>
+					        </apex:panelGrid>
+					        
+					        <apex:panelGrid columns="1" rendered="{!showWatermark}" >
+					            <apex:outputLabel value="{!step3}{!$Label.apttus__IncludeWatermark}" 
+					            				  for="idWatermark" 
+					            				  style="font-weight:bold" />
+					            <apex:inputCheckbox id="idWatermark" 
+					            					value="{!includeWatermark}"
+												    selected="{!includeWatermark}" />	    
+		
+					        	<p/>
+					        </apex:panelGrid>
+					        
+					        <apex:panelGrid columns="1">
+					            <apex:outputText value="{!step4}{!$Label.apttus__SelectTemplate}" 
+					            				 style="font-weight:bold"/>
+					        	<p/>
+					        </apex:panelGrid>
+					        
+						</apex:pageBlockSection>
+			    	</apex:pageBlock>
+		    	</apex:outputPanel>	
+	    	
+				<apex:outputPanel id="idTemplatePanel" 
+								  rendered="{!canEditSObject}" >
+								  
+				    <apex:pageBlock rendered="{!NOT(DocGenerated)}">
+				    
+				        <apex:pageBlockButtons location="top">
+				        	<apex:outputPanel id="idButtonsTop" >
+								<apex:commandButton value="{!$Label.apttus__Generate}"   
+													onclick="doGenerateDoc();" 
+													rendered="{!NOT(IsAsyncCallEnabled)}"
+													reRender="idInputPanel,idOutputPanel" 
+													disabled="{!NOT(allowGenerate)}" />
+								<apex:commandButton value="{!$Label.apttus__Generate}"  
+													action="{!doStartAsyncCall}" 
+													onclick="onAsyncGenerateActionClick();" 
+													rendered="{!IsAsyncCallEnabled}" 
+													oncomplete="doGenerateDoc();"
+													disabled="{!NOT(allowGenerate)}" />
+								<apex:commandButton value="{!$Label.apttus__Submit}"   
+													action="{!doSubmitDoc}"
+													onclick="onSubmitActionClick();" 
+													rendered="{!IsSubmitCallEnabled}"
+													oncomplete="afterSubmit();"
+													reRender="idInputPanel" 
+													disabled="{!NOT(allowGenerate)}" />
+						    	<apex:commandButton value="{!$Label.apttus__Return}"   
+						    						action="{!doReturn}" 
+						    						immediate="true" />
+						    	
+				        	</apex:outputPanel>
+				        </apex:pageBlockButtons>
+				        
+				        <apex:pageBlockButtons location="bottom">
+							<apex:outputPanel id="idButtonsBottom" >
+								<apex:commandButton value="{!$Label.apttus__Generate}"   
+													onclick="doGenerateDoc();" 
+													rendered="{!NOT(IsAsyncCallEnabled)}"
+													reRender="idInputPanel,idOutputPanel" 
+													disabled="{!NOT(allowGenerate)}" />
+								<apex:commandButton value="{!$Label.apttus__Generate}"  
+													action="{!doStartAsyncCall}" 
+													onclick="onAsyncGenerateActionClick();" 
+													rendered="{!IsAsyncCallEnabled}" 
+													oncomplete="doGenerateDoc();"
+													disabled="{!NOT(allowGenerate)}" />
+								<apex:commandButton value="{!$Label.apttus__Submit}"   
+													action="{!doSubmitDoc}"
+													onclick="onSubmitActionClick();" 
+													rendered="{!IsSubmitCallEnabled}"
+													oncomplete="afterSubmit();"
+													reRender="idInputPanel" 
+													disabled="{!NOT(allowGenerate)}" />
+						    	<apex:commandButton value="{!$Label.apttus__Return}"  
+						    						action="{!doReturn}" 
+						    						immediate="true" />
+				        	
+				        	</apex:outputPanel>
+				        </apex:pageBlockButtons>
+				        
+				        <apex:pageBlockSection title="Templates" 
+				        					   columns="1" 
+				        					   collapsible="false" >
+				        					   
+				            <apex:pageBlockTable value="{!templates}" 
+				            					 var="templateInfo" 
+				            					 width="100%" 
+				            					 rendered="{!hasTemplates}" >
+				            
+				                <apex:column headervalue="{!$Label.apttus__Select}" >
+				                    <apex:outputPanel rendered="{!templateInfo.selected}" >
+										<input type="radio" 
+											   checked="{!templateInfo.selected}"
+											   onclick="onSelectTemplate('{!templateInfo.templateSO.Id}')" />
+									</apex:outputPanel>
+									<apex:outputPanel rendered="{!NOT(templateInfo.selected)}">
+										<input type="radio"
+											   onclick="onSelectTemplate('{!templateInfo.templateSO.Id}')" />										  
+									</apex:outputPanel>
+				                </apex:column>
+				                <apex:column value="{!templateInfo.templateSO.Name}" />
+				                <apex:column value="{!templateInfo.templateSO.Apttus__Guidance__c}" />
+				                <apex:column value="{!templateInfo.templateSO.Apttus__Category__c}" />
+				                <apex:column value="{!templateInfo.templateSO.Apttus__Subcategory__c}" />
+				                
+				            </apex:pageBlockTable>
+				            
+				            <apex:outputText value="{!$Label.apttus__NoTemplatesToDisplay}" rendered="{!NOT(hasTemplates)}" />
+				            
+				        </apex:pageBlockSection>  
+		        
+				    </apex:pageBlock>
+		    	
+		    	</apex:outputPanel>	
+	    	
+		    	<apex:outputPanel id="idOutputPanel" 
+		    					  rendered="{!canEditSObject}" >
+		    	
+		    		<apex:outputPanel rendered="{!DocGenerated}" >
+			    		<apex:pageBlock rendered="{!NOT(isInLinePdf)}" >
+			    			
+				        	<apex:pageBlockButtons location="bottom">
+						    	<apex:commandButton value="{!$Label.apttus__Return}" 
+						    						action="{!doReturn}"  
+						    						immediate="true" />
+				        	</apex:pageBlockButtons>
+							<apex:outputText style="font-size: 12px; font-weight: bold;" 
+											 value="{!$Label.apttus__DocumentGenerationSuccess}" />
+							<p/>
+							<apex:pageBlockSection title="{!$Label.apttus__DocumentDetail}" columns="1">
+								<apex:pageBlockSectionItem >
+									<apex:outputLabel style="font-weight: bold;" 
+													  value="{!$Label.apttus__FileName}" 
+													  for="idFileName" />
+			    					<apex:outputText id="idFileName" value="{!docInfo.Name}" />
+			    				</apex:pageBlockSectionItem>
+			    				<apex:pageBlockSectionItem >
+									<apex:outputLabel style="font-weight: bold;" 
+													  value="{!$Label.apttus__Size}" 
+													  for="idFileSize" />
+			    					<apex:outputText id="idFileSize" 
+			    									 style="font-weight: bold;" 
+			    									 value="{!docInfo.body_length}KB" />
+			    				</apex:pageBlockSectionItem>
+			    				<apex:pageBlockSectionItem >
+			    					<apex:outputLabel value="" for="idFileLink" />
+			    					<apex:outputLink id="idFileLink" 
+			    									 value="{!docURL}" 
+			    									 charset="UTF-8" 
+			    									 type="{!docInfo.content_type}" 
+			    									 title="{!$Label.apttus__ViewDocument}"  
+			    									 target="_blank" 
+			    									 onclick="afterDownload()">{!$Label.apttus__ViewFileInstruction}</apex:outputLink>
+			    				</apex:pageBlockSectionItem>
+			    				
+			    			</apex:pageBlockSection>
+			    		
+				    	</apex:pageBlock>
+				    	
+				    	<apex:outputPanel rendered="{!isInLinePdf}" >
+			    			<script>
+			    				
+			    				// title
+			        			YAHOO.force.com.pdfPanel.setHeader("{!docInfo.Name}");
+			        			// pdf doc
+			        			document.getElementById("idPdfDoc").src = "{!docURL}";
+			    				
+			    				// show the modal panel
+								document.getElementById("pdfPanel").style.display = "block";
+			    				YAHOO.force.com.pdfPanel.show();
+			    			
+			    			</script>
+			    		</apex:outputPanel>
+				    		
+			    	</apex:outputPanel>
+			    </apex:outputPanel>	
+			    
+	    	</apex:outputPanel>
+	    	
+	    </apex:outputPanel>
+	    
+		<!--  Javascript functions -->
+    	<apex:actionFunction name="doSelect" 
+    						 action="{!doSelect}" 
+    						 oncomplete="YAHOO.force.com.loadPanel.hide();" 
+    						 reRender="idInputPanel,idTemplatePanel" >
+        	<apex:param name="templateId" value="" />
+     	</apex:actionFunction>    	
+     	
+     	<apex:actionFunction name="doInit" 
+    						 action="{!doInit}" 
+    						 reRender="idSelectTemplatePanel" />  
+    						 
+    	<apex:actionFunction name="generateDoc" 
+    						 action="{!doGenerateDoc}" 
+    						 oncomplete="afterGenerate()" 
+    						 reRender="idInputPanel,idTemplatePanel,idOutputPanel" 
+    						 timeout="{!CallTimeoutMillis}" />
+    	
+    	<apex:actionFunction name="doReturn" 
+    						 action="{!doReturn}" />  	
+     	
+    </apex:form>
+   
+    <!-- This is the content of the modal dialog -->
+	<apex:outputPanel >
+		<div id="pdfPanel" style="display: none">
+		    <div class="hd" />
+		    <div class="bd">
+		    	<iframe id="idPdfDoc" 
+	    				height="300px" 
+	    				src="" 
+	    				frameborder="1"
+	    				scrolling="auto"
+	    				width="100%" />
+		    	
+		        <apex:form >
+	                <div style="text-align: center;" >
+	                    <apex:commandButton value="{!$Label.apttus__Return}" 
+	                    					immediate="true" 
+	                    					action="{!doReturn}"
+	                    					oncomplete="YAHOO.force.com.pdfPanel.hide();" />
+	                </div>
+		        </apex:form>
+		    </div>
+		</div>
+	</apex:outputPanel>
+</apex:page>

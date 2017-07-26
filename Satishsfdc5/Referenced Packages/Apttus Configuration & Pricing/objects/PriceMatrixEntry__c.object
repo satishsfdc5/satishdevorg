@@ -1,0 +1,306 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Follow</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <deprecated>false</deprecated>
+    <description>Represents a single entry in a price matrix</description>
+    <enableActivities>true</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>false</enableHistory>
+    <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <fields>
+        <fullName>AdjustmentAmount__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The price adjustment amount.</description>
+        <externalId>false</externalId>
+        <label>Adjustment Amount</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>5</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>AdjustmentType__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The price adjustment type</description>
+        <externalId>false</externalId>
+        <label>Adjustment Type</label>
+        <picklist>
+            <picklistValues>
+                <fullName>% Discount</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Discount Amount</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>% Markup</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Markup Amount</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>List Price Override</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Tier Price</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Price Factor</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>BandSize__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The band size for a weighted range</description>
+        <externalId>false</externalId>
+        <label>Band Size</label>
+        <precision>5</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Condition__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The condition specification</description>
+        <externalId>false</externalId>
+        <label>Condition</label>
+        <length>2000</length>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>5</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Dimension1Value__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The value for the first dimension</description>
+        <externalId>false</externalId>
+        <label>Dimension 1 Value</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Dimension2Value__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The value for the second dimension</description>
+        <externalId>false</externalId>
+        <label>Dimension 2 Value</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Dimension3Value__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The value for the third dimension</description>
+        <externalId>false</externalId>
+        <label>Dimension 3 Value</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Dimension4Value__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The value for the fourth dimension</description>
+        <externalId>false</externalId>
+        <label>Dimension 4 Value</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Dimension5Value__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The value for the fifth dimension</description>
+        <externalId>false</externalId>
+        <label>Dimension 5 Value</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Dimension6Value__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The value for the sixth dimension</description>
+        <externalId>false</externalId>
+        <label>Dimension 6 Value</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>EndFactor__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The end factor for a weighted range.</description>
+        <externalId>false</externalId>
+        <label>End Factor</label>
+        <precision>7</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>PriceMatrixId__c</fullName>
+        <deprecated>false</deprecated>
+        <description>ID of the associated matrix</description>
+        <externalId>false</externalId>
+        <label>Price Matrix</label>
+        <referenceTo>PriceMatrix__c</referenceTo>
+        <relationshipLabel>Entries</relationshipLabel>
+        <relationshipName>MatrixEntries</relationshipName>
+        <relationshipOrder>0</relationshipOrder>
+        <reparentableMasterDetail>false</reparentableMasterDetail>
+        <trackTrending>false</trackTrending>
+        <type>MasterDetail</type>
+        <writeRequiresMasterRead>false</writeRequiresMasterRead>
+    </fields>
+    <fields>
+        <fullName>PriceOverride__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The price override</description>
+        <externalId>false</externalId>
+        <label>Price Override</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>5</scale>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Sequence__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The matrix entry sequence</description>
+        <externalId>false</externalId>
+        <label>Sequence</label>
+        <precision>5</precision>
+        <required>true</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>StartFactor__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The start factor for a weighted range.</description>
+        <externalId>false</externalId>
+        <label>Start Factor</label>
+        <precision>7</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <label>Price Matrix Entry</label>
+    <nameField>
+        <displayFormat>ME-{0000000000}</displayFormat>
+        <label>Matrix Entry Id</label>
+        <type>AutoNumber</type>
+    </nameField>
+    <pluralLabel>Price Matrix Entries</pluralLabel>
+    <searchLayouts>
+        <excludedStandardButtons>New</excludedStandardButtons>
+        <excludedStandardButtons>Accept</excludedStandardButtons>
+        <lookupDialogsAdditionalFields>Sequence__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>Dimension1Value__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>Dimension2Value__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>Dimension3Value__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>Dimension4Value__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>AdjustmentAmount__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>AdjustmentType__c</lookupDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>Sequence__c</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>Dimension1Value__c</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>Dimension2Value__c</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>Dimension3Value__c</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>Dimension4Value__c</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>AdjustmentAmount__c</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>AdjustmentType__c</lookupPhoneDialogsAdditionalFields>
+        <searchFilterFields>NAME</searchFilterFields>
+        <searchFilterFields>PriceMatrixId__c</searchFilterFields>
+        <searchFilterFields>AdjustmentAmount__c</searchFilterFields>
+        <searchFilterFields>AdjustmentType__c</searchFilterFields>
+    </searchLayouts>
+    <sharingModel>ControlledByParent</sharingModel>
+</CustomObject>

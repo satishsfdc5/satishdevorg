@@ -1,0 +1,76 @@
+<!-- 
+	/**
+	 *	Apttus Approvals Management
+	 *	QueueSearch
+	 *	 
+	 *	@2011 Apttus Inc. All rights reserved.
+	 */
+-->
+
+<apex:page standardController="Apttus_Approval__Term_Exception_Approval__c"
+	extensions="Apttus_Approval.TermExApprovalController">
+
+	<apex:sectionHeader title="{!$Label.apttus_approval__TermExApprovalQueueSearch}" />
+	<apex:form id="editPage">
+		<apex:PanelGrid columns="3" cellpadding="2">
+			<apex:outputLabel value="{!$Label.apttus_approval__Search}" for="idSearchText"
+				style="font-weight: bold;">
+			</apex:outputLabel>
+			<apex:inputText id="idSearchText" value="{!searchText}" size="25"
+				style="height:15px;font-size:13px;">
+			</apex:inputText>
+			<apex:commandButton action="{!doSearch}" value="{!$Label.apttus_approval__Search}"
+				rerender="idSearchResult" status="idSearchStatus">
+			</apex:commandButton>
+		</apex:PanelGrid>
+		<apex:pageBlock title="{!$Label.apttus_approval__Queues}" id="idSearchResult">
+			<apex:pageBlockButtons >
+				<apex:commandButton action="{!doCancel}" value="{!$Label.apttus_approval__Cancel}"
+					immediate="true" />
+			</apex:pageBlockButtons>
+			<apex:pageMessages />
+
+			<apex:outputPanel id="idResultStatsPanel" styleClass="bNext"
+				layout="block" style="text-align: right;" rendered="{!hasQueues}">
+				<font size="1px">{!$Label.PageNbr}:&nbsp;{!currentPageNumber}&nbsp;{!$Label.OutOf}&nbsp;{!totalPages}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				<apex:outputPanel id="idNavigationPanel" styleClass="next"
+					layout="block" rendered="{!OR(hasNextPage,hasPreviousPage)}">
+					<apex:outputPanel rendered="{!NOT(hasPreviousPage)}"
+						styleClass="greyedLink">&lt;{!$Label.PreviousPage}</apex:outputPanel>
+					<apex:commandLink rendered="{!hasPreviousPage}"
+						action="{!previousPage}" reRender="idSearchResult">&lt;{!$Label.PreviousPage}</apex:commandLink>
+					<span> | </span>
+					<apex:outputPanel rendered="{!NOT(hasNextPage)}"
+						styleClass="greyedLink">{!$Label.NextPage}&gt;</apex:outputPanel>
+					<apex:commandLink rendered="{!hasNextPage}" action="{!nextPage}"
+						reRender="idSearchResult">{!$Label.NextPage}&gt;</apex:commandLink>
+				</apex:outputPanel> </font>
+			</apex:outputPanel>
+
+			<p />
+			
+			<apex:outputPanel >
+				<apex:actionstatus id="idSearchStatus"
+					startText="{!$Label.apttus_approval__SearchStatusMessage}">
+					<apex:facet name="stop">
+						<apex:outputPanel >
+							<apex:pageBlockTable value="{!queueList}" var="teaq">
+								<apex:column headerValue="Name">
+									<apex:commandLink id="idChooseQueueLink"
+										action="{!doChooseQueue}" value="{!teaq.queueName}">
+										<apex:param name="teaQueueId" value="{!teaq.queueId}"
+											assignTo="{!termExApproval.Assignee_Id__c}" />
+										<apex:param name="teaQueueName" value="{!teaq.queueName}"
+											assignTo="{!termExApproval.Assignee_Value__c}" />
+									</apex:commandLink>
+								</apex:column>
+								<apex:column headerValue="Email" value="{!teaq.queueEmail}" />
+							</apex:pageBlockTable>
+						</apex:outputPanel>
+					</apex:facet>
+				</apex:actionstatus>
+			</apex:outputPanel>
+			
+		</apex:pageBlock>
+	</apex:form>
+</apex:page>

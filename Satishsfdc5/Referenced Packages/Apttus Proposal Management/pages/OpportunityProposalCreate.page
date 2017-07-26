@@ -1,0 +1,43 @@
+<!-- 
+    Apttus Proposal Management
+    OpportunityProposalCreate
+     
+    @2010-2011 Apttus Inc. All rights reserved.
+	
+	parameters
+    ==========
+    Name			| Required | Description
+    ================|==========|======================================================================================
+    id 				| Yes      | The record id of the opportunity
+                    |          |
+    recordTypeId    | No       | The id of the quote/proposal record type. If this parameter is not provided, the record type 
+                    |          | selection page may be displayed if there are more than one record type to choose from.
+                    |          |
+    pageMode        | No       | The display mode for the quote/proposal record after it is created. 
+                    |          | Valid values are : edit, detail. The default value is edit. 
+    ===================================================================================================================
+    
+ -->
+<apex:page standardController="Opportunity" 
+		   extensions="Apttus_Proposal.OpportunityProposalCreateController" 
+		   action="{!onLoad}" >
+	
+	<apex:form >
+	
+		<!--  required fields -->
+		<apex:outputText value="{!Opportunity.Name}" rendered="false"/>
+		<apex:outputText value="{!Opportunity.AccountId}" rendered="false"/>
+		<apex:outputText value="{!Opportunity.Description}" rendered="false"/>
+		<apex:outputText value="{!Opportunity.OwnerId}" rendered="false"/>
+		<apex:outputText value="{!Opportunity.Amount}" rendered="false"/>
+		<apex:outputText value="{!Opportunity.CloseDate}" rendered="false"/>
+		
+		<apex:pageBlock mode="edit" rendered="{!hasErrors}" >
+			<apex:pageMessages />
+			<apex:pageBlockButtons location="bottom" >
+				<apex:commandButton action="{!doCancel}" value="{!$Label.apttus_proposal__Cancel}" immediate="true"/>
+			</apex:pageBlockButtons>
+		</apex:pageBlock>
+	</apex:form>
+	
+</apex:page>

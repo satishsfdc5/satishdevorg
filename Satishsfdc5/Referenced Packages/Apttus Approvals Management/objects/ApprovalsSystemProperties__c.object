@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customSettingsType>List</customSettingsType>
+    <description>Approvals System properties</description>
+    <enableEnhancedLookup>false</enableEnhancedLookup>
+    <enableFeeds>false</enableFeeds>
+    <fields>
+        <fullName>ApprovalTaskPrefix__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The prefix for the approval history subject.</description>
+        <externalId>false</externalId>
+        <label>Approval Task Prefix</label>
+        <length>30</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>BackupAdminProfile__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The backup admin profile name</description>
+        <externalId>false</externalId>
+        <label>Backup Admin Profile</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>BackupAdminUser__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The backup admin user name</description>
+        <externalId>false</externalId>
+        <label>Backup Admin User</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>BackupFilterPage__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The custom page to filter and select a backup user</description>
+        <externalId>false</externalId>
+        <label>Backup Filter Page</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>EmailApprovalServiceAddress__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The email service address that can receive messages for processing.</description>
+        <externalId>false</externalId>
+        <label>Email Approval Service Address</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>EnableEmailApprovalResponse__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <description>Enabling email approval response lets users reply to email approval requests by typing APPROVE or REJECT in the first line and adding comments in the second line.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Enabling email approval response lets users reply to email approval requests by typing APPROVE or REJECT in the first line and adding comments in the second line.</inlineHelpText>
+        <label>Enable Email Approval Response</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>InstanceUrl__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The Salesforce instance url for redirecting to custom pages</description>
+        <externalId>false</externalId>
+        <label>Instance Url</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Url</type>
+    </fields>
+    <fields>
+        <fullName>ReassignFilterPage__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The custom page to filter and select a reassign user</description>
+        <externalId>false</externalId>
+        <label>Reassign Filter Page</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <label>Approvals System Properties</label>
+    <visibility>Public</visibility>
+</CustomObject>

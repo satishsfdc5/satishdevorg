@@ -1,0 +1,100 @@
+<!-- 
+    Apttus Approvals Management
+    AgreementTermExAdd
+     
+    @2010-2011 Apttus Inc. All rights reserved.
+
+ -->
+<apex:page controller="Apttus_Approval.AgreementTermExAddController"
+			showHeader="{!showHeader}" 
+			sidebar="{!showSidebar}"  
+			tabStyle="Apttus__APTS_Agreement__c" >
+
+    <apex:form >
+		<apex:pageBlock title="{!$Label.apttus_approval__FindTermExceptions}" >
+			<apex:outputPanel id="idFilterCriteria" >
+				<table>
+					<tr>
+			    		<td>{!$Label.FilterInstruction}</td>
+			    	</tr>
+			    	<tr>
+			    		<td>&nbsp;</td>
+			    	</tr>
+					<tr>
+						<td>
+							<b><apex:outputText value="{!$Label.apttus_approval__FilterBy}:" /></b>
+							&nbsp;
+							<apex:selectList value="{!filterBy}" size="1">
+								<apex:selectOptions value="{!filterOptions}"/>
+							</apex:selectList>
+							&nbsp;
+							<apex:selectList value="{!operator}" size="1">
+								<apex:selectOptions value="{!operatorOptions}"/>
+							</apex:selectList>
+							&nbsp;
+			    			<apex:inputText value="{!criteriaVal}"/>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<b><apex:outputText value="{!$Label.apttus_approval__SortBy}:" /></b>
+							&nbsp;
+							<apex:selectList value="{!sortBy}" size="1">
+								<apex:selectOptions value="{!sortOptions}"/>
+							</apex:selectList>
+							&nbsp;
+							<apex:selectList value="{!sortDir}" size="1">
+								<apex:selectOptions value="{!sortDirOptions}"/>
+							</apex:selectList>
+						</td>
+					</tr>
+					<tr>
+			    		<td>&nbsp;</td>
+					</tr>
+					<tr>
+						<td>
+							<apex:commandButton action="{!doClearCriteria}" value="{!$Label.apttus_approval__ClearCriteria}"  
+									reRender="idFilterCriteria" />
+							<apex:commandButton action="{!doSearch}" value="{!$Label.apttus_approval__Find}" status="statusFind" 
+									reRender="statusFind, idTEList" />
+							&nbsp;&nbsp;
+							<apex:outputPanel >
+								<b>
+									<apex:actionstatus id="statusFind" startText="{!$Label.apttus_approval__SearchStatusMessage}">
+										<apex:facet name="stop">
+											<apex:outputPanel >{!qryMessage}</apex:outputPanel>
+										</apex:facet>
+									</apex:actionstatus>
+								</b>
+							</apex:outputPanel>
+						</td>
+					</tr>
+			    </table>
+			</apex:outputPanel>
+	    </apex:pageBlock>
+	    
+	    <apex:pageBlock id="idTEList" title="{!$Label.apttus_approval__AddTermExceptions}" >
+			<apex:pageMessages />
+			
+			<apex:pageBlockButtons >
+			        <apex:commandButton action="{!doSelect}" value="{!$Label.apttus_approval__Select}" disabled="{!termExList.size == 0}" />
+			        <apex:commandButton action="{!doCancel}" value="{!$Label.apttus_approval__Cancel}"  />
+			</apex:pageBlockButtons>
+			
+			<apex:pageBlockTable value="{!termExList}" var="termExWrapper" rendered="{!termExList.size > 0}">
+			    <apex:column width="5%" >
+			        <apex:facet name="header"><img src="/img/checkbox_checked.gif"/></apex:facet>
+			        <apex:inputCheckbox selected="{!termExWrapper.selected}" value="{!termExWrapper.selected}"/>
+			    </apex:column>
+			    <apex:column value="{!termExWrapper.termEx.Name}"/>
+			    <apex:column value="{!termExWrapper.termEx.Apttus__Exception__c}"/>
+			    <apex:column value="{!termExWrapper.termEx.Apttus__Description__c}"/>
+			    <apex:column value="{!termExWrapper.termEx.Apttus__Agreement_Types__c}"/>
+			    <apex:column value="{!termExWrapper.termEx.Apttus__Active__c}"/>
+			</apex:pageBlockTable>
+			
+	    </apex:pageBlock>
+	
+	</apex:form>
+	
+</apex:page>

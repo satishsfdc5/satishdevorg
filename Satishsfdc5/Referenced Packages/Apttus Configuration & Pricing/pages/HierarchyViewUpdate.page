@@ -1,0 +1,62 @@
+<!-- 
+    Apttus Config & Pricing
+    HierarchyViewUpdate
+     
+    @2010-2011 Apttus Inc. All rights reserved.
+
+ -->
+<apex:page standardController="Apttus_Config2__ProductHierarchyView__c" 
+		   extensions="Apttus_Config2.HierarchyViewUpdateController" 
+           showHeader="true"
+           sidebar="true"
+           cache="false"  
+           tabStyle="HierarchyViewUpdate__tab">	
+    
+    <apex:sectionHeader title="{!$Label.apttus_config2__HierarchyViewUpdate}" />
+						
+    <apex:form id="idProductHierarchyViewSO">
+		
+		<apex:pageBlock id="idProductHierarchyViewBlock" mode="edit">
+			<apex:pageMessages />
+			
+			<p/>
+			<apex:outputText value="{!$Label.apttus_config2__SelectHierarchyForUpdate}" /> 
+			<p/>
+			
+			<apex:pageBlockSection id="idProductHierarchyViewSection"   
+		    					   columns="2" 
+		    					   collapsible="false" >
+				<apex:pageBlockSectionItem >
+					<apex:outputLabel value="{!$ObjectType.Apttus_Config2__ProductHierarchyView__c.Fields.Apttus_Config2__HierarchyId__c.Label}" 
+									  for="idHierarchy" />
+					<apex:panelGrid columns="2">
+  						<apex:selectList id="idHierarchy" 
+  										 value="{!Apttus_Config2__ProductHierarchyView__c.Apttus_Config2__HierarchyId__c}" 
+  										 multiselect="false" 
+  										 required="false" 
+  										 size="1" >
+							<apex:selectOptions value="{!classificationNameItems}"></apex:selectOptions>
+							<apex:actionSupport event="onchange" reRender="idProductHierarchyViewBlock" />
+						</apex:selectList>
+						<apex:commandButton value="{!$Label.apttus_config2__UpdateView}" 
+		        							action="{!doUpdateView}" 
+		        							disabled="{!ISBLANK(Apttus_Config2__ProductHierarchyView__c.Apttus_Config2__HierarchyId__c)}" />
+	                        		
+					</apex:panelGrid>
+				</apex:pageBlockSectionItem>
+			</apex:pageBlockSection> 	
+			
+			<apex:outputPanel >
+				<apex:outputText style="font-weight: bold" value="{!statusText}" />
+			</apex:outputPanel>    	
+					 
+		</apex:pageBlock>
+		
+		<!--  batch job monitor -->
+	    <c:BatchJobMonitor id="idBatchJobMonitor" 
+	    				   pageController="{!this}" 
+	    				   jobClassName="HierarchyViewUpdateJob" />
+		
+	</apex:form>
+	
+</apex:page>

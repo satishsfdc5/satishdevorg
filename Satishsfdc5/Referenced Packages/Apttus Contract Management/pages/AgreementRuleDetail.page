@@ -1,0 +1,10 @@
+<!-- 
+    Apttus Contract Management
+    AgreementRuleDetail
+     
+    @2012-2013 Apttus Inc. All rights reserved.
+
+ -->
+<apex:page standardController="Apttus__Agreement_Rule__c" 
+	  	   extensions="Apttus.AgreementRuleDetailController" 
+           action="{!onLoad}" />

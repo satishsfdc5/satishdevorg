@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fields>
+        <fullName>Discount_Percent__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Discount Percent</label>
+        <precision>7</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackTrending>false</trackTrending>
+        <type>Percent</type>
+    </fields>
+    <webLinks>
+        <fullName>CreateProposalFromOpp</fullName>
+        <availability>online</availability>
+        <displayType>link</displayType>
+        <height>600</height>
+        <linkType>sControl</linkType>
+        <masterLabel>Create Proposal</masterLabel>
+        <openType>sidebar</openType>
+        <protected>false</protected>
+        <scontrol>aptsProposalCreateFromOpp</scontrol>
+    </webLinks>
+    <webLinks>
+        <fullName>CreateQuoteProposalFromOpportunity</fullName>
+        <availability>online</availability>
+        <description>Create new quote/proposal from opportunity</description>
+        <displayType>button</displayType>
+        <height>600</height>
+        <linkType>page</linkType>
+        <masterLabel>Create Quote/Proposal</masterLabel>
+        <openType>sidebar</openType>
+        <page>OpportunityProposalCreate</page>
+        <protected>false</protected>
+    </webLinks>
+</CustomObject>

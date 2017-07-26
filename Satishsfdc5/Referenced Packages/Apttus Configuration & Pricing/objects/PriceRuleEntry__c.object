@@ -1,0 +1,416 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Follow</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <deprecated>false</deprecated>
+    <description>Represents a single entry in a price rule</description>
+    <enableActivities>true</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>false</enableHistory>
+    <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <fields>
+        <fullName>AdjustmentAmount__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The price adjustment amount.</description>
+        <externalId>false</externalId>
+        <label>Adjustment Amount</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>5</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>AdjustmentType__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The price adjustment type</description>
+        <externalId>false</externalId>
+        <label>Adjustment Type</label>
+        <picklist>
+            <picklistValues>
+                <fullName>% Discount</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Discount Amount</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>% Markup</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Markup Amount</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Price Override</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Price Factor</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>BandSize__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The band size for a weighted range</description>
+        <externalId>false</externalId>
+        <label>Band Size</label>
+        <precision>5</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Condition__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The condition specification</description>
+        <externalId>false</externalId>
+        <label>Condition</label>
+        <length>4000</length>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>5</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Dimension1Value__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The value for the first dimension. Only applicable to Matrix based rules.</description>
+        <externalId>false</externalId>
+        <label>Dimension 1 Value</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Dimension2Value__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The value for the second dimension. Only applicable to Matrix based rules.</description>
+        <externalId>false</externalId>
+        <label>Dimension 2 Value</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Dimension3Value__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The value for the third dimension</description>
+        <externalId>false</externalId>
+        <label>Dimension 3 Value</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Dimension4Value__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The value for the fourth dimension. Only applicable to Matrix based rules.</description>
+        <externalId>false</externalId>
+        <label>Dimension 4 Value</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Dimension5Value__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The value for the fifth dimension. Only applicable to Matrix based rules.</description>
+        <externalId>false</externalId>
+        <label>Dimension 5 Value</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Dimension6Value__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The value for the sixth dimension. Only applicable to Matrix based rules.</description>
+        <externalId>false</externalId>
+        <label>Dimension 6 Value</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>EndFactor__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The end factor for a weighted range.</description>
+        <externalId>false</externalId>
+        <label>End Factor</label>
+        <precision>7</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>InclusionMethod__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The inclusion rule method. Only applicable to Inclusion based rules.</description>
+        <externalId>false</externalId>
+        <label>Inclusion Method</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Any Product</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>All Products</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>MaxProducts__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The maximum number of products that may be selected for the rule to apply. Only applicable to Volume based rules.</description>
+        <externalId>false</externalId>
+        <label>Max Products</label>
+        <precision>5</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>MaxQuantity__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The maximum quantity of products that may be selected for the rule to apply. Only applicable to Volume based rules.</description>
+        <externalId>false</externalId>
+        <label>Max Quantity</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>5</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>MinProducts__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The minimum number of products that must be selected for the rule to apply. Only applicable to Volume based rules.</description>
+        <externalId>false</externalId>
+        <label>Min Products</label>
+        <precision>5</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>MinQuantity__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The minimum quantity of products that must be selected for the rule to apply. Only applicable to Volume based rules.</description>
+        <externalId>false</externalId>
+        <label>Min Quantity</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>5</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>PriceOverride__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The price override</description>
+        <externalId>false</externalId>
+        <label>Price Override</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>5</scale>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>PriceRuleId__c</fullName>
+        <deprecated>false</deprecated>
+        <description>ID of the associated rule</description>
+        <externalId>false</externalId>
+        <label>Price Rule</label>
+        <referenceTo>PriceRule__c</referenceTo>
+        <relationshipLabel>Entries</relationshipLabel>
+        <relationshipName>RuleEntries</relationshipName>
+        <relationshipOrder>0</relationshipOrder>
+        <reparentableMasterDetail>false</reparentableMasterDetail>
+        <trackTrending>false</trackTrending>
+        <type>MasterDetail</type>
+        <writeRequiresMasterRead>false</writeRequiresMasterRead>
+    </fields>
+    <fields>
+        <fullName>ProductCategory__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The product category associated with the rule. Only applicable to Volume based rules.</description>
+        <externalId>false</externalId>
+        <label>Product Category</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ProductFamily__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The product family associated with the rule. Only applicable to Volume based rules.</description>
+        <externalId>false</externalId>
+        <label>Product Family</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ProductGroupId__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <deprecated>false</deprecated>
+        <description>ID of the product group associated with the rule. Only applicable to Volume or Inclusion based rules.</description>
+        <externalId>false</externalId>
+        <label>Product Group</label>
+        <referenceTo>ProductGroup__c</referenceTo>
+        <relationshipLabel>Price Rule Entries</relationshipLabel>
+        <relationshipName>PriceRuleEntries</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Sequence__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The rule entry sequence</description>
+        <externalId>false</externalId>
+        <label>Sequence</label>
+        <precision>5</precision>
+        <required>true</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>StartFactor__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The start factor for a weighted range.</description>
+        <externalId>false</externalId>
+        <label>Start Factor</label>
+        <precision>7</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <label>Price Rule Entry</label>
+    <nameField>
+        <displayFormat>RE-{0000000000}</displayFormat>
+        <label>Rule Entry Id</label>
+        <type>AutoNumber</type>
+    </nameField>
+    <pluralLabel>Price Rule Entries</pluralLabel>
+    <searchLayouts>
+        <excludedStandardButtons>New</excludedStandardButtons>
+        <excludedStandardButtons>Accept</excludedStandardButtons>
+        <lookupDialogsAdditionalFields>Sequence__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>PriceRuleId__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>Dimension1Value__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>Dimension2Value__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>Dimension3Value__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>Dimension4Value__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>Condition__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>AdjustmentAmount__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>AdjustmentType__c</lookupDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>Sequence__c</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>PriceRuleId__c</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>Dimension1Value__c</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>Dimension2Value__c</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>Dimension3Value__c</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>Dimension4Value__c</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>Condition__c</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>AdjustmentAmount__c</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>AdjustmentType__c</lookupPhoneDialogsAdditionalFields>
+        <searchFilterFields>PriceRuleId__c</searchFilterFields>
+        <searchFilterFields>AdjustmentAmount__c</searchFilterFields>
+        <searchFilterFields>AdjustmentType__c</searchFilterFields>
+    </searchLayouts>
+    <sharingModel>ControlledByParent</sharingModel>
+</CustomObject>

@@ -1,0 +1,155 @@
+<!-- 
+    Apttus Config & Pricing
+    ProductAttributeGroup
+     
+    @2010-2011 Apttus Inc. All rights reserved.
+
+ -->
+<apex:page standardController="Apttus_Config2__ProductAttributeGroup__c" 
+	  	   extensions="Apttus_Config2.ProductAttributeGroupController" 
+           showHeader="true" 
+           sidebar="true" 
+           tabStyle="Apttus_Config2__ProductAttributeGroup__c">	
+    
+    <apex:stylesheet value="{!$Resource.Apttus_Config2__ConfigStyles}" />
+    
+    <style type="text/css">
+    
+		textarea {
+			width: 40%;
+		}
+		
+	</style>
+	
+	<apex:sectionHeader title="{!$ObjectType.Apttus_Config2__ProductAttributeGroup__c.Label & ' ' & $Label.apttus_config2__Edit}" 
+						subtitle="{!$Label.apttus_config2__New & ' ' & $ObjectType.Apttus_Config2__ProductAttributeGroup__c.Label}" 
+						rendered="{!ISBLANK(Apttus_Config2__ProductAttributeGroup__c.Id)}" />
+						
+	<apex:sectionHeader title="{!$ObjectType.Apttus_Config2__ProductAttributeGroup__c.Label & ' ' & $Label.apttus_config2__Edit}" 
+						subtitle="{!Apttus_Config2__ProductAttributeGroup__c.Name}" 
+						rendered="{!NOT(ISBLANK(Apttus_Config2__ProductAttributeGroup__c.Id))}" />
+						
+	<apex:form id="idProductAttributeGroupSO">
+		
+		<!--  required fields -->
+		<apex:outputText value="{!Apttus_Config2__ProductAttributeGroup__c.Apttus_Config2__BusinessObject__c}" rendered="false" />
+		
+		<apex:pageBlock id="idProductAttributeGroupBlock" 
+						title="{!$ObjectType.Apttus_Config2__ProductAttributeGroup__c.Label & ' ' & $Label.apttus_config2__Edit}" 
+						mode="edit" >
+			<apex:pageMessages />
+			<apex:pageBlockButtons location="both">
+		        <apex:commandButton value="{!$Label.apttus_config2__Save}" 
+		        					action="{!doSave}" />	
+		        <apex:commandButton value="{!$Label.apttus_config2__SaveAndNew}" 
+		        					action="{!doSaveAndNew}" />					
+		        <apex:commandButton value="{!$Label.apttus_config2__Cancel}" 
+		        					action="{!doCancel}" 
+		        					immediate="true" />
+		    </apex:pageBlockButtons>
+		    
+			<apex:pageBlockSection id="idProductAttributeGroupSection" 
+		    					   title="{!$Label.apttus_config2__Information}" 
+		    					   columns="1" 
+		    					   collapsible="false" >
+				
+				<apex:pageBlockSectionItem >
+					<apex:outputLabel value="{!$ObjectType.Apttus_Config2__ProductAttributeGroup__c.Fields.Name.Label}" 
+									  for="idName" />
+					<apex:outputPanel styleClass="requiredInput" layout="block">
+   						<apex:outputPanel styleClass="requiredBlock" layout="block"/>
+  						<apex:inputField id="idName" 
+  										 value="{!Apttus_Config2__ProductAttributeGroup__c.Name}" 
+  										 required="true" />
+ 					</apex:outputPanel>
+				</apex:pageBlockSectionItem>
+				
+		    	<apex:pageBlockSectionItem >
+					<apex:outputLabel value="{!$ObjectType.Apttus_Config2__ProductAttributeGroup__c.Fields.Apttus_Config2__BusinessObject__c.Label}" 
+									  for="idBusinessObject" />
+					<apex:outputPanel styleClass="requiredInput" layout="block">
+   						<apex:outputPanel styleClass="requiredBlock" layout="block"/>
+   						<apex:actionRegion >
+	  						<apex:selectList id="idBusinessObject" 
+	  										 value="{!businessObject}" 
+	  										 multiselect="false" 
+	  										 required="true" 
+	  										 size="1" >
+								<apex:selectOptions value="{!businessObjectItems}"></apex:selectOptions>
+								<apex:actionSupport event="onchange" reRender="idProductAttributeGroupBlock" />
+							</apex:selectList>
+						</apex:actionRegion>
+ 					</apex:outputPanel>
+				</apex:pageBlockSectionItem>
+				
+				<apex:inputField value="{!Apttus_Config2__ProductAttributeGroup__c.Apttus_Config2__Description__c}" />
+								   
+		    </apex:pageBlockSection>
+	    
+		    <apex:pageBlockSection id="idProductAttributesSection" 
+		    					   title="{!$ObjectType.Apttus_Config2__ProductAttribute__c.Label & ' ' & $Label.apttus_config2__Edit}"  
+		    					   columns="2" 
+		    					   collapsible="false" >
+		    					   
+		        <apex:pageBlockTable value="{!productAttributes}" var="attrInfo" columns="6" rendered="true" >
+		        	
+		        	<apex:column headerValue="{!$ObjectType.Apttus_Config2__ProductAttribute__c.Fields.Apttus_Config2__Sequence__c.Label}" width="5%" >
+		        		<apex:outputText id="idSequence" value="{!attrInfo.attrSO.Apttus_Config2__Sequence__c}" />
+					</apex:column>
+					
+					<apex:column headerValue="{!$ObjectType.Apttus_Config2__ProductAttribute__c.Fields.Apttus_Config2__Field__c.Label}" width="45%" >
+		        		<apex:outputPanel styleClass="{!IF(attrInfo.FieldInError, 'errorRow', '')}" layout="block" >
+		        			<apex:selectList id="idField" size="1" value="{!attrInfo.attrSO.Apttus_Config2__Field__c}" >
+					      		<apex:selectOptions value="{!fieldItems}"></apex:selectOptions>
+					      	</apex:selectList>
+						</apex:outputPanel>
+					</apex:column>
+				
+				   	<apex:column width="5%" >
+				    	<apex:commandLink action="{!doAddRow}" 
+								  	  	  value="{!$Label.apttus_config2__Add}" 
+								  	  	  reRender="idProductAttributeGroupBlock" >
+							<apex:param name="rowNum" value="{!attrInfo.attrSO.Apttus_Config2__Sequence__c}" />		  	  	  
+						</apex:commandLink>
+				   	</apex:column>
+				   	<apex:column width="5%" >
+					   	<apex:commandLink id="idDeleteRow" 
+									      action="{!doDeleteRow}" 
+									  	  value="{!$Label.apttus_config2__Del}" 
+									  	  reRender="idProductAttributeGroupBlock" 
+									  	  rendered="{!attrInfo.attrSO.Apttus_Config2__Sequence__c > 1}" >
+							<apex:param name="rowNum" value="{!attrInfo.attrSO.Apttus_Config2__Sequence__c}" />		  
+						</apex:commandLink>
+					</apex:column>
+				   	<apex:column width="5%" >
+				   		<apex:commandLink action="{!doMoveUpRow}" 
+								  	  	  reRender="idProductAttributeGroupBlock" 
+								  	  	  rendered="{!attrInfo.attrSO.Apttus_Config2__Sequence__c > 1}" >
+							<apex:param name="rowNum" value="{!attrInfo.attrSO.Apttus_Config2__Sequence__c}" />
+							<apex:image url="{!$Resource.Apttus_Config2__Image_MoveUp}" 
+                        				title="{!$Label.apttus_config2__MoveUp}" 
+                        				alt="{!$Label.apttus_config2__MoveUp}" />
+						</apex:commandLink>
+						<apex:commandLink action="{!doMoveDownRow}" 
+								  	  	  reRender="idProductAttributeGroupBlock" 
+								  	  	  rendered="{!attrInfo.attrSO.Apttus_Config2__Sequence__c < lastRowSequence}" >
+							<apex:param name="rowNum" value="{!attrInfo.attrSO.Apttus_Config2__Sequence__c}" />
+							<apex:image url="{!$Resource.Apttus_Config2__Image_MoveDown}" 
+                        				title="{!$Label.apttus_config2__MoveDown}" 
+                        				alt="{!$Label.apttus_config2__MoveDown}" />
+						</apex:commandLink>
+				   	</apex:column>
+				   	
+				   	<apex:column width="35%" >
+				   		<apex:outputText value="{!attrInfo.ErrorMsg}" style="color:red;" />
+				   	</apex:column>
+				   
+		        </apex:pageBlockTable>
+		        
+		    </apex:pageBlockSection>
+		    
+		</apex:pageBlock>
+	
+	</apex:form>
+
+</apex:page>

@@ -1,0 +1,172 @@
+<!-- 
+    Apttus Config & Pricing
+    GuidePageDefault
+     
+    @2010-2011 Apttus Inc. All rights reserved.
+
+ -->
+<apex:page standardController="Apttus_Config2__ProductConfiguration__c" 
+	  	   extensions="Apttus_Config2.GuidePageController" 
+           showHeader="false" 
+           sidebar="false" 
+           action="{!doInit}"
+           tabStyle="Product2">	
+    
+
+	<apex:stylesheet value="{!$Resource.Apttus_Config2__ConfigStyles}" />
+	
+    <style>
+		textarea {
+			width: 40%;
+		}
+		
+	</style>
+						
+	<apex:form id="idConfigSO" >
+		
+		<!--  required fields -->
+		<apex:outputText value="{!Apttus_Config2__ProductConfiguration__c.Name}" rendered="false" />
+		<apex:outputText value="{!Apttus_Config2__ProductConfiguration__c.PriceListId__r.Name}" rendered="false" />
+		<apex:outputText value="{!Apttus_Config2__ProductConfiguration__c.Apttus_Config2__EffectiveDate__c}" rendered="false" />
+		<apex:outputText value="{!Apttus_Config2__ProductConfiguration__c.Apttus_Config2__Description__c}" rendered="false" />
+		<apex:outputText value="{!Apttus_Config2__ProductConfiguration__c.Apttus_Config2__BusinessObjectType__c}" rendered="false" />
+		<apex:outputText value="{!Apttus_Config2__ProductConfiguration__c.Apttus_Config2__BusinessObjectId__c}" rendered="false" />
+		
+
+		<table style="width: 100%; background-color: #F7F7F7;" width="100%">
+			<tr>
+				<td>
+				<table width="100%">
+					<tr style="background-color: #FFFFFF;">
+						<td><apex:outputPanel style="text-align: left;" layout="block">
+							<apex:panelGrid columns="1">
+								<apex:panelGroup >
+									<apex:outputText escape="false" 
+													 value="&nbsp;{!fromBizType}:"
+													 style="text-transform:uppercase;font-weight:bold;color:#5487B9" />
+									&nbsp;
+									<apex:outputField value="{!ConfigSO[BOLookupFieldName]}" 
+													  rendered="{!ShowBOLookupField}" />
+													  
+									<apex:outputText escape="false"
+													 value="&nbsp;{!fromBizTitle}&nbsp;&nbsp;"
+													 style="font-weight:bold;color:#5487B9;" 
+													 rendered="{!ShowBOTitle}" />
+									
+								</apex:panelGroup>
+							</apex:panelGrid>
+						</apex:outputPanel></td>
+						<td> 
+						<apex:outputPanel style="text-align: right;" layout="block">
+							<apex:image url="{!$Resource.Apttus_Config2__Apttus_Logo}" title="" alt="" />
+						</apex:outputPanel></td>
+					</tr>
+				</table>
+				</td>
+			</tr>
+			<tr>
+				<td>
+				<table width="100%">
+					<tr>
+						<td>
+							<apex:outputPanel id="idTopNavStage"
+								style="text-align: left;" layout="block">
+
+									<apex:panelGrid columns="1" style="line-height:80%">
+
+										<apex:panelGroup >
+
+											<apex:outputText escape="false" value="{!$Label.apttus_config2__STEP}"
+												style="font-weight:bold;font-size:90%" />
+
+							&nbsp;&nbsp;
+							<apex:outputText escape="false"
+												value="&nbsp;&nbsp;{!$Label.StageSelect}&nbsp;&nbsp;"
+												styleClass="aptsCurrentConfigStage" />
+
+							&nbsp;&nbsp;
+							<apex:image url="{!$Resource.Apttus_Config2__Chevron}" title="" alt="" />
+							&nbsp;&nbsp;
+							
+
+							<apex:outputText escape="false"
+												value="&nbsp;&nbsp;{!$Label.StageConfigure}&nbsp;&nbsp;"
+												styleClass="aptsConfigStage" />
+
+							&nbsp;&nbsp;
+							<apex:image url="{!$Resource.Apttus_Config2__Chevron}" title="" alt="" />
+							&nbsp;&nbsp;
+
+							<apex:outputText escape="false"
+												value="&nbsp;&nbsp;{!$Label.StagePrice}&nbsp;&nbsp;"
+												styleClass="aptsConfigStage" />
+
+
+							&nbsp;&nbsp;
+							<apex:image url="{!$Resource.Apttus_Config2__Chevron}" title="" alt="" />
+							&nbsp;&nbsp;
+
+							<apex:outputText escape="false"
+												value="&nbsp;&nbsp;{!$Label.StageFinalize}&nbsp;&nbsp;"
+												styleClass="aptsConfigStage"  />
+
+											<b><apex:actionStatus startText="{!$Label.apttus_config2__StatusMessageUpdatingPage}..."
+												id="idStatusSelect" /></b>
+										</apex:panelGroup>
+
+									</apex:panelGrid>
+
+								</apex:outputPanel></td>
+								<td><apex:outputPanel style="text-align: right;"
+									layout="block" id="idTopNavActions">
+									<apex:commandButton value="{!$Label.apttus_config2__Abandon}"
+										action="{!doAbandon}" immediate="true"
+										style="background-color:#657383;background-image:none;color:white;"/>
+									&nbsp;
+									&nbsp;
+								<apex:image url="{!$Resource.Apttus_Config2__Cart}" title="{!$Label.apttus_config2__Cart}"
+													alt="{!$Label.apttus_config2__Cart}" />
+												<apex:commandLink value="{!$Label.apttus_config2__MySelections}"
+													action="{!doViewCart}" style="color:blue;font-weight:bold" />
+									&nbsp;
+								<apex:outputText value="({!cartSummaryInfo})" />
+									&nbsp;
+							</apex:outputPanel>
+				
+						</td>
+					</tr>
+				</table>
+				</td>
+			</tr>
+		</table>
+
+	
+	<apex:sectionHeader title="{!Apttus_Config2__ProductConfiguration__c.Name}" 
+						subtitle="Guide Page for Product Selection" />
+
+		<apex:pageBlock id="idGuidePageBlock"  >
+			<apex:pageMessages />
+			<apex:pageBlockButtons location="top">
+				<apex:commandButton value="{!$Label.apttus_config2__AddMoreProducts}" 
+		        					action="{!doProductSelection}" />
+		    </apex:pageBlockButtons>
+			    
+		    <apex:outputPanel >
+				<apex:pageBlockSection id="idGuidePageSection" 
+			    					   title="{!$Label.apttus_config2__Detail}"  
+			    					   columns="1" 
+			    					   collapsible="false" >
+			    	
+			    	<apex:outputPanel styleClass="boxed" layout="block">
+						<apex:outputText style="font-weight: bold" value="Guide Page Instructions: " />
+	                	<apex:outputText value="{!$Label.apttus_config2__SelectResourceFileInstruction}" /> <p/>			  
+	            	</apex:outputPanel>
+			    	
+				</apex:pageBlockSection>
+		    </apex:outputPanel>	
+		    
+		</apex:pageBlock>
+	    			   
+	</apex:form>
+	
+</apex:page>

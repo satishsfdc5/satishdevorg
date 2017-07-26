@@ -1,0 +1,23 @@
+<!-- 
+    Apttus Approvals Management
+    ApprovalsJSLibInclude
+     
+    @2010-2011 Apttus Inc. All rights reserved.
+
+ -->
+<apex:page >
+	
+	<apex:includescript value="{!$Resource.Apttus_Approval__ApprovalsJSLib}" />
+	
+	<script>
+
+		// error labels
+		var ap_cERROR_SUBMIT_APPROVALS = "{!$Label.ErrorSubmittingApprovals}"; // "ERROR: submitting approvals:\n";
+		var ap_cERROR_PREVIEW_APPROVALS = "{!$Label.ErrorPreviewingApprovals}"; // "ERROR: previewing approvals:\n";
+		var ap_cERROR_CANCEL_APPROVALS = "{!$Label.ErrorCancellingApprovals}"; // "ERROR: cancelling approvals:\n";
+		var ap_cERROR_ATTACHMENT_COPY = "{!$Label.ErrorCopyingAttachments}"; // "ERROR: copying attachments:\n";
+		var ap_cERROR_UNKNOWN = "{!$Label.ErrorUnknown}"; // "ERROR: Unknown error:\n";
+	    
+	</script>
+	
+</apex:page>

@@ -1,0 +1,2029 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <comment>Agreement clone page</comment>
+        <content>AgreementClone</content>
+        <skipRecordTypeSelect>false</skipRecordTypeSelect>
+        <type>Visualforce</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Follow</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <content>AgreementNew</content>
+        <skipRecordTypeSelect>false</skipRecordTypeSelect>
+        <type>Visualforce</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <deprecated>false</deprecated>
+    <description>Represents an agreement in the system</description>
+    <enableActivities>true</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>true</enableHistory>
+    <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <fieldSets>
+        <fullName>BrowseAgreementsResultFieldSet</fullName>
+        <availableFields>
+            <field>Account__c</field>
+            <isFieldManaged>true</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>Agreement_Category__c</field>
+            <isFieldManaged>true</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>Contract_End_Date__c</field>
+            <isFieldManaged>true</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>Contract_Start_Date__c</field>
+            <isFieldManaged>true</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>Status__c</field>
+            <isFieldManaged>true</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <description>Apttus__BrowseAgreements</description>
+        <displayedFields>
+            <field>Name</field>
+            <isFieldManaged>true</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Description__c</field>
+            <isFieldManaged>true</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>FF_Agreement_Number__c</field>
+            <isFieldManaged>true</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Account__r.Name</field>
+            <isFieldManaged>true</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Owner.Name</field>
+            <isFieldManaged>true</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <label>Browse Agreements Result Field Set</label>
+    </fieldSets>
+    <fieldSets>
+        <fullName>OfflineAgreementFieldSet</fullName>
+        <availableFields>
+            <field>Agreement_Category__c</field>
+            <isFieldManaged>true</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>Auto_Renew_Consent__c</field>
+            <isFieldManaged>true</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>Auto_Renew_Term_Months__c</field>
+            <isFieldManaged>true</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>Auto_Renewal_Terms__c</field>
+            <isFieldManaged>true</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>Auto_Renewal__c</field>
+            <isFieldManaged>true</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>Company_Signed_By__c</field>
+            <isFieldManaged>true</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>Company_Signed_Date__c</field>
+            <isFieldManaged>true</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>Company_Signed_Title__c</field>
+            <isFieldManaged>true</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>Description__c</field>
+            <isFieldManaged>true</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>Initiation_Type__c</field>
+            <isFieldManaged>true</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>Perpetual__c</field>
+            <isFieldManaged>true</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>Renewal_Notice_Date__c</field>
+            <isFieldManaged>true</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>Renewal_Notice_Days__c</field>
+            <isFieldManaged>true</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>Termination_Notice_Days__c</field>
+            <isFieldManaged>true</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>Termination_Notice_Issue_Date__c</field>
+            <isFieldManaged>true</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>Total_Contract_Value__c</field>
+            <isFieldManaged>true</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <description>Apttus__CreateOfflineAgreement</description>
+        <displayedFields>
+            <field>Name</field>
+            <isFieldManaged>true</isFieldManaged>
+            <isRequired>true</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Account__c</field>
+            <isFieldManaged>true</isFieldManaged>
+            <isRequired>true</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Primary_Contact__c</field>
+            <isFieldManaged>true</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Related_Opportunity__c</field>
+            <isFieldManaged>true</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Contract_Start_Date__c</field>
+            <isFieldManaged>true</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Term_Months__c</field>
+            <isFieldManaged>true</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Contract_End_Date__c</field>
+            <isFieldManaged>true</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <label>Offline Agreement Field Set</label>
+    </fieldSets>
+    <fields>
+        <fullName>Account_Search_Field__c</fullName>
+        <deprecated>false</deprecated>
+        <description>This field is used in the side bar search</description>
+        <externalId>true</externalId>
+        <label>Account Search Field</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Account__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <deprecated>false</deprecated>
+        <description>The link to the account record to identify the external party to this agreement</description>
+        <externalId>false</externalId>
+        <label>Account</label>
+        <referenceTo>Account</referenceTo>
+        <relationshipName>R00N50000001Xl0UEAS</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Activated_By__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <deprecated>false</deprecated>
+        <description>The user who activated the agreement in the system</description>
+        <externalId>false</externalId>
+        <label>Activated By</label>
+        <referenceTo>User</referenceTo>
+        <relationshipName>APTS_Agreement</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Activated_Date__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The date the agreement was activated in the system</description>
+        <externalId>false</externalId>
+        <label>Activated Date</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Agreement_Category__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Used to categorize agreement types.  When setting up a new agreement type make sure to seect approrpiate values for that agreement type and to set the right default</description>
+        <externalId>false</externalId>
+        <label>Agreement Category</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Sales</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Procurement</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Corporate</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Agreement_Number__c</fullName>
+        <deprecated>false</deprecated>
+        <description>FOR INTERNAL USE ONLY. DO NOT USE IN SCREENS, REPORTS, ETC.</description>
+        <externalId>false</externalId>
+        <label>Agreement Number_Num (INTERNAL)</label>
+        <length>8</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>AllowableOutputFormats__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The list of output formats allowed for the agreement.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The list of output formats allowed for the agreement.</inlineHelpText>
+        <label>Allowable Output Formats</label>
+        <picklist>
+            <picklistValues>
+                <fullName>DOC</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>PDF</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>RTF</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>MultiselectPicklist</type>
+        <visibleLines>4</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Amendment_Effective_Date__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The date this amendment is effective</description>
+        <externalId>false</externalId>
+        <label>Amendment Effective Date</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Auto_Renew_Consent__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <description>Indicates whether consent is required to extend / renew this agreement</description>
+        <externalId>false</externalId>
+        <label>Renewal Consent</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Auto_Renew_Term_Months__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The number of months to extend the agreement</description>
+        <externalId>false</externalId>
+        <label>Renewal Term (Months)</label>
+        <precision>4</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Auto_Renewal_Terms__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Specifies any terms for renewal</description>
+        <externalId>false</externalId>
+        <label>Renewal Terms</label>
+        <length>32000</length>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Auto_Renewal__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <description>Indicates whether the agreement has an auto renewal provision</description>
+        <externalId>false</externalId>
+        <label>Auto Renew</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Business_Hours__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <deprecated>false</deprecated>
+        <description>Corporate Business Hours associated with the agreement</description>
+        <externalId>false</externalId>
+        <label>Business Hours</label>
+        <referenceTo>BusinessHours</referenceTo>
+        <relationshipName>Agreements</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Company_Signed_By__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <deprecated>false</deprecated>
+        <description>Link to contact record to identify internal signatory</description>
+        <externalId>false</externalId>
+        <label>Company Signed By</label>
+        <referenceTo>Contact</referenceTo>
+        <relationshipName>R00N50000001Xl0CEAS</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Company_Signed_Date__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Date when internal signatory signed</description>
+        <externalId>false</externalId>
+        <label>Company Signed Date</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Company_Signed_Title__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Title of person signing on behalf of Company</description>
+        <externalId>false</externalId>
+        <label>Company Signed Title</label>
+        <length>80</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Contract_Duration_Days__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The duration from Start Date to End Date in days</description>
+        <externalId>false</externalId>
+        <formula>IF(AND(ISPICKVAL(Status_Category__c,&quot;In Effect&quot;), (Contract_End_Date__c &gt;= Contract_Start_Date__c)),  (Contract_End_Date__c - Contract_Start_Date__c) + 1 , 0)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Contract Duration (Days)</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Contract_End_Date__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The end date for this agreement</description>
+        <externalId>false</externalId>
+        <label>Agreement End Date</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Contract_Number__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The system assigned unique agreement number.  FOR INTERNAL USE ONLY.  DO NOT SHOW IN SCREENS, REPORTS, ETC.</description>
+        <displayFormat>{00000000}</displayFormat>
+        <externalId>false</externalId>
+        <label>Agreement Number_Auto (INTERNAL)</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>AutoNumber</type>
+    </fields>
+    <fields>
+        <fullName>Contract_Start_Date__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The effective date of the agreement</description>
+        <externalId>false</externalId>
+        <label>Agreement Start Date</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Contracted_Days__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Days from Contract Start Date to Current Date if the contract is In Effect and Start Date is set.</description>
+        <externalId>false</externalId>
+        <formula>IF(AND(NOT(ISNULL(Contract_Start_Date__c )), ISPICKVAL(Status_Category__c,&quot;In Effect&quot;)), (TODAY() - Contract_Start_Date__c ) + 1, 0)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Contracted Days</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Description__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Detailed description of this agreement</description>
+        <externalId>false</externalId>
+        <label>Description</label>
+        <length>32000</length>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>6</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Executed_Copy_Mailed_Out_Date__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Date the final, executed copy was mailed to the other party</description>
+        <externalId>false</externalId>
+        <label>Executed Copy Mailed Out Date</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>FF_Agreement_Number__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Identifies the agreement number, including the version number.  Use this field to display on screens, reports, dashboards, search filters and columns, etc.  The other agreement number fields are for internal use only.</description>
+        <externalId>false</externalId>
+        <formula>Agreement_Number__c  &amp; &quot;.&quot; &amp;  TEXT(CEILING(Version_Number__c))</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Agreement Number</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>FF_Amend__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Amend the agreement</description>
+        <externalId>false</externalId>
+        <formula>IF (OR(AND(ISPICKVAL(Status_Category__c,&quot;In Effect&quot;),NOT(ISPICKVAL(Status__c,&quot;Being Amended&quot;)), NOT(ISPICKVAL(Status__c,&quot;Being Renewed&quot;)))), HYPERLINK(&quot;/apex/Apttus__AgreementAmend?id=&quot; &amp;Id, IMAGE(&quot;/resource/Apttus__Button_Amend&quot;, &quot;Amend&quot;),&quot;_self&quot;),NULL)</formula>
+        <inlineHelpText>Amend the agreement</inlineHelpText>
+        <label>Amend</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>FF_Cancel_Request__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Cancel the agreement request</description>
+        <externalId>false</externalId>
+        <formula>IF (AND(OR(ISPICKVAL(Status_Category__c,&quot;Request&quot;), ISPICKVAL(Status_Category__c,&quot;In Authoring&quot;), ISPICKVAL(Status_Category__c,&quot;In Signatures&quot;), ISPICKVAL(Status_Category__c,&quot;In Filing&quot;)),NOT(ISPICKVAL(Status__c,&quot;Cancelled Request&quot;))), HYPERLINK(&quot;/apex/Apttus__AgreementCancel?id=&quot; &amp;Id, IMAGE(&quot;/resource/Apttus__Button_CancelRequest&quot;, &quot;Cancel Request&quot;), &quot;_self&quot;), NULL)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>Cancel the agreement request</inlineHelpText>
+        <label>Cancel Request</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>FF_Execute__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Activates the agreement</description>
+        <externalId>false</externalId>
+        <formula>IF (OR(ISPICKVAL(Status_Category__c,&quot;In Signatures&quot;), ISPICKVAL(Status_Category__c,&quot;In Filing&quot;), AND(ISPICKVAL(Status_Category__c,&quot;In Authoring&quot;),ISPICKVAL(Source__c,&quot;Other Party Paper&quot;))), HYPERLINK(&quot;/apex/Apttus__AgreementActivate?id=&quot; &amp;Id, IMAGE(&quot;/resource/Apttus__Button_Activate&quot;, &quot;Activate&quot;),&quot;_self&quot;),NULL)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>Activates the agreement</inlineHelpText>
+        <label>Activate</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>FF_Expire__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Expire the agreement</description>
+        <externalId>false</externalId>
+        <formula>IF (OR(AND(ISPICKVAL(Status_Category__c,&quot;In Effect&quot;),NOT(ISPICKVAL(Status__c,&quot;Being Amended&quot;)), NOT(ISPICKVAL(Status__c,&quot;Being Renewed&quot;)))), HYPERLINK(&quot;/apex/Apttus__AgreementExpire?id=&quot; &amp; Id, IMAGE(&quot;/resource/Apttus__Button_Expire&quot;, &quot;Expire&quot;),&quot;_self&quot;), NULL)</formula>
+        <inlineHelpText>Expire the agreement</inlineHelpText>
+        <label>Expire</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>FF_Generate_Protected_Agreement__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Generates a read-only password protected agreement</description>
+        <externalId>false</externalId>
+        <formula>IF (ISPICKVAL(Status_Category__c, &quot;Request&quot;), HYPERLINK(&quot;/servlet/servlet.Integration?lid=00b50000000lgo8&quot;&amp;&quot;&amp;eid=&quot;&amp;Id, &quot;Generate Agreement&quot;,&quot;_self&quot;), NULL)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Generate Protected (OBSOLETE)</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>FF_Generate_Supporting_Document__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <formula>IF (True, HYPERLINK(&quot;apex/Apttus__SelectTemplate?id=&quot; &amp;Id &amp; &quot;&amp;action=Generate_Supporting_Document&amp;templateType=Supporting_Document&quot;, IMAGE(&quot;/resource/Apttus__Button_GenerateSupportingDocument&quot;, &quot;Generate Supporting Document&quot;),&quot;_self&quot;), NULL)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Generate Supporting Document</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>FF_Generate_Unprotected_Agreement__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Generates an editable unprotected agreement</description>
+        <externalId>false</externalId>
+        <formula>IF (ISPICKVAL(Status_Category__c, &quot;Request&quot;), HYPERLINK(&quot;/servlet/servlet.Integration?lid=00b50000000lgoN&quot;&amp;&quot;&amp;eid=&quot;&amp;Id, &quot;Generate Agreement&quot;,&quot;_self&quot;), NULL)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Generate Unprotected (OBSOLETE)</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>FF_Regenerate_Agreement__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Conditionally show the &quot;Regenerate&quot; custom button</description>
+        <externalId>false</externalId>
+        <formula>IF (OR(ISPICKVAL(Status_Category__c,&quot;In Authoring&quot;), ISPICKVAL(Status_Category__c,&quot;In Signatures&quot;), ISPICKVAL(Status_Category__c,&quot;In Filing&quot;)), HYPERLINK(&quot;apex/Apttus__SelectTemplate?id=&quot; &amp;Id &amp; &quot;&amp;action=Regenerate_Agreement&amp;templateType=Agreement&quot;, IMAGE(&quot;/resource/Apttus__Button_Regenerate&quot;, &quot;Regenerate&quot;), &quot;_self&quot;), NULL)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>Regenerate the agreement</inlineHelpText>
+        <label>Regenerate</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>FF_Renew__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Renew the agreement</description>
+        <externalId>false</externalId>
+        <formula>IF (OR(AND((ISPICKVAL(Status_Category__c,&quot;In Effect&quot;)),NOT(ISPICKVAL(Status__c,&quot;Being Renewed&quot;)),NOT(ISPICKVAL(Status__c,&quot;Being Amended&quot;)))), HYPERLINK(&quot;/apex/Apttus__AgreementRenew?id=&quot; &amp; Id, IMAGE(&quot;/resource/Apttus__Button_Renew&quot;, &quot;Renew&quot;),&quot;_self&quot;), NULL)</formula>
+        <inlineHelpText>Renew the agreement</inlineHelpText>
+        <label>Renew</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>FF_Return_To_Requestor__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Return the agreement to the requestor</description>
+        <externalId>false</externalId>
+        <formula>IF ((ISPICKVAL(Status_Category__c,&quot;In Authoring&quot;)), HYPERLINK(&quot;/apex/Apttus__AgreementReturnToRequestor?id=&quot; &amp;Id, IMAGE(&quot;/resource/Apttus__Button_ReturnToRequestor&quot;, &quot;Return To Requestor&quot;),&quot;_self&quot;), NULL)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>Return the agreement to the requestor</inlineHelpText>
+        <label>Return To Requestor</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>FF_Send_To_Other_Party_For_Review__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Send agreement for review</description>
+        <externalId>false</externalId>
+        <formula>IF (OR(ISPICKVAL(Status_Category__c,&quot;In Signatures&quot;), ISPICKVAL(Status_Category__c,&quot;In Authoring&quot;)),HYPERLINK(&quot;/apex/Apttus__SendEmail?id=&quot;&amp;Id &amp; &quot;&amp;action=Send_To_Other_Party_For_Review&quot;, IMAGE(&quot;/resource/Apttus__Button_SendForReview&quot;, &quot;Send For Review&quot;), &quot;_self&quot;), NULL)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>Send agreement for review</inlineHelpText>
+        <label>Send For Review</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>FF_Send_To_Other_Party_For_Signatures__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Send the agreement for signatures</description>
+        <externalId>false</externalId>
+        <formula>IF (OR(ISPICKVAL(Status_Category__c,&quot;In Signatures&quot;), ISPICKVAL(Status_Category__c,&quot;In Authoring&quot;)),HYPERLINK(&quot;/apex/Apttus__SendEmail?id=&quot;&amp;Id &amp; &quot;&amp;action=Send_To_Other_Party_For_Signatures&quot;, IMAGE(&quot;/resource/Apttus__Button_SendForSignatures&quot;, &quot;Send For Signatures&quot;), &quot;_self&quot;), NULL)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>Send the agreement for signatures</inlineHelpText>
+        <label>Send For Signatures</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>FF_Send_To_Third_Party__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <formula>IF (OR(ISPICKVAL(Status_Category__c,&quot;In Signatures&quot;), AND(ISPICKVAL(Status_Category__c,&quot;In Authoring&quot;),ISPICKVAL(Source__c,&quot;Other Party Paper&quot;))), HYPERLINK(&quot;/servlet/servlet.Integration?lid=00b50000000l7uN&quot;&amp;&quot;&amp;eid=&quot;&amp;Id, &quot;Send To Other Party&quot;, &quot;_self&quot;), NULL)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Send To Other Party (OBSOLETE)</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>FF_Submit_For_Changes__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Submit agreement for changes</description>
+        <externalId>false</externalId>
+        <formula>IF (OR(AND(ISPICKVAL(Status_Category__c,&quot;In Authoring&quot;),ISPICKVAL(Source__c,&quot;Other Party Paper&quot;)),(ISPICKVAL(Status_Category__c,&quot;In Signatures&quot;))),HYPERLINK(&quot;/apex/Apttus__AgreementSubmitChanges?id=&quot; &amp;Id, IMAGE(&quot;/resource/Apttus__Button_SubmitForChanges&quot;, &quot;Submit For Changes&quot;), &quot;_self&quot;), NULL)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>Submit agreement for changes</inlineHelpText>
+        <label>Submit For Changes</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>FF_Submit_Request__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Submit the agreement request</description>
+        <externalId>false</externalId>
+        <formula>IF (AND(ISPICKVAL(Status_Category__c,&quot;Request&quot;),OR(ISPICKVAL(Status__c,&quot;Request&quot;),ISPICKVAL(Status__c,&quot;In Amendment&quot;),ISPICKVAL(Status__c,&quot;In Renewal&quot;),ISPICKVAL(Status__c,&quot;&quot;))), HYPERLINK(&quot;/apex/Apttus__AgreementSubmitRequest?id=&quot; &amp;Id, IMAGE(&quot;/resource/Apttus__Button_SubmitRequest&quot;, &quot;Submit Request&quot;), &quot;_self&quot;), NULL)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>Submit the agreement request</inlineHelpText>
+        <label>Submit Request</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>FF_Terminate__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Terminate the agreement</description>
+        <externalId>false</externalId>
+        <formula>IF (OR(AND(ISPICKVAL(Status_Category__c,&quot;In Effect&quot;),NOT(ISPICKVAL(Status__c,&quot;Being Amended&quot;)), NOT(ISPICKVAL(Status__c,&quot;Being Renewed&quot;)))),HYPERLINK(&quot;/apex/Apttus__AgreementTerminate?id=&quot; &amp; Id, IMAGE(&quot;/resource/Apttus__Button_Terminate&quot;, &quot;Terminate&quot;),&quot;_self&quot;), NULL)</formula>
+        <inlineHelpText>Terminate the agreement</inlineHelpText>
+        <label>Terminate</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>FF_View_Draft_Contract__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Conditionally show the &quot;Preview&quot; custom button if the contract status is Request</description>
+        <externalId>false</externalId>
+        <formula>IF (ISPICKVAL(Status_Category__c, &quot;Request&quot;), HYPERLINK(&quot;/apex/Apttus__SelectTemplate?id=&quot; &amp;Id &amp; &quot;&amp;action=Preview_Agreement&amp;templateType=Agreement&quot;, IMAGE(&quot;/resource/Apttus__Button_Preview&quot;, &quot;Preview&quot;),&quot;_self&quot;), NULL)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>Preview the agreement</inlineHelpText>
+        <label>Preview</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>FF_View_Final_Contract__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Conditionally show the &quot;Generate&quot; custom button if the contract status category is &quot;Request&quot;.</description>
+        <externalId>false</externalId>
+        <formula>IF (ISPICKVAL(Status_Category__c, &quot;Request&quot;), HYPERLINK(&quot;/apex/Apttus__SelectTemplate?id=&quot;&amp;Id &amp; &quot;&amp;action=Generate_Agreement&amp;templateType=Agreement&quot;, IMAGE(&quot;/resource/Apttus__Button_Generate&quot;, &quot;Generate&quot;),&quot;_self&quot;), NULL)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>Generate the agreement</inlineHelpText>
+        <label>Generate</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Import_Offline_Document__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Conditionally show the &quot;Import Offline Document&quot; custom link if the status category is not &quot;In Effect&quot; or &quot;Expired&quot; or &quot;Terminated&quot; or &quot;Amended&quot; or &quot;Cancelled&quot;</description>
+        <externalId>false</externalId>
+        <formula>IF (NOT(OR(ISPICKVAL(Status_Category__c, &quot;In Effect&quot;), ISPICKVAL(Status_Category__c, &quot;Expired&quot;),ISPICKVAL(Status_Category__c, &quot;Terminated&quot;),ISPICKVAL(Status_Category__c, &quot;Amended&quot;),ISPICKVAL(Status_Category__c, &quot;Cancelled&quot;))), HYPERLINK(&quot;/apex/Apttus__OfflineDocumentImport?id=&quot;&amp;Id, IMAGE(&quot;/resource/Apttus__Button_ImportOfflineDocument&quot;, &quot;Import Offline Document&quot;),&quot;_self&quot;), NULL)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Import Offline Document</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>InitiateTermination__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Conditionally show the &quot;Initiate Termination&quot; custom button.</description>
+        <externalId>false</externalId>
+        <formula>IF (OR(AND(ISPICKVAL(Status_Category__c,&quot;In Effect&quot;),NOT(ISPICKVAL(Status__c,&quot;Being Amended&quot;)), NOT(ISPICKVAL(Status__c,&quot;Being Renewed&quot;)),NOT(ISPICKVAL(Status__c,&quot;Being Terminated&quot;)))),HYPERLINK(&quot;/apex/Apttus__AgreementTerminationInitiate?id=&quot; &amp; Id, IMAGE(&quot;/resource/Apttus__Button_InitiateTermination&quot;, &quot;Initiate Termination&quot;),&quot;_self&quot;), NULL)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Initiate Termination</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Initiation_Type__c</fullName>
+        <deprecated>false</deprecated>
+        <description>To indicate whether this record is being filed as an executed agreement or is being negotiated in the system</description>
+        <externalId>false</externalId>
+        <label>Initiation Type</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Negotiate Contract</fullName>
+                <default>true</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Store Executed Contract</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Internal_Renewal_Notification_Days__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Notification period prior to Renewal Notice Date when notification is sent out internally that renewal is approaching</description>
+        <externalId>false</externalId>
+        <label>Internal Renewal Notification Days</label>
+        <precision>4</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Internal_Renewal_Start_Date__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Date by which internal notice of internal renewal is approaching – Issue Renewal Notice Date less internal renewal notification days</description>
+        <externalId>false</externalId>
+        <formula>Renewal_Notice_Date__c  -   Internal_Renewal_Notification_Days__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Internal Renewal Start Date</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>IsInternalReview__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <description>Indicates internal review was initiated</description>
+        <externalId>false</externalId>
+        <label>Is Internal Review</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>IsLocked__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <description>Indicates whether the agreement is locked for editing</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Indicates whether the agreement is locked for editing</inlineHelpText>
+        <label>Is Locked</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Is_System_Update__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <description>Indicates a system initiated updated. An update is triggered by the system during various lifecycle actions such as clone, amend, renew etc. The flag is set before the update and is reset when the update is initiated by a user.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Indicates a system initiated update.</inlineHelpText>
+        <label>Is System Update</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>LatestDocId__c</fullName>
+        <deprecated>false</deprecated>
+        <description>ID of the latest document version</description>
+        <externalId>false</externalId>
+        <label>Latest Doc ID</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Non_Standard_Legal_Language__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <description>To indicate whether this agreement contains non-standard language</description>
+        <externalId>false</externalId>
+        <label>Non Standard Legal Language</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Other_Party_Returned_Date__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Date other party returned signed agreement</description>
+        <externalId>false</externalId>
+        <label>Other Party Returned Date</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Other_Party_Sent_Date__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Date agreement was sent to other party for signatures</description>
+        <externalId>false</externalId>
+        <label>Other Party Sent Date</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Other_Party_Signed_By_Unlisted__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Identifies other party signed by person that is not listed as a contact in salesforce</description>
+        <externalId>false</externalId>
+        <label>Other Party Signed By (Unlisted)</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>Other_Party_Signed_By__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <deprecated>false</deprecated>
+        <description>Link to contact record to identify external signatory</description>
+        <externalId>false</externalId>
+        <label>Other Party Signed By</label>
+        <referenceTo>Contact</referenceTo>
+        <relationshipName>R00N50000001Xl0MEAS</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Other_Party_Signed_Date__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Date when external signatory signed</description>
+        <externalId>false</externalId>
+        <label>Other Party Signed Date</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Other_Party_Signed_Title__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Title of person signing on bahalf of Other Party</description>
+        <externalId>false</externalId>
+        <label>Other Party Signed Title</label>
+        <length>80</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Outstanding_Days__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Number of days between date agreement was today, if not returned as yet.  Esle number of days between returned and sent.</description>
+        <externalId>false</externalId>
+        <formula>IF(ISNULL(  Other_Party_Returned_Date__c ), TODAY () -   Other_Party_Sent_Date__c ,   Other_Party_Returned_Date__c   -   Other_Party_Sent_Date__c )</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Outstanding Days</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Owner_Expiration_Notice__c</fullName>
+        <deprecated>false</deprecated>
+        <description>To indicate the number of days prior to expiration date that a notification needs to be sent to the owner</description>
+        <externalId>false</externalId>
+        <label>Owner Expiration Notice</label>
+        <picklist>
+            <picklistValues>
+                <fullName>15 Days</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>30 Days</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>45 Days</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>60 Days</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>90 Days</fullName>
+                <default>true</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>120 Days</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Parent_Agreement__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Parent Agreement</label>
+        <referenceTo>APTS_Agreement__c</referenceTo>
+        <relationshipLabel>Child Agreements</relationshipLabel>
+        <relationshipName>Agreements</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Perpetual__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <description>Indicates whether agreement has an end date specified</description>
+        <externalId>false</externalId>
+        <label>Perpetual</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Primary_Contact__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Primary Contact</label>
+        <referenceTo>Contact</referenceTo>
+        <relationshipLabel>Agreements (Primary Contact)</relationshipLabel>
+        <relationshipName>Agreements</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Related_Opportunity__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Related Opportunity</label>
+        <referenceTo>Opportunity</referenceTo>
+        <relationshipName>R00N50000001Xl0FEAS</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Remaining_Contracted_Days__c</fullName>
+        <deprecated>false</deprecated>
+        <description>If the agreement is In Effect, this value is calculated as Contract Duration Days less Contracted Days</description>
+        <externalId>false</externalId>
+        <formula>IF(AND(ISPICKVAL(Status_Category__c,&quot;In Effect&quot;), (Contract_Duration_Days__c &gt; 0), (Contracted_Days__c &gt; 0)), (Contract_Duration_Days__c - Contracted_Days__c), 0)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Remaining Contracted Days</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Renewal_Notice_Date__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Issue Renewal Notice Date = End Date - Renewal Notice Days</description>
+        <externalId>false</externalId>
+        <formula>IF( NOT( ISNULL( Contract_End_Date__c ) ) , Contract_End_Date__c  -  Renewal_Notice_Days__c  , NULL)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Renewal Notice Date</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Renewal_Notice_Days__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The number of days before end date when renewal notice is due</description>
+        <externalId>false</externalId>
+        <label>Renewal Notice Days</label>
+        <precision>4</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Request_Date__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The date the agreement was requested</description>
+        <externalId>false</externalId>
+        <label>Request Date</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Requestor__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Requestor</label>
+        <referenceTo>User</referenceTo>
+        <relationshipName>Agreements</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>RetentionDate__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Date until to retain the record</description>
+        <externalId>false</externalId>
+        <label>Retention Date</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>RetentionPolicyId__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <deprecated>false</deprecated>
+        <description>The associated retention policy</description>
+        <externalId>false</externalId>
+        <label>Retention Policy</label>
+        <referenceTo>RetentionPolicy__c</referenceTo>
+        <relationshipLabel>Agreements</relationshipLabel>
+        <relationshipName>Agreements</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Risk_Rating__c</fullName>
+        <deprecated>false</deprecated>
+        <description>This field allows users to track agreement risk rating</description>
+        <externalId>false</externalId>
+        <label>Risk Rating</label>
+        <precision>7</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Source__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Source of this contract – internal paper or third party contract</description>
+        <externalId>false</externalId>
+        <label>Source</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Internal Paper</fullName>
+                <default>true</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Other Party Paper</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Special_Terms__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Identifies any special terms related to contract</description>
+        <externalId>false</externalId>
+        <label>Special Terms</label>
+        <length>32000</length>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>5</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Status_Category__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The higher level state of the agreement – In Authoring, In Effect, Expired, etc.  These are Apttus reserved values and cannot be changed.</description>
+        <externalId>false</externalId>
+        <label>Status Category</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Request</fullName>
+                <default>true</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>In Authoring</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>In Signatures</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>In Filing</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>In Effect</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Expired</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Terminated</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Amended</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Cancelled</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Status__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The sub stage of an agreement – the status underneath a given status category.  These are generally modifiable by the customer except for the following values which are Apttus reserved to manage agreement lifecycles:
+
+Request, Submitted Request,
+Cancelled Request, In Amendment, Being Amended, Superseded, Activated, Expired, Internal Signatures, Author Contract, Expired, Terminated,  Ready for Signatures, Fully Signed, Signature Declined</description>
+        <externalId>false</externalId>
+        <label>Status</label>
+        <picklist>
+            <controllingField>Status_Category__c</controllingField>
+            <picklistValues>
+                <fullName>Request</fullName>
+                <default>false</default>
+                <controllingFieldValues>Request</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Request Approval</fullName>
+                <default>false</default>
+                <controllingFieldValues>Request</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Submitted Request</fullName>
+                <default>false</default>
+                <controllingFieldValues>Request</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Approved Request</fullName>
+                <default>false</default>
+                <controllingFieldValues>Request</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Cancelled Request</fullName>
+                <default>false</default>
+                <controllingFieldValues>Request</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>In Amendment</fullName>
+                <default>false</default>
+                <controllingFieldValues>Request</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Author Contract</fullName>
+                <default>false</default>
+                <controllingFieldValues>In Authoring</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Language Approval</fullName>
+                <default>false</default>
+                <controllingFieldValues>In Authoring</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Language Approved</fullName>
+                <default>false</default>
+                <controllingFieldValues>In Authoring</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Internal Signatures</fullName>
+                <default>false</default>
+                <controllingFieldValues>In Signatures</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Other Party Signatures</fullName>
+                <default>false</default>
+                <controllingFieldValues>In Signatures</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Activated</fullName>
+                <default>false</default>
+                <controllingFieldValues>In Effect</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Being Amended</fullName>
+                <default>false</default>
+                <controllingFieldValues>In Effect</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Being Renewed</fullName>
+                <default>false</default>
+                <controllingFieldValues>In Effect</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>In Renewal</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Superseded</fullName>
+                <default>false</default>
+                <controllingFieldValues>In Effect</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Being Terminated</fullName>
+                <default>false</default>
+                <controllingFieldValues>In Effect</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Terminated</fullName>
+                <default>false</default>
+                <controllingFieldValues>Terminated</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Expired</fullName>
+                <default>false</default>
+                <controllingFieldValues>Expired</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>In Reconciliation</fullName>
+                <default>false</default>
+                <controllingFieldValues>In Filing</controllingFieldValues>
+                <controllingFieldValues>In Signatures</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Reconciled</fullName>
+                <default>false</default>
+                <controllingFieldValues>In Filing</controllingFieldValues>
+                <controllingFieldValues>In Signatures</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Other Party Review</fullName>
+                <default>false</default>
+                <controllingFieldValues>In Authoring</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Signature Declined</fullName>
+                <default>false</default>
+                <controllingFieldValues>In Authoring</controllingFieldValues>
+                <controllingFieldValues>In Signatures</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Ready for Signatures</fullName>
+                <default>false</default>
+                <controllingFieldValues>In Signatures</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Fully Signed</fullName>
+                <default>false</default>
+                <controllingFieldValues>In Signatures</controllingFieldValues>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Submit_Request_Mode__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Submit Request Mode</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Auto</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Manual</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Subtype__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The subtype of the agreement for a given agreement type</description>
+        <externalId>false</externalId>
+        <label>Subtype</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Default</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Term_Months__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Indicates the duration in months of the contract from the start date</description>
+        <externalId>false</externalId>
+        <label>Term (Months)</label>
+        <precision>4</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>TerminationComments__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Termination Comments</description>
+        <externalId>false</externalId>
+        <label>Termination Comments</label>
+        <length>1024</length>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Termination_Date__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Date contract terminated</description>
+        <externalId>false</externalId>
+        <label>Termination Date</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Termination_Notice_Days__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Notice period prior to termination</description>
+        <externalId>false</externalId>
+        <label>Termination Notice Days</label>
+        <precision>4</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Termination_Notice_Issue_Date__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Date termination notice was sent / received</description>
+        <externalId>false</externalId>
+        <label>Termination Notice Issue Date</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Total_Contract_Value__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Total value of agreement</description>
+        <externalId>false</externalId>
+        <label>Total Agreement Value</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Version_Number__c</fullName>
+        <defaultValue>0</defaultValue>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Version Number</label>
+        <precision>3</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Version__c</fullName>
+        <defaultValue>0</defaultValue>
+        <deprecated>false</deprecated>
+        <description>THIS FIELD IS OBSOLETE.  PLEASE DO NOT USE IN SCREENS, REPORTS, ETC.</description>
+        <externalId>false</externalId>
+        <label>Version (OBSOLETE)</label>
+        <precision>4</precision>
+        <required>false</required>
+        <scale>1</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Workflow_Trigger_Created_From_Clone__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <description>Indicates a transient agreement that may get deleted by the user. A new agreement is in transient state until the agreement is explicitly saved by the user. A new agreement is created by new, clone, amend, renew, create offline or create from opportunity methods. Workflow rules should check this field to test for false before firing so that rules are not incorrectly fired when transient agreements are created .</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Indicates a transient agreement that may get deleted by the user. A new agreement is in transient state until the agreement is explicitly saved by the user.</inlineHelpText>
+        <label>Is Transient</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Workflow_Trigger_Viewed_Final__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <description>Flag that gets set by the Generate Agreement scontrol when an agreement is generated.  This flag then becomes the trigger for workflow rules that get fired when the Generate Agreement action is completed.</description>
+        <externalId>false</externalId>
+        <label>Workflow Trigger Generated Agreement</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <label>Agreement</label>
+    <listViews>
+        <fullName>All</fullName>
+        <columns>NAME</columns>
+        <columns>FF_Agreement_Number__c</columns>
+        <columns>Account__c</columns>
+        <columns>Status_Category__c</columns>
+        <columns>Status__c</columns>
+        <columns>Contract_End_Date__c</columns>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+    </listViews>
+    <nameField>
+        <label>Agreement Name</label>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+    </nameField>
+    <pluralLabel>Agreements</pluralLabel>
+    <recordTypeTrackHistory>false</recordTypeTrackHistory>
+    <searchLayouts>
+        <customTabListAdditionalFields>FF_Agreement_Number__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Account__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Status_Category__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Status__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Contract_End_Date__c</customTabListAdditionalFields>
+        <lookupDialogsAdditionalFields>FF_Agreement_Number__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>Account__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>Status_Category__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>Status__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>Contract_End_Date__c</lookupDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>FF_Agreement_Number__c</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>Account__c</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>Status_Category__c</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>Status__c</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>Contract_End_Date__c</lookupPhoneDialogsAdditionalFields>
+        <searchFilterFields>NAME</searchFilterFields>
+        <searchFilterFields>FF_Agreement_Number__c</searchFilterFields>
+        <searchFilterFields>Account__c</searchFilterFields>
+        <searchFilterFields>Status_Category__c</searchFilterFields>
+        <searchFilterFields>Status__c</searchFilterFields>
+        <searchFilterFields>Contract_End_Date__c</searchFilterFields>
+        <searchResultsAdditionalFields>FF_Agreement_Number__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Account__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Status_Category__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Status__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Contract_End_Date__c</searchResultsAdditionalFields>
+    </searchLayouts>
+    <sharingModel>ReadWrite</sharingModel>
+    <validationRules>
+        <fullName>End_Date_Check</fullName>
+        <active>true</active>
+        <description>Check that either perpetual is checked or end date is filled in when agreement goes into effect</description>
+        <errorConditionFormula>AND(
+ISPICKVAL(Status_Category__c,&quot;In Effect&quot;),
+AND(ISNULL(Contract_End_Date__c),NOT(Perpetual__c)),
+OR(ISNULL(Term_Months__c),Term_Months__c&lt;=0)
+)</errorConditionFormula>
+        <errorDisplayField>Contract_End_Date__c</errorDisplayField>
+        <errorMessage>Please enter the Agreement End Date or mark the Agreement as Perpetual prior to executing the agreement.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Term_Validation</fullName>
+        <active>true</active>
+        <description>Validate that Term is entered correctly</description>
+        <errorConditionFormula>AND( ( Perpetual__c ),  (  Term_Months__c  ) &gt; 0 )</errorConditionFormula>
+        <errorDisplayField>Term_Months__c</errorDisplayField>
+        <errorMessage>Cannot enter both Perpetual and Term.  Please enter only one of the values</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Term_Validation_2</fullName>
+        <active>true</active>
+        <description>Validate that Term is entered correctly</description>
+        <errorConditionFormula>AND( (Perpetual__c ),  NOT(ISNULL(  Contract_End_Date__c )) )</errorConditionFormula>
+        <errorDisplayField>Contract_End_Date__c</errorDisplayField>
+        <errorMessage>Cannot enter both Perpetual and End Date.  Please enter only one of the values</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Term_Validation_3</fullName>
+        <active>false</active>
+        <description>Validate that Term is entered correctly (DEPRECATED)</description>
+        <errorConditionFormula>AND( (  Term_Months__c ) &gt; 0,  NOT(ISNULL(  Contract_End_Date__c )) )</errorConditionFormula>
+        <errorDisplayField>Contract_End_Date__c</errorDisplayField>
+        <errorMessage>Cannot enter both Term and End Date.  Please enter only one of the values</errorMessage>
+    </validationRules>
+    <webLinks>
+        <fullName>Amend</fullName>
+        <availability>online</availability>
+        <description>Amend the agreement</description>
+        <displayType>link</displayType>
+        <height>600</height>
+        <linkType>page</linkType>
+        <masterLabel>Amend</masterLabel>
+        <openType>sidebar</openType>
+        <page>AgreementAmend</page>
+        <protected>false</protected>
+    </webLinks>
+    <webLinks>
+        <fullName>Amend_Dev</fullName>
+        <availability>online</availability>
+        <displayType>link</displayType>
+        <height>600</height>
+        <linkType>sControl</linkType>
+        <masterLabel>Amend Dev (DEPRECATED)</masterLabel>
+        <openType>sidebar</openType>
+        <protected>false</protected>
+        <scontrol>aptsAmend</scontrol>
+    </webLinks>
+    <webLinks>
+        <fullName>CancelRequest</fullName>
+        <availability>online</availability>
+        <description>Cancel the agreement request</description>
+        <displayType>link</displayType>
+        <height>600</height>
+        <linkType>page</linkType>
+        <masterLabel>Cancel Request</masterLabel>
+        <openType>sidebar</openType>
+        <page>AgreementCancel</page>
+        <protected>false</protected>
+    </webLinks>
+    <webLinks>
+        <fullName>Execute</fullName>
+        <availability>online</availability>
+        <description>Activates the agreement</description>
+        <displayType>link</displayType>
+        <height>600</height>
+        <linkType>page</linkType>
+        <masterLabel>Activate</masterLabel>
+        <openType>sidebar</openType>
+        <page>AgreementActivate</page>
+        <protected>false</protected>
+    </webLinks>
+    <webLinks>
+        <fullName>Expire</fullName>
+        <availability>online</availability>
+        <description>Expire the agreement</description>
+        <displayType>link</displayType>
+        <height>600</height>
+        <linkType>page</linkType>
+        <masterLabel>Expire</masterLabel>
+        <openType>sidebar</openType>
+        <page>AgreementExpire</page>
+        <protected>false</protected>
+    </webLinks>
+    <webLinks>
+        <fullName>GenerateProtectedAgreement</fullName>
+        <availability>online</availability>
+        <displayType>link</displayType>
+        <height>600</height>
+        <linkType>sControl</linkType>
+        <masterLabel>Generate Protected Agreement (DEPRECATED)</masterLabel>
+        <openType>sidebar</openType>
+        <protected>false</protected>
+        <scontrol>aptsGenerateProtectedAgreement</scontrol>
+    </webLinks>
+    <webLinks>
+        <fullName>GenerateSupportingDocument</fullName>
+        <availability>online</availability>
+        <description>Generate supporting document</description>
+        <displayType>link</displayType>
+        <encodingKey>UTF-8</encodingKey>
+        <height>600</height>
+        <linkType>url</linkType>
+        <masterLabel>Generate Supporting Document</masterLabel>
+        <openType>sidebar</openType>
+        <protected>false</protected>
+        <url>/apex/Apttus__SelectTemplate?id={!APTS_Agreement__c.Id}&amp;action=Generate_Supporting_Document&amp;templateType=Supporting_Document</url>
+    </webLinks>
+    <webLinks>
+        <fullName>GenerateUnprotectedAgreement</fullName>
+        <availability>online</availability>
+        <displayType>link</displayType>
+        <height>600</height>
+        <linkType>sControl</linkType>
+        <masterLabel>Generate Unprotected Agreement (DEPRECATED)</masterLabel>
+        <openType>sidebar</openType>
+        <protected>false</protected>
+        <scontrol>aptsGenerateUnprotectedAgreement</scontrol>
+    </webLinks>
+    <webLinks>
+        <fullName>NewAgreementFromOpportunity</fullName>
+        <availability>online</availability>
+        <description>Create agreement from the opportunity</description>
+        <displayType>massActionButton</displayType>
+        <encodingKey>UTF-8</encodingKey>
+        <height>600</height>
+        <linkType>url</linkType>
+        <masterLabel>New Agreement</masterLabel>
+        <openType>sidebar</openType>
+        <protected>false</protected>
+        <requireRowSelection>false</requireRowSelection>
+        <url>/apex/Apttus__OpportunityAgreement?id={!Opportunity.Id}</url>
+    </webLinks>
+    <webLinks>
+        <fullName>NewOfflineAgreementFromOpportunity</fullName>
+        <availability>online</availability>
+        <description>Create offline agreement from opportunity</description>
+        <displayType>massActionButton</displayType>
+        <encodingKey>UTF-8</encodingKey>
+        <height>600</height>
+        <linkType>url</linkType>
+        <masterLabel>New Offline Agreement</masterLabel>
+        <openType>sidebar</openType>
+        <protected>false</protected>
+        <requireRowSelection>false</requireRowSelection>
+        <url>/apex/Apttus__OfflineOpportunityAgreement?id={!Opportunity.Id}</url>
+    </webLinks>
+    <webLinks>
+        <fullName>New_Child_Agreement</fullName>
+        <availability>online</availability>
+        <description>New child agreement</description>
+        <displayType>massActionButton</displayType>
+        <encodingKey>UTF-8</encodingKey>
+        <height>600</height>
+        <linkType>url</linkType>
+        <masterLabel>New Child Agreement</masterLabel>
+        <openType>sidebar</openType>
+        <protected>false</protected>
+        <requireRowSelection>false</requireRowSelection>
+        <url>/apex/Apttus__ChildAgreement?id={!APTS_Agreement__c.Id}</url>
+    </webLinks>
+    <webLinks>
+        <fullName>RegenerateAgreement</fullName>
+        <availability>online</availability>
+        <description>Regenerate the agreement</description>
+        <displayType>link</displayType>
+        <encodingKey>UTF-8</encodingKey>
+        <height>600</height>
+        <linkType>url</linkType>
+        <masterLabel>Regenerate</masterLabel>
+        <openType>sidebar</openType>
+        <protected>false</protected>
+        <url>/apex/Apttus__SelectTemplate?id={!APTS_Agreement__c.Id}&amp;action=Regenerate_Agreement&amp;templateType=Agreement</url>
+    </webLinks>
+    <webLinks>
+        <fullName>Renew</fullName>
+        <availability>online</availability>
+        <description>Renew the agreement</description>
+        <displayType>link</displayType>
+        <height>600</height>
+        <linkType>page</linkType>
+        <masterLabel>Renew</masterLabel>
+        <openType>sidebar</openType>
+        <page>AgreementRenew</page>
+        <protected>false</protected>
+    </webLinks>
+    <webLinks>
+        <fullName>ReturnToRequestor</fullName>
+        <availability>online</availability>
+        <description>Return the agreement to the requestor</description>
+        <displayType>link</displayType>
+        <height>600</height>
+        <linkType>page</linkType>
+        <masterLabel>Return To Requestor</masterLabel>
+        <openType>sidebar</openType>
+        <page>AgreementReturnToRequestor</page>
+        <protected>false</protected>
+    </webLinks>
+    <webLinks>
+        <fullName>SendAnEmail</fullName>
+        <availability>online</availability>
+        <displayType>link</displayType>
+        <height>600</height>
+        <linkType>sControl</linkType>
+        <masterLabel>Send An Email (DEPRECATED)</masterLabel>
+        <openType>sidebar</openType>
+        <protected>false</protected>
+        <scontrol>aptsSendEmail</scontrol>
+    </webLinks>
+    <webLinks>
+        <fullName>SendToOtherPartyForReview</fullName>
+        <availability>online</availability>
+        <description>Send agreement for review</description>
+        <displayType>link</displayType>
+        <encodingKey>UTF-8</encodingKey>
+        <height>600</height>
+        <linkType>url</linkType>
+        <masterLabel>Send For Review</masterLabel>
+        <openType>sidebar</openType>
+        <protected>false</protected>
+        <url>/apex/Apttus__SendEmail?id={!APTS_Agreement__c.Id}&amp;action=Send_To_Other_Party_For_Review</url>
+    </webLinks>
+    <webLinks>
+        <fullName>SendToOtherPartyForSignatures</fullName>
+        <availability>online</availability>
+        <description>Send the agreement for signatures</description>
+        <displayType>link</displayType>
+        <encodingKey>UTF-8</encodingKey>
+        <height>600</height>
+        <linkType>url</linkType>
+        <masterLabel>Send For Signatures</masterLabel>
+        <openType>sidebar</openType>
+        <protected>false</protected>
+        <url>/apex/Apttus__SendEmail?id={!APTS_Agreement__c.Id}&amp;action=Send_To_Other_Party_For_Signatures</url>
+    </webLinks>
+    <webLinks>
+        <fullName>SendToThirdParty</fullName>
+        <availability>online</availability>
+        <displayType>link</displayType>
+        <height>600</height>
+        <linkType>sControl</linkType>
+        <masterLabel>Send To Other Party (DEPRECATED)</masterLabel>
+        <openType>sidebar</openType>
+        <protected>false</protected>
+        <scontrol>aptsSendToThirdParty</scontrol>
+    </webLinks>
+    <webLinks>
+        <fullName>SubmitForChanges</fullName>
+        <availability>online</availability>
+        <description>Submit agreement for changes</description>
+        <displayType>link</displayType>
+        <height>600</height>
+        <linkType>page</linkType>
+        <masterLabel>Submit For Changes</masterLabel>
+        <openType>sidebar</openType>
+        <page>AgreementSubmitChanges</page>
+        <protected>false</protected>
+    </webLinks>
+    <webLinks>
+        <fullName>SubmitRequest</fullName>
+        <availability>online</availability>
+        <description>Submit the agreement request</description>
+        <displayType>link</displayType>
+        <height>600</height>
+        <linkType>page</linkType>
+        <masterLabel>Submit Request</masterLabel>
+        <openType>sidebar</openType>
+        <page>AgreementSubmitRequest</page>
+        <protected>false</protected>
+    </webLinks>
+    <webLinks>
+        <fullName>Terminate</fullName>
+        <availability>online</availability>
+        <description>Terminate the agreement</description>
+        <displayType>link</displayType>
+        <height>600</height>
+        <linkType>page</linkType>
+        <masterLabel>Terminate</masterLabel>
+        <openType>sidebar</openType>
+        <page>AgreementTerminate</page>
+        <protected>false</protected>
+    </webLinks>
+    <webLinks>
+        <fullName>ViewDraftAgreement</fullName>
+        <availability>online</availability>
+        <description>Preview the agreement</description>
+        <displayType>link</displayType>
+        <encodingKey>UTF-8</encodingKey>
+        <height>600</height>
+        <linkType>url</linkType>
+        <masterLabel>Preview</masterLabel>
+        <openType>sidebar</openType>
+        <protected>false</protected>
+        <url>/apex/Apttus__SelectTemplate?id={!APTS_Agreement__c.Id}&amp;action=Preview_Agreement&amp;templateType=Agreement</url>
+    </webLinks>
+    <webLinks>
+        <fullName>ViewFinalAgreement</fullName>
+        <availability>online</availability>
+        <description>Generate the agreement</description>
+        <displayType>link</displayType>
+        <encodingKey>UTF-8</encodingKey>
+        <height>600</height>
+        <linkType>url</linkType>
+        <masterLabel>Generate</masterLabel>
+        <openType>sidebar</openType>
+        <protected>false</protected>
+        <url>/apex/Apttus__SelectTemplate?id={!APTS_Agreement__c.Id}&amp;action=Generate_Agreement&amp;templateType=Agreement</url>
+    </webLinks>
+    <webLinks>
+        <fullName>ViewPicklistMap</fullName>
+        <availability>online</availability>
+        <displayType>link</displayType>
+        <height>600</height>
+        <linkType>sControl</linkType>
+        <masterLabel>View Picklist Map (DEPRECATED)</masterLabel>
+        <openType>sidebar</openType>
+        <protected>false</protected>
+        <scontrol>aptsViewPicklistMapStatusCategory</scontrol>
+    </webLinks>
+</CustomObject>

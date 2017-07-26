@@ -1,0 +1,275 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <content>TermExApprovalClone</content>
+        <skipRecordTypeSelect>false</skipRecordTypeSelect>
+        <type>Visualforce</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <content>TermExApproval</content>
+        <skipRecordTypeSelect>false</skipRecordTypeSelect>
+        <type>Visualforce</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Follow</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <content>TermExApproval</content>
+        <skipRecordTypeSelect>false</skipRecordTypeSelect>
+        <type>Visualforce</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <deprecated>false</deprecated>
+    <description>Required approvals for a given Term Exception</description>
+    <enableActivities>true</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>false</enableHistory>
+    <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <fields>
+        <fullName>Active__c</fullName>
+        <defaultValue>true</defaultValue>
+        <deprecated>false</deprecated>
+        <description>This flag is true if the term exception approval record is active.  Set this to false if you want the approvals engine to ignore this term exception approver during processing.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>This flag is true if the term exception approval record is active.  Set this to false if you want the approvals engine to ignore this term exception approver during processing.</inlineHelpText>
+        <label>Active</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Assignee_Description__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The assignee description</description>
+        <externalId>false</externalId>
+        <label>Assignee Description</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>Assignee_Id__c</fullName>
+        <deprecated>false</deprecated>
+        <description>This field holds the ID of the queue, role, or forecast role that is assigned to the request.  This field is not used when the assignee type is user.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>This field holds the ID of the queue, role, or forecast role that is assigned to the request.  This field is not used when the assignee type is user.</inlineHelpText>
+        <label>Assignee Id</label>
+        <length>18</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Assignee_Type__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Denotes the assignee type</description>
+        <externalId>false</externalId>
+        <label>Assignee Type</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Approval Matrix</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Rule</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Queue</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Role</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>User</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Custom Assignee</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Assignee_User__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <deprecated>false</deprecated>
+        <description>Used to specify a user assignee using standard salesforce lookup behavior instead of having to type the user&apos;s name.  Using standard lookup prevents typing errors and ensures that the user is correctly assigned regardless of locale settings.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Used to specify a user assignee using standard salesforce lookup behavior instead of having to type the user&apos;s name.  Using standard lookup prevents typing errors and ensures that the user is correctly assigned regardless of locale settings.</inlineHelpText>
+        <label>Assignee User</label>
+        <lookupFilter>
+            <active>true</active>
+            <filterItems>
+                <field>User.IsActive</field>
+                <operation>equals</operation>
+                <value>true</value>
+            </filterItems>
+            <isOptional>false</isOptional>
+        </lookupFilter>
+        <referenceTo>User</referenceTo>
+        <relationshipName>Term_Exception_Approvals</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Assignee_Value__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Denotes the assignee type.  If the type is &apos;Role&apos;, this field is the role name.  For type Approval Matrix, this value is a string of the form &quot;Level X&quot;, where X ranges from 1 to 6.  This field is not used when the assignee type is user.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Denotes the assignee type.  If the type is &apos;Role&apos;, this field is the role name.  For type Approval Matrix, this value is a string of the form &quot;Level X&quot;, where X ranges from 1 to 6.  This field is not used when the assignee type is user.</inlineHelpText>
+        <label>Assignee Value</label>
+        <length>255</length>
+        <required>true</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>DependsOn__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Depends On</label>
+        <length>2048</length>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>5</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Notify_Only__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <description>Designates whether the approver receives a notification only for the approval request (when set to true) or gets the request assigned to them and receives notification as well (false, which is the default).</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Designates whether the approver receives a notification only for the approval request (when set to true) or gets the request assigned to them and receives notification as well (false, which is the default).</inlineHelpText>
+        <label>Notify Only</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Send_Email__c</fullName>
+        <defaultValue>true</defaultValue>
+        <deprecated>false</deprecated>
+        <description>Indicates whether an email notification should be sent</description>
+        <externalId>false</externalId>
+        <label>Send Email</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Sequence__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The approval sequence</description>
+        <externalId>false</externalId>
+        <label>Sequence</label>
+        <precision>11</precision>
+        <required>false</required>
+        <scale>3</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Term_Exception__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Denotes the term exception master record associated with this term exception approver record.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Denotes the term exception master record associated with this term exception approver record.</inlineHelpText>
+        <label>Term Exception</label>
+        <referenceTo>Apttus__Term_Exception__c</referenceTo>
+        <relationshipLabel>Term Exception Approvals</relationshipLabel>
+        <relationshipName>Approvals</relationshipName>
+        <relationshipOrder>0</relationshipOrder>
+        <reparentableMasterDetail>false</reparentableMasterDetail>
+        <trackTrending>false</trackTrending>
+        <type>MasterDetail</type>
+        <writeRequiresMasterRead>true</writeRequiresMasterRead>
+    </fields>
+    <label>Term Exception Approval</label>
+    <listViews>
+        <fullName>All</fullName>
+        <columns>NAME</columns>
+        <columns>Term_Exception__c</columns>
+        <columns>Assignee_Type__c</columns>
+        <columns>Assignee_Value__c</columns>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+    </listViews>
+    <nameField>
+        <displayFormat>TEA-{0000}</displayFormat>
+        <label>Number</label>
+        <type>AutoNumber</type>
+    </nameField>
+    <pluralLabel>Term Exception Approvals</pluralLabel>
+    <searchLayouts>
+        <customTabListAdditionalFields>Active__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Term_Exception__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Assignee_Type__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Assignee_Value__c</customTabListAdditionalFields>
+        <excludedStandardButtons>Accept</excludedStandardButtons>
+        <excludedStandardButtons>ChangeOwner</excludedStandardButtons>
+        <lookupDialogsAdditionalFields>Active__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>Term_Exception__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>Assignee_Type__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>Assignee_Value__c</lookupDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>Active__c</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>Term_Exception__c</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>Assignee_Type__c</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>Assignee_Value__c</lookupPhoneDialogsAdditionalFields>
+        <searchFilterFields>NAME</searchFilterFields>
+        <searchFilterFields>Active__c</searchFilterFields>
+        <searchFilterFields>Term_Exception__c</searchFilterFields>
+        <searchFilterFields>Assignee_Type__c</searchFilterFields>
+        <searchFilterFields>Assignee_Value__c</searchFilterFields>
+        <searchResultsAdditionalFields>Active__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Term_Exception__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Assignee_Type__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Assignee_Value__c</searchResultsAdditionalFields>
+    </searchLayouts>
+    <sharingModel>ControlledByParent</sharingModel>
+</CustomObject>

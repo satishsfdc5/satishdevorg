@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customSettingsType>List</customSettingsType>
+    <description>Configuration settings for SelectConfigProducts page. The record should be named as &quot;Primary Settings&quot;.</description>
+    <enableEnhancedLookup>false</enableEnhancedLookup>
+    <enableFeeds>false</enableFeeds>
+    <fields>
+        <fullName>CustomActionLabelName__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The name of the custom label for the action.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The name of the custom label for the action.</inlineHelpText>
+        <label>Custom Action Label Name</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CustomActionPage__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The name of the custom action page.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The name of the custom action page.</inlineHelpText>
+        <label>Custom Action Page</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>HideConfigureAction__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <description>Indicates whether the &quot;Configure&quot; action should be hidden in the page.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Indicates whether the &quot;Configure&quot; action should be hidden in the page.</inlineHelpText>
+        <label>Hide Configure Action</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>HideHelpMeChoose__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <description>Whether to hide help me choose link that takes to guided search page.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Check this if the Help Me Choose feature should be hidden.</inlineHelpText>
+        <label>Hide Help Me Choose</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>HideListedProductsPriceColumn__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <description>Whether to hide the price information column in listed product page.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Please be careful in hiding this critical price information column.</inlineHelpText>
+        <label>Hide Listed Products Price Column</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>HideSelectedProductsColumn1__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <description>The look up to product record can be hidden by checking this setting.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Check this if you want to hide the column that  shows the product name.</inlineHelpText>
+        <label>Hide Selected Products Column1</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>ListedProductsColumn2__c</fullName>
+        <deprecated>false</deprecated>
+        <description>API name of the product field to be displayed in the listed products section.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>API name of the product field to be displayed in the listed products section. A valid value could be like ProductCode.</inlineHelpText>
+        <label>Listed Products Column2</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ListedProductsColumn3__c</fullName>
+        <deprecated>false</deprecated>
+        <description>API name of the product field to be displayed in the listed products section.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>API name of the product field to be displayed in the listed products section. A valid value could be like ProductCode.</inlineHelpText>
+        <label>Listed Products Column3</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>MainSectionRatio__c</fullName>
+        <defaultValue>&quot;20:60:20&quot;</defaultValue>
+        <deprecated>false</deprecated>
+        <description>The ratio of main sections separated by colon. The default value is 20:60:20.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The ratio of main sections separated by colon. The default value is 20:60:20.</inlineHelpText>
+        <label>Main Section Ratio</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>SelectedProductsColumn2__c</fullName>
+        <deprecated>false</deprecated>
+        <description>API name of the line item field in the selected products section. A valid value could be like ProductId__r.ProductCode</description>
+        <externalId>false</externalId>
+        <inlineHelpText>API name of the line item field in the selected products section. A valid value could be like ProductId__r.ProductCode</inlineHelpText>
+        <label>Selected Products Column2</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>SelectedProductsColumn3__c</fullName>
+        <deprecated>false</deprecated>
+        <description>API name of the line item field in the selected products section. A valid value could be like ProductId__r.ProductCode</description>
+        <externalId>false</externalId>
+        <inlineHelpText>API name of the line item field in the selected products section. A valid value could be like ProductId__r.ProductCode</inlineHelpText>
+        <label>Selected Products Column3</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>SelectedProductsColumn4__c</fullName>
+        <deprecated>false</deprecated>
+        <description>API name of the line item field in the selected products section. A valid value could be like ProductId__r.ProductCode</description>
+        <externalId>false</externalId>
+        <inlineHelpText>API name of the line item field in the selected products section. A valid value could be like ProductId__r.ProductCode</inlineHelpText>
+        <label>Selected Products Column4</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <label>Config SelectConfigProducts Settings</label>
+    <visibility>Public</visibility>
+</CustomObject>

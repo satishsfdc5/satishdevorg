@@ -1,0 +1,24 @@
+<!-- 
+	/**
+	 *	Apttus Approvals Management
+	 *	BackupApproverAction
+	 *	 
+	 *	@2011 Apttus Inc. All rights reserved.
+	 */
+-->
+<apex:page controller="Apttus_Approval.BackupApproverActionController" 
+		   action="{!doProcessAction}" >
+	<apex:form >
+		<apex:pageBlock title="{!$Label.apttus_approval__BackupUser}">
+		
+		    <apex:pageMessages />
+		    
+		    <apex:pageBlockButtons >
+		        <apex:outputPanel >
+		            <apex:commandButton action="{!doReturn}" value="{!$Label.apttus_approval__OK}" />
+		        </apex:outputPanel>
+		    </apex:pageBlockButtons>
+		    
+		</apex:pageBlock>   
+	</apex:form>
+</apex:page>

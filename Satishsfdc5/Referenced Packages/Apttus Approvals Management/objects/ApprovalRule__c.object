@@ -1,0 +1,441 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <content>ApprovalRule</content>
+        <skipRecordTypeSelect>false</skipRecordTypeSelect>
+        <type>Visualforce</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Follow</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <content>ApprovalRule</content>
+        <skipRecordTypeSelect>false</skipRecordTypeSelect>
+        <type>Visualforce</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <deprecated>false</deprecated>
+    <description>Represents a single rule in an approval ruleset</description>
+    <enableActivities>true</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>false</enableHistory>
+    <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <fields>
+        <fullName>Active__c</fullName>
+        <defaultValue>true</defaultValue>
+        <deprecated>false</deprecated>
+        <description>Indicates whether the rule is active</description>
+        <externalId>false</externalId>
+        <label>Active</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>BusinessObject__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The business object which provides the context for the rule</description>
+        <externalId>false</externalId>
+        <label>Business Object</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Apttus__APTS_Agreement__c</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Opportunity</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Apttus__Agreement_Term_Exception__c</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>CriteriaFieldNames__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The list of field names used in the rule criteria</description>
+        <externalId>false</externalId>
+        <label>Criteria Field Names</label>
+        <length>1024</length>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>5</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Criteria__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The rule criteria specification</description>
+        <externalId>false</externalId>
+        <label>Rule Criteria</label>
+        <length>4000</length>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>5</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Description__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The description for the rule</description>
+        <externalId>false</externalId>
+        <label>Description</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>Dimension1Id__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <deprecated>false</deprecated>
+        <description>ID of the first dimension. Only applicable to Dimension rules.</description>
+        <externalId>false</externalId>
+        <label>Dimension 1</label>
+        <referenceTo>ApprovalRuleDimension__c</referenceTo>
+        <relationshipLabel>Approval Rules (Dimension 1)</relationshipLabel>
+        <relationshipName>ApprovalRules</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Dimension1ValueType__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The value type of the first dimension. Only applicable to Dimension rules.</description>
+        <externalId>false</externalId>
+        <label>Dimension 1 Value Type</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Discrete</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Range</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Dimension2Id__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <deprecated>false</deprecated>
+        <description>ID of the second dimension. Only applicable to Dimension rules.</description>
+        <externalId>false</externalId>
+        <label>Dimension 2</label>
+        <referenceTo>ApprovalRuleDimension__c</referenceTo>
+        <relationshipLabel>Approval Rules (Dimension 2)</relationshipLabel>
+        <relationshipName>ApprovalRules2</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Dimension2ValueType__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The value type of the second dimension. Only applicable to Dimension rules.</description>
+        <externalId>false</externalId>
+        <label>Dimension 2 Value Type</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Discrete</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Range</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Dimension3Id__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <deprecated>false</deprecated>
+        <description>ID of the third dimension. Only applicable to Dimension rules.</description>
+        <externalId>false</externalId>
+        <label>Dimension 3</label>
+        <referenceTo>ApprovalRuleDimension__c</referenceTo>
+        <relationshipLabel>Approval Rules (Dimension 3)</relationshipLabel>
+        <relationshipName>ApprovalRules3</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Dimension3ValueType__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The value type of the third dimension. Only applicable to Dimension rules.</description>
+        <externalId>false</externalId>
+        <label>Dimension 3 Value Type</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Discrete</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Range</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Dimension4Id__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <deprecated>false</deprecated>
+        <description>ID of the fourth dimension, Only applicable to Dimension rules.</description>
+        <externalId>false</externalId>
+        <label>Dimension 4</label>
+        <referenceTo>ApprovalRuleDimension__c</referenceTo>
+        <relationshipLabel>Approval Rules (Dimension 4)</relationshipLabel>
+        <relationshipName>ApprovalRules4</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Dimension4ValueType__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The value type of the fourth dimension. Only applicable to Dimension rules.</description>
+        <externalId>false</externalId>
+        <label>Dimension 4 Value Type</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Discrete</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Range</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Dimension5Id__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <deprecated>false</deprecated>
+        <description>ID of the fifth dimension. Only applicable to Dimension rules.</description>
+        <externalId>false</externalId>
+        <label>Dimension 5</label>
+        <referenceTo>ApprovalRuleDimension__c</referenceTo>
+        <relationshipLabel>Approval Rules (Dimension 5)</relationshipLabel>
+        <relationshipName>ApprovalRules5</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Dimension5ValueType__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The value type of the fifth dimension. Only applicable to Dimension rules.</description>
+        <externalId>false</externalId>
+        <label>Dimension 5 Value Type</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Discrete</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Range</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Dimension6Id__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <deprecated>false</deprecated>
+        <description>ID of the sixth dimension. Only applicable to Dimension rules.</description>
+        <externalId>false</externalId>
+        <label>Dimension 6</label>
+        <referenceTo>ApprovalRuleDimension__c</referenceTo>
+        <relationshipLabel>Approval Rules (Dimension 6)</relationshipLabel>
+        <relationshipName>ApprovalRules6</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Dimension6ValueType__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The value type of the sixth dimension. Only applicable to Dimension rules.</description>
+        <externalId>false</externalId>
+        <label>Dimension 6 Value Type</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Discrete</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Range</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>EffectiveDate__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The rule effective date. The rule becomes effective on this date and time.</description>
+        <externalId>false</externalId>
+        <label>Effective Date</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>ExpirationDate__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The rule expiration date. The rule becomes ineffective after this date and time.</description>
+        <externalId>false</externalId>
+        <label>Expiration Date</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>RuleType__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The rule type</description>
+        <externalId>false</externalId>
+        <label>Rule Type</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Dimension</fullName>
+                <default>true</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Sequence__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The rule evaluation sequence</description>
+        <externalId>false</externalId>
+        <label>Sequence</label>
+        <precision>5</precision>
+        <required>true</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>StopProcessingMoreRules__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <description>Indicator to prevent subsequent rules from processing</description>
+        <externalId>false</externalId>
+        <label>Stop Processing More Rules</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <label>Approval Rule</label>
+    <listViews>
+        <fullName>All</fullName>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+    </listViews>
+    <nameField>
+        <label>Rule Name</label>
+        <type>Text</type>
+    </nameField>
+    <pluralLabel>Approval Rules</pluralLabel>
+    <searchLayouts>
+        <customTabListAdditionalFields>Sequence__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>BusinessObject__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>RuleType__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Description__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Active__c</customTabListAdditionalFields>
+        <lookupDialogsAdditionalFields>Sequence__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>BusinessObject__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>RuleType__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>Description__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>Active__c</lookupDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>Sequence__c</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>BusinessObject__c</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>RuleType__c</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>Description__c</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>Active__c</lookupPhoneDialogsAdditionalFields>
+        <searchFilterFields>NAME</searchFilterFields>
+        <searchFilterFields>Sequence__c</searchFilterFields>
+        <searchFilterFields>BusinessObject__c</searchFilterFields>
+        <searchFilterFields>RuleType__c</searchFilterFields>
+        <searchFilterFields>Description__c</searchFilterFields>
+        <searchFilterFields>Active__c</searchFilterFields>
+        <searchResultsAdditionalFields>Sequence__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>BusinessObject__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>RuleType__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Description__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Active__c</searchResultsAdditionalFields>
+    </searchLayouts>
+    <sharingModel>ReadWrite</sharingModel>
+</CustomObject>

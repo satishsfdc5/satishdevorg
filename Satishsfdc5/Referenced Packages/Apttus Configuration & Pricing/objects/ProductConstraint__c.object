@@ -1,0 +1,308 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Follow</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <deprecated>false</deprecated>
+    <description>Represents a set of constraints a product must satisfy before it can be added to the product configuration.</description>
+    <enableActivities>true</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>false</enableHistory>
+    <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <fields>
+        <fullName>Active__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <description>Indicates whether the constraint is active.</description>
+        <externalId>false</externalId>
+        <label>Active</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>ContextType__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The type of context associated with the constraint</description>
+        <externalId>false</externalId>
+        <label>Context Type (Deprecated)</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Product</fullName>
+                <default>true</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Product Family</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Product Code</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Description__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The description for the product constraint</description>
+        <externalId>false</externalId>
+        <label>Description</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>EffectiveDate__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The constraint effective date. The constraint becomes effective on this date and time.</description>
+        <externalId>false</externalId>
+        <label>Effective Date</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>ExpirationDate__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The constraint expiration date. The constraint becomes ineffective after this date and time.</description>
+        <externalId>false</externalId>
+        <label>Expiration Date</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>MaxProducts__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The maximum number of products that may be selected from the related products. Setting the maximum products constrains the number of related products the user can select. Setting the maximum products to 0, means the user cannot select any product from the related products. This creates an &quot;exclusion&quot; rule.</description>
+        <externalId>false</externalId>
+        <label>Max Products (Deprecated)</label>
+        <precision>5</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>MaxQuantity__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The maximum quantity of the product that may be selected.</description>
+        <externalId>false</externalId>
+        <label>Max Quantity (Deprecated)</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>5</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Message__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The message to display to the user when the constraint is violated</description>
+        <externalId>false</externalId>
+        <label>Message</label>
+        <length>4000</length>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>5</visibleLines>
+    </fields>
+    <fields>
+        <fullName>MinProducts__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The minimum number of products that must be selected from the related products. Setting the minimum products to greater than 0 means the user is required to select a product from the related products. This creates an &quot;inclusion&quot; rule. Setting the minimum products to 0 means the user is not required to make a selection.</description>
+        <externalId>false</externalId>
+        <label>Min Products (Deprecated)</label>
+        <precision>5</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>MinQuantity__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The minimum quantity of the product that must be selected.</description>
+        <externalId>false</externalId>
+        <label>Min Quantity (Deprecated)</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>5</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ProductCategory__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The product category associated with the constraint</description>
+        <externalId>false</externalId>
+        <label>Product Category</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ProductFamily__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The product family associated with the constraint</description>
+        <externalId>false</externalId>
+        <label>Product Family</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ProductGroupId__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <deprecated>false</deprecated>
+        <description>ID of the product group associated with the constraint.</description>
+        <externalId>false</externalId>
+        <label>Product Group</label>
+        <referenceTo>ProductGroup__c</referenceTo>
+        <relationshipLabel>Product Constraints</relationshipLabel>
+        <relationshipName>ProductConstraints</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>ProductId__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <deprecated>false</deprecated>
+        <description>ID of the associated product</description>
+        <externalId>false</externalId>
+        <label>Product</label>
+        <referenceTo>Product2</referenceTo>
+        <relationshipLabel>Product Constraints</relationshipLabel>
+        <relationshipName>ProductConstraints</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Sequence__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The constraint evaluation sequence</description>
+        <externalId>false</externalId>
+        <label>Sequence</label>
+        <precision>5</precision>
+        <required>true</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <label>Product Constraint</label>
+    <listViews>
+        <fullName>All</fullName>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+    </listViews>
+    <nameField>
+        <label>Constraint Name</label>
+        <type>Text</type>
+    </nameField>
+    <pluralLabel>Product Constraints</pluralLabel>
+    <searchLayouts>
+        <customTabListAdditionalFields>Sequence__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Description__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>ProductId__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>ProductFamily__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>ProductCategory__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>ProductGroupId__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Message__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Active__c</customTabListAdditionalFields>
+        <lookupDialogsAdditionalFields>Sequence__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>Description__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>ProductId__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>ProductFamily__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>ProductCategory__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>ProductGroupId__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>Message__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>Active__c</lookupDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>Sequence__c</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>Description__c</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>ProductId__c</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>ProductFamily__c</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>ProductCategory__c</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>ProductGroupId__c</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>Message__c</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>Active__c</lookupPhoneDialogsAdditionalFields>
+        <searchFilterFields>NAME</searchFilterFields>
+        <searchFilterFields>ProductId__c</searchFilterFields>
+        <searchFilterFields>ProductFamily__c</searchFilterFields>
+        <searchFilterFields>ProductCategory__c</searchFilterFields>
+        <searchFilterFields>ProductGroupId__c</searchFilterFields>
+        <searchFilterFields>Description__c</searchFilterFields>
+        <searchFilterFields>EffectiveDate__c</searchFilterFields>
+        <searchFilterFields>ExpirationDate__c</searchFilterFields>
+        <searchFilterFields>Active__c</searchFilterFields>
+        <searchResultsAdditionalFields>Sequence__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Description__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>ProductId__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>ProductFamily__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>ProductCategory__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>ProductGroupId__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Message__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Active__c</searchResultsAdditionalFields>
+    </searchLayouts>
+    <sharingModel>ReadWrite</sharingModel>
+</CustomObject>

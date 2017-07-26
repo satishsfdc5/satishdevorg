@@ -1,0 +1,85 @@
+<!-- 
+    Apttus Approvals Management
+    ReassignUserSearch
+     
+    @2010-2011 Apttus Inc. All rights reserved.
+
+ -->
+<apex:page standardController="Apttus_Approval__Approval_Request__c"
+		   extensions="Apttus_Approval.ReassignUserSearchController">
+
+    <apex:sectionHeader title="{!$Label.apttus_approval__ReassignUserSearch}"/>
+    
+    <apex:form >
+    
+		<apex:PanelGrid columns="3" cellpadding="2">
+		
+			<apex:outputLabel value="{!$Label.apttus_approval__Search}" 
+							  for="idSearchText" 
+							  style="font-weight: bold;" />
+			<apex:inputText id="idSearchText" 
+							value="{!searchText}" 
+							size="25" 
+							style="height:15px;font-size:13px;" />
+			<apex:commandButton action="{!doSearch}" 
+								value="{!$Label.apttus_approval__Go}" 
+								rerender="idSearchResult" 
+								status="idSearchStatus" />
+		</apex:PanelGrid>
+		
+		<apex:pageBlock title="Users" id="idSearchResult">
+		
+			<apex:pageMessages />
+			
+			<apex:pageBlockButtons >
+				<apex:commandButton action="{!doReturn}" value="{!$Label.apttus_approval__Cancel}" immediate="true"/>
+			</apex:pageBlockButtons>
+
+           <apex:outputPanel id="idResultStatsPanel" styleClass="bNext"
+                layout="block" style="text-align: right;"  rendered="{!hasUsers}">
+                <font size="1px">{!$Label.PageNbr}:&nbsp;{!currentPageNumber}&nbsp;{!$Label.OutOf}&nbsp;{!totalPages}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <apex:outputPanel id="idNavigationPanel" styleClass="next"
+                        layout="block" rendered="{!OR(hasNextPage,hasPreviousPage)}">
+                        <apex:outputPanel rendered="{!NOT(hasPreviousPage)}" styleClass="greyedLink">&lt;{!$Label.PreviousPage}</apex:outputPanel>
+                        <apex:commandLink rendered="{!hasPreviousPage}" action="{!previousPage}" reRender="idSearchResult">&lt;{!$Label.PreviousPage}</apex:commandLink>
+                        <span> | </span>
+                        <apex:outputPanel rendered="{!NOT(hasNextPage)}" styleClass="greyedLink">{!$Label.NextPage}&gt;</apex:outputPanel>
+                        <apex:commandLink rendered="{!hasNextPage}" action="{!nextPage}" reRender="idSearchResult">{!$Label.NextPage}&gt;</apex:commandLink>
+                    </apex:outputPanel> 
+                </font>
+            </apex:outputPanel>
+            
+			<p/>
+			
+			<apex:outputPanel >
+				<apex:actionstatus id="idSearchStatus" startText="{!$Label.apttus_approval__SearchStatusMessage}">
+					<apex:facet name="stop">
+						<apex:outputPanel >
+							<apex:pageBlockTable value="{!userList}" var="userWrapper" >
+								
+								<apex:column headerValue="{!$Label.apttus_approval__Name}">
+									<apex:commandLink action="{!doChooseUser}" value="{!userWrapper.user.Name}" >
+										<apex:param name="reassignedToId" value="{!userWrapper.user.id}" />
+										<apex:param name="reassignedToName" value="{!userWrapper.user.Name}" />
+									</apex:commandLink>		
+								</apex:column>
+								
+								<apex:column headerValue="{!$Label.apttus_approval__Role}" >
+									<apex:outputField value="{!userWrapper.user.UserRole.Name}" />
+								</apex:column>
+								
+								<apex:column headerValue="{!$Label.apttus_approval__Level}" >
+									<apex:outputText value="{!userWrapper.approverLevel}" />
+								</apex:column>
+								
+							</apex:pageBlockTable>
+						</apex:outputPanel>
+					</apex:facet>
+				</apex:actionstatus>
+			</apex:outputPanel>
+			
+		</apex:pageBlock>	
+		
+    </apex:form>
+    
+</apex:page>

@@ -1,0 +1,56 @@
+<!-- 
+    Apttus Config & Pricing
+    ProductOptionGroup
+     
+    @2010-2011 Apttus Inc. All rights reserved.
+
+ -->
+<apex:page controller="Apttus_Config2.ProductOptionGroupController"  
+			showHeader="false" 
+			sidebar="false" 
+			cache="false" 
+			tabStyle="Product2">
+
+	<apex:includeScript value="{!$Resource.Apttus_Config2__ConfigJSLib}"/>
+			
+	<apex:form id="idProductOptionGroup">
+
+		<apex:pageBlock id="idProductBlock" title="{!productName}" >
+
+			<apex:outputPanel id="idErrorMsg" >
+				<apex:pageMessages />
+			</apex:outputPanel>
+
+			<apex:pageBlockButtons location="both">
+				<apex:commandButton value="{!$Label.apttus_config2__Done}" action="{!doDone}" />
+			</apex:pageBlockButtons>
+			
+			<apex:pageBlockSection columns="1">
+			
+				<!--  Product Option Groups -->
+				<c:ProductOptionGroupSearch id="idProductOptionGroupSearch" 
+					pageController="{!this}"
+					selectButtonLabel="{!removeButtonLabel}" 
+					tableTitle="{!associatedGroupsLabel}"
+					autoSearch="true"
+					preFilterXml="{!optionGroupFilterXml}" />
+
+			</apex:pageBlockSection>
+			
+			<apex:pageBlockSection columns="1">
+
+				<!--  Classification Hierarchies -->
+				<c:ClassificationHierarchySearch id="idClassificationHierarchySearch" 
+					pageController="{!this}"
+					selectButtonLabel="{!selectButtonLabel}" 
+					tableTitle="{!availableGroupsLabel}"
+					autoSearch="true"
+					preFilterXml="{!classHierarchyFilterXml}" />
+
+			</apex:pageBlockSection>
+
+		</apex:pageBlock>
+
+	</apex:form>
+	
+</apex:page>

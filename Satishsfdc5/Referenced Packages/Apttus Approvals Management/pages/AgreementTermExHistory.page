@@ -1,0 +1,49 @@
+<!-- 
+    Apttus Approvals Management
+    AgreementTermExHistory
+     
+    @2010-2011 Apttus Inc. All rights reserved.
+
+ -->
+<apex:page standardController="Apttus__Agreement_Term_Exception__c" 
+		   recordSetVar="actList"
+		   extensions="Apttus_Approval.AgreementTermExHistoryController"
+		   showHeader="true" 
+		   sidebar="true"
+		   cache="false" 
+		   tabstyle="Apttus_Approval__Approval_Request__c" 
+		   action="{!loadHistory}">
+		
+    <apex:pageBlock title="{!$Label.apttus_approval__ActivityHistory}">
+    	<p>{!qryMessage}</p>        
+    	
+        <apex:pageBlockButtons >
+        	<apex:form >
+                <apex:commandButton action="{!doReturnToAgreement}" value="{!$Label.apttus_approval__ReturnToAgreement}" />
+            </apex:form>
+        </apex:pageBlockButtons>
+        
+        <apex:pageBlockTable value="{!activityHistory}" var="activity"> 
+        
+            <apex:column headerValue="{!$Label.apttus_approval__Exception}">
+            	<apex:outputLink value="/{!activity.agmtTermExId}">{!activity.termExDetail}
+            	</apex:outputLink>
+            </apex:column>  
+            
+            <apex:column headerValue="{!$ObjectType.Task.Fields.Subject.Label}">
+            	<apex:outputLink value="/{!activity.task.Id}">{!activity.task.Subject}
+            	</apex:outputLink>
+            </apex:column>
+            
+            <apex:column value="{!activity.task.ActivityDate}"/>  
+            
+            <apex:column headerValue="{!$Label.apttus_approval__AssignedTo}">
+            	<apex:outputLink value="/{!activity.task.OwnerId}">{!activity.task.Owner.Name}
+            	</apex:outputLink>
+            </apex:column>
+            
+            <apex:column value="{!activity.task.LastModifiedDate}"/>
+            
+        </apex:pageBlockTable>    
+    </apex:pageBlock>
+</apex:page>

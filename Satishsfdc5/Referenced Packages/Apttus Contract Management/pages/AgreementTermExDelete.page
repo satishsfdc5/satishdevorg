@@ -1,0 +1,61 @@
+<!-- 
+    Apttus Contract Management
+    AgreementTermExDelete
+     
+    @2009-2010 Apttus Inc. All rights reserved.
+
+ -->
+<apex:page standardController="Apttus__Agreement_Term_Exception__c"
+		   extensions="Apttus.AgreementTermExDeleteController" 
+		   showHeader="true" 
+		   sidebar="true" 
+		   tabStyle="Apttus__APTS_Agreement__c"
+		   recordSetVar="agmtTermExceptions">
+		   
+    <apex:sectionHeader title="{!$Label.apttus__Agreement}" />
+	<style>
+		.comments_w {
+			width: 300px;
+		}
+	</style>
+	<apex:form >
+		
+		<!--  hidden action buttons -->
+		<apex:commandButton id="btnOnLoad" action="{!doDelete}" value="On Load" style="display: none" />
+		
+		<script>
+        	var btnOnLoad = document.getElementById("{!$Component.btnOnLoad}");
+      	</script>
+      	
+		<apex:pageBlock title="{!$Label.apttus__PendingApprovalTermExceptions}">
+			<apex:pageMessages />
+			
+			<apex:pageBlockButtons >
+				<apex:commandButton id="cmdButtonDoCancel" action="{!cancel}" value="{!$Label.apttus__Ok}" />
+			</apex:pageBlockButtons>
+			
+			<apex:pageBlockSection title="{!$ObjectType.Apttus__Agreement_Term_Exception__c.LabelPlural}" 
+								   columns="1" 
+								   collapsible="false" >
+				<apex:pageBlockTable value="{!pendingList}" var="agmtTermEx">
+					<apex:column value="{!agmtTermEx.Apttus__Approval_Status__c}" />
+					<apex:column value="{!agmtTermEx.Apttus__Exception__c}" />
+					<apex:column value="{!agmtTermEx.Apttus__Description__c}" />
+					<apex:column value="{!agmtTermEx.Apttus__Comments__c}"
+								 styleClass="comments_w" />
+				</apex:pageBlockTable>
+			</apex:pageBlockSection>
+			
+		</apex:pageBlock>
+		
+	</apex:form>
+	
+	<script>
+		// register to invoke the function after the page load
+	    window.onload = function() { 
+	    	// on load
+	        btnOnLoad.click();
+	    };
+	</script>
+	
+</apex:page>

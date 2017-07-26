@@ -1,0 +1,36 @@
+<!-- 
+    Apttus Contract Management
+    AgreementNewLauncher
+     
+    @2009-2010 Apttus Inc. All rights reserved.
+
+ -->
+<apex:page showHeader="true">
+	<script type="text/javascript">
+    
+    /**
+	 * Launch the page
+	 */
+	function launchPage() {
+		
+		// build the url for a new agreement
+		var url = "{!URLFOR($Action.APTS_Agreement__c.New,null,[retURL=URLFOR("/home/home.jsp")])}";
+
+		// redirect to the new page
+		parent.frames.location.replace(url);
+	
+	}
+	
+	// register to invoke the function after the page load
+    window.onload = function() { 
+       	// launch the page
+        launchPage();
+    }
+    
+    </script>
+	<apex:form >
+		<div id="divMain" style="height: 25; width: 800px;">
+			<h1>{!$Label.apttus__PleaseWait}</h1>
+		</div>
+	</apex:form>
+</apex:page>

@@ -1,0 +1,479 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <comment>Edit a price matrix</comment>
+        <content>PriceMatrix</content>
+        <skipRecordTypeSelect>false</skipRecordTypeSelect>
+        <type>Visualforce</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Follow</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <deprecated>false</deprecated>
+    <description>Represents a price matrix associated with a price list entry</description>
+    <enableActivities>true</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>false</enableHistory>
+    <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <fields>
+        <fullName>Description__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The description for the price matrix</description>
+        <externalId>false</externalId>
+        <label>Description</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>Dimension1Id__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <deprecated>false</deprecated>
+        <description>ID of the first dimension</description>
+        <externalId>false</externalId>
+        <label>Dimension 1</label>
+        <referenceTo>PriceDimension__c</referenceTo>
+        <relationshipLabel>Price Matrices (Dimension 1)</relationshipLabel>
+        <relationshipName>PriceMatrices</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Dimension1ValueType__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The value type of the first dimension</description>
+        <externalId>false</externalId>
+        <label>Dimension 1 Value Type</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Discrete</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Range</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Cumulative Range</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Weighted Range</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Dimension2Id__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <deprecated>false</deprecated>
+        <description>ID of the second dimension</description>
+        <externalId>false</externalId>
+        <label>Dimension 2</label>
+        <referenceTo>PriceDimension__c</referenceTo>
+        <relationshipLabel>Price Matrices (Dimension 2)</relationshipLabel>
+        <relationshipName>PriceMatrices2</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Dimension2ValueType__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The value type of the second dimension</description>
+        <externalId>false</externalId>
+        <label>Dimension 2 Value Type</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Discrete</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Range</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Cumulative Range</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Weighted Range</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Dimension3Id__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <deprecated>false</deprecated>
+        <description>ID of the third dimension</description>
+        <externalId>false</externalId>
+        <label>Dimension 3</label>
+        <referenceTo>PriceDimension__c</referenceTo>
+        <relationshipLabel>Price Matrices (Dimension 3)</relationshipLabel>
+        <relationshipName>PriceMatrices3</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Dimension3ValueType__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The value type of the third dimension</description>
+        <externalId>false</externalId>
+        <label>Dimension 3 Value Type</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Discrete</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Range</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Cumulative Range</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Weighted Range</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Dimension4Id__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <deprecated>false</deprecated>
+        <description>ID of the fourth dimension</description>
+        <externalId>false</externalId>
+        <label>Dimension 4</label>
+        <referenceTo>PriceDimension__c</referenceTo>
+        <relationshipLabel>Price Matrices (Dimension 4)</relationshipLabel>
+        <relationshipName>PriceMatrices4</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Dimension4ValueType__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The value type of the fourth dimension</description>
+        <externalId>false</externalId>
+        <label>Dimension 4 Value Type</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Discrete</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Range</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Cumulative Range</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Weighted Range</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Dimension5Id__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <deprecated>false</deprecated>
+        <description>ID of the fifth dimension</description>
+        <externalId>false</externalId>
+        <label>Dimension 5</label>
+        <referenceTo>PriceDimension__c</referenceTo>
+        <relationshipLabel>Price Matrices (Dimension 5)</relationshipLabel>
+        <relationshipName>PriceMatrices5</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Dimension5ValueType__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The value type of the fifth dimension</description>
+        <externalId>false</externalId>
+        <label>Dimension 5 Value Type</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Discrete</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Range</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Cumulative Range</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Weighted Range</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Dimension6Id__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <deprecated>false</deprecated>
+        <description>ID of the sixth dimension</description>
+        <externalId>false</externalId>
+        <label>Dimension 6</label>
+        <referenceTo>PriceDimension__c</referenceTo>
+        <relationshipLabel>Price Matrices (Dimension 6)</relationshipLabel>
+        <relationshipName>PriceMatrices6</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Dimension6ValueType__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The value type of the sixth dimension</description>
+        <externalId>false</externalId>
+        <label>Dimension 6 Value Type</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Discrete</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Range</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Cumulative Range</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Weighted Range</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>InitialRows__c</fullName>
+        <defaultValue>5</defaultValue>
+        <deprecated>false</deprecated>
+        <description>The number of initial rows in the matrix</description>
+        <externalId>false</externalId>
+        <label>Initial Rows</label>
+        <precision>5</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>IsCumulativeRange__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <description>Indicates whether the range dimension values are cumulative. This field is deprecated. Use the Cumulative Range value type instead.</description>
+        <externalId>false</externalId>
+        <label>Is Cumulative Range (Deprecated)</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>MatrixType__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The matrix type</description>
+        <externalId>false</externalId>
+        <label>Matrix Type</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Dimension</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Condition</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>NumberOfEntries__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Indicates the number of entries associated with the price matrix</description>
+        <externalId>false</externalId>
+        <label>Number Of Entries</label>
+        <summaryForeignKey>PriceMatrixEntry__c.PriceMatrixId__c</summaryForeignKey>
+        <summaryOperation>count</summaryOperation>
+        <trackTrending>false</trackTrending>
+        <type>Summary</type>
+    </fields>
+    <fields>
+        <fullName>PriceListItemId__c</fullName>
+        <deprecated>false</deprecated>
+        <description>ID of the associated price list item</description>
+        <externalId>false</externalId>
+        <label>Price List Item</label>
+        <referenceTo>PriceListItem__c</referenceTo>
+        <relationshipLabel>Matrix Pricing</relationshipLabel>
+        <relationshipName>PriceMatrices</relationshipName>
+        <relationshipOrder>0</relationshipOrder>
+        <reparentableMasterDetail>false</reparentableMasterDetail>
+        <trackTrending>false</trackTrending>
+        <type>MasterDetail</type>
+        <writeRequiresMasterRead>false</writeRequiresMasterRead>
+    </fields>
+    <fields>
+        <fullName>Sequence__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The matrix evaluation sequence</description>
+        <externalId>false</externalId>
+        <label>Sequence</label>
+        <precision>5</precision>
+        <required>true</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>StopProcessingMoreMatrices__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <description>Indicator to prevent subsequent matrices from processing.</description>
+        <externalId>false</externalId>
+        <label>Stop Processing More Matrices</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <label>Price Matrix</label>
+    <nameField>
+        <displayFormat>PM-{0000000000}</displayFormat>
+        <label>Matrix Id</label>
+        <type>AutoNumber</type>
+    </nameField>
+    <pluralLabel>Price Matrices</pluralLabel>
+    <searchLayouts>
+        <excludedStandardButtons>New</excludedStandardButtons>
+        <excludedStandardButtons>Accept</excludedStandardButtons>
+        <lookupDialogsAdditionalFields>PriceListItemId__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>Description__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>Dimension1Id__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>Dimension2Id__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>Dimension3Id__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>Dimension4Id__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>Dimension5Id__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>Dimension6Id__c</lookupDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>PriceListItemId__c</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>Dimension1Id__c</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>Dimension2Id__c</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>Dimension3Id__c</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>Dimension4Id__c</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>Dimension5Id__c</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>Dimension6Id__c</lookupPhoneDialogsAdditionalFields>
+        <searchFilterFields>Description__c</searchFilterFields>
+    </searchLayouts>
+    <sharingModel>ControlledByParent</sharingModel>
+    <webLinks>
+        <fullName>EditPriceMatrix</fullName>
+        <availability>online</availability>
+        <description>Edit matrix prices for a price list item</description>
+        <displayType>massActionButton</displayType>
+        <encodingKey>UTF-8</encodingKey>
+        <linkType>url</linkType>
+        <masterLabel>Edit Matrix Pricing</masterLabel>
+        <openType>replace</openType>
+        <protected>false</protected>
+        <requireRowSelection>false</requireRowSelection>
+        <url>/apex/Apttus_Config2__PriceMatrixListEdit?priceListItemId={!PriceListItem__c.Id}</url>
+    </webLinks>
+    <webLinks>
+        <fullName>NewPriceMatrix</fullName>
+        <availability>online</availability>
+        <description>Create a new price matrix</description>
+        <displayType>massActionButton</displayType>
+        <encodingKey>UTF-8</encodingKey>
+        <linkType>url</linkType>
+        <masterLabel>New Matrix Pricing</masterLabel>
+        <openType>replace</openType>
+        <protected>false</protected>
+        <requireRowSelection>false</requireRowSelection>
+        <url>/apex/Apttus_Config2__PriceMatrix?priceListItemId={!PriceListItem__c.Id}</url>
+    </webLinks>
+</CustomObject>

@@ -1,0 +1,56 @@
+<!-- 
+ 	Apttus Config & Pricing
+ 	IconUploader
+ 	 
+ 	@2010-2011 Apttus Inc. All rights reserved.
+ -->
+<apex:page controller="Apttus_Config2.IconUploaderController" tabStyle="Attachment">
+
+	<apex:form > 
+       <apex:sectionHeader title="{!TitleFor}" subtitle="{!ParentName}" help=""/>
+       <apex:pageBlock title="{!$Label.apttus_config2__IconAttachment}" mode="edit">
+          <apex:pageBlockSection columns="1"> 
+          <p/>
+
+              <apex:outputText style="font-weight: bold;" value="{!$Label.apttus_config2__IconStepOne}"/>
+              <apex:outputText style="font-size: 14px;" value="{!$Label.apttus_config2__IconStepOneHelp}"><apex:param value="{!IconSize}"/><apex:param value="{!IconSize}"/></apex:outputText>
+			   <apex:pageBlockSectionItem >
+                    <apex:outputLabel value="{!$Label.apttus_config2__FileToUpload}"  
+                                      for="file_input" />
+                    <apex:outputPanel styleClass="requiredInput" layout="block">
+                        <apex:outputPanel styleClass="requiredBlock" layout="block"/>
+                        <apex:inputFile value="{!filebody}" fileName="{!fileName}" required="true" id="file_input"/><br/>
+                        <apex:outputText value="{!ErrorMessage}" style="font-weight: bold; color: red" />
+                    </apex:outputPanel>
+                </apex:pageBlockSectionItem>	             
+              <p/> 
+              
+			  <apex:outputText style="font-weight: bold;" value="{!$Label.apttus_config2__IconStepTwo}"><apex:param value="{!AddButtonLabel}"/></apex:outputText>
+              <apex:outputText style="font-size: 14px;" value="{!$Label.apttus_config2__IconStepTwoHelp}"/>
+              <apex:pageBlockSectionItem >
+                 <apex:image value="{!IconUrl}"
+                        style="width: {!IconSize}px; height: {!IconSize}px; vertical-align: top;"
+                        onclick="var url='{!IconUrl}'; if((!url) || url==''){return false}; var popContent=window.open(url, 'contentUrl', 'menubar=1,resizable=1,width=712,height=400');popContent.focus();"
+                        rendered="{!(IconUrl != null)}"
+                       />
+                  <apex:outputPanel >      
+                  <apex:commandButton value="{!AddButtonLabel}" action="{!uploadIcon}"  id="attach_button"/>
+                  &nbsp;&nbsp;&nbsp; 
+                  <apex:commandButton value="{!$Label.apttus_config2__RemoveIcon}" action="{!removeIcon}"  id="remove_button" rendered="{!IconRecordId!=null}"/>
+                  </apex:outputPanel> 
+              </apex:pageBlockSectionItem>
+              <p/>
+
+			  <apex:outputText style="font-weight: bold;" value="{!$Label.apttus_config2__IconStepThree}"><apex:param value="{!$Label.apttus_config2__Done}"/></apex:outputText>
+              <apex:outputText style="font-size: 14px;" value="{!$Label.apttus_config2__IconStepThreeHelp}"/>
+              <apex:pageBlockSectionItem >
+                  <apex:outputText style="display: none" value=""/>
+                  <apex:commandButton value="{!$Label.apttus_config2__Done}"  action="{!doCancel}"/> 
+              </apex:pageBlockSectionItem>
+              <p/>
+              
+          </apex:pageBlockSection>
+         
+        </apex:pageBlock>
+	</apex:form>
+</apex:page>

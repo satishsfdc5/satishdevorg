@@ -1,0 +1,19 @@
+<!-- 
+    Apttus Proposal-Config Integration
+    ProposalConfigJSLibInclude
+     
+    @2010-2011 Apttus Inc. All rights reserved.
+
+ -->
+<apex:page >
+	
+	<script>
+
+		// error labels
+		pc_cERROR_UNKNOWN = "{!$Label.ErrorUnknown}"; // "ERROR: Unknown error:\n";
+	    
+	</script>
+	
+	<apex:includescript value="{!$Resource.Apttus_QPConfig__ProposalConfigJSLib}" />
+	
+</apex:page>

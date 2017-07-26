@@ -1,0 +1,71 @@
+<!-- 
+    Apttus Config & Pricing
+    ProductClassification
+     
+    @2010-2011 Apttus Inc. All rights reserved.
+
+ -->
+<apex:page controller="Apttus_Config2.ProductClassificationController"  
+			showHeader="false" 
+			sidebar="false" 
+           cache="false"  
+           tabStyle="Product2">	
+	
+	<apex:includeScript value="{!$Resource.Apttus_Config2__ConfigJSLib}"/>
+
+ 	<apex:stylesheet value="{!$Resource.Apttus_Config2__ConfigStyles}" />	
+    
+    <apex:form id="idSelectProduct">
+        
+		<apex:pageBlock id="idSelectProductBlock" title="{!$Label.apttus_config2__SelectProducts}" mode="detail">
+
+			<apex:outputPanel id="idErrorMsg" >
+				<apex:pageMessages />
+			</apex:outputPanel>
+			
+			<apex:pageBlockButtons location="both">
+	        	<apex:commandButton value="{!$Label.apttus_config2__Done}" action="{!doDone}" immediate="true" />
+	    	</apex:pageBlockButtons>
+	    	
+			&nbsp;
+			<b><apex:outputText value="{!$Label.apttus_config2__Hierarchy}: {!classAnsestorChain}" styleClass="aptsBreadcrumb"/></b>
+			<apex:outputText value=""/>
+		    		
+		    <apex:pageBlockSection columns="1">	
+		    			 
+		    <!--  Product Classifications -->
+		      
+		    <c:ProductClassificationSearch id="idProductClassificationsSearch" 
+		    				 pageController="{!this}"  
+		    				 selectButtonLabel="{!removeButtonLabel}" 
+		    				 autoSearch="true" 
+		    				 preFilterXml="{!classProductFilterXml}"/>
+		    				 
+			</apex:pageBlockSection>
+			
+		    <apex:pageBlockSection columns="1">	
+		    
+		    <!--  Search Filter -->
+		    <c:SearchFilter id="idSearchFilter" 
+		    				sObjectName="Product2" 
+		    				pageController="{!this}" />
+		    				
+			</apex:pageBlockSection>
+			
+		    <apex:pageBlockSection columns="1">	
+		    
+		    <!--  Product Search -->
+		    <c:ProductSearch id="idProductSearch" 
+		    				 pageController="{!this}"  
+		    				 selectButtonLabel="{!assignButtonLabel}" 
+		    				 autoSearch="true" />
+		    				 
+			</apex:pageBlockSection>
+		
+		
+		
+		</apex:pageBlock>
+		
+	</apex:form>
+	
+</apex:page>

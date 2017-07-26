@@ -1,0 +1,47 @@
+<!-- 
+    Apttus Proposal Management
+    ProposalMakePrimary
+     
+    @2010-2011 Apttus Inc. All rights reserved.
+
+ -->
+<apex:page standardController="Apttus_Proposal__Proposal__c" 
+		   extensions="Apttus_Proposal.ProposalMakePrimaryController" >
+	
+	<apex:form >
+	
+		<!--  required fields -->
+		<apex:outputText value="{!Apttus_Proposal__Proposal__c.Name}" rendered="false"/>
+		<apex:outputText value="{!Apttus_Proposal__Proposal__c.Apttus_Proposal__Proposal_Name__c}" rendered="false"/>
+		<apex:outputText value="{!Apttus_Proposal__Proposal__c.Apttus_Proposal__Description__c}" rendered="false"/>
+		<apex:outputText value="{!Apttus_Proposal__Proposal__c.Apttus_Proposal__Approval_Stage__c}" rendered="false"/>
+		<apex:outputText value="{!Apttus_Proposal__Proposal__c.Apttus_Proposal__Opportunity__c}" rendered="false"/>
+		<apex:outputText value="{!Apttus_Proposal__Proposal__c.Apttus_Proposal__Primary__c}" rendered="false"/>
+		
+		<!--  hidden action buttons -->
+		<apex:commandButton id="btnOnLoad" action="{!onLoad}" value="On Load" style="display: none" />
+		
+		<script>
+        	var btnOnLoad = document.getElementById("{!$Component.btnOnLoad}");
+      	</script>
+      	
+		<apex:pageBlock mode="edit" rendered="{!hasErrors}" >
+			<apex:pageMessages />
+			<apex:pageBlockButtons location="bottom" >
+				<apex:commandButton action="{!doCancel}" value="{!$Label.apttus_proposal__Cancel}" immediate="true"/>
+			</apex:pageBlockButtons>
+		</apex:pageBlock>
+	</apex:form>
+	
+	<script>
+		// register to invoke the function after the page load
+	    var hasErrors = "{!hasErrors}";
+		if (hasErrors.toLowerCase() == 'false') {
+		    window.onload = function() { 
+		    	// on load
+		        btnOnLoad.click();
+		    };
+		}
+	</script>
+	
+</apex:page>

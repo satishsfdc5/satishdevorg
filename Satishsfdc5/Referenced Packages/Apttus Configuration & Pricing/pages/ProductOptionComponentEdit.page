@@ -1,0 +1,101 @@
+<!--
+ 	Apttus Config & Pricing
+ 	ProductOptionComponentEdit
+ 	 
+ 	@2010-2011 Apttus Inc. All rights reserved.
+ -->
+<apex:page controller="Apttus_Config2.ProductOptionComponentEditController"  
+			showHeader="false" 
+			sidebar="false" 
+           	cache="false"   
+           	tabstyle="Product2">
+
+	<apex:form >
+		
+		<apex:pageBlock id="idComponentsBlock" title="{!$Label.apttus_config2__EditOptionProperties}" >
+
+			<apex:outputPanel id="idErrorMsg" >
+				<apex:pageMessages />
+			</apex:outputPanel>
+			
+			<apex:pageBlockButtons location="both">
+				<apex:commandButton value="{!$Label.apttus_config2__Save}" action="{!doSave}"/>
+				<apex:commandButton value="{!$Label.apttus_config2__Cancel}" action="{!doCancel}"/>
+				<b><apex:actionStatus startText="{!$Label.apttus_config2__StatusMessageUpdatingPage}..."
+					id="idStatusSelect" /></b>
+			</apex:pageBlockButtons>
+
+		
+			<apex:pageBlockSection columns="2" title="{!$ObjectType.Apttus_Config2__ProductOptionGroup__c.Label}">
+				<apex:outputField value="{!pog.Apttus_Config2__OptionGroupId__c}" />
+				<apex:outputField value="{!pog.Apttus_Config2__ModifiableType__c}" />
+				<apex:outputField value="{!pog.Apttus_Config2__MinOptions__c}" />
+				<apex:outputField value="{!pog.Apttus_Config2__MaxOptions__c}" />
+			</apex:pageBlockSection>
+
+				<apex:pageBlockSection title="{!$Label.apttus_config2__ProductOptions}"
+					columns="1" collapsible="true" >
+
+					<apex:pageBlockTable value="{!pocList}"
+						var="poc" width="100%" >
+
+
+						<apex:column headerValue="{!$ObjectType.Product2.Fields.Name.Label}">
+							<apex:outputField value="{!poc.Apttus_Config2__ComponentProductId__c}" />
+						</apex:column>
+
+						<apex:column headerValue="{!$ObjectType.Product2.Fields.Family.Label}">
+							<apex:outputField value="{!poc.ComponentProductId__r.Family}" />
+						</apex:column>
+
+						<apex:column headerValue="{!$ObjectType.Product2.Fields.ProductCode.Label}">
+							<apex:outputField value="{!poc.ComponentProductId__r.ProductCode}" />
+						</apex:column>
+						
+						<apex:column headerValue="{!$ObjectType.Apttus_Config2__ProductOptionComponent__c.Fields.Apttus_Config2__MinQuantity__c.Label}">
+							<apex:inputField value="{!poc.Apttus_Config2__MinQuantity__c}" style="width:40px;"/>
+						</apex:column>
+						
+						<apex:column headerValue="{!$ObjectType.Apttus_Config2__ProductOptionComponent__c.Fields.Apttus_Config2__MaxQuantity__c.Label}">
+							<apex:inputField value="{!poc.Apttus_Config2__MaxQuantity__c}" style="width:40px;"/>
+						</apex:column>
+						
+						<apex:column headerValue="{!$ObjectType.Apttus_Config2__ProductOptionComponent__c.Fields.Apttus_Config2__DefaultQuantity__c.Label}">
+							<apex:inputField value="{!poc.Apttus_Config2__DefaultQuantity__c}" style="width:40px;"/>
+						</apex:column>
+						
+						<apex:column headerValue="{!$ObjectType.Apttus_Config2__ProductOptionComponent__c.Fields.Apttus_Config2__Modifiable__c.Label}">
+							<apex:inputField value="{!poc.Apttus_Config2__Modifiable__c}" />
+						</apex:column>
+						
+						<apex:column headerValue="{!$ObjectType.Apttus_Config2__ProductOptionComponent__c.Fields.Apttus_Config2__Default__c.Label}">
+							<apex:inputField value="{!poc.Apttus_Config2__Default__c}" />
+						</apex:column>
+
+						<apex:column width="20px">
+					   		<apex:commandLink action="{!doMoveUpRow}" 
+									  	  	  reRender="idComponentsBlock" 
+									  	  	  rendered="{!poc.Id != firstRowId}" 
+									  	  	  status="idStatusSelect" >
+								<apex:param name="seqNum" assignTo="{!moveSeqNum}" value="{!poc.Apttus_Config2__Sequence__c}" />
+								<apex:image url="{!$Resource.Apttus_Config2__Image_MoveUp}" 
+		                       				title="{!$Label.apttus_config2__MoveUp}" 
+		                       				alt="{!$Label.apttus_config2__MoveUp}" />
+							</apex:commandLink>
+							<apex:commandLink action="{!doMoveDownRow}" 
+									  	  	  reRender="idComponentsBlock" 
+									  	  	  rendered="{!poc.Id != lastRowId}" 
+									  	  	  status="idStatusSelect" >
+								<apex:param name="seqNum" assignTo="{!moveSeqNum}" value="{!poc.Apttus_Config2__Sequence__c}" />
+								<apex:image url="{!$Resource.Apttus_Config2__Image_MoveDown}" 
+		                       				title="{!$Label.apttus_config2__MoveDown}" 
+		                       				alt="{!$Label.apttus_config2__MoveDown}" />
+							</apex:commandLink>
+					   	</apex:column>
+					</apex:pageBlockTable>	
+
+				</apex:pageBlockSection>
+
+		</apex:pageBlock>	
+	</apex:form>
+</apex:page>

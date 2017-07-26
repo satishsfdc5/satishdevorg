@@ -1,0 +1,127 @@
+<!-- 
+    Apttus Contract Management
+    AgreementTermExAdd
+     
+    @2009-2010 Apttus Inc. All rights reserved.
+
+ -->
+<apex:page standardController="Apttus__Agreement_Term_Exception__c"
+		   extensions="Apttus.AgreementTermExAddController"
+		   showHeader="true" 
+		   sidebar="true"
+		   tabStyle="Apttus__APTS_Agreement__c" >
+		
+    <apex:sectionHeader title="Agreement"/>
+	<apex:form >
+		<apex:outputText rendered="false" value="{!Apttus__Agreement_Term_Exception__c.Apttus__Agreement__c}"/>
+		<apex:pageBlock title="{!$Label.apttus__FindTermExceptions}">
+			<apex:pageMessages />
+			<div>
+			<table>
+				<tr>
+					<td><apex:outputText value="{!$Label.apttus__TermExceptionSearchInstruction}"
+					/></td>
+				</tr>
+			</table>
+			<p></p>
+			</div>
+			<apex:panelGrid columns="1">
+				<apex:panelGroup >
+					<apex:outputLabel value="{!$Label.apttus__ByFieldFilter}" for="selListFilterBy"
+									  styleClass="labelCol first  last" />
+									  
+					<apex:selectList value="{!searchFieldName}" size="1" >
+						<apex:selectOptions value="{!searchFields}" />
+					</apex:selectList>
+				&nbsp;&nbsp;
+				<apex:selectList value="{!searchOperatorName}" size="1">
+						<apex:selectOptions value="{!operators}" />
+					</apex:selectList>
+				&nbsp;&nbsp;
+				<apex:inputText value="{!searchCriteriaName}" />
+					<apex:commandButton id="cmdButtonDoSearch" 
+										action="{!doSearch}"
+										value="{!$Label.apttus__Find}" 
+										status="statusFind"
+										reRender="statusFind, teTable"  />
+					<apex:outputPanel >
+						<b><apex:actionstatus id="statusFind" startText="{!$Label.apttus__Searching}" /></b>
+					</apex:outputPanel>
+				</apex:panelGroup>
+			</apex:panelGrid>
+
+		</apex:pageBlock>
+
+		<apex:pageBlock id="tePageBlock" title="{!$Label.apttus__AddTermExceptions}" mode="edit">
+			<apex:pageBlockButtons >
+				<apex:commandButton id="cmdButtonDoAdd" 
+									action="{!doAdd}" 
+									value="{!$Label.apttus__Select}" />
+				<apex:commandButton id="cmdButtonDoCancel" 
+									action="{!cancel}" 
+									value="{!$Label.apttus__Cancel}" />
+				<apex:outputPanel >
+					<b><apex:actionstatus id="statusSort" startText="{!$Label.apttus__Sorting}" /></b>
+				</apex:outputPanel>
+			</apex:pageBlockButtons>
+			<apex:outputPanel >
+				<apex:pageBlockTable id="teTable" value="{!termExList}" var="teData" width="100%">
+					<apex:column >
+						<apex:facet name="header">
+							<img src="/img/checkbox_checked.gif" />
+						</apex:facet>
+						<apex:inputCheckbox selected="{!teData.selected}"
+											value="{!teData.selected}" />
+					</apex:column>
+					<apex:column width="10%">
+						<apex:facet name="header">
+							<apex:commandLink action="{!doSort}" 
+											  value="{!$ObjectType.Apttus__Term_Exception__c.Fields.Name.Label}"
+											  reRender="teTable" 
+											  status="statusSort" >
+								<apex:outputPanel rendered="{!isSortByName}">
+									<img src="{!sortImageURL}" title="{!sortImageTitle}" />
+								</apex:outputPanel>
+								<apex:param name="sortBy" value="Name" />
+							</apex:commandLink>
+						</apex:facet>
+						<apex:outputLink value="{!URLFOR($Action.Term_Exception__c.View, teData.termEx.Id)}"
+						>
+						{!teData.termEx.Name}
+					</apex:outputLink>
+					</apex:column>
+					<apex:column >
+						<apex:facet name="header">
+							<apex:commandLink action="{!doSort}" 
+											  value="{!$ObjectType.Apttus__Term_Exception__c.Fields.Apttus__Exception__c.Label}"
+											  reRender="teTable" 
+											  status="statusSort" >
+								<apex:outputPanel rendered="{!isSortByExceptionId}">
+									<img src="{!sortImageURL}" title="{!sortImageTitle}" />
+								</apex:outputPanel>
+								<apex:param name="sortBy" value="Apttus__Exception__c" />
+							</apex:commandLink>
+						</apex:facet>
+						<apex:outputField value="{!teData.termEx.Apttus__Exception__c}" />
+					</apex:column>
+					<apex:column >
+						<apex:facet name="header">
+							<apex:commandLink action="{!doSort}" 
+											  value="{!$ObjectType.Apttus__Term_Exception__c.Fields.Apttus__Exception_Type__c.Label}"
+											  reRender="teTable" 
+											  status="statusSort" >
+								<apex:outputPanel rendered="{!isSortByExceptionType}">
+									<img src="{!sortImageURL}" title="{!sortImageTitle}" />
+								</apex:outputPanel>
+								<apex:param name="sortBy" value="Apttus__Exception_Type__c" />
+							</apex:commandLink>
+						</apex:facet>
+						<apex:outputField value="{!teData.termEx.Apttus__Exception_Type__c}"
+						/>
+					</apex:column>
+					<apex:column value="{!teData.termEx.Apttus__Description__c}" />
+				</apex:pageBlockTable>
+			</apex:outputPanel>
+		</apex:pageBlock>
+	</apex:form>
+</apex:page>

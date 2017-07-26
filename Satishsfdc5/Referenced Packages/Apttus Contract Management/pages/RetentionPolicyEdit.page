@@ -1,0 +1,160 @@
+<!-- 
+    Apttus Contract Management
+    RetentionPolicyEdit
+     
+    @2009-2010 Apttus Inc. All rights reserved.
+
+ -->
+<apex:page standardController="Apttus__RetentionPolicy__c"  
+		   extensions="Apttus.RetentionPolicyEditController" 
+           showHeader="true"
+           sidebar="true"
+           cache="false"   
+           tabStyle="Apttus__RetentionPolicy__c">	
+    
+    <style type="text/css">
+    	.customFont {
+			font-size: 75%;
+		}
+		
+		.errorRow {
+			border:1px solid red;
+		}
+		
+		.okRow {
+			border:none;
+		}
+
+	</style>
+	
+    <apex:sectionHeader title="{!$Label.apttus__RetentionPolicyEdit}" subtitle="{!Apttus__RetentionPolicy__c.Name}"/>
+    
+    <apex:form id="idEditPolicySpec">
+		<!--  required fields -->
+		<apex:outputText value="{!Apttus__RetentionPolicy__c.Apttus__Sequence__c}" rendered="false"/>
+		<apex:outputText value="{!Apttus__RetentionPolicy__c.Apttus__PolicySpec__c}" rendered="false"/>
+		<apex:outputText value="{!Apttus__RetentionPolicy__c.Apttus__Description__c}" rendered="false"/>
+		<apex:outputText value="{!Apttus__RetentionPolicy__c.Apttus__BusinessObject__c}" rendered="false"/>
+		<apex:outputText value="{!Apttus__RetentionPolicy__c.Apttus__Active__c}" rendered="false"/>
+		
+		<apex:pageBlock id="idEditPolicyBlock" title="{!$Label.apttus__EditPolicySpecification}" mode="edit">
+			<apex:pageMessages />
+			
+			<apex:pageBlockButtons location="both">
+		        <apex:commandButton value="{!$Label.apttus__Ok}" action="{!doOk}"  />
+		        <apex:commandButton value="{!$Label.apttus__Cancel}" action="{!doCancel}" immediate="true"  />
+		    </apex:pageBlockButtons>
+		    
+		    <apex:pageBlockSection id="idPredicatesSection" title="{!$Label.apttus__Filter}" columns="2" collapsible="false" >
+		        <apex:pageBlockTable value="{!predicates}" var="predicate" columns="8" >
+		        	
+		        	<apex:column width="5%" rendered="{!isAdvancedOptionsMode}" >
+		        		<apex:outputText id="idRowNum" value="{!predicate.RowNum}. " />
+					</apex:column>
+		        	<apex:column headerValue="{!$Label.apttus__Field}" width="25%" >
+		        		<apex:outputPanel styleClass="{!IF(predicate.FieldInError, 'errorRow', '')}" layout="block" >
+		        			<apex:selectList id="idField" size="1" value="{!predicate.FieldName}" >
+					      		<apex:selectOptions value="{!FieldItems}"></apex:selectOptions>
+					      	</apex:selectList>
+						</apex:outputPanel>
+					</apex:column>
+					<apex:column headerValue="{!$Label.apttus__Operator}" width="25%" >
+				    	<apex:outputPanel styleClass="{!IF(predicate.CompOperInError, 'errorRow', '')}" layout="block" >
+					    	<apex:selectList id="idCompOper" size="1" value="{!predicate.CompOper}" >
+					      		<apex:selectOptions value="{!compOperItems}"></apex:selectOptions>
+					      	</apex:selectList>
+				      	</apex:outputPanel>
+				   	</apex:column>
+			   		<apex:column headerValue="{!$Label.apttus__Value}" width="25%" >
+				    	<apex:outputPanel styleClass="{!IF(predicate.FieldValueInError, 'errorRow', '')}" layout="block" >
+				    		<apex:inputText id="idFieldValue" size="25" value="{!predicate.FieldValue}" />
+				   		</apex:outputPanel>
+				   	</apex:column>
+				   	<apex:column width="5%" >
+				    	<apex:outputText id="idBoolOper" value="{!predicate.BoolOper}" rendered="{!NOT(isAdvancedOptionsMode)}" />
+				   	</apex:column>
+				   	<apex:column width="5%" >
+				   	<apex:commandLink id="idDeleteRow" 
+								      action="{!doDeleteRow}" 
+								  	  value="{!$Label.apttus__Del}" 
+								  	  reRender="idPredicatesSection" 
+								  	  rendered="{!predicate.RowNum > 1 && NOT(ISBLANK(predicate.BoolOper))}" >
+						<apex:param name="rowNum" value="{!predicate.RowNum}" />		  
+					</apex:commandLink>
+					</apex:column>
+				   	<apex:column width="10%" >
+				   		<apex:outputText value="{!predicate.ErrorMsg}" style="color:red;" />
+				   	</apex:column>
+				   
+		        </apex:pageBlockTable>
+		        
+		    </apex:pageBlockSection>
+				    
+			<apex:pageBlockSection id="idAdvancedOptionsSection" columns="1" collapsible="false" >
+			
+				<apex:commandLink id="idShowAdvancedOptions" 
+								  action="{!doShowAdvancedOptions}" 
+								  value="{!$Label.apttus__AdvancedOptions}" 
+								  reRender="idAdvancedOptionsSection, idPredicatesSection" 
+								  rendered="{!NOT(isAdvancedOptionsMode)}" />
+		        
+		        <apex:outputPanel rendered="{!isAdvancedOptionsMode}">
+					<apex:commandLink id="idAddRow" 
+									  action="{!doAddRow}" 
+									  value="{!$Label.apttus__AddRow}" 
+									  reRender="idAdvancedOptionsSection, idPredicatesSection" />
+					<span>  </span>
+					<apex:commandLink id="idRemoveRow" 
+									  action="{!doRemoveRow}" 
+									  value="{!$Label.apttus__RemoveRow}" 
+									  reRender="idAdvancedOptionsSection, idPredicatesSection" 
+									  rendered="{!OkToRemoveRow}" />
+					<apex:outputPanel id="idRemoveRow2" styleClass="greyedLink" rendered="{!NOT(OkToRemoveRow)}" >{!$Label.apttus__RemoveRow}</apex:outputPanel>
+					<p/>	
+		        	<apex:commandLink id="idHideAdvancedOptions" 
+		        					  action="{!doHideAdvancedOptions}" 
+		        					  value="{!$Label.apttus__ClearAdvancedOptions}" 
+		        					  reRender="idAdvancedOptionsSection, idPredicatesSection" />
+		        	<br/>
+		        	<apex:outputText value="{!$Label.apttus__AdvancedFilterCondition}" />
+		        	<br/>
+		        	<apex:inputText id="idAdvancedOptions" size="80" value="{!advancedOptions}" />
+		        </apex:outputPanel>
+		        
+			</apex:pageBlockSection>
+			
+			<apex:pageBlockSection id="idRuleSection" title="{!$Label.apttus__Rule}" columns="1" >
+		    	
+		    	<apex:panelGrid columns="2">
+			    	
+			    	<apex:outputLabel for="idRetainForever">{!$Label.RetainForever}&nbsp;&nbsp;</apex:outputLabel>
+					<apex:inputCheckbox id="idRetainForever" value="{!retainForever}" >
+						<apex:actionSupport event="onclick" action="{!doSetRetainForever}" reRender="idRuleSection" />
+					</apex:inputCheckbox>
+				</apex:panelGrid>
+				
+		    	<apex:panelGrid columns="3" rendered="{!NOT(retainForever)}" >
+			    	
+			    	<apex:outputLabel for="idPeriod">{!$Label.Period}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</apex:outputLabel>
+					<apex:inputText id="idPeriod" value="{!period.Value}" />
+					<apex:selectList id="idUom" size="1" value="{!period.Uom}" >
+			      		<apex:selectOptions value="{!UomItems}"></apex:selectOptions>
+			      	</apex:selectList>
+				</apex:panelGrid>
+				
+		    	<apex:panelGrid columns="2" rendered="{!NOT(retainForever)}">
+			    	
+			    	<apex:outputLabel for="idAfterDate">{!$Label.AfterDate}&nbsp;&nbsp;</apex:outputLabel>
+					<apex:selectList id="idAfterDate" size="1" value="{!afterDate.FieldName}" >
+			      		<apex:selectOptions value="{!DateFieldItems}"></apex:selectOptions>
+			      	</apex:selectList>
+					
+				</apex:panelGrid>
+		    	
+		    </apex:pageBlockSection>
+		    
+		</apex:pageBlock>
+		
+	</apex:form>
+	
+</apex:page>

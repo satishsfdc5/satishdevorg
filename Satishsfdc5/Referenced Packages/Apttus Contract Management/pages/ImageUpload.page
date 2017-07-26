@@ -1,0 +1,70 @@
+<!-- 
+    Apttus Contract Management
+    ImageUpload
+     
+    @2012-2013 Apttus Inc. All rights reserved.
+
+ -->
+<apex:page controller="Apttus.ImageUploadController" >
+
+	<apex:form >
+		<apex:sectionHeader title="{!$Label.apttus__UploadImage}" 
+							subtitle="{!$Label.apttus__UploadImageStep1}" 
+							rendered="{!IsSelectFieldStep}" />
+		
+		<apex:sectionHeader title="{!$Label.apttus__UploadImage}" 
+							subtitle="{!$Label.apttus__UploadImageStep2 & ' ' & $Label.apttus__For & ' ' & SelectedFieldLabel}" 
+							rendered="{!IsUploadImageStep}" />
+												
+		<apex:pageblock id="idSelectField" 
+					    rendered="{!IsSelectFieldStep}" > 
+			<apex:pageMessages />
+			<apex:pageBlockSection columns="1"> 
+				<span>&nbsp;&nbsp;&nbsp;{!$Label.SelectFieldInstruction}</span>
+ 
+				<apex:selectList value="{!SelectedField}" label="" size="1">
+					<apex:actionSupport event="onchange" reRender="idSelectField" />
+					<apex:selectOptions value="{!ImageFieldItems}" />
+				</apex:selectList>
+			
+			</apex:pageBlockSection>
+		 
+		   <apex:pageBlockButtons location="bottom">
+				<apex:commandButton action="{!doNext}" 
+									value="{!$Label.apttus__Next}" 
+									rendered="{!hasSelectedField}" />	
+				<apex:commandButton action="{!doCancel}" 
+									value="{!$Label.apttus__Cancel}" 
+									immediate="true"/>
+            </apex:pageBlockButtons>
+		
+		</apex:pageblock>
+		
+		<apex:pageBlock id="idAttachBlock" 
+						mode="edit" 
+						rendered="{!IsUploadImageStep}" >
+			<apex:pageMessages />
+			<apex:pageBlockButtons location="bottom" >
+				<apex:commandButton value="{!$Label.apttus__Done}" 
+									action="{!doDone}" 
+									immediate="true" />
+			</apex:pageBlockButtons>
+			<apex:outputPanel id="idUpload">
+                <apex:outputText style="font-weight: bold" value="1. {!$Label.apttus__SelectImageFile}" /><br/>
+                <apex:outputText value="{!$Label.apttus__SelectImageToUploadInstruction}" /> <p/>
+                <apex:inputFile size="80" value="{!filebody}" fileName="{!fileName}" contentType="{!contentType}" accept="image/gif,image/jpeg,image/png" /><p/>
+                <apex:outputText value="{!uploadErrorMsg}" style="font-weight: bold; color: red" /><p/>
+                <apex:outputText style="font-weight: bold" value="2. {!$Label.apttus__ClickUploadFile}" escape="false" /> <br/>
+                <apex:outputText value="{!$Label.apttus__UploadImageFileInstruction}" /> <p/>
+                <apex:commandButton value="{!$Label.apttus__UploadFile}" action="{!doUpload}" /> <p/>
+            </apex:outputPanel>
+            <apex:outputPanel >
+				<apex:image url="{!ImageURL}" 
+							width="500"
+       						rendered="{!IsImageUploaded}" />
+			</apex:outputPanel> 
+		</apex:pageBlock>
+			
+	</apex:form>
+	
+</apex:page>

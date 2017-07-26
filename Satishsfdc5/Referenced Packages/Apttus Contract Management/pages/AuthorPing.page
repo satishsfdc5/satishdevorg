@@ -1,0 +1,29 @@
+<!-- 
+    Apttus Contract Management
+    AuthorPing
+     
+    @2011-2012 Apttus Inc. All rights reserved.
+
+ -->
+<apex:page showHeader="false" 
+           sidebar="false"
+           cache="false" >	
+    
+	<script type="text/javascript">
+    
+		// register to invoke the function after the page load
+    	window.onload = function() { 
+    		// set the response
+			try {
+				// set the response xml
+				window.external.SetResponse("<ActionResponse><Status>Ok</Status></ActionResponse>");
+				
+			} catch(ex) {
+				// object not available
+			}
+			
+    	}
+    
+    </script>
+    
+</apex:page>

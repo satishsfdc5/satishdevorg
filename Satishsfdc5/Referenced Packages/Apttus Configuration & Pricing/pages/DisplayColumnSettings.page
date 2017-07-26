@@ -1,0 +1,138 @@
+<!-- 
+    Apttus Config & Pricing
+    DisplayColumnSettings
+     
+    @2011-2012 Apttus Inc. All rights reserved.
+
+ -->
+<apex:page controller="Apttus_Config2.DisplayColumnSettingsController" 
+           standardStylesheets="true"
+           setup="true"
+           tabStyle="Apttus_Config2__ConfigCustomDisplayColumns__c" >	
+    
+    <apex:stylesheet value="{!$Resource.Apttus_Config2__ConfigStyles}" />
+    
+    <style type="text/css">
+    
+		textarea {
+			width: 40%;
+		}
+		
+	</style>
+	
+	<apex:sectionHeader title="Custom Setting" 
+						subtitle="{!$ObjectType.Apttus_Config2__ConfigCustomDisplayColumns__c.Label & ' ' & $Label.apttus_config2__Edit}" />
+											
+	<apex:form id="idDisplayColumnSO">
+		
+		<apex:pageBlock id="idDisplayColumnBlock" 
+						mode="edit" >
+			<apex:pageMessages />
+			<apex:pageBlockButtons location="top">
+		        <apex:commandButton value="{!$Label.apttus_config2__Save}" 
+		        					action="{!doSave}" />				
+		        <apex:commandButton value="{!$Label.apttus_config2__Cancel}" 
+		        					action="{!doCancel}" 
+		        					immediate="true" />
+		    </apex:pageBlockButtons>
+		    
+			<apex:pageBlockSection id="idDisplayColumnSection" 
+		    					   title="Display Column Settings" 
+		    					   columns="2" 
+		    					   collapsible="false" >
+				
+				<apex:pageBlockSectionItem >
+					<apex:outputLabel value="{!$ObjectType.Apttus_Config2__ConfigCustomDisplayColumns__c.Fields.Apttus_Config2__DisplayType__c.Label}"  
+									  for="idDisplayType" />
+					<apex:outputPanel styleClass="requiredInput" layout="block">
+   						<apex:outputPanel styleClass="requiredBlock" layout="block"/>
+  						<apex:selectList id="idDisplayType" 
+  										 value="{!DisplayType}" 
+  										 multiselect="false" 
+  										 required="true" 
+  										 size="1" >
+							<apex:selectOptions value="{!DisplayTypeItems}"></apex:selectOptions>
+							<apex:actionSupport event="onchange" reRender="idDisplayColumnBlock" />
+						</apex:selectList>
+ 					</apex:outputPanel>
+				</apex:pageBlockSectionItem>
+				
+				<apex:pageBlockSectionItem />
+		    	<apex:pageBlockTable value="{!DisplayColumns}" 
+		    	 					 var="columnSO" 
+		    	 					 rowClasses="oddRow,evenRow" >
+		        	
+		        	<apex:column value="{!columnSO.Apttus_Config2__Sequence__c}"   
+		        				 width="5%" >
+					</apex:column>
+					
+					<apex:column value="{!columnSO.Apttus_Config2__DisplayType__c}" />
+					
+					<apex:column headerValue="{!$ObjectType.Apttus_Config2__ConfigCustomDisplayColumns__c.Fields.Apttus_Config2__FieldName__c.Label}" >
+	        			<apex:selectList id="idField" size="1" value="{!columnSO.Apttus_Config2__FieldName__c}" >
+				      		<apex:selectOptions value="{!fieldItems}"></apex:selectOptions>
+				      	</apex:selectList>
+						
+					</apex:column>
+					
+					<apex:column headerValue="{!$ObjectType.Apttus_Config2__ConfigCustomDisplayColumns__c.Fields.Apttus_Config2__IsEditable__c.Label}" 
+								 rendered="{!NOT(IsReadOnlyDisplay)}" >
+		        		<apex:inputField value="{!columnSO.Apttus_Config2__IsEditable__c}" />
+					</apex:column>
+					
+					<apex:column headerValue="{!$ObjectType.Apttus_Config2__ConfigCustomDisplayColumns__c.Fields.Apttus_Config2__IsSortable__c.Label}" >
+		        		<apex:inputField value="{!columnSO.Apttus_Config2__IsSortable__c}" />
+					</apex:column>
+					
+					<apex:column headerValue="{!$ObjectType.Apttus_Config2__ConfigCustomDisplayColumns__c.Fields.Apttus_Config2__Style__c.Label}" >
+		        		<apex:inputField value="{!columnSO.Apttus_Config2__Style__c}" />
+					</apex:column>
+					
+				   	<apex:column width="5%" >
+				    	<apex:commandLink action="{!doAddRow}" 
+								  	  	  reRender="idDisplayColumnBlock" >
+							<apex:param name="rowNum" value="{!columnSO.Apttus_Config2__Sequence__c}" />	
+							<apex:image url="{!$Resource.Apttus_Config2__Image_Plus2}" 
+				                       	title="{!$Label.apttus_config2__Add}" 
+				                       	alt="{!$Label.apttus_config2__Add}" />   		  	  	  
+						</apex:commandLink>
+				   	</apex:column>
+				   	
+				   	<apex:column width="5%" >
+					   	<apex:commandLink action="{!doDeleteRow}" 
+									  	  reRender="idDisplayColumnBlock" 
+									  	  rendered="{!columnSO.Apttus_Config2__Sequence__c > 1}" >
+							<apex:param name="rowNum" value="{!columnSO.Apttus_Config2__Sequence__c}" />
+							<apex:image url="{!$Resource.Apttus_Config2__Image_Minus2}" 
+			                    		title="{!$Label.apttus_config2__Remove}" 
+			                    		alt="{!$Label.apttus_config2__Remove}" />  
+						</apex:commandLink>
+					</apex:column>
+				   	<apex:column width="5%" >
+				   		<apex:commandLink action="{!doMoveUpRow}" 
+								  	  	  reRender="idDisplayColumnBlock"
+								  	  	  rendered="{!columnSO.Apttus_Config2__Sequence__c > 1}" >
+							<apex:param name="rowNum" value="{!columnSO.Apttus_Config2__Sequence__c}" />
+							<apex:image url="{!$Resource.Apttus_Config2__Image_MoveUp}" 
+                        				title="{!$Label.apttus_config2__MoveUp}" 
+                        				alt="{!$Label.apttus_config2__MoveUp}" />
+						</apex:commandLink>
+						<apex:commandLink action="{!doMoveDownRow}" 
+								  	  	  reRender="idDisplayColumnBlock" 
+								  	  	  rendered="{!columnSO.Apttus_Config2__Sequence__c < lastRowSequence}" >
+							<apex:param name="rowNum" value="{!columnSO.Apttus_Config2__Sequence__c}" />
+							<apex:image url="{!$Resource.Apttus_Config2__Image_MoveDown}" 
+                        				title="{!$Label.apttus_config2__MoveDown}" 
+                        				alt="{!$Label.apttus_config2__MoveDown}" />
+						</apex:commandLink>
+				   	</apex:column>
+				   	
+		        </apex:pageBlockTable>
+			        
+		    </apex:pageBlockSection>
+	    
+		</apex:pageBlock>
+	
+	</apex:form>
+
+</apex:page>

@@ -1,0 +1,610 @@
+<!-- 
+    Apttus Contract Management
+    SendEmail
+     
+    @2009-2011 Apttus Inc. All rights reserved.
+
+ -->
+<apex:page standardController="Apttus__APTS_Agreement__c"
+		   extensions="Apttus.SendEmailController" 
+		   showHeader="true" 
+		   sidebar="true" >
+	
+	<script type="text/javascript" src="/soap/ajax/26.0/connection.js"></script>
+	<script type="text/javascript" src="/soap/ajax/26.0/apex.js"></script>
+	
+	<apex:include pageName="Apttus__ComplyJSLibInclude" />
+	
+	<apex:stylesheet value="{!URLFOR($Resource.Apttus__YUILibrary, '/yui/build/assets/skins/sam/skin.css')}" />
+ 
+	<apex:includescript value="{!URLFOR($Resource.Apttus__YUILibrary, '/yui/build/yahoo-dom-event/yahoo-dom-event.js')}" />
+	<apex:includescript value="{!URLFOR($Resource.Apttus__YUILibrary, '/yui/build/dragdrop/dragdrop-min.js')}" />
+	<apex:includescript value="{!URLFOR($Resource.Apttus__YUILibrary, '/yui/build/container/container-min.js')}" />
+	<apex:includescript value="{!URLFOR($Resource.Apttus__YUILibrary, '/yui/build/animation/animation-min.js')}" />
+	
+	<script>
+    
+	    // Create a namespace for our custom functions
+	    YAHOO.namespace("force.com");
+		
+		// wait panel
+		
+		/**
+		 * Builds the wait panel.
+		 */
+	    YAHOO.force.com.buildWaitPanel = function() {
+	        document.body.className = document.body.className + " yui-skin-sam";
+	        YAHOO.force.com.waitPanel = new YAHOO.widget.Panel(
+	            "waitPanel",  // The id of our dialog container
+	            { 
+	                    width           :   "300px", // You can play with this until it's right
+	                    visible         :   false,   // Should be invisible when rendered
+	                    draggable       :   false,   // Make the dialog draggable
+	                    close           :   false,   // Don't include a close title button
+	                    modal           :   true,    // Make it modal
+	                    fixedCenter     :   true,    // Keep centered if window is scrolled
+	                    zindex          :   40,      // Make sure it's on top of everything
+	                    constraintoviewport: true,
+	                    
+	                    // This line adds the appear/disapper fade effect
+	                    effect			:   {effect:YAHOO.widget.ContainerEffect.FADE,duration:0.25}
+        							
+	            }
+	        );
+	        
+	        // header
+	        YAHOO.force.com.waitPanel.setHeader("{!$Label.PreparingEmail}");
+			// set image
+			YAHOO.force.com.waitPanel.setBody('<center><img src="{!URLFOR($Resource.Image_LoadingPage)}" /></center>');
+	        // Render the dialog to the document.body level of the DOM
+	        YAHOO.force.com.waitPanel.render(document.body);
+	        
+	    }
+	    
+	    // Function called when the DOM is ready to create the dialog,
+    	// render the dialog into the document body, add our dialog skin
+    	// css to the body tag, and wire up the buttons on our dialog   
+		YAHOO.force.com.onDOMReady = function() {
+			
+			// build the wait panel
+			YAHOO.force.com.buildWaitPanel();
+			
+		}
+		
+	    // build the panel as soon as the DOM is in a usable state
+		YAHOO.util.Event.onDOMReady(YAHOO.force.com.onDOMReady);   	
+		
+	</script>
+	
+	<script type="text/javascript">	
+
+		var protect = "{!protect}";
+		var unprotect = "{!unprotect}";
+		//var userAction = "{!userAction}";
+		var emailAuthorURL = "{!JSENCODE(emailAuthorURL)}";
+		
+		var selectedTemplateId;
+		var attachmentIds;
+		var pLevel;
+		
+		var cPROTECTION_LEVEL_IGNORE = "Ignore";
+		
+		var selectRadioId = "";
+		
+	   	/**
+		 * Initializes the call
+		 */
+		function initCall() {
+		
+			try {
+				sforce.connection.sessionId = "{!$Api.Session_ID}"; //to avoid session timeout
+			} catch(e) {
+				erroralert(cERROR_UNKNOWN,e);
+            	goBack();
+            	
+			}
+		
+		}
+		
+	   	/**
+		 * Display progress message and create/update necessary objects for email author page.
+		 */
+        function doPrepareEmailTemplate(emailTemplateId, attachIds, protectionLevel) {
+        
+        	if ((emailTemplateId == null) || (emailTemplateId.length == 0)) {
+        		alert("Unable to locate Apttus out-of-the-box EmailTemplate (ApttusEmailTemplateForReviewSignatures).");
+        		
+        		return;
+        		
+        	} else {
+				selectedTemplateId = emailTemplateId;
+				
+			}
+			
+			attachmentIds = attachIds;
+			pLevel = protectionLevel;  			
+
+            var exception = null;
+           
+            try {
+            	
+            	// show modal panel
+				YAHOO.force.com.waitPanel.show();
+			
+            	// delay to allow the progress message to show	
+            	setTimeout("prepareTemplate()", 1000);
+
+            } catch(ex) {
+            	exception = ex;
+            	// hide modal panel
+				YAHOO.force.com.waitPanel.hide();
+						
+            	erroralert("prepareTemplate():", ex);
+            	
+            } finally {
+				if (exception != null) {
+           			// back to agreement detail page
+         			goBack();
+         			
+				} 
+				
+            }
+            
+		}
+
+		/**
+		 * Prepare email template
+		`* - clone selected email template
+		 * - clone and add selected attachments to the cloned template
+		 * - apply protection if applicable
+		 * - launch email author page
+		 */
+         function prepareTemplate() {
+         	// temp email template
+			var newTemplateId = null;
+			// temporary object
+			var tempObjectId = null;
+			
+            try {
+            	initCall();
+				
+				var applyProtection = ((protect == "true" && cPROTECTION_LEVEL_IGNORE != pLevel) || unprotect == "true");
+				
+            	// clone email template
+            	newTemplateId = cloneEmailTemplate(selectedTemplateId);
+
+            	// associate selected attachments to the new email template
+            	var strIds = new String(attachmentIds);
+            	
+            	// Use a temp object to get around html editing security. 
+				// copy attachments to a temp object and use the temp object for protect/unprotect operation. 
+				// copy attachments back to the email template after the protect/unprotect operation is done.
+				
+				// create a temporary object
+				if (applyProtection) {
+					
+					tempObjectId = createTemporaryObject();
+					// copy attachments to the temporary object
+            		var tempAttIds = copyAttachments(tempObjectId, strIds.split(','));
+				
+            		// apply/remove protection, if applicable
+            		if ((protect == "true") && (cPROTECTION_LEVEL_IGNORE != pLevel)) { 
+            			protectTemporaryDocs(tempObjectId, pLevel);
+            			
+            		} else if (unprotect == "true"){
+            			unprotectTemporaryDocs(tempObjectId);
+            			
+            		}
+				
+					// copy attachments to the email template
+					copyAttachments(newTemplateId, tempAttIds);
+					
+				} else {
+					
+					// copy attachments to the email template
+					copyAttachments(newTemplateId, strIds.split(','));
+					
+				}
+				
+				// substitute new template id and request email author page
+            	var tempId = newTemplateId.valueOf(0, 15);
+            	var url = emailAuthorURL.replace(/__NEW_TEMPLATE_ID_16CHARS__/g, tempId);
+
+            	// hide modal panel
+				YAHOO.force.com.waitPanel.hide();
+				
+				// go to email author page
+				navigateTo(url);
+
+            } catch(ex) {        
+            	// hide modal panel
+				YAHOO.force.com.waitPanel.hide();
+           		
+           		erroralert("prepareTemplate()", ex);
+            	
+				// delete temp email template if it was already created
+				if (newTemplateId != null) {
+					// invoke action on the controller
+					invokeDoDeleteTempEmailTemplate(newTemplateId);
+					
+				}
+				
+				// back to agreement detail page
+         		goBack();
+         		
+            } finally {
+            	
+            	// delete temp object if it was already created
+				if (tempObjectId != null) {
+					// invoke action on the controller
+					invokeDoDeleteTempObject(tempObjectId);
+					
+				}
+				
+            }
+            
+        }
+		
+		/**
+		 * Cancel the generation
+		 */
+		function cancel() {
+			// Go back to the detail page
+			goBack();
+			
+		}        
+        
+		/**
+		 * Go back to the detail page
+		 */
+		function goBack() {
+			// get the agreement id
+			var agreementId = "{!agreementSO.Id}";
+		
+			// go back to the detail page
+			navigateTo("/" + agreementId);
+			
+		}
+
+    </script>
+    
+    <apex:sectionHeader title="{!$Label.apttus__Agreement}" subtitle="{!Apttus__APTS_Agreement__c.Name}" />
+    
+	<apex:form >
+	
+		<!-- hidden field(s) to be included by sf default query -->
+		<apex:inputHidden value="{!Apttus__APTS_Agreement__c.Apttus__Parent_Agreement__c}"/>
+		<apex:inputHidden value="{!Apttus__APTS_Agreement__c.Apttus__Status_Category__c}"/>
+		<apex:inputHidden value="{!Apttus__APTS_Agreement__c.Apttus__Status__c}"/>
+		<apex:inputHidden value="{!Apttus__APTS_Agreement__c.Apttus__FF_Agreement_Number__c}"/>
+		
+		<apex:outputPanel id="idSendEmail">
+			
+			<apex:outputPanel rendered="{!NOT(isInitialized)}">
+		        <script>
+		           // register to invoke the function after the page load
+				    window.onload = function() { 
+				       	// initialize the controller
+				        doInit();
+				        
+				    };
+		           
+		        </script>
+		    </apex:outputPanel>
+		    
+		    <apex:outputPanel rendered="{!isInitialized}" >
+		    	
+		    	<apex:pageBlock mode="edit" rendered="{!NOT(canEditAgreement)}" >
+					<apex:pageMessages />
+					<apex:outputText value="{!$Label.apttus__InsufficientPrivileges}" 
+									 style="font-family: Arial, Helvetica, sans-serif;font-weight: bold;font-size: 12pt;" /><p/>
+					<apex:outputText value="{!$Label.apttus__InsufficientPrivilegesDetail}" /><br/>
+					<apex:pageBlockButtons location="bottom" >
+						<apex:commandButton action="{!doCancel}" value="{!$Label.apttus__Return}" immediate="true" />
+					</apex:pageBlockButtons>
+				</apex:pageBlock>
+				
+				<apex:pageBlock id="idPageBlock" 
+								title="{!stepTitle}"  
+								mode="edit" 
+								rendered="{!canEditAgreement}" >
+					
+					<apex:pageMessages />
+					
+					<apex:pageBlockButtons location="top">
+						<apex:outputPanel id="idButtonsTopPanel" >
+							<apex:commandButton id="cmdButtonDoPrevious" 
+												action="{!doPrevious}" 
+												value="{!$Label.apttus__Previous}"
+								 				rendered="{!showPrevious}" 
+												rerender="idPageBlock" />
+							<apex:commandButton id="cmdButtonDoNext" 
+												action="{!doNext}" 
+												value="{!$Label.apttus__Next}" 
+												rendered="{!NOT(showStep4)}"
+								 				rerender="idPageBlock" />
+							<apex:commandButton id="cmdButtonDoPrepareEmailTemplate"  
+												value="{!$Label.apttus__Next}"  
+												rendered="{!showStep4}"
+												action="{!doValidateEmailTemplateSelection}" 
+												oncomplete="doPrepareEmailTemplate('{!emailTemplateId}', '{!attachmentIds}', '{!protectionLevel}');" />
+							<apex:commandButton id="cmdButtonDoCancel" 
+												action="{!doCancel}" 
+												value="{!$Label.apttus__Cancel}"
+								 				rerender="idPageBlock" />		
+						</apex:outputPanel>									
+						<b><apex:actionStatus id="waitStatus" startText="{!$Label.apttus__Refreshing}" /></b>	
+					</apex:pageBlockButtons>
+		
+					<apex:pageBlockButtons location="bottom">
+						<apex:outputPanel id="idButtonsBottomPanel" >
+							<apex:commandButton id="cmdButtonDoPrevious"  
+												action="{!doPrevious}" 
+												value="{!$Label.apttus__Previous}"
+												rendered="{!showPrevious}" 
+												rerender="idPageBlock" />
+							<apex:commandButton id="cmdButtonDoNext" 
+												action="{!doNext}" 
+												value="{!$Label.apttus__Next}" 
+												rendered="{!NOT(showStep4)}"
+								 				rerender="idPageBlock" />
+							<apex:commandButton id="cmdButtonDoPrepareEmailTemplate"  
+												value="{!$Label.apttus__Next}"  
+												rendered="{!showStep4}"
+												action="{!doValidateEmailTemplateSelection}" 
+												oncomplete="doPrepareEmailTemplate('{!emailTemplateId}', '{!attachmentIds}', '{!protectionLevel}');" />
+							<apex:commandButton id="cmdButtonDoCancel" 
+												action="{!doCancel}" 
+												value="{!$Label.apttus__Cancel}"
+								 				rerender="idPageBlock"/>		
+						</apex:outputPanel>									
+					</apex:pageBlockButtons>
+					
+					<apex:outputPanel id="idRelatedSelectionPanel">
+						<apex:pageBlockSection id="idSelectAttachmentsFor"  
+											   rendered="{!showStep2}" 
+											   columns="1"  
+											   collapsible="false" >
+							<apex:panelGrid columns="2">
+								<apex:inputCheckbox id="includeParent" 
+													value="{!includeParent}" 
+													rendered="{!hasParent}" />
+								<apex:outputLabel value="{!$Label.apttus__ParentAgreement}"
+												  for="includeParent" 
+												  rendered="{!hasParent}" />
+								<apex:actionSupport event="onclick" 
+													action="{!doAttachmentSearch}"
+													rerender="idAttachments" 
+													status="waitStatus" />
+							</apex:panelGrid>
+							<apex:panelGrid columns="2">
+								<apex:inputCheckbox id="includeRelated" 
+													value="{!includeRelated}" 
+													rendered="{!hasRelated}" />
+								<apex:outputLabel value="{!$Label.apttus__RelatedAgreements}"
+												  for="includeRelated" 
+												  rendered="{!hasRelated}" />
+								<apex:actionSupport event="onclick" 
+													action="{!doAttachmentSearch}"
+													rerender="idAttachments" 
+													status="waitStatus" />
+							</apex:panelGrid>
+							<apex:panelGrid columns="2">
+								<apex:inputCheckbox id="includeChildren" 
+													value="{!includeChildren}"
+									 				rendered="{!hasChildren}" />
+								<apex:outputLabel value="{!$Label.apttus__ChildAgreements}"
+												  for="includeChildren" 
+												  rendered="{!hasChildren}" />
+								<apex:actionSupport event="onclick" 
+													action="{!doAttachmentSearch}"
+													rerender="idAttachments" 
+													status="waitStatus" />
+							</apex:panelGrid>
+							<apex:panelGrid columns="2">
+								<apex:inputCheckbox id="includeAmendRenew" 
+													value="{!includeAmendRenew}"
+													rendered="{!hasAmendRenew}" />
+								<apex:outputLabel value="{!$Label.apttus__AmendmentsAndRenewals}"
+												  for="includeAmendRenew" 
+												  rendered="{!hasAmendRenew}" />
+								<apex:actionSupport event="onclick" 
+													action="{!doAttachmentSearch}"
+													rerender="idAttachments" 
+													status="waitStatus" />
+							</apex:panelGrid>
+							<apex:panelGrid columns="2">
+								<apex:inputCheckbox id="includeSiblings" 
+													value="{!includeSiblings}"
+									 				rendered="{!hasSiblings}" />
+								<apex:outputLabel value="{!$Label.apttus__SibilingAgreements}"
+												  for="includeSiblings"  
+												  rendered="{!hasSiblings}"/>
+								<apex:actionSupport event="onclick" 
+													action="{!doAttachmentSearch}"
+													rerender="idAttachments" 
+													status="waitStatus" />
+							</apex:panelGrid>
+						</apex:pageBlockSection>
+					</apex:outputPanel>
+					
+					<apex:outputPanel id="idProtectionSelectionPanel">
+						<apex:pageBlockSection id="idSelectProtection"
+											   rendered="{!showStep3}" 
+											   columns="1" 
+											   collapsible="false" >
+					        <apex:panelGrid columns="1" >
+					            <apex:selectRadio value="{!protectionLevel}" layout="pageDirection">
+					                <apex:selectOptions value="{!protectionLevels}"/>
+					            </apex:selectRadio>
+					        </apex:panelGrid>
+				        </apex:pageBlockSection>
+				    </apex:outputPanel>
+				    
+				    <apex:outputPanel id="idAttachmentsPanel">
+						<apex:pageBlockSection id="idAttachments" 
+											   rendered="{!showAttachments}"  
+											   title="{!$ObjectType.Attachment.LabelPlural}" 
+											   columns="1" 
+											   collapsible="false">
+							<apex:pageBlockTable value="{!attachments}" 
+												 var="attachData"
+												 width="100%" >
+								<apex:column >
+									<apex:facet name="header">{!$Label.apttus__Select}</apex:facet>
+									<apex:inputCheckbox selected="{!attachData.selected}"
+														value="{!attachData.selected}" />
+								</apex:column>
+								<apex:column >
+									<apex:facet name="header">{!$Label.apttus__FileName}</apex:facet>
+									<apex:outputLink value="/{!attachData.attachment.Id}">{!attachData.attachment.Name}</apex:outputLink>
+								</apex:column>
+								<apex:column >
+									<apex:facet name="header">{!$Label.apttus__AgreementName}</apex:facet>
+									<apex:outputLink value="/{!attachData.agmt.Id}">{!attachData.agmt.Name}</apex:outputLink>
+								</apex:column>agmtAssociationType
+								<apex:column >
+									<apex:facet name="header">{!$Label.apttus__Relationship}</apex:facet>
+									<apex:outputText value="{!attachData.agmtAssociationType}" />
+								</apex:column>
+								<apex:column >
+									<apex:facet name="header">{!$Label.apttus__Type}</apex:facet>
+									<apex:outputText value="{!attachData.agmt.Apttus__Status_Category__c}" />
+								</apex:column>
+								<apex:column value="{!attachData.agmt.Apttus__FF_Agreement_Number__c}" />
+								<apex:column value="{!attachData.agmt.Apttus__Status__c}" />
+								<apex:column >
+									<apex:facet name="header">{!$Label.apttus__Size}</apex:facet>
+									<apex:outputText value="{!attachData.attachment.BodyLength}" />
+								</apex:column>
+								<apex:column >
+									<apex:facet name="header">{!$ObjectType.Attachment.Fields.LastModifiedDate.Label}</apex:facet>
+									<apex:outputField value="{!attachData.attachment.LastModifiedDate}" />
+								</apex:column>
+							</apex:pageBlockTable>
+						</apex:pageBlockSection>
+					</apex:outputPanel>
+									
+					<apex:outputpanel id="idFolderSelectionPanel">
+						<apex:pageBlockSection id="idSelectFolder" rendered="{!showStep4}" columns="1">	
+							<apex:outputText value="{!$Label.apttus__SelectEmailTemplateFolderInstruction1}"/>
+							<apex:outputText value="{!$Label.apttus__SelectEmailTemplateFolderInstruction2}"/><br/><p/><p/>
+							<apex:panelGrid columns="1">
+								<apex:panelGroup >
+									<b><apex:outputLabel value="{!$Label.apttus__Folder}" for="idFolders" /></b>&nbsp;
+									<apex:selectList id="idFolders" 
+													 value="{!folderId}" 
+													 size="1"  
+													 onchange="invokeDoEmailTemplateSearch();">
+										<apex:selectOptions value="{!folders}" />
+									</apex:selectList>
+								</apex:panelGroup>
+							</apex:panelGrid>
+						</apex:pageBlockSection>	
+					</apex:outputpanel>
+			 		<p/>	
+					<apex:outputPanel id="idTemplatesPanel">
+						<apex:pageBlockSection columns="1"  
+											   title="{!$Label.apttus__Templates}" 
+											   rendered="{!showTemplates}" 
+											   collapsible="false">
+							<apex:pageBlockTable id="idTemplateTable"
+												 value="{!templates}" 
+												 var="templateData"
+												 width="100%" >
+								<apex:column headervalue="Select">
+									<apex:outputPanel rendered="{!templateData.selected}">
+										<input type="radio" 
+											   checked="true"
+											   onclick="invokeDoSelectEmailTemplate('{!templateData.emailTemplate.Id}');">
+										</input>
+									</apex:outputPanel>
+									<apex:outputPanel rendered="{!NOT(templateData.selected)}">
+										<input type="radio"
+											   onclick="invokeDoSelectEmailTemplate('{!templateData.emailTemplate.Id}');">
+										</input>
+									</apex:outputPanel>
+								</apex:column>
+								<apex:column >
+									<apex:facet name="header">
+										<apex:commandLink action="{!doSort}" 
+														  value="{!$Label.apttus__Name}"
+														  reRender="idTemplateTable" 
+														  status="waitStatus">
+											<apex:outputPanel rendered="{!isSortByName}">
+												<img src="{!sortImageURL}" title="{!sortImageTitle}" />
+											</apex:outputPanel>
+											<apex:param name="sortBy" value="Name" />
+										</apex:commandLink>
+									</apex:facet>
+									<apex:outputField value="{!templateData.emailTemplate.Name}" />
+									<!-- apex:outputLink value="/{!templateData.emailTemplate.Id}">{!templateData.emailTemplate.Name}</apex:outputLink -->
+								</apex:column>
+								<apex:column >
+									<apex:facet name="header">
+										<apex:commandLink action="{!doSort}" 
+														  value="{!$Label.apttus__TemplateType}"
+														  reRender="idTemplateTable" 
+														  status="waitStatus">
+											<apex:outputPanel rendered="{!isSortByTemplateType}">
+												<img src="{!sortImageURL}" title="{!sortImageTitle}" />
+											</apex:outputPanel>
+											<apex:param name="sortBy" value="TemplateType" />
+										</apex:commandLink>
+									</apex:facet>
+									<apex:outputField value="{!templateData.emailTemplate.TemplateType}" />
+								</apex:column>
+								<apex:column >
+									<apex:facet name="header">
+										<apex:commandLink action="{!doSort}" 
+														  value="{!$Label.apttus__Description}"
+														  reRender="idTemplateTable" 
+														  status="waitStatus">
+											<apex:outputPanel rendered="{!isSortByDescription}">
+												<img src="{!sortImageURL}" title="{!sortImageTitle}" />
+											</apex:outputPanel>
+											<apex:param name="sortBy" value="Description" />
+										</apex:commandLink>
+									</apex:facet>
+									<apex:outputField value="{!templateData.emailTemplate.Description}" />
+								</apex:column>						
+							</apex:pageBlockTable>
+						</apex:pageBlockSection>				
+					</apex:outputPanel>
+					
+				</apex:pageBlock>
+				
+			</apex:outputPanel>
+			
+		</apex:outputPanel>
+		
+		<apex:actionFunction name="doInit" 
+    						 action="{!doInit}" 
+    						 reRender="idSendEmail" />  	
+    						 
+		<apex:actionFunction name="invokeDoEmailTemplateSearch"  
+							 action="{!doEmailTemplateSearch}" 
+							 status="waitStatus"
+				 			 reRender="idTemplateTable, idButtonsTopPanel, idButtonsBottomPanel" />
+				 
+    	<apex:actionFunction name="invokeDoSelectEmailTemplate" 
+    						 action="{!doSelectEmailTemplate}" 
+    						 reRender="idTemplateTable, idButtonsTopPanel, idButtonsBottomPanel">
+        	<apex:param name="param" assignTo="{!emailTemplateId}" value="" />
+     	</apex:actionFunction>   
+     	
+    	<apex:actionFunction name="invokeDoDeleteTempEmailTemplate" 
+    						 action="{!doDeleteTempEmailTemplate}" 
+    						 reRender="dummy"> 
+        	<apex:param name="param" assignTo="{!tempEmailTemplateId}" value="" />
+     	</apex:actionFunction>    	
+		
+		<apex:actionFunction name="invokeDoDeleteTempObject" 
+							 action="{!doDeleteTempObject}" 
+							 reRender="dummy"> 
+        	<apex:param name="param" assignTo="{!tempObjectId}" value="" />
+     	</apex:actionFunction>    	
+     	
+	</apex:form>
+	
+</apex:page>

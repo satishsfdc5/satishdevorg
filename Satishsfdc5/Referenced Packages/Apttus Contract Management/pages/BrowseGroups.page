@@ -1,0 +1,269 @@
+<!-- 
+    Apttus Contract Management
+    BrowseGroups
+     
+    @2011-2012 Apttus Inc. All rights reserved.
+
+ -->
+<apex:page standardController="Apttus__SearchFilter__c" 
+	  	   extensions="Apttus.BrowseGroupsController" 
+           showHeader="false" 
+           sidebar="false" 
+           cache="false"
+           standardStylesheets="true"
+           tabStyle="CollaborationGroup">	
+     
+    <style>
+		textarea {
+			width: 35%;
+		}
+		
+		.errorRow {
+			border: 1px solid red;
+		}
+		
+		.oddRow {
+			background-color: #FFFFFF;
+		}
+		
+		.evenRow {
+			background-color: #EDF3FE;
+		}
+		
+		.searchField {
+		    float:left; 
+		    width:300px; 
+		    height:27px; 
+		    line-height:27px;
+		    text-indent:10px; 
+		    font-family:arial, sans-serif; 
+		    font-size:1em; 
+		    color:#333; 
+		    background: #fff; 
+		    border:solid 1px #d9d9d9; 
+		    border-top:solid 1px #c0c0c0; 
+		    border-right:none;
+		}
+ 
+		.searchButton {
+		    cursor:pointer; 
+		    width:70px; 
+		    height: 31px; 
+		    line-height:0; 
+		    font-size:0; 
+		    text-indent:-999px;
+		    color: transparent;  
+		    background-color:#4d90fe;
+		    background-repeat:no-repeat;
+		    background-position:center;
+		    border: 1px solid #3079ED; 
+		    -moz-border-radius: 2px; 
+		    -webkit-border-radius: 2px; 
+		}
+		
+		.searchButton:hover {
+			background-color:#357AE8;
+		    background-repeat:no-repeat;
+		    background-position:center;
+		    border: 1px solid #2F5BB7;
+		}
+		
+	</style>
+	
+	<script type="text/javascript">
+    	
+    	/**
+		 * Callback after a partial page update
+		 */
+		function afterPageUpdate() {
+			
+			// delay to allow the page to be rendered	
+           	setTimeout(function() {
+           		
+           		// callback the object
+				try {
+					window.external.PageRefreshed();
+				} catch(ex) {
+					// object not available
+				}
+          	}, 0);
+           	
+		}
+		
+		// function to handle the enter key
+		function noenter(ev)  {
+		   	if (window.event && (window.event.keyCode == 13 || ev.which == 13)) {
+		   		doSearchGroups();
+		       	return false;
+		       	
+		     } else {
+		          return true;
+		          
+		     }
+		     
+		}
+		 
+		// register to invoke the function after the page load
+    	window.onload = function() { 
+    		// make the window visible
+			try {
+				window.external.MakeVisible();
+			} catch(ex) {
+				// object not available
+			}
+			
+    	}
+    
+    </script>
+    
+	<apex:form id="idBrowseGroups">
+		
+		<apex:pageBlock id="idGroupSearchBlock" title="{!PageTitle}" mode="detail">
+			<apex:pageMessages />
+			
+			<apex:pageBlockButtons location="bottom">
+		        <apex:commandButton value="{!$Label.apttus__Cancel}" 
+		        					action="{!doCancel}" 
+		        					immediate="true" 
+		        					reRender="idResultSetPanel" 
+		        					rendered="false" />
+		        <apex:commandButton value="{!$Label.apttus__Return}" 
+		        					action="{!doReturn}" 
+		        					immediate="true" 
+		        					rendered="{!IsTestMode}"/>
+		    </apex:pageBlockButtons>
+		    
+		    <apex:outputText value="{!$Label.apttus__SearchGroupInstruction}" /> <p/>
+		    
+		    <apex:outputPanel layout="block">
+		    	<apex:inputText value="{!Apttus__SearchFilter__c.Name}" 
+		    					styleClass="searchField" 
+		    					onkeypress="return noenter(event);" />
+		    	<apex:commandButton action="{!doSearchGroups}" 
+		    						reRender="idGroupSearchBlock" 
+		    						status="idSearchStatus" 
+		    						style="line-height:0;font-size:0;text-indent:-999px;color: transparent;background-color:#4d90fe;background-image:url({!URLFOR($Resource.Apttus__GraphicsLib, 'small/search.png')});height:31px;width:70px;border-width:0px;background-repeat:no-repeat;background-position:center;border: 1px solid #3079ED;cursor:pointer;"/>
+	
+		    </apex:outputPanel>
+		    
+		    <apex:actionStatus id="idSearchStatus" startText="{!$Label.apttus__Searching}" onstop="afterPageUpdate()" />
+		    
+		    <apex:outputPanel id="idResultSetPanel">
+			    <apex:pageBlockSection columns="1">
+				    <apex:outputPanel id="idResultStatsPanel" styleClass="bNext" layout="block" style="text-align: right;" rendered="{!HasGroups}">
+						<font size="1px">{!$Label.PageNbr}:&nbsp;<apex:outputLabel value="{!currentPageNumber}"/>&nbsp;{!$Label.OutOf}&nbsp;<apex:outputLabel value="{!totalPages}"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font>
+						<br></br>
+						<apex:outputPanel id="idNavigationPanel" styleClass="next" layout="block" rendered="{!OR(hasNextPage,hasPreviousPage)}">
+							<apex:outputPanel rendered="{!NOT(hasPreviousPage)}" styleClass="greyedLink">&lt;{!$Label.PreviousPage}</apex:outputPanel>
+							<apex:commandLink rendered="{!hasPreviousPage}" action="{!previousPage}" reRender="idResultSetPanel">&lt;{!$Label.PreviousPage}</apex:commandLink>
+							<span> | </span>
+							<apex:outputPanel rendered="{!NOT(hasNextPage)}" styleClass="greyedLink">{!$Label.NextPage}&gt;</apex:outputPanel>
+							<apex:commandLink rendered="{!hasNextPage}" action="{!nextPage}" reRender="idResultSetPanel">{!$Label.NextPage}&gt;</apex:commandLink>
+						</apex:outputPanel>
+					</apex:outputPanel>
+				</apex:pageBlockSection>
+				<apex:outputPanel id="idRecordSetPanel" >
+					<apex:pageBlockSection title="{!$Label.apttus__Groups}" columns="1" collapsible="true">
+				        <apex:pageBlockTable value="{!Groups}" 
+				        					 var="groupInfo" 
+				        					 rowClasses="oddRow,evenRow" 
+				        					 width="100%" 
+				        					 rendered="{!HasGroups}" >
+				        					 
+				        	<apex:column headerValue="{!$Label.apttus__Action}"
+				        				 width="5%" >
+								<apex:commandButton action="{!doSelectGroup}" 
+				        							value="{!$Label.apttus__Select}" 
+				        							reRender="idResultSetPanel" >
+									<apex:param name="sObjectId" value="{!groupInfo.groupSO.Id}" />
+									<apex:param name="name" value="{!groupInfo.groupSO.Name}" />
+									<apex:param name="type" value="{!groupInfo.groupSO.CollaborationType}" />
+									<apex:param name="action" value="Select" />
+								</apex:commandButton>
+								
+							</apex:column>
+							
+							<apex:column >
+								<apex:facet name="header">
+					        		<apex:commandLink value="{!$Label.apttus__Group}" 
+					        						  action="{!doSortGroups}" 
+					        						  reRender="idResultSetPanel">        
+	                        			<apex:image url="{!URLFOR($Resource.Apttus__GraphicsLib, 'small/sort_asc_arrow.gif')}" 
+	                        						title="{!$Label.apttus__SortedAscending}" 
+	                        						alt="{!$Label.apttus__SortedAscending}" 
+	                        						rendered="{!sortOrder != 'DESC'}" />	                        						
+	                        			<apex:image url="{!URLFOR($Resource.Apttus__GraphicsLib, 'small/sort_desc_arrow.gif')}"  
+	                        						title="{!$Label.apttus__SortedDescending}" 
+	                        						alt="{!$Label.apttus__SortedDescending}" 
+	                        						rendered="{!sortOrder == 'DESC'}" />
+	                        		</apex:commandLink>
+				        		</apex:facet>
+								<apex:panelGrid columns="2">
+									<apex:outputLink value="/{!groupInfo.groupSO.Id}" 
+													 target="_blank">
+										<apex:image value="{!groupInfo.groupSO.SmallPhotoUrl}" 
+													alt="{!groupInfo.Title}" 
+													title="{!groupInfo.Title}" 
+													height="45"
+													width="45" />
+									</apex:outputLink>
+									
+									<apex:outputPanel style="margin-left: 5px;display: block;white-space: normal;">
+										<apex:outputLink value="/{!groupInfo.groupSO.Id}" 
+														 title="{!groupInfo.Title}" 
+													 	 target="_blank"
+													 	 style="font-weight: bold;color: #015BA7;text-decoration: none;">{!groupInfo.groupSO.Name}</apex:outputLink>
+											<apex:outputPanel layout="block" 
+														  	  style="color: #222;width:100%;overflow:hidden;" >
+												<apex:outputText value="{!groupInfo.groupSO.Description}" />
+											</apex:outputPanel>
+											<apex:outputPanel layout="block" 
+														  	  style="line-height: 18px;margin-top: 3px;" >
+												<apex:outputPanel style="margin-right: 14px;" >
+													<apex:outputText value="{!groupInfo.MemberCountDisplay}" />
+												</apex:outputPanel>
+												<apex:outputPanel style="color: #015BA7;white-space: nowrap;">
+													<apex:outputText value="{!groupInfo.OwnerNameDisplay}" />
+												</apex:outputPanel>
+											</apex:outputPanel>
+									</apex:outputPanel>
+								</apex:panelGrid>
+								
+							</apex:column>
+							
+				        </apex:pageBlockTable>
+				        <apex:outputText value="{!$Label.apttus__NoGroupsToDisplay}" 
+				        				 rendered="{!NOT(HasGroups)}" />
+				    </apex:pageBlockSection>
+				</apex:outputPanel>
+			
+		        <apex:outputPanel id="idResponsePanel" 
+		        				  rendered="{!NOT(hasErrors) && (hasResponseXml)}" >
+					<script>
+						
+						try {
+							
+							// get the response xml
+							var responseXml = "{!JSENCODE(responseXml)}";
+							//alert(responseXml);
+							
+							// set the response xml
+							window.external.SetResponse(responseXml);
+							
+						} catch(ex) {
+							// object not available
+						} 
+						
+					</script>
+				</apex:outputPanel>
+			</apex:outputPanel>
+		</apex:pageBlock>
+		
+		<apex:actionFunction name="doSearchGroups" 
+							 action="{!doSearchGroups}" 
+		    				 reRender="idGroupSearchBlock" 
+		    				 status="idSearchStatus" />
+		    				 
+	</apex:form>
+
+</apex:page>

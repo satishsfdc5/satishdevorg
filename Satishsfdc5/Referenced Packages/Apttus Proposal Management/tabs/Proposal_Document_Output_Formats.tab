@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomTab xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>Setup and maintain Document Output Formats for generated quote/proposal documents.</description>
+    <label>Proposal Document Output Formats</label>
+    <mobileReady>false</mobileReady>
+    <motif>Custom13: Box</motif>
+    <page>DocOutputFormat</page>
+</CustomTab>

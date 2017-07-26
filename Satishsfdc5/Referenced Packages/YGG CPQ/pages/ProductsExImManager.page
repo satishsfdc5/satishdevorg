@@ -1,0 +1,234 @@
+<apex:page controller="YGGC.ProductsExImManagerController">
+
+<style type="text/css">
+
+
+.button {
+    -moz-box-shadow:inset 0px 1px 0px 0px #999999 !important;
+    -webkit-box-shadow:inset 0px 1px 0px 0px #999999 !important;
+    box-shadow:inset 0px 1px 0px 0px #999999 !important;
+    background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #999999), color-stop(1, #777777) ) !important;
+    background:-moz-linear-gradient( center top, #999999 5%, #777777 100% ) !important;
+    filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#999999', endColorstr='#777777') !important;
+    background-color:#999999 !important;
+    text-indent:0 !important;
+    border:2px solid #3366cc !important;
+    display:inline-block !important;
+    color:#000000 !important;
+    border-radius: 0 !important;
+    min-width: 100px !important;
+    
+}
+.button:hover {
+    background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #777777), color-stop(1, #999999) ) !important;
+    background:-moz-linear-gradient( center top, #777777 5%, #999999 100% ) !important;
+    filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#777777', endColorstr='#999999') !important;
+    background-color:#777777 !important;
+}.button:active {
+    position:relative !important;
+    top:1px !important;
+}
+
+
+.borderClass{
+    border: 2px solid #3366CC !important;
+}
+
+.container{
+    background-color: #DADADA;
+    padding: 20px;
+    margin: 10px;   
+}
+
+.wrapper{
+    margin: 20px;
+}
+
+.boldText{
+    font-weight: bold;
+}
+
+.browseInputText{
+    width: 300px;   
+}
+
+.containerPanel{
+    background-color: #F5F5F5;
+}
+
+
+.custom-file-input {
+  position:relative !important;
+  display:inline-block !important;
+  width:410px !important;
+  height:21px !important;
+  border:2px solid #3366cc !important;
+  background-color:white !important;
+  overflow:hidden !important;
+  
+}
+
+.custom-file-input input {
+  opacity:0 !important;
+  filter:alpha(opacity=0) !important;
+  position:relative !important;
+  z-index:4 !important;
+}
+
+.custom-file-input .show-path {
+  display:block !important;
+  position:absolute !important;
+  top:0 !important;
+  right:0 !important;
+  bottom:0 !important;  
+  background-color:#white !important;
+  font:normal bold 12px/20px Arial,Sans-Serif !important;
+  color:black !important;
+  padding:0 10px !important;
+}
+
+.custom-file-input .browse-btn {
+  display:block !important;
+  position:absolute !important;
+  top:0 !important;
+  right:0 !important;
+  bottom:0 !important;  
+  background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #999999), color-stop(1, #777777) ) !important;
+  background:-moz-linear-gradient( center top, #999999 5%, #777777 100% ) !important;
+  
+  font:normal bold 12px/20px Arial,Sans-Serif !important;
+  color:black !important;
+  padding:0 10px !important;
+}
+
+
+
+
+
+
+.custom-file-input .show-path {
+  background:none !important;
+  font-weight:normal !important;
+  left:0 !important;
+  padding:0 5px !important;
+  
+} 
+
+.fileBrowse {
+    width:410px !important;
+     
+}
+
+
+</style>
+
+<script>
+
+window.onload = function() {
+    var input, showPath;
+        
+        var elems = document.getElementsByTagName('input'), i;
+        for (i in elems) {
+            if((' ' + elems[i].className + ' ').indexOf('fileBrowse') > -1) {
+               input = elems[i];
+               break; 
+            }          
+            
+        }
+        
+        elems = document.getElementsByTagName('span'), i;
+        for (i in elems) {          
+            if((' ' + elems[i].className + ' ').indexOf('show-path') > -1) {
+               showPath = elems[i]; 
+               break;
+            }
+            
+        }
+        
+        input.onchange = function() {
+            showPath.textContent = this.value;
+        this.title = this.value;
+    };
+};
+
+</script>
+
+
+
+
+<apex:pageMessages />
+
+<apex:outputPanel >
+    
+    
+
+    <div class="containerPanel">
+        <div id="product_import_div" class="container borderClass">
+            <apex:form id="theForm">
+        
+            <div class="wrapper"><h1> Product Import (Product name and price are required) </h1></div>
+            <div class="wrapper">
+            
+            
+                 <div class="custom-file-input" id="custom-file-input">
+                      <span class="show-path"></span>
+                      <span class="browse-btn ">Browse</span>
+                      <apex:inputFile value="{!fileUploader.contentFile}" filename="{!fileUploader.nameFile}" id="file" styleClass="fileBrowse"/>
+                </div>
+                
+                <br/><br/>
+                
+                <apex:commandButton action="{!fileUploader.ReadFile}" value="Upload File" disabled="{!fileUploader.isDisabled}" id="theButton" style="width:70px;" styleClass="button"/>
+                
+            </div>
+            <div class="wrapper">
+                <apex:inputCheckbox value="{!fileUploader.isCreateCategories}" /> <span>Create Product Categories if don't exist</span> <br/>
+            </div>
+            <div class="wrapper">
+                <apex:inputCheckbox value="{!fileUploader.isUseExistingProducts}" /> <span>Use existing Products to skip duplicates and obtain parent links</span> <br/>
+            </div>
+            <div class="wrapper">
+                <span>Select custom Pricebook to associate with products: </span>
+                <apex:selectList value="{!fileUploader.selectedOtherPricebook}" size="1">
+                    <apex:selectOptions value="{!fileUploader.pricebooks}"/>
+                </apex:selectList> 
+                <br/>
+            </div>
+            <div class="wrapper">
+                <apex:outputLink value="{!LinkOnStaticResource}" id="theLink">View CSV Template</apex:outputLink>
+            </div>
+            
+            <div class="wrapper" style="text-align: right;">
+                
+                <span style="margin-right: 15px;">
+                    <apex:commandLink action="{!exportToCSV}" style="text-decoration:none" target="_blank"><input class="btn button" type="button" value="Export to CSV"/></apex:commandLink>
+                    
+                </span>
+                <span style="margin-right: 15px;"><apex:commandButton value="Delete All" action="{!performDelete}" disabled="{!isDeleteDisabled}" styleClass="button"/></span>
+            </div>
+            </apex:form>
+        </div>
+        
+        <div id="product_category_div" class="container borderClass">
+            <div class="wrapper"><h1> Product Category</h1></div>
+            <div class="wrapper">
+                <apex:ListViews type="YGGC__Product_Category__c" /> 
+            </div>
+        </div>
+        
+        <div id="product_template_div" class="container borderClass">
+            <div class="wrapper"><h1> PDF Templates</h1></div>
+            <div class="wrapper">
+                <apex:ListViews type="YGGC__Quote_Template__c" /> 
+            </div>
+        </div>
+    </div>
+
+
+</apex:outputPanel>
+
+
+
+
+
+</apex:page>

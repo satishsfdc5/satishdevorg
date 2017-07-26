@@ -1,0 +1,65 @@
+<!-- 
+	/**
+	 *	Apttus Approvals Management
+	 *	ApprovalContextPreview
+	 *	 
+	 *	@2011 Apttus Inc. All rights reserved.
+	 */
+-->
+<apex:page standardController="Apttus_Approval__Approval_Request__c"
+		extensions="Apttus_Approval.ApprovalContextPreviewController" 
+		recordSetVar="ApprovalReqList" 
+		action="{!doPreviewApprovalRequests}">
+		
+    <apex:form >
+    
+        <apex:pageBlock title="{!pageTitle}">
+        
+            <apex:pageMessages />
+            
+            <apex:pageBlockButtons >
+                <apex:outputPanel >
+                    <apex:commandButton action="{!doSubmitWithAttachments}" value="{!$Label.apttus_approval__SubmitWithAttachments}" 
+                    			rendered="{!showApprovals}"/>
+                    <apex:commandButton action="{!doSubmitApprovalRequests}" value="{!$Label.apttus_approval__Submit}" 
+                    			rendered="{!showApprovals}"/>
+                    <apex:commandButton action="{!doCancel}" value="{!$Label.apttus_approval__Cancel}" />
+                </apex:outputPanel>
+            </apex:pageBlockButtons>
+            
+			<apex:pageBlockTable value="{!approvals}" var="request" rendered="{!showApprovals}">
+	
+				<apex:column value="{!request.Apttus_Approval__Step_Name__c}"/>	
+					
+				<apex:column value="{!request.Apttus_Approval__StepSequence__c}"/>		
+						
+				<apex:column headerValue="{!$Label.apttus_approval__AssignedTo}">
+				
+					<apex:outputLink rendered="{!request.Apttus_Approval__Assigned_To_Type__c = 'Queue'}"
+						value="{!queueURL}">{!request.Apttus_Approval__Assigned_To_Name__c}
+						<apex:param name="id" value="{!request.Apttus_Approval__Assigned_To_Id__c}"/>
+						<apex:param name="setupid" value="Queues"/>
+					</apex:outputLink>
+					
+					<apex:outputLink rendered="{!request.Apttus_Approval__Assigned_To_Type__c != 'Queue'}"
+						value="/{!request.Apttus_Approval__Assigned_To_Id__c}">
+							{!request.Apttus_Approval__Assigned_To_Name__c}
+					</apex:outputLink>
+	
+				</apex:column>
+				
+				<!-- apex:column value="{!request.SubstepSequence__c}"/-->
+				<!-- apex:column value="{!request.SubstepDependsOn__c}"/-->	
+				<!-- apex:column value="{!request.SubprocessSequence__c}"/-->	
+				<!-- apex:column value="{!request.SubprocessDependsOn__c}"/-->	
+				<!-- apex:column value="{!request.DependsOn__c}"/-->	
+				
+				<apex:column value="{!request.Apttus_Approval__Request_Comments__c}"/>
+				
+			</apex:pageBlockTable>
+			
+		</apex:pageBlock>
+            
+    </apex:form>
+    
+</apex:page>

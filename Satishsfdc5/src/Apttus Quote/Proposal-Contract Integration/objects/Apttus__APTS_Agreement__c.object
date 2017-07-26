@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fields>
+        <fullName>RelatedProposalId__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <deprecated>false</deprecated>
+        <description>ID of the associated quote/proposal</description>
+        <externalId>false</externalId>
+        <label>Related Quote/Proposal</label>
+        <referenceTo>Apttus_Proposal__Proposal__c</referenceTo>
+        <relationshipLabel>Agreements</relationshipLabel>
+        <relationshipName>Agreements</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <webLinks>
+        <fullName>NewAgreementFromProposal</fullName>
+        <availability>online</availability>
+        <description>Create agreement from the proposal</description>
+        <displayType>massActionButton</displayType>
+        <encodingKey>UTF-8</encodingKey>
+        <height>600</height>
+        <linkType>url</linkType>
+        <masterLabel>New Agreement (From Proposal)</masterLabel>
+        <openType>sidebar</openType>
+        <protected>false</protected>
+        <requireRowSelection>false</requireRowSelection>
+        <url>/apex/Apttus_QPComply__ProposalAgreementCreate?id={!Apttus_Proposal__Proposal__c.Id}</url>
+    </webLinks>
+</CustomObject>

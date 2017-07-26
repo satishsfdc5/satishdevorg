@@ -1,0 +1,45 @@
+<!-- 
+    Apttus Contract Management
+    OfflineAgreementNew
+     
+    @2009-2010 Apttus Inc. All rights reserved.
+
+ -->
+<apex:page controller="Apttus.OfflineAgreementNewController" 
+		   action="{!init}" >
+		   
+	<apex:sectionHeader title="{!$Label.apttus__CreateOfflineAgreement}" subtitle="{!$Label.apttus__AttachAgreement}" />
+	
+	<apex:form id="attachForm">
+		
+		<apex:pageBlock mode="edit" rendered="{!hasErrors}" >
+			<apex:pageMessages />
+			<apex:pageBlockButtons location="bottom" >
+				<apex:commandButton action="{!doReturn}" value="{!$Label.apttus__Cancel}" immediate="true"/>
+			</apex:pageBlockButtons>
+		</apex:pageBlock>
+	
+		<apex:pageBlock mode="edit" rendered="{!NOT(hasErrors)}">
+			<apex:pageMessages />
+			<apex:pageBlockButtons location="bottom" >
+				<apex:commandButton action="{!doContinue}" value="{!$Label.apttus__Continue}" disabled="{!countOfAttachments <= 0}"/>
+				<apex:commandButton action="{!doCancel}" value="{!$Label.apttus__Cancel}" immediate="true"/>
+			</apex:pageBlockButtons>
+			<apex:outputPanel id="upload">
+				<apex:outputText style="font-weight: bold" value="{!'1. ' & $Label.apttus__SelectFile}" /><br/>
+                <apex:outputText value="{!$Label.apttus__SelectFileInstruction}" /> <p/>
+                <apex:inputFile size="80" value="{!filebody}" fileName="{!fileName}" contentType="{!contentType}" /><p/>
+                <apex:outputText value="{!uploadErrorMsg}" style="font-weight: bold; color: red" /><p/>
+                <apex:outputText style="font-weight: bold" value="{!'2. ' & $Label.apttus__ClickAttachFile}" escape="false" /> <br/>
+                <apex:outputText value="{!$Label.apttus__CreateOfflineAgreementInstruction}" /> <p/>
+                <apex:commandButton value="{!$Label.apttus__AttachFile}" action="{!doAttach}" /> <p/>
+            </apex:outputPanel>
+            <apex:outputPanel id="status">
+				<p>{!$Label.apttus__FilesUploaded}</p>
+				<apex:dataList type="square" value="{!attachments}" var="item" rows="6" >
+					<apex:outputText value="{!item.Name}"/>
+				</apex:dataList>
+			</apex:outputPanel>
+		</apex:pageBlock>
+	</apex:form>
+</apex:page>

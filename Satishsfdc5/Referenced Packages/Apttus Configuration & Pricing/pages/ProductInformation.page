@@ -1,0 +1,138 @@
+<!-- 
+    Apttus Config & Pricing
+    ProductInformation
+     
+    @2010-2011 Apttus Inc. All rights reserved.
+
+ -->
+<apex:page standardController="Apttus_Config2__ProductInformation__c" 
+           extensions="Apttus_Config2.ProductInformationController"           
+           tabStyle="Product2"> 
+    
+    <style> 
+        textarea {
+            width: 50%;
+        }   
+        .boxed {
+            border: 1px solid green ;
+            padding:5px;
+        }
+        
+    </style>
+    
+    <apex:sectionHeader title="{!productSO.Name}" 
+                        subtitle="{!$Label.apttus_config2__New & ' ' & $ObjectType.Apttus_Config2__ProductInformation__c.Label}" 
+                        rendered="{! ISBLANK(ProductInformation__c.Id) }" />
+                        
+    <apex:sectionHeader title="{!productSO.Name}" 
+                        subtitle="{!$ObjectType.Apttus_Config2__ProductInformation__c.Label & ' ' & $Label.apttus_config2__Edit}" 
+                        rendered="{! NOT(ISBLANK(ProductInformation__c.Id))}" />
+    
+    <apex:form id="idProductInformationSO" enctype="multipart/form-data" >
+        
+        <!--  required fields -->
+        
+        <apex:pageBlock id="idProductResourceBlock" mode="edit" >
+            <apex:pageMessages />
+            <apex:pageBlockButtons location="both">
+                <apex:commandButton value="{!$Label.apttus_config2__Save}" action="{!doSave}" />
+                <apex:commandButton value="{!$Label.apttus_config2__SaveAndNew}" action="{!doSaveAndNew}"/>
+                <apex:commandButton value="{!$Label.apttus_config2__Cancel}" action="{!doCancel}" immediate="true"/>
+            </apex:pageBlockButtons>
+                
+            <apex:pageBlockSection id="idProductInformationSection" 
+                                   title="{!'Information ' & $Label.apttus_config2__Edit}"  
+                                   columns="1" 
+                                   collapsible="false" >
+                
+                <apex:pageBlockSectionItem >
+                    <apex:outputLabel value="{!$ObjectType.Apttus_Config2__ProductInformation__c.Fields.Name.Label}" 
+                                      for="idName" />
+                    <apex:outputPanel styleClass="requiredInput" layout="block">
+                        <apex:outputPanel styleClass="requiredBlock" layout="block"/>
+                        <apex:inputText id="idName" 
+                                         value="{!InfoName}" 
+                                         required="false" />
+                    </apex:outputPanel>
+                </apex:pageBlockSectionItem>
+                
+                
+                <apex:pageBlockSectionItem >
+                    <apex:outputLabel value="{!$ObjectType.Apttus_Config2__ProductInformation__c.Fields.Apttus_Config2__Description__c.Label}" 
+                                      for="idDesc" />
+                      
+                    <apex:inputTextArea id="idDesc" 
+                                         value="{!Description}"
+                                         rows="2"
+                                         cols="60" 
+                                         required="false" />
+                </apex:pageBlockSectionItem>
+               
+                <apex:outputField value="{!ProductSO.Name}"/>
+                
+                <!-- <apex:outputPanel styleClass="boxed" layout="block"> -->
+                <apex:outputPanel >
+                    <fieldset>
+                    <legend style="font-weight: bold">Information Source</legend> 
+                        <table width="100%">
+                        <tr><td colspan="2"><apex:outputText value="{!$Label.apttus_config2__InformationContentInstruction}" />
+                        <p/>
+                        </td></tr>
+                        <tr>
+                        <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td><td>
+                          <input type="radio" id="aptInfoType_0" name="infoType" value="{!PickUpload}"/>
+                            <apex:outputLabel value="{!PickUploadLabel}" style="font-weight: bold"/>
+                            <p>
+                                <apex:outputText value="{!$Label.apttus_config2__SelectResourceFileInstruction}" /> 
+                                for example: PDF File, Brochure etc. 
+                            </p><br/>
+                            <!-- Upload File -->
+                            <apex:outputPanel id="idResourceUpload">
+                                <apex:inputFile size="60" 
+                                                value="{!filebody}"  
+                                                fileName="{!fileName}"  
+                                                contentType="{!contentType}" /><br/>
+                                <apex:outputText value="{!uploadErrorMsg}" style="font-weight: bold; color: red" />
+                            </apex:outputPanel>
+                       </td></tr><tr><td>&nbsp;&nbsp;Or,</td><td>
+                       </td></tr><tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td><td>
+                            <input type="radio" id="aptInfoType_1" name="infoType" value="{!PickURL}"/>
+                            <apex:outputLabel value="{!PickURLLabel}" style="font-weight: bold"/>
+                            <p>
+                            <apex:outputText value="{!$Label.apttus_config2__EnterURLAddress}" />
+                            </p><br/>
+                            <!-- Content URL -->
+                            <apex:outputPanel id="idContentUrllbl">
+                                <apex:inputText id="idContentUrl" size="60" value="{!ContentUrl}" /><br/>
+                                <apex:outputText value="{!contentUrlErrorMsg}" style="font-weight: bold; color: red" />
+                            </apex:outputPanel>
+                       </td></tr><tr><td>&nbsp;&nbsp;Or,</td><td>
+                        </td></tr><tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td><td>
+                        <input type="radio" id="aptInfoType_2" name="infoType" value="{!PickEmbed}"/>
+                        <apex:outputLabel value="{!PickEmbedLabel}" style="font-weight: bold" />
+                        <p><apex:outputText value="{!$Label.apttus_config2__DescEmbedCode}"/><br/>
+                        <apex:outputText value="{!$Label.apttus_config2__ForExample}"/><br/>
+						<apex:outputText value="{!$Label.apttus_config2__EmbedCodeExample}"/>
+                        </p><br/>
+                        <!-- Embed code -->
+                            <apex:outputPanel id="idContentEmbed">
+                                <apex:inputTextArea id="idEmbedCode" value="{!EmbedCode}" />
+                                <br/><apex:outputText value="{!embedCodeErrorMsg}" style="font-weight: bold; color: red" />
+                            </apex:outputPanel>
+                        </td></tr></table>
+                        <script>
+                            var selectedType = document.getElementById("aptInfoType_{!CurrentTypeIndex}");
+                            if(selectedType){
+                                selectedType.checked = true;
+                                //selectedType.parentElement.style.backgroundColor = "#ccffaa";
+                            }
+                        </script>
+                    </fieldset>                      
+                </apex:outputPanel> 
+            </apex:pageBlockSection>
+            
+        </apex:pageBlock>
+                       
+    </apex:form>
+
+</apex:page>

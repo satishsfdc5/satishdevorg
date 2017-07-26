@@ -1,0 +1,4 @@
+<apex:page standardController="Account">
+<apex:sectionHeader title="Account" subtitle="{!Account.name}"/>
+    <c:AttachmentList ></c:AttachmentList>    
+</apex:page>

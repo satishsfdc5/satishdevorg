@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Follow</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <deprecated>false</deprecated>
+    <description>Rule actions that are applied to the configuration.</description>
+    <enableActivities>false</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>false</enableHistory>
+    <enableReports>false</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <fields>
+        <fullName>AffectedProductIds__c</fullName>
+        <deprecated>false</deprecated>
+        <description>List of product ids affected by the rule action.</description>
+        <externalId>false</externalId>
+        <label>Affected Product Ids</label>
+        <length>4096</length>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>AppliedRuleInfoId__c</fullName>
+        <deprecated>false</deprecated>
+        <description>References the applied rule info record</description>
+        <externalId>false</externalId>
+        <label>Applied Rule Info</label>
+        <referenceTo>AppliedRuleInfo__c</referenceTo>
+        <relationshipLabel>Applied Rule Action Infos</relationshipLabel>
+        <relationshipName>AppliedRuleActionInfos</relationshipName>
+        <relationshipOrder>0</relationshipOrder>
+        <reparentableMasterDetail>false</reparentableMasterDetail>
+        <trackTrending>false</trackTrending>
+        <type>MasterDetail</type>
+        <writeRequiresMasterRead>false</writeRequiresMasterRead>
+    </fields>
+    <fields>
+        <fullName>AutoExecuted__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <description>Whether the rule action inclusion or exclusion was automatically executed.</description>
+        <externalId>false</externalId>
+        <label>Auto Executed</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>ConfigurationId__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <deprecated>false</deprecated>
+        <description>References the configuration record to which the rule is applied</description>
+        <externalId>false</externalId>
+        <label>Configuration</label>
+        <referenceTo>ProductConfiguration__c</referenceTo>
+        <relationshipLabel>Applied Rule Action Infos</relationshipLabel>
+        <relationshipName>AppliedRuleActionInfos</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>ConstraintRuleActionId__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <deprecated>false</deprecated>
+        <description>References the constraint rule action</description>
+        <externalId>false</externalId>
+        <label>Constraint Rule Action</label>
+        <referenceTo>ConstraintRuleAction__c</referenceTo>
+        <relationshipLabel>Applied Rule Action Infos</relationshipLabel>
+        <relationshipName>AppliedRuleActionInfos</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>HideMessage__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <description>Whether the user has chosen to hide the message</description>
+        <externalId>false</externalId>
+        <label>Hide Message</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Ignored__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <description>Whether the user wants to ignore to rule action. Only warning type rule action can be ignored</description>
+        <externalId>false</externalId>
+        <label>Ignored</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>IsPrompt__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <description>Tracks whether to prompt action message.</description>
+        <externalId>false</externalId>
+        <label>IsPrompt</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>IsTargetOption__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <description>Whether the target include or exclude products should be present in the shopping cart as options.</description>
+        <externalId>false</externalId>
+        <label>Is Target Option</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>IsTargetPrimaryLine__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <description>Whether the include or exclude products should be present in the shopping cart as primary lines.</description>
+        <externalId>false</externalId>
+        <label>Is Target Primary Line</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>MessageType__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Type of message.</description>
+        <externalId>false</externalId>
+        <label>Message Type</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Error</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Warning</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Info</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Message__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Translated and formatted message.</description>
+        <externalId>false</externalId>
+        <label>Message</label>
+        <length>4096</length>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Pending__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <description>Whether the rule action is pending user action.</description>
+        <externalId>false</externalId>
+        <label>Pending</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>SuggestedProductIds__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Product suggested by rule action definition to be included in the cart</description>
+        <externalId>false</externalId>
+        <label>Suggested Product Ids</label>
+        <length>8192</length>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>TriggeringProductIds__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The list of ids representing the products that caused the rule to trigger.</description>
+        <externalId>false</externalId>
+        <label>Triggering Product Ids</label>
+        <length>4096</length>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <label>Applied Rule Action Info</label>
+    <nameField>
+        <label>Applied Rule Action Info Name</label>
+        <type>Text</type>
+    </nameField>
+    <pluralLabel>Applied Rule Action Infos</pluralLabel>
+    <searchLayouts/>
+    <sharingModel>ControlledByParent</sharingModel>
+</CustomObject>

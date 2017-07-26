@@ -1,0 +1,22 @@
+<!-- 
+    Apttus Proposal Management
+    ProposalMergeFields
+     
+    @2010-2011 Apttus Inc. All rights reserved.
+
+ -->
+<apex:page standardController="Apttus_Proposal__Proposal__c" 
+		   extensions="Apttus_Proposal.ServerInfoController" 
+		   showHeader="false" 
+		   contentType="text/xml">
+		   
+	<MergeFields>
+	  <PROPOSAL_LINK>{!FQDNUrl}/{!Apttus_Proposal__Proposal__c.Id}</PROPOSAL_LINK>
+	  <PROPOSALOWNER_EMAIL>{!TRIM(Apttus_Proposal__Proposal__c.Owner.Email)}</PROPOSALOWNER_EMAIL>
+	  <PROPOSALOWNER_FIRSTNAME>{!TRIM(Apttus_Proposal__Proposal__c.Owner.FirstName)}</PROPOSALOWNER_FIRSTNAME>
+	  <PROPOSALOWNER_FULLNAME>{!TRIM(Apttus_Proposal__Proposal__c.Owner.Name)}</PROPOSALOWNER_FULLNAME>
+	  <PROPOSALOWNER_LASTNAME>{!TRIM(Apttus_Proposal__Proposal__c.Owner.LastName)}</PROPOSALOWNER_LASTNAME>
+	  <PROPOSALOWNER_PHONE>{!TRIM(Apttus_Proposal__Proposal__c.Owner.Phone)}</PROPOSALOWNER_PHONE>
+	  <PROPOSALOWNER_TITLE>{!TRIM(Apttus_Proposal__Proposal__c.Owner.Title)}</PROPOSALOWNER_TITLE>
+	</MergeFields>
+</apex:page>

@@ -1,0 +1,10 @@
+<apex:page controller="YGGC.ProductsExIm_FileDownloader" cache="true" contentType="text/csv#{!fileName}" language="en-US">
+Product SFDC ID,Product Name*,Product Code,Product Category,Product Description,Active,Parent Product SFDC ID,Parent Product Name,Product Choice,Min Qnty,Max Qnty,Default Qnty, Price (Standard PriceBook)*
+<apex:repeat value="{!productsList}" var="p">
+{!p.productID},{!p.productName},{!p.productCode},{!p.productCategory},{!p.productDescription},{!p.active},{!p.parentProductID},{!p.parentProductName},{!p.productChoiceID},{!p.minQnty},{!p.maxQnty},{!p.defaultQnty},{!p.productPrice}
+</apex:repeat>
+<apex:outputPanel rendered="{!isError == true}">
+Error message
+{!errorMessage}
+</apex:outputPanel>
+</apex:page>

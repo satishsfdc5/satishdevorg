@@ -1,0 +1,25 @@
+Product SFDC ID,Product Name*,Product Code,Product Category,Product Description,Active,Parent Product SFDC ID or Name,Parent Name,Product Choice,Min Qnty,Max Qnty,Default Qnty,Price (Standard PriceBook)*
+,Child A1,CA01,Child,desc2,1,,Parent A1,Value A,1,5,1,90
+,Child A2,CA02,Child,desc3,1,,Parent A1,Value A,1,5,1,80
+,Child A3,CA03,Child,desc4,1,,Parent A1,Value B,1,5,1,70
+,Child B1,CB01,Child,desc5,1,,Parent B1,Value A,1,10,2,60
+,Child B2,CB02,Child,desc6,1,,Parent B1,Value A,1,10,2,50
+,Child B3,CB03,Child,desc7,1,,Parent B1,Value B,1,10,2,40
+,Parent A1,PA01,Parent,desc8,1,,,,,,,1000
+,Parent B1,PB01,Parent,desc9,1,,,,,,,2000
+,Child C1,,Child,desc10,1,,Parent C1,Value A,1,5,1,90
+,Child C2,,Child,desc11,1,,Parent C1,Value B,1,5,1,80
+,Child C3,,Child,desc12,1,,Parent C1,Value C,1,5,1,70
+,Child D1,,Child,desc13,1,,Parent D1,Value A,1,10,2,60
+,Child D2,,Child,desc14,1,,Parent D1,Value A,1,10,2,50
+,Child D3,,Child,desc15,1,,Parent D1,Value B,1,10,2,40
+,Parent C1,,Parent,desc16,1,,,,,,,1100
+,Parent D1,,Parent,desc17,1,,,,,,,2200
+,Child E1,,Child,desc18,1,,Parent E1,Value A,1,4,1,90
+,Child E2,,Child,desc19,1,,Parent E1,Value A,1,4,1,80
+,Child E3,,Child,desc20,1,,Parent E1,Value B,1,4,1,70
+,Child F1,,Child,desc21,1,,Parent F1,Value A,1,10,2,60
+,Child F2,,Child,desc22,1,,Parent F1,Value A,1,10,2,50
+,Child F3,,Child,desc23,1,,Parent F1,Value B,1,10,2,40
+,Parent E1,,Parent,desc24,1,,,,,,,3300
+,Parent F1,,Parent,desc25,1,,,,,,,4400

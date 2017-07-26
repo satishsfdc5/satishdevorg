@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Agreement review notification</description>
+    <encodingKey>UTF-8</encodingKey>
+    <letterhead>ApttusLetterhead</letterhead>
+    <name>Agreement Review Notification</name>
+    <style>freeForm</style>
+    <subject>Agreement {!APTS_Agreement__c.Name} with Account {!APTS_Agreement__c.Account__c} has been submitted for review to {!APTS_Agreement__c.OwnerFullName} Queue</subject>
+    <textOnly>This email is to inform you that the following Agreement has been submitted for review to the {!APTS_Agreement__c.OwnerFullName} Queue.  You are receiving the email because you are a member of this Queue.
+ 
+Agreement Name : {!APTS_Agreement__c.Name}
+Account : {!APTS_Agreement__c.Account__c}
+Agreement Number : {!APTS_Agreement__c.FF_Agreement_Number__c}
+Start Date : {!APTS_Agreement__c.Contract_Start_Date__c}
+Requestor : {!APTS_Agreement__c.Requestor__c}
+ 
+Please click on the following link to review the details and to take ownership as necessary 
+
+{!APTS_Agreement__c.Link}
+
+Thanks</textOnly>
+    <type>html</type>
+</EmailTemplate>

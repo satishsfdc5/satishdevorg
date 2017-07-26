@@ -1,0 +1,54 @@
+<!-- 
+    Apttus Proposal Management
+    ProposalAgreementCreate
+     
+    @2010-2012 Apttus Inc. All rights reserved.
+	
+	Summary
+ 	-------
+  	Creates an agreement and agreement line items from the proposal and proposal line items. Proposal line items are not copied 
+  	unless the copyLineItems parameter is passed with a true value. 
+ 	
+ 	pre-condition
+ 	-------------
+    None 
+ 
+	parameters
+    ==========
+    Name			| Required | Description
+    ================|==========|======================================================================================
+    id 				| Yes      | The record id of the quote/proposal
+    				|		   |
+    copyLineItems	| No	   | Indicates whether proposal line items should be copied to the agreement line items.  
+    				|		   | The default value is false. 
+   					|		   |
+    ===================================================================================================================
+    
+ -->
+<apex:page standardController="Apttus_Proposal__Proposal__c" 
+		   extensions="Apttus_Proposal.ProposalAgreementCreateController" 
+		   action="{!onLoad}" >
+	
+	<apex:form >
+		
+		<!--  required fields -->
+		<apex:outputText value="{!Apttus_Proposal__Proposal__c.Name}" rendered="false" />
+		<apex:outputText value="{!Apttus_Proposal__Proposal__c.OwnerId}" rendered="false" />
+		<apex:outputText value="{!Apttus_Proposal__Proposal__c.Apttus_Proposal__Proposal_Name__c}" rendered="false" />
+		<apex:outputText value="{!Apttus_Proposal__Proposal__c.Apttus_Proposal__Opportunity__c}" rendered="false" />
+		<apex:outputText value="{!Apttus_Proposal__Proposal__c.Apttus_Proposal__Account__c}" rendered="false" />
+		<apex:outputText value="{!Apttus_Proposal__Proposal__c.Apttus_Proposal__Approval_Stage__c}" rendered="false" />
+		<apex:outputText value="{!Apttus_Proposal__Proposal__c.Apttus_Proposal__Primary__c}" rendered="false" />
+		<apex:outputText value="{!Apttus_Proposal__Proposal__c.Apttus_Proposal__Primary_Contact__c}" rendered="false" />
+		<apex:outputText value="{!Apttus_Proposal__Proposal__c.Apttus_Proposal__Description__c}" rendered="false" />
+		<apex:outputText value="{!Apttus_Proposal__Proposal__c.Apttus_Proposal__Net_Amount__c}" rendered="false" />
+		
+		<apex:pageBlock mode="edit" rendered="{!hasErrors}" >
+			<apex:pageMessages />
+			<apex:pageBlockButtons location="bottom" >
+				<apex:commandButton action="{!doCancel}" value="{!$Label.apttus_proposal__Cancel}" immediate="true"/>
+			</apex:pageBlockButtons>
+		</apex:pageBlock>
+	</apex:form>
+	
+</apex:page>

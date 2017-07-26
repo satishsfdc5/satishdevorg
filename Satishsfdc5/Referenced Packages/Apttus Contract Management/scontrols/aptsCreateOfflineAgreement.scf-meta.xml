@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scontrol xmlns="http://soap.sforce.com/2006/04/metadata">
+    <contentSource>HTML</contentSource>
+    <description>Creates an offline agreement for a third party paper</description>
+    <encodingKey>UTF-8</encodingKey>
+    <fileName>aptsCreateOfflineAgreement</fileName>
+    <name>aptsCreateOfflineAgreement (DEPRECATED)</name>
+    <supportsCaching>true</supportsCaching>
+</Scontrol>

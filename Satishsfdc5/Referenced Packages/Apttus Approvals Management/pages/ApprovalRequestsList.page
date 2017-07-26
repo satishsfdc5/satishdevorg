@@ -1,0 +1,40 @@
+<!-- 
+	/**
+	 *	Apttus Approvals Management
+	 *	ApprovalRequestsList
+	 *	 
+	 *	@2011 Apttus Inc. All rights reserved.
+	 */
+-->
+<apex:page standardController="Apttus_Approval__Approval_Request__c"
+		extensions="Apttus_Approval.ApprovalRequestsListController">
+	
+	<apex:outputText value="{!Apttus_Approval__Approval_Request__c.Apttus_Approval__Object_Type__c}" rendered="false" />
+	<apex:outputText value="{!Apttus_Approval__Approval_Request__c.Apttus_Approval__Object_Id__c}" rendered="false" />
+	
+	<apex:pageBlock title="{!$Label.apttus_approval__Approvals}">
+		<apex:pageBlockTable value="{!approvalRequests}" var="ar">
+		
+			<apex:column value="{!ar.Apttus_Approval__Step_Name__c}" />
+			<apex:column headerValue="{!$Label.apttus_approval__ApprovalStatus}">
+				<apex:outputLink value="/{!ar.Id}">{!ar.Apttus_Approval__Approval_Status__c}
+				</apex:outputLink>
+			</apex:column>
+			<apex:column value="{!ar.Apttus_Approval__Date__c}" />
+			<apex:column headerValue="{!$Label.apttus_approval__AssignedTo}">
+				<apex:outputLink rendered="{!ar.Apttus_Approval__Assigned_To_Type__c == 'Queue'}"
+					value="/p/own/Queue/d">{!ar.Apttus_Approval__Assigned_To_Name__c}
+				    <apex:param name="id" value="{!ar.Apttus_Approval__Assigned_To_Id__c}" />
+					<apex:param name="setupid" value="Queues" />
+				</apex:outputLink>
+				<apex:outputLink rendered="{!ar.Apttus_Approval__Assigned_To_Type__c != 'Queue'}"
+					value="/{!ar.Apttus_Approval__Assigned_To_Id__c}">{!ar.Apttus_Approval__Assigned_To_Name__c}
+				</apex:outputLink>
+			</apex:column>
+			<apex:column value="{!ar.Apttus_Approval__DependsOn__c}" />
+			<apex:column value="{!ar.Apttus_Approval__Actual_Approver__c}" />
+			<apex:column value="{!ar.Apttus_Approval__Approver_Comments__c}" />
+			
+		</apex:pageBlockTable>
+	</apex:pageBlock>
+</apex:page>

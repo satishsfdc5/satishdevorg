@@ -1,0 +1,286 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Follow</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <deprecated>false</deprecated>
+    <description>Specifies a condition used to evaluate an agreement rule</description>
+    <enableActivities>false</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>false</enableHistory>
+    <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <fields>
+        <fullName>Agreement_Rule__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The associated agreement rule</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The associated agreement rule</inlineHelpText>
+        <label>Agreement Rule</label>
+        <referenceTo>Agreement_Rule__c</referenceTo>
+        <relationshipLabel>Conditions</relationshipLabel>
+        <relationshipName>R00N50000001aduAEAQ</relationshipName>
+        <relationshipOrder>0</relationshipOrder>
+        <reparentableMasterDetail>false</reparentableMasterDetail>
+        <trackTrending>false</trackTrending>
+        <type>MasterDetail</type>
+        <writeRequiresMasterRead>false</writeRequiresMasterRead>
+    </fields>
+    <fields>
+        <fullName>Description__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Description</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>Field__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The name of a field in the specified object.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The name of a field in the specified object.</inlineHelpText>
+        <label>Field</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Join__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Logical operator for combining multiple field expressions in a query</description>
+        <externalId>false</externalId>
+        <label>Boolean Operator</label>
+        <picklist>
+            <picklistValues>
+                <fullName>AND</fullName>
+                <default>true</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>OR</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Number__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Condition sequence</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Condition sequence</inlineHelpText>
+        <label>Sequence</label>
+        <precision>2</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Object__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Specifies the type of the object to query.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The object type to query</inlineHelpText>
+        <label>SObject Type</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Operator__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Comparison operator for a field expression in a query</description>
+        <externalId>false</externalId>
+        <label>Comparison Operator</label>
+        <picklist>
+            <picklistValues>
+                <fullName>equal to</fullName>
+                <default>true</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>not equal to</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>less than</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>less than or equal to</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>greater than</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>greater than or equal to</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>in</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>not in</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>like</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>not like</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>includes</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>excludes</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>starts with</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>contains</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>does not contain</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>RelationField__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Relation field that has a foreign key back to the parent</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Field that has a foreign key back to the parent</inlineHelpText>
+        <label>Relation Field</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Value__c</fullName>
+        <deprecated>false</deprecated>
+        <description>A value used to compare with the value in field in a query</description>
+        <externalId>false</externalId>
+        <label>Value</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <label>Agreement Rule Condition</label>
+    <nameField>
+        <displayFormat>RC-{0000}</displayFormat>
+        <label>Name</label>
+        <type>AutoNumber</type>
+    </nameField>
+    <pluralLabel>Agreement Rule Conditions</pluralLabel>
+    <searchLayouts>
+        <lookupDialogsAdditionalFields>Object__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>Field__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>Operator__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>Value__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>RelationField__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>Join__c</lookupDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>Object__c</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>Field__c</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>Operator__c</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>Value__c</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>RelationField__c</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>Join__c</lookupPhoneDialogsAdditionalFields>
+        <searchFilterFields>NAME</searchFilterFields>
+        <searchFilterFields>Object__c</searchFilterFields>
+        <searchFilterFields>Field__c</searchFilterFields>
+        <searchFilterFields>Operator__c</searchFilterFields>
+        <searchFilterFields>Value__c</searchFilterFields>
+        <searchFilterFields>RelationField__c</searchFilterFields>
+        <searchFilterFields>Join__c</searchFilterFields>
+    </searchLayouts>
+    <sharingModel>ControlledByParent</sharingModel>
+    <webLinks>
+        <fullName>Edit</fullName>
+        <availability>online</availability>
+        <description>Allows editing of multiple selected agreement rule conditions</description>
+        <displayType>massActionButton</displayType>
+        <height>600</height>
+        <linkType>page</linkType>
+        <masterLabel>Edit</masterLabel>
+        <openType>sidebar</openType>
+        <page>RuleConditionEdit</page>
+        <protected>false</protected>
+        <requireRowSelection>true</requireRowSelection>
+    </webLinks>
+</CustomObject>

@@ -1,0 +1,507 @@
+<!-- 
+    Apttus Config & Pricing
+    QuickConfig
+     
+    @2010-2012 Apttus Inc. All rights reserved.
+
+ -->
+<apex:page standardController="Apttus_Config2__ProductConfiguration__c" 
+		   extensions="Apttus_Config2.QuickConfigController" 
+           showHeader="false"
+           sidebar="true"
+           cache="false"  
+           tabStyle="Product2"
+           action="{!doSelect}" >	
+    
+    <apex:includeScript value="{!URLFOR($Resource.Apttus_Config2__JQueryUILibrary, 'js/jquery-1.6.2.min.js')}"/>
+    <apex:includeScript value="{!URLFOR($Resource.Apttus_Config2__JQueryUILibrary, 'js/jquery-ui-1.8.16.custom.min.js')}"/>
+    <apex:includeScript value="{!$Resource.Apttus_Config2__ConfigJSLib}" />
+    
+    <apex:stylesheet value="{!URLFOR($Resource.Apttus_Config2__JQueryUILibrary, 'css/ui-lightness/jquery-ui-1.8.16.custom.css')}"/>
+  
+	<style>
+		.apttusConfigStage {
+			font-weight:bold;
+			background-color:#A4A4A4;
+			background-image:none;
+			color:white;
+			font-size:80%;
+			font-family: Verdana, Arial, Helvetica, sans-serif;
+			padding: 4px 6px;
+			border-top: 2px solid white;
+			border-right: 2px solid grey;
+			border-bottom: 2px solid grey;
+			border-left: 2px solid white;
+			text-align: center;
+			text-transform:uppercase;
+			
+		}
+
+		.apttusCurrentConfigStage {
+			font-weight:bold;
+			background-color:#6B92B9;
+			background-image:none;
+			color:white;
+			font-size:80%;
+			font-family: Verdana, Arial, Helvetica, sans-serif;
+			padding: 4px 6px;
+			border-top: 2px solid white;
+			border-right: 2px solid #5D7FA1;
+			border-bottom: 2px solid #5D7FA1;
+			border-left: 2px solid white;
+			text-align: center;
+			text-transform:uppercase;
+			
+		}
+		
+		.apttusGrandTotal {
+			font-style: italic;
+			font-weight: bold; 
+			
+		}
+	
+	</style>
+	
+	<script type="text/javascript">
+    	// This to make sure jQuery doesn't conflict with any other JS libraries
+    	var j$ = jQuery.noConflict();
+ 		
+ 		j$(document).ready(function(){
+			
+			// setup namespace
+			j$.APTTUS = {};
+			
+			// setup the remove confirmation dialog
+			j$("#confirmationPanel").dialog({
+				autoOpen: false,
+				draggable: false,
+				modal: true,
+				resizable: false,
+				position: 'center'
+				
+			});
+		 
+		});
+		
+		/**
+		 * Show remove confirmation dialog
+		 * @param lineNumber the line number to delete
+		 */
+		function showRemoveConfirmation(lineNumber) {
+			
+	      	// store the line number in the global namespace
+	      	j$.APTTUS.LineNumber = lineNumber;
+	      	
+	      	j$("#confirmationPanel").dialog("open");
+	      	j$("#confirmationPanel").dialog("option" , "title" , "{!$Label.RemoveConfirmation}");
+	      	j$("#confirmationPanel").dialog("option", "position", "center");
+	      	
+	      	return false;
+	      	
+	   	}
+   		
+   		/**
+		 * Hide the remove confirmation dialog
+		 */
+   		function hideRemoveConfirmation(){
+	    	// close the confirmation dialog
+	      	j$("#confirmationPanel").dialog("close");
+	      
+	   	}
+	   	
+	    /**
+		 * Delete the line item from the cart
+		 */
+		function deleteCartLineItem() {
+			// delete the line item
+    		doDeleteCartLineItem(j$.APTTUS.LineNumber);
+			    			
+		}
+ 
+    </script>        
+   
+    <apex:form id="idQuickConfig">
+		
+		<!--  required fields -->
+        
+        <table style="width: 100%; background-color: #F7F7F7;" width="100%">
+            <tr>
+                <td>
+                <table width="100%">
+                    <tr style="background-color: #FFFFFF;">
+                        <td><apex:outputPanel style="text-align: left;" layout="block">
+                            <apex:panelGrid columns="1">
+                                <apex:panelGroup >
+                                    <apex:outputText escape="false" 
+                                    				 value="&nbsp;{!fromBizType}:"
+                                        			 style="text-transform:uppercase;font-weight:bold;color:#5487B9" />
+									&nbsp;
+									<apex:outputField value="{!ConfigSO[BOLookupFieldName]}" 
+													  rendered="{!ShowBOLookupField}" />
+													  
+									<apex:outputText escape="false"
+													 value="&nbsp;{!fromBizTitle}&nbsp;&nbsp;"
+													 style="font-weight:bold;color:#5487B9;" 
+													 rendered="{!ShowBOTitle}" />
+                                    
+                                </apex:panelGroup>
+                            </apex:panelGrid>
+                        </apex:outputPanel></td>
+                        <td> 
+                        <apex:outputPanel style="text-align: right;" layout="block">
+                            <apex:image url="{!$Resource.Apttus_Config2__Apttus_Logo}" title="" alt="" />
+                        </apex:outputPanel></td>
+                    </tr>
+                </table>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                <table width="100%">
+                    <tr>
+                        <td>
+                            <apex:outputPanel id="idTopNavStage"
+                                style="text-align: left;" layout="block">
+
+                                    <apex:panelGrid columns="1" style="line-height:80%">
+
+                                        <apex:panelGroup >
+
+                                            <apex:outputText escape="false" value="STEP"
+                                                style="font-weight:bold;font-size:90%" />
+
+                            &nbsp;&nbsp;
+                            <apex:outputText escape="false"
+                                                value="&nbsp;&nbsp;{!$Label.StageSelect}&nbsp;&nbsp;"
+                                                styleClass="{!IF(IsSelectionStep, 'apttusCurrentConfigStage', 'apttusConfigStage')}" />
+
+                            &nbsp;&nbsp;
+                            <apex:image url="{!$Resource.Apttus_Config2__Chevron}" title="" alt="" />
+                            &nbsp;&nbsp;
+                            
+							<apex:outputText escape="false"
+                                                value="&nbsp;&nbsp;{!$Label.StageConfigure}&nbsp;&nbsp;"
+                                                styleClass="{!IF(IsConfigurationStep, 'apttusCurrentConfigStage', 'apttusConfigStage')}" />
+
+                            &nbsp;&nbsp;
+                            <apex:image url="{!$Resource.Apttus_Config2__Chevron}" title="" alt="" />
+                            &nbsp;&nbsp;
+
+                            <apex:outputText escape="false"
+                                                value="&nbsp;&nbsp;{!$Label.StagePrice}&nbsp;&nbsp;"
+                                                styleClass="{!IF(IsPricingStep, 'apttusCurrentConfigStage', 'apttusConfigStage')}" />
+
+
+                            &nbsp;&nbsp;
+                            <apex:image url="{!$Resource.Apttus_Config2__Chevron}" title="" alt="" />
+                            &nbsp;&nbsp;
+
+                            <apex:outputText escape="false"
+                                                value="&nbsp;&nbsp;{!$Label.StageFinalize}&nbsp;&nbsp;"
+                                                styleClass="{!IF(IsFinalizationStep, 'apttusCurrentConfigStage', 'apttusConfigStage')}" />
+
+                                            <b><apex:actionStatus startText="{!$Label.apttus_config2__StatusMessageUpdatingPage}..."
+                                                id="idStatusSelect" /></b>
+                                        </apex:panelGroup>
+
+                                    </apex:panelGrid>
+
+                                </apex:outputPanel></td>
+                                <td><apex:outputPanel style="text-align: right;"
+                                    layout="block" id="idTopNavActions">
+                                    <apex:commandButton value="{!$Label.apttus_config2__Abandon}"
+                                        action="{!doAbandon}" immediate="true"
+                                        style="background-color:#657383;background-image:none;color:white;"/>
+                                    &nbsp;
+                                    &nbsp;
+                                	<apex:image url="{!$Resource.Apttus_Config2__Cart}" title="{!$Label.apttus_config2__Cart}"
+                                                    alt="{!$Label.apttus_config2__Cart}" />
+                                                
+                                    &nbsp;
+                                	<apex:outputText value="({!cartSummaryInfo})" />
+                                    &nbsp;
+                            </apex:outputPanel>
+                
+                        </td>
+                    </tr>
+                </table>
+                </td>
+            </tr>
+        </table>
+        
+		<apex:pageBlock id="idConfigBlock" 
+						title="" 
+						mode="edit" 
+						rendered="{!IsConfigurationStep}">
+						
+			<apex:pageBlockButtons location="top">
+				<apex:commandButton value="{!$Label.apttus_config2__GoToPricing}" 
+									action="{!doPricing}" />
+
+		    </apex:pageBlockButtons>
+			<apex:pageMessages />
+			
+			<apex:pageBlockTable width="100%" 
+								 value="{!ProductLineItems}" 
+								 var="prodItem" 
+								 rules="rows" 
+								 rowClasses="oddRow, evenRow" 
+								 headerClass="aptsColHead" >
+				
+				<apex:column headerValue="{!$Label.apttus_config2__Action}" >
+					<apex:commandLink value="{!$Label.apttus_config2__Del}"  
+									  action="{!doDeleteProductLineItem}" 
+									  immediate="true"
+									  style="color:blue;" >
+						<apex:param name="lineNumber" value="{!prodItem.Sequence}" />
+					</apex:commandLink>	
+				</apex:column>
+							
+				<apex:column headerValue="{!$ObjectType.Apttus_Config2__LineItem__c.Fields.Apttus_Config2__ProductId__c.Label}" >
+					<apex:outputField value="{!prodItem.LineItemSO.Apttus_Config2__ProductId__c}" />
+				</apex:column>	
+				
+				<apex:column headerValue="{!$ObjectType.Apttus_Config2__LineItem__c.Fields.Apttus_Config2__Comments__c.Label}" >
+					<apex:inputTextarea value="{!prodItem.LineItemSO.Apttus_Config2__Comments__c}" 
+										rows="1" 
+										cols="60" />
+				</apex:column>	
+				
+			</apex:pageBlockTable>
+						
+		</apex:pageBlock>
+		
+		<apex:pageBlock id="idPricingBlock" 
+						title="" 
+						mode="detail" 
+						rendered="{!IsPricingStep || IsFinalizationStep}" >
+						
+			<apex:pageBlockButtons location="top">
+				
+				<apex:commandButton value="{!$Label.apttus_config2__AddMoreProducts}" 
+									action="{!doBackToSelection}" 
+									rendered="{!IsPricingStep}" />
+									
+				<apex:commandButton value="{!$Label.apttus_config2__BackToPricing}" 
+									action="{!doBackToPricing}"
+									rendered="{!IsFinalizationStep}" />
+									
+				<apex:commandButton value="{!$Label.apttus_config2__ApplyAdjustments}"
+									action="{!doApplyAdjustments}"
+									rendered="{!IsPricingStep}"
+									reRender="idPricingBlock" />
+														
+				<apex:commandButton value="{!$Label.apttus_config2__Review}" 
+									action="{!doReview}" 
+									rendered="{!IsPricingStep}" />
+				
+				<apex:commandButton value="{!$Label.apttus_config2__Finalize}" 
+									action="{!doFinalize}" 
+									rendered="{!IsFinalizationStep}" />
+									
+		    </apex:pageBlockButtons>
+			<apex:pageMessages />
+			
+			<apex:pageBlockSection title="Items" columns="1" collapsible="true">
+				<apex:pageBlockTable width="100%" 
+									 value="{!CartLineItems}" 
+									 var="lineItem" 
+									 rules="rows" 
+									 rowClasses="oddRow, evenRow" 
+									 headerClass="aptsColHead" >
+					
+					<apex:column headerValue="{!$Label.apttus_config2__Action}" >
+						<apex:commandLink value="{!$Label.apttus_config2__Del}"  
+										  onclick="return showRemoveConfirmation('{!lineItem.LineItemSO.Apttus_Config2__LineNumber__c}');"
+										  style="color:blue;" 
+										  rendered="{!(lineItem.lineItemSO.IsPrimaryLine__c) && 
+													  (lineItem.lineItemSO.AllowRemoval__c)}"  >
+						</apex:commandLink>	
+					</apex:column>
+				
+					<apex:column headerValue="{!$ObjectType.Apttus_Config2__LineItem__c.Fields.Apttus_Config2__ProductId__c.Label}" >
+						<apex:outputField value="{!lineItem.LineItemSO.Apttus_Config2__ProductId__c}" />
+					</apex:column>	
+					<apex:column headerValue="{!$ObjectType.Apttus_Config2__LineItem__c.Fields.Apttus_Config2__ChargeType__c.Label}"  >
+						<apex:outputField value="{!lineItem.LineItemSO.Apttus_Config2__ChargeType__c}" />
+					</apex:column>
+					
+					<apex:column headerValue="{!$ObjectType.Apttus_Config2__LineItem__c.Fields.Apttus_Config2__BasePrice__c.Label}" >
+						<apex:outputField value="{!lineItem.LineItemSO.Apttus_Config2__BasePrice__c}" 
+										  rendered="{!IsMultiCurrency}" />
+						<apex:outputText value="{0,number,currency}" 
+										 rendered="{!NOT(IsMultiCurrency)}" >
+							<apex:param value="{!lineItem.LineItemSO.Apttus_Config2__BasePrice__c}" />
+						</apex:outputText>
+					</apex:column>
+					<apex:column headerValue="{!$ObjectType.Apttus_Config2__LineItem__c.Fields.Apttus_Config2__Quantity__c.Label}" >
+						<apex:outputField value="{!lineItem.LineItemSO.Apttus_Config2__Quantity__c}" />
+					</apex:column>	
+					
+					<apex:column headerValue="{!$Label.apttus_config2__Term}" >
+						<apex:outputField value="{!lineItem.LineItemSO.Apttus_Config2__SellingTerm__c}" />
+					</apex:column>
+					
+					<apex:column headerValue="{!$Label.apttus_config2__Frequency}" >
+						<apex:outputField value="{!lineItem.LineItemSO.Apttus_Config2__SellingFrequency__c}" />
+					</apex:column>
+								
+					<apex:column headerValue="{!$ObjectType.Apttus_Config2__LineItem__c.Fields.Apttus_Config2__StartDate__c.Label}" >
+						<apex:outputField value="{!lineItem.LineItemSO.Apttus_Config2__StartDate__c}" />
+					</apex:column>	
+					
+					<apex:column headerValue="{!$ObjectType.Apttus_Config2__LineItem__c.Fields.Apttus_Config2__EndDate__c.Label}" >
+						<apex:outputField value="{!lineItem.LineItemSO.Apttus_Config2__EndDate__c}" />
+					</apex:column>	
+					
+					<apex:column headerValue="{!$ObjectType.Apttus_Config2__LineItem__c.Fields.Apttus_Config2__ExtendedPrice__c.Label}" >
+						
+						<apex:outputField value="{!lineItem.LineItemSO.Apttus_Config2__ExtendedPrice__c}" 
+										  rendered="{!IsMultiCurrency}" />
+						<apex:outputText value="{0,number,currency}" 
+										 rendered="{!NOT(IsMultiCurrency)}" >
+							<apex:param value="{!lineItem.LineItemSO.Apttus_Config2__ExtendedPrice__c}" />
+						</apex:outputText>
+					</apex:column>
+								
+					<apex:column headerValue="{!$ObjectType.Apttus_Config2__LineItem__c.Fields.Apttus_Config2__AdjustmentType__c.Label}" >
+						
+						<apex:outputField value="{!lineItem.LineItemSO.Apttus_Config2__AdjustmentType__c}"
+										  rendered="{!NOT(lineItem.LineItemSO.AllowManualAdjustment__c) || 
+										  			  IsFinalizationStep}" /> 			  
+						<apex:inputField value="{!lineItem.LineItemSO.Apttus_Config2__AdjustmentType__c}"
+										 rendered="{!IsPricingStep && lineItem.LineItemSO.Apttus_Config2__AllowManualAdjustment__c}" />
+						
+					</apex:column>
+					
+					<apex:column headerValue="{!$ObjectType.Apttus_Config2__LineItem__c.Fields.Apttus_Config2__AdjustmentAmount__c.Label}" >
+						
+						<apex:outputText value="{0,number}" 
+										 rendered="{!NOT(lineItem.LineItemSO.AllowManualAdjustment__c) || 
+										 			 IsFinalizationStep}" >
+							<apex:param value="{!lineItem.LineItemSO.Apttus_Config2__AdjustmentAmount__c}" />
+						</apex:outputText>
+						<apex:inputField value="{!lineItem.LineItemSO.Apttus_Config2__AdjustmentAmount__c}"
+										 rendered="{!IsPricingStep && lineItem.LineItemSO.Apttus_Config2__AllowManualAdjustment__c}" />
+					</apex:column>
+					
+					<apex:column headerValue="{!$ObjectType.Apttus_Config2__LineItem__c.Fields.Apttus_Config2__NetPrice__c.Label}" >
+						
+						<apex:outputField value="{!lineItem.LineItemSO.Apttus_Config2__NetPrice__c}" 
+										  rendered="{!IsMultiCurrency}" />
+						<apex:outputText value="{0,number,currency}" 
+										 rendered="{!NOT(IsMultiCurrency)}" >
+							<apex:param value="{!lineItem.LineItemSO.Apttus_Config2__NetPrice__c}" />
+						</apex:outputText>
+					</apex:column>
+																	
+					<apex:column headerValue="{!$ObjectType.Apttus_Config2__LineItem__c.Fields.Apttus_Config2__Comments__c.Label}" >
+						<apex:outputText value="{!lineItem.LineItemSO.Apttus_Config2__Comments__c}" />
+					</apex:column>	
+					
+				</apex:pageBlockTable>
+			</apex:pageBlockSection>
+			
+			<apex:pageBlockSection title="Totals" columns="1" collapsible="true">			
+				<apex:pageBlockTable width="100%" 
+										 value="{!CartTotalItems}" 
+										 var="totalItem" 
+										 rules="rows" 
+										 rowClasses="oddRow, evenRow" 
+										 headerClass="aptsColHead" >
+					
+					<apex:column headerValue="{!$Label.apttus_config2__Group}" >
+						<apex:outputField value="{!totalItem.SummaryGroupSO.Name}" 
+										  styleClass="{!IF((totalItem.SummaryGroupSO.Apttus_Config2__LineType__c == 'Grand Total'), 'apttusGrandTotal', '')}" />
+					</apex:column>
+								
+					<apex:column headerValue="{!$ObjectType.Apttus_Config2__SummaryGroup__c.Fields.Apttus_Config2__ChargeType__c.Label}"  >
+						<apex:outputField value="{!totalItem.SummaryGroupSO.Apttus_Config2__ChargeType__c}" />
+					</apex:column>
+					
+					<apex:column headerValue="{!$ObjectType.Apttus_Config2__SummaryGroup__c.Fields.Apttus_Config2__Frequency__c.Label}" >
+						<apex:outputField value="{!totalItem.SummaryGroupSO.Apttus_Config2__Frequency__c}" />
+					</apex:column>
+								
+					<apex:column headerValue="{!$ObjectType.Apttus_Config2__SummaryGroup__c.Fields.Apttus_Config2__ExtendedPrice__c.Label}" >
+						
+						<apex:outputField value="{!totalItem.SummaryGroupSO.Apttus_Config2__ExtendedPrice__c}" 
+										  rendered="{!IsMultiCurrency}" />
+						<apex:outputText value="{0,number,currency}" 
+										 rendered="{!NOT(IsMultiCurrency)}" >
+							<apex:param value="{!totalItem.SummaryGroupSO.Apttus_Config2__ExtendedPrice__c}" />
+						</apex:outputText>
+					</apex:column>
+						
+					<apex:column headerValue="{!$ObjectType.Apttus_Config2__SummaryGroup__c.Fields.Apttus_Config2__AdjustmentType__c.Label}" >
+						
+						<apex:outputField value="{!totalItem.SummaryGroupSO.Apttus_Config2__AdjustmentType__c}"
+										  rendered="{!NOT(totalItem.SummaryGroupSO.AllowManualAdjustment__c) ||
+										  			  IsFinalizationStep}" /> 			  
+						<apex:inputField value="{!totalItem.SummaryGroupSO.Apttus_Config2__AdjustmentType__c}"
+										 rendered="{!IsPricingStep && totalItem.SummaryGroupSO.Apttus_Config2__AllowManualAdjustment__c}" />
+						
+					</apex:column>
+					
+					<apex:column headerValue="{!$ObjectType.Apttus_Config2__SummaryGroup__c.Fields.Apttus_Config2__AdjustmentAmount__c.Label}" >
+						
+						<apex:outputText value="{0,number}" 
+										 rendered="{!NOT(totalItem.SummaryGroupSO.AllowManualAdjustment__c) || 
+										 			 IsFinalizationStep}" >
+							<apex:param value="{!totalItem.SummaryGroupSO.Apttus_Config2__AdjustmentAmount__c}" />
+						</apex:outputText>
+						<apex:inputField value="{!totalItem.SummaryGroupSO.Apttus_Config2__AdjustmentAmount__c}"
+										 rendered="{!IsPricingStep && totalItem.SummaryGroupSO.Apttus_Config2__AllowManualAdjustment__c}" />
+					</apex:column>
+					
+					<apex:column headerValue="{!$ObjectType.Apttus_Config2__SummaryGroup__c.Fields.Apttus_Config2__NetPrice__c.Label}" >
+						
+						<apex:outputField value="{!totalItem.SummaryGroupSO.Apttus_Config2__NetPrice__c}" 
+										  rendered="{!IsMultiCurrency}" />
+						<apex:outputText value="{0,number,currency}" 
+										 rendered="{!NOT(IsMultiCurrency)}" >
+							<apex:param value="{!totalItem.SummaryGroupSO.Apttus_Config2__NetPrice__c}" />
+						</apex:outputText>
+					</apex:column>
+					
+				</apex:pageBlockTable>
+			</apex:pageBlockSection>
+							
+		</apex:pageBlock>
+		
+		<apex:actionFunction name="doDeleteCartLineItem" 
+							 action="{!doDeleteCartLineItem}"
+							 oncomplete="hideRemoveConfirmation();" 
+							 reRender="idQuickConfig" >
+			<apex:param name="lineNumber" value="" />
+		</apex:actionFunction>
+		
+	</apex:form>
+	
+	<!-- This panel represents the delete confirmation dialog that will pop up -->
+	<apex:outputPanel >
+		<div id="confirmationPanel" style="display: none">
+		    <div>
+		    	<apex:outputText value="{!$Label.apttus_config2__RemoveProductMessage}" />
+		    </div>
+		    <p/>
+		    <div>
+		    	<apex:form >
+		            <apex:actionRegion >
+		                <div style="text-align: center; padding-left: 4px;" >
+		                    <apex:commandButton value="{!$Label.apttus_config2__Yes}"
+		                    					onclick="deleteCartLineItem();"
+		                    					style="width: 50px;"   
+		                    					immediate="true" 
+		                    					oncomplete="hideRemoveConfirmation();" />
+		                    <apex:commandButton value="{!$Label.apttus_config2__No}" 
+		                    					style="width: 50px;"   
+		                    					onclick="hideRemoveConfirmation();return false;" />
+		                </div>
+		            </apex:actionRegion>
+		         </apex:form>
+		    </div>
+		</div>
+	</apex:outputPanel>
+	
+</apex:page>

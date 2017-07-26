@@ -1,0 +1,138 @@
+<!-- 
+    Apttus Contract Management
+    OfflineDocumentImport
+     
+    @2009-2013 Apttus Inc. All rights reserved.
+
+	Summary
+ 	-------
+  	The offline document import page may be used to import and attach third party documents to the agreement 
+ 
+	parameters
+    ==========
+    Name			| Required | Description
+    ================|==========|======================================================================================
+    id 				| Yes      | The record id of the agreement
+    				|		   |
+    finishPage		| No	   | The name of the finish page to navigate to after the import process is completed.
+   					|		   | Parameters for the finish page may be passed by prefixing the parameter name with 'finish_'.
+   					|		   | for e.g. if you pass in a parameter finish_id, the finish page will be called 
+   					|		   | with the parameter id. A record id may be passed as the value for the finish page.
+   					|		   | 
+    isCustomImport	| No       | The custom import indicator.
+    				|		   | Indicates whether this is a custom import operation. 
+    				|		   | For this parameter to take effect,the finishPage parameter must be provided.
+                    |          |
+    ===================================================================================================================
+ -->
+<apex:page standardController="Apttus__APTS_Agreement__c" 
+		   extensions="Apttus.OfflineDocumentImportController" 
+		   showHeader="true" 
+		   sidebar="true" >
+		   
+	<apex:sectionHeader title="{!$Label.apttus__ImportOfflineDocument}" subtitle="{!Apttus__APTS_Agreement__c.Name}" />
+
+	<apex:form id="attachForm">
+		<!--  required fields -->
+		<apex:outputText value="{!Apttus__APTS_Agreement__c.Apttus__Version_Number__c}" rendered="false" />
+		<apex:outputText value="{!Apttus__APTS_Agreement__c.Apttus__Status__c}" rendered="false" />
+		<apex:outputText value="{!Apttus__APTS_Agreement__c.Apttus__Status_Category__c}" rendered="false" />
+		<apex:outputText value="{!Apttus__APTS_Agreement__c.Apttus__FF_Agreement_Number__c}" rendered="false" />
+		<apex:outputText value="{!Apttus__APTS_Agreement__c.Apttus__Contract_Start_Date__c}" rendered="false" />
+		<apex:outputText value="{!Apttus__APTS_Agreement__c.Apttus__Contract_End_Date__c}" rendered="false" />
+		<apex:outputText value="{!Apttus__APTS_Agreement__c.Apttus__Agreement_Number__c}" rendered="false" />
+		<apex:outputText value="{!Apttus__APTS_Agreement__c.Apttus__Agreement_Category__c}" rendered="false" />
+		
+		<apex:outputPanel id="idImportOfflinePanel">
+		
+			<apex:pageBlock id="idErrorBlock" mode="edit" rendered="{!HasErrors}" >
+				<apex:pageMessages />
+				<apex:pageBlockButtons location="bottom" >
+					<apex:commandButton action="{!doCancel}" value="{!$Label.apttus__Cancel}" immediate="true" />
+				</apex:pageBlockButtons>
+			</apex:pageBlock>
+				
+	    	<apex:pageBlock mode="edit" rendered="{!isInitialized && NOT(canEditAgreement)}" >
+				<apex:pageMessages />
+				<apex:outputText value="{!$Label.apttus__InsufficientPrivileges}" 
+								 style="font-family: Arial, Helvetica, sans-serif;font-weight: bold;font-size: 12pt;" /><p/>
+				<apex:outputText value="{!$Label.apttus__InsufficientPrivilegesDetail}" /><br/>
+				<apex:pageBlockButtons location="bottom" >
+						<apex:commandButton action="{!doCancel}" value="{!$Label.apttus__Return}" immediate="true" />
+					</apex:pageBlockButtons>
+			</apex:pageBlock>
+			
+			<apex:pageBlock id="idAttachBlock" 
+							mode="edit" 
+							rendered="{!(NOT(isInitialized) || canEditAgreement) && 
+										NOT(HasErrors) && 
+									    NOT(ActionPollerEnabled) && 
+									    NOT(IsDone)}" >
+				<apex:pageMessages />
+				<apex:pageBlockButtons location="bottom" >
+					<apex:commandButton value="{!$Label.apttus__Continue}" 
+										action="{!doContinue}" 
+										disabled="{!countOfAttachments <= 0}" />
+					<apex:commandButton value="{!$Label.apttus__Cancel}" 
+										action="{!doCancel}" 
+										immediate="true" />
+				</apex:pageBlockButtons>
+				<apex:outputPanel id="upload">
+	                <apex:outputText style="font-weight: bold" value="1. {!$Label.apttus__SelectImportFile}" /><br/>
+	                <apex:outputText value="{!$Label.apttus__SelectFileToImportInstruction}" /> <p/>
+	                <apex:inputFile size="80" value="{!filebody}" fileName="{!fileName}" contentType="{!contentType}" /><p/>
+	                <apex:outputText value="{!uploadErrorMsg}" style="font-weight: bold; color: red" /><p/>
+	                <apex:outputText style="font-weight: bold" value="2. {!$Label.apttus__ClickAttachFile}" escape="false" /> <br/>
+	                <apex:outputText value="{!$Label.apttus__AttachImportFileInstruction}" /> <p/>
+	                <apex:commandButton value="{!$Label.apttus__AttachFile}" action="{!doAttach}" /> <p/>
+	            </apex:outputPanel>
+	            <apex:outputPanel >
+					<p>{!$Label.apttus__FilesUploaded}</p>
+					<apex:dataList type="square" value="{!attachments}" var="item" rows="6" >
+						<apex:outputText value="{!item.Name}"/>
+					</apex:dataList>
+				</apex:outputPanel> 
+			</apex:pageBlock>
+	
+			<apex:pageBlock id="idImportBlock" 
+							mode="edit" 
+							rendered="{!(NOT(isInitialized) || canEditAgreement) && 
+										 NOT(HasErrors) && 
+									     (ActionPollerEnabled || IsDone)}" >
+				<apex:pageMessages />
+				<apex:pageBlockButtons location="bottom" >
+					<apex:commandButton value="{!$Label.apttus__Return}" 
+										action="{!doReturn}" 
+										immediate="true" 
+										disabled="{!actionPollerEnabled}" />
+				</apex:pageBlockButtons>
+				<apex:outputPanel id="import" rendered="{!NOT(IsDone)}">
+	                <apex:outputText style="font-weight: bold" value="{!$Label.apttus__ImportDocumentInstruction}" /><br/>
+	                <p/>
+	            </apex:outputPanel>
+				<apex:outputPanel rendered="{!IsDone}">
+					<p>{!$Label.apttus__DocumentsImported}</p>
+					<apex:dataList type="square" value="{!attachments}" var="item" rows="6" >
+						<apex:outputText value="{!item.Name}"/>
+					</apex:dataList>
+				</apex:outputPanel> 
+				<apex:actionPoller enabled="{!ActionPollerEnabled}" 
+								   interval="5" 
+								   action="{!doImport}" 
+								   reRender="idImportBlock" 
+								   status="idStatus" 
+								   rendered="{!NOT(HasFinishPage)}" />
+				
+				<apex:actionPoller enabled="{!ActionPollerEnabled}" 
+								   interval="5" 
+								   action="{!doImport}" 
+								   status="idStatus" 
+								   rendered="{!HasFinishPage}" />
+								   				   
+			    <apex:actionStatus id="idStatus" startText="{!$Label.apttus__ImportingDocuments}"></apex:actionStatus>
+			</apex:pageBlock>
+		
+		</apex:outputPanel>
+    						 
+	</apex:form>
+</apex:page>

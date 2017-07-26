@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scontrol xmlns="http://soap.sforce.com/2006/04/metadata">
+    <contentSource>Snippet</contentSource>
+    <description>Includes common scontrol actions</description>
+    <encodingKey>UTF-8</encodingKey>
+    <fileName>aptsIncludeActions</fileName>
+    <name>aptsIncludeActions (DEPRECATED)</name>
+    <supportsCaching>true</supportsCaching>
+</Scontrol>

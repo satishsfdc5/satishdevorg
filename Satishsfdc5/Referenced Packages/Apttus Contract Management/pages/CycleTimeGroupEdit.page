@@ -1,0 +1,15 @@
+<!-- 
+    Apttus Contract Management
+    CycleTimeGroupEdit
+     
+    @2009-2010 Apttus Inc. All rights reserved.
+
+ -->
+<apex:page standardController="Apttus__CycleTimeGroup__c" 
+		   extensions="Apttus.CycleTimeGroupEditController" 
+		   showHeader="true"
+		   sidebar="true" 
+		   tabStyle="Apttus__CycleTimeGroup__c" 
+		   action="{!doRedirect}">
+		   
+</apex:page>

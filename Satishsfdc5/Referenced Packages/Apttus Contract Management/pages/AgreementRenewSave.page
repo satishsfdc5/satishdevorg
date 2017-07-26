@@ -1,0 +1,140 @@
+<!-- 
+    Apttus Contract Management
+    AgreementRenewSave
+     
+    @2009-2013 Apttus Inc. All rights reserved.
+
+ -->
+<apex:page standardController="Apttus__APTS_Agreement__c" 
+		   extensions="Apttus.QueryParamController"  
+		   showHeader="true">
+		   
+	<script type="text/javascript" src="/soap/ajax/26.0/connection.js"></script>
+	<script type="text/javascript" src="/soap/ajax/26.0/apex.js"></script>
+	<apex:include pageName="Apttus__ComplyJSLibInclude" />
+	
+	<apex:stylesheet value="{!URLFOR($Resource.Apttus__YUILibrary, '/yui/build/assets/skins/sam/skin.css')}" />
+ 
+	<apex:includescript value="{!URLFOR($Resource.Apttus__YUILibrary, '/yui/build/yahoo-dom-event/yahoo-dom-event.js')}" />
+	<apex:includescript value="{!URLFOR($Resource.Apttus__YUILibrary, '/yui/build/dragdrop/dragdrop-min.js')}" />
+	<apex:includescript value="{!URLFOR($Resource.Apttus__YUILibrary, '/yui/build/container/container-min.js')}" />
+	<apex:includescript value="{!URLFOR($Resource.Apttus__YUILibrary, '/yui/build/animation/animation-min.js')}" />
+	
+	<script>
+    
+	    // Create a namespace for our custom functions
+	    YAHOO.namespace("force.com");
+		
+		// wait panel
+		
+		/**
+		 * Builds the wait panel.
+		 */
+	    YAHOO.force.com.buildWaitPanel = function() {
+	        document.body.className = document.body.className + " yui-skin-sam";
+	        YAHOO.force.com.waitPanel = new YAHOO.widget.Panel(
+	            "waitPanel",  // The id of our dialog container
+	            { 
+	                    width           :   "300px", // You can play with this until it's right
+	                    visible         :   false,   // Should be invisible when rendered
+	                    draggable       :   false,   // Make the dialog draggable
+	                    close           :   false,   // Don't include a close title button
+	                    modal           :   true,    // Make it modal
+	                    fixedCenter     :   true,    // Keep centered if window is scrolled
+	                    zindex          :   40,      // Make sure it's on top of everything
+	                    constraintoviewport: true,
+	                    
+	                    // This line adds the appear/disapper fade effect
+	                    effect			:   {effect:YAHOO.widget.ContainerEffect.FADE,duration:0.25}
+        							
+	            }
+	        );
+	        
+	        // header
+	        YAHOO.force.com.waitPanel.setHeader("{!$Label.LoadingPage}");
+			// set image
+			YAHOO.force.com.waitPanel.setBody('<center><img src="{!URLFOR($Resource.Image_LoadingPage)}" /></center>');
+	        // Render the dialog to the document.body level of the DOM
+	        YAHOO.force.com.waitPanel.render(document.body);
+	        
+	    }
+	    
+	    // Function called when the DOM is ready to create the dialog,
+    	// render the dialog into the document body, add our dialog skin
+    	// css to the body tag, and wire up the buttons on our dialog   
+		YAHOO.force.com.onDOMReady = function() {
+			
+			// build the wait panel
+			YAHOO.force.com.buildWaitPanel();
+			// show modal panel
+			YAHOO.force.com.waitPanel.show();
+			// post save
+			// delay to display progress message	
+           	setTimeout(function() {
+           		// post save
+         		afterSave();
+          	}, 2000);
+	        
+		}
+		
+	    // build the panel as soon as the DOM is in a usable state
+		YAHOO.util.Event.onDOMReady(YAHOO.force.com.onDOMReady);   	
+		
+	</script>
+	
+	<script type="text/javascript">
+    
+	   	/**
+		 * Initializes the call
+		 */
+		function initCall() {
+		
+			try {
+				sforce.connection.sessionId = "{!$Api.Session_ID}"; //to avoid session timeout
+			} catch(e) {
+				erroralert(cERROR_UNKNOWN,e);
+				
+			}
+		
+		}
+    
+	    /**
+		 * Callback invoked after an agreement renewal is saved
+		 */
+		function afterSave() {
+			
+			// get parameters
+			// original agreement id
+			var originalId = "{!originalId}";
+			// renewal agreement id
+			var renewalId = "{!renewalId}";
+			// return id
+			var retId = "{!returnId}";
+			
+			try {
+				// STEP I - initialize the call
+				initCall();
+				// STEP II - copy child objects from original agreement to the agreement renewal
+				doCopyAgreementChildSObjects(originalId, renewalId);
+				// STEP III - perform after renew tasks
+				afterRenew(originalId, renewalId);
+				// STEP IV - update document properties
+				updateClonedAgreementDocs(renewalId);
+				
+			} catch(ex) {
+				// hide modal panel
+				YAHOO.force.com.waitPanel.hide();
+				// display the error
+				erroralert(cERROR_UNKNOWN, ex);
+				
+			} finally {
+				// open the renewal (or return id) in view mode
+				navigateTo("/" + (retId ? retId : renewalId));
+				
+			}
+		
+		}
+	
+    </script>
+	
+</apex:page>

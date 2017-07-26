@@ -1,0 +1,30 @@
+<!-- 
+	/**
+	 *	Apttus Approvals Management
+	 *	OpportunityProductsList
+	 *	 
+	 *	@2011 Apttus Inc. All rights reserved.
+	 */
+-->
+<apex:page standardController="Apttus_Approval__Approval_Request__c"
+		extensions="Apttus_Approval.OpportunityProductsListController">
+
+	<apex:outputText value="{!Apttus_Approval__Approval_Request__c.Apttus_Approval__Related_Opportunity__c}" rendered="false" />
+	
+	<apex:pageBlock title="{!$Label.apttus_approval__OpportunityProducts}" rendered="{!opptyProducts.size > 0}">
+		<apex:pageBlockTable value="{!opptyProducts}" var="opptyProduct">
+			<apex:column headerValue="{!$Label.apttus_approval__Name}">
+				<apex:outputLink value="/{!opptyProduct.PricebookEntry.Product2.Id}">
+					{!opptyProduct.PricebookEntry.Product2.Name}
+				</apex:outputLink>
+			</apex:column>
+			<apex:column value="{!opptyProduct.PricebookEntry.Product2.ProductCode}"/>
+			<apex:column value="{!opptyProduct.PricebookEntry.Product2.Description}"/>
+			<apex:column value="{!opptyProduct.ListPrice}"/>
+			<apex:column value="{!opptyProduct.UnitPrice}"/>
+			<apex:column value="{!opptyProduct.Quantity}"/>
+			<apex:column value="{!opptyProduct.TotalPrice}"/>
+		</apex:pageBlockTable>
+	</apex:pageBlock>
+	
+</apex:page>

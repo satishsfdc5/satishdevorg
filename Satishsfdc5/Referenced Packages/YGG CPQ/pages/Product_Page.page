@@ -1,0 +1,21 @@
+<apex:page standardController="Product2" extensions="YGGC.ProductController">
+	<apex:stylesheet value="{!URLFOR($Resource.YGGC__applicationStyle, 'applicationstyle.css')}"/>
+	<apex:detail relatedList="true">
+		<apex:form >
+			<apex:pageBlock title="Child Products">
+	       		<apex:pageBlockButtons location="top">
+	          			<apex:commandButton action="{!addChildProduct}" value="Edit" />
+	        	</apex:pageBlockButtons>
+		        <apex:pageBlockTable value="{!ChildProducts}" var="item" rendered="{!NOT(ISNULL(childProducts))}">
+		            <apex:column headerValue="Name">
+		            	<apex:outputLink value="/{!item.YGGC__Child__c}">{!item.Child__r.Name}</apex:outputLink>
+		            </apex:column>
+		            <apex:column value="{!item.YGGC__Min_Quantity__c}"/>
+		            <apex:column value="{!item.YGGC__Max_Quantity__c}"/>
+		            <apex:column value="{!item.YGGC__Default_Quantity__c}"/>
+		        </apex:pageBlockTable> 
+		        <apex:outputText rendered="{!ISNULL(childProducts)}" value="No records to display"/>
+		    </apex:pageBlock>
+		</apex:form>	        
+	</apex:detail>
+</apex:page>

@@ -1,0 +1,137 @@
+<!-- 
+    Apttus Approvals Management
+    ProductDefaultRuleCriteriaEdit
+     
+    @2010-2011 Apttus Inc. All rights reserved.
+
+ -->
+<apex:page standardController="Apttus_Config2__ProductDefaultRule__c"  
+		   extensions="Apttus_Config2.ProductDefaultRuleCriteriaEditController" 
+           showHeader="true"
+           sidebar="true"
+           cache="false"   
+           tabStyle="Apttus_Config2__ProductDefaultRule__c">	
+    
+    <apex:stylesheet value="{!$Resource.Apttus_Config2__ConfigStyles}" />
+    
+    <apex:sectionHeader title="{!$ObjectType.Apttus_Config2__ProductDefaultRule__c.Label}" subtitle="{!Apttus_Config2__ProductDefaultRule__c.Name}"/>
+    
+    <apex:form id="idEditCriteria">
+		<!--  required fields -->
+		<apex:outputText value="{!Apttus_Config2__ProductDefaultRule__c.Apttus_Config2__Sequence__c}" rendered="false" />
+		<apex:outputText value="{!Apttus_Config2__ProductDefaultRule__c.Apttus_Config2__BusinessObject__c}" rendered="false" />
+		<apex:outputText value="{!Apttus_Config2__ProductDefaultRule__c.Apttus_Config2__Criteria__c}" rendered="false" />
+		<apex:outputText value="{!Apttus_Config2__ProductDefaultRule__c.Apttus_Config2__Description__c}" rendered="false" />
+		<apex:outputText value="{!Apttus_Config2__ProductDefaultRule__c.Apttus_Config2__Active__c}" rendered="false" />
+		
+		<apex:pageBlock id="idEditCriteriaBlock" title="{!$Label.apttus_config2__EditCriteria}" mode="edit">
+			<apex:pageMessages />
+			
+			<apex:pageBlockButtons location="both">
+		        <apex:commandButton value="{!$Label.apttus_config2__Ok}" 
+		        					action="{!doOk}"  />
+		        <apex:commandButton value="{!$Label.apttus_config2__Cancel}" 
+		        					action="{!doCancel}" 
+		        					immediate="true"  />
+		    </apex:pageBlockButtons>
+		    
+		    <apex:pageBlockSection id="idPredicatesSection" 
+		    					   title="Filter" 
+		    					   columns="2" 
+		    					   collapsible="false" >
+		        <apex:pageBlockTable value="{!predicates}" 
+		        					 var="predicate" 
+		        					 columns="8" 
+		        					 rowClasses="oddRow,evenRow" >
+		        	
+		        	<apex:column width="5%" rendered="{!isAdvancedOptionsMode}" >
+		        		<apex:outputText id="idRowNum" value="{!predicate.RowNum}. " />
+					</apex:column>
+		        	<apex:column headerValue="{!$Label.apttus_config2__Field}" width="25%" >
+		        		<apex:outputPanel styleClass="{!IF(predicate.FieldInError, 'errorRow', '')}" layout="block" >
+		        			<apex:selectList id="idField" size="1" value="{!predicate.FieldName}" >
+					      		<apex:selectOptions value="{!FieldItems}"></apex:selectOptions>
+					      	</apex:selectList>
+						</apex:outputPanel>
+					</apex:column>
+					<apex:column headerValue="{!$Label.apttus_config2__Operator}" width="25%" >
+				    	<apex:outputPanel styleClass="{!IF(predicate.CompOperInError, 'errorRow', '')}" layout="block" >
+					    	<apex:selectList id="idCompOper" size="1" value="{!predicate.CompOper}" >
+					      		<apex:selectOptions value="{!compOperItems}"></apex:selectOptions>
+					      	</apex:selectList>
+				      	</apex:outputPanel>
+				   	</apex:column>
+			   		<apex:column headerValue="{!$Label.apttus_config2__Value}" width="25%" >
+				    	<apex:outputPanel styleClass="{!IF(predicate.FieldValueInError, 'errorRow', '')}" layout="block" >
+				    		<apex:inputText id="idFieldValue" size="25" value="{!predicate.FieldValue}" />
+				   		</apex:outputPanel>
+				   	</apex:column>
+				   	<apex:column width="5%" >
+				    	<apex:outputText id="idBoolOper" 
+				    					 value="{!predicate.BoolOper}" 
+				    					 rendered="{!NOT(isAdvancedOptionsMode) && NOT(ISBLANK(predicate.BoolOper))}" />
+				    	<apex:commandLink action="{!doAddRow}" 
+							  	  	  	  reRender="idPredicatesSection, idAdvancedOptionsSection" 
+							  	  	  	  rendered="{!NOT(isAdvancedOptionsMode) && ISBLANK(predicate.BoolOper)}" >
+							<apex:image url="{!$Resource.Apttus_Config2__Image_Plus2}" 
+			                       			title="{!$Label.apttus_config2__Add}" 
+			                       			alt="{!$Label.apttus_config2__Add}" />   	  	  
+						</apex:commandLink>
+				   	</apex:column>
+				   	<apex:column width="5%" >
+				   	<apex:commandLink id="idDeleteRow" 
+								      action="{!doDeleteRow}" 
+								  	  reRender="idPredicatesSection, idAdvancedOptionsSection" 
+								  	  rendered="{!predicate.RowNum > 1}" >
+						<apex:param name="rowNum" value="{!predicate.RowNum}" />	
+						<apex:image url="{!$Resource.Apttus_Config2__Image_Minus2}" 
+			                       		title="{!$Label.apttus_config2__Remove}" 
+			                       		alt="{!$Label.apttus_config2__Remove}" />	  
+					</apex:commandLink>
+					</apex:column>
+				   	<apex:column width="10%" >
+				   		<apex:outputText value="{!predicate.ErrorMsg}" style="color:red;" />
+				   	</apex:column>
+				   
+		        </apex:pageBlockTable>
+		        
+		    </apex:pageBlockSection>
+				    
+			<apex:pageBlockSection id="idAdvancedOptionsSection" columns="1" collapsible="false" >
+			
+				<apex:commandLink id="idShowAdvancedOptions" 
+								  action="{!doShowAdvancedOptions}" 
+								  value="{!$Label.apttus_config2__AdvancedOptions}" 
+								  reRender="idAdvancedOptionsSection, idPredicatesSection" 
+								  rendered="{!NOT(isAdvancedOptionsMode)}" />
+		        
+		        <apex:outputPanel rendered="{!isAdvancedOptionsMode}">
+					<apex:commandLink id="idAddRow" 
+									  action="{!doAddRow}" 
+									  value="{!$Label.apttus_config2__AddRow}" 
+									  reRender="idAdvancedOptionsSection, idPredicatesSection" />
+					<span>  </span>
+					<apex:commandLink id="idRemoveRow" 
+									  action="{!doRemoveRow}" 
+									  value="{!$Label.apttus_config2__RemoveRow}" 
+									  reRender="idAdvancedOptionsSection, idPredicatesSection" 
+									  rendered="{!OkToRemoveRow}" />
+					<apex:outputPanel id="idRemoveRow2" styleClass="greyedLink" rendered="{!NOT(OkToRemoveRow)}" >Remove Row</apex:outputPanel>
+					<p/>	
+		        	<apex:commandLink id="idHideAdvancedOptions" 
+		        					  action="{!doHideAdvancedOptions}" 
+		        					  value="{!$Label.apttus_config2__ClearAdvancedOptions}" 
+		        					  reRender="idAdvancedOptionsSection, idPredicatesSection" />
+		        	<br/>
+		        	<apex:outputText value="{!$Label.apttus_config2__AdvancedFilterCondition}" />
+		        	<br/>
+		        	<apex:inputText id="idAdvancedOptions" size="80" value="{!advancedOptions}" />
+		        </apex:outputPanel>
+		        
+			</apex:pageBlockSection>
+			
+		</apex:pageBlock>
+		
+	</apex:form>
+	
+</apex:page>

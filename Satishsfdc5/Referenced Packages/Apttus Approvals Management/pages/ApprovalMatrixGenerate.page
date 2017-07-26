@@ -1,0 +1,58 @@
+<!-- 
+	/**
+	 *	Apttus Approvals Management
+	 *	ApprovalMatrixGenerate
+	 *	 
+	 *	@2011 Apttus Inc. All rights reserved.
+	 */
+-->
+<apex:page standardController="Apttus_Approval__Approval_Matrix__c"
+		extensions="Apttus_Approval.ApprovalMatrixGenerateController" 
+		action="{!doGenerateApprovalMatrix}">
+
+    <apex:form >
+    	<apex:outputText value="{!Apttus_Approval__Approval_Matrix__c.Apttus_Approval__User__c}" rendered="false" />
+    	<apex:outputText value="{!Apttus_Approval__Approval_Matrix__c.Apttus_Approval__Matrix_Owner__c}" rendered="false" />
+    	<apex:outputText value="{!Apttus_Approval__Approval_Matrix__c.Apttus_Approval__Approval_Level__c}" rendered="false" />
+    	<apex:outputText value="{!Apttus_Approval__Approval_Matrix__c.Apttus_Approval__Next_Level_Approver__c}" rendered="false" />
+    	
+        <apex:pageBlock title="{!$Label.apttus_approval__GenerateApprovalMatrix}">
+
+            <apex:pageMessages />
+            
+            <apex:pageBlockButtons >
+                <apex:outputPanel >
+                    <apex:commandButton action="{!doReturn}" value="{!$Label.apttus_approval__Return}" rendered="{!showReturn}"/>
+                    <apex:commandButton action="{!doSubmitRange}" value="{!$Label.apttus_approval__GenerateMatrix}" rendered="{!enableRange}"/>
+                </apex:outputPanel>
+            </apex:pageBlockButtons>
+            
+            <apex:pageBlockSection columns="1" rendered="{!enableRange}">
+            
+            	<apex:pageBlockSectionItem >
+            		<apex:outputLabel for="idMatrixStart" value="{!$Label.apttus_approval__ApprovalMatrixStart}" />
+            		<apex:inputField id="idMatrixStart" value="{!fromMatrix.Apttus_Approval__Matrix_Owner__c}" />
+            	</apex:pageBlockSectionItem>
+            	
+            	<apex:pageBlockSectionItem >
+            		<apex:outputLabel for="idMatrixEnd" value="{!$Label.apttus_approval__ApprovalMatrixEnd}" />
+            		<apex:inputField id="idMatrixEnd" value="{!toMatrix.Apttus_Approval__Matrix_Owner__c}" />
+            	</apex:pageBlockSectionItem>
+            	
+            </apex:pageBlockSection>
+            
+			<apex:pageBlockTable value="{!jobInfoList}" var="jobInfo" rendered="{!showJobInfo}">
+	
+				<apex:column headerValue="{!$Label.apttus_approval__SubmittedDate}" value="{!jobInfo.submittedDate}"/>	
+				<apex:column headerValue="{!$Label.apttus_approval__SubmittedBy}" value="{!jobInfo.submittedBy}"/>	
+				<apex:column headerValue="{!$Label.apttus_approval__ApexClass}" value="{!jobInfo.apexClassName}"/>	
+				<apex:column headerValue="{!$Label.apttus_approval__ApexMethod}" value="{!jobInfo.apexMethodName}"/>	
+				<apex:column headerValue="{!$Label.apttus_approval__Status}" value="{!jobInfo.status}"/>	
+			
+			</apex:pageBlockTable>		
+			
+		</apex:pageBlock>
+            
+    </apex:form>
+    
+</apex:page>

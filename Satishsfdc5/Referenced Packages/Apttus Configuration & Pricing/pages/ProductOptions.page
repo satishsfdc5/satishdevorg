@@ -1,0 +1,775 @@
+<!-- 
+ 	Apttus Config & Pricing
+ 	ProductOptions
+ 	 
+ 	@2010-2011 Apttus Inc. All rights reserved.
+ -->
+<apex:page standardController="Product2"
+			extensions="Apttus_Config2.ProductOptionsController" 
+			showHeader="false" 
+			sidebar="false" 
+           	cache="false"   
+           	tabstyle="Product2" >
+
+	<apex:includeScript value="{!URLFOR($Resource.Apttus_Config2__YUILibrary, '/yui/build/yahoo-dom-event/yahoo-dom-event.js')}" />
+	<apex:includeScript value="{!URLFOR($Resource.Apttus_Config2__YUILibrary, '/yui/build/container/container-min.js')}" />
+	<apex:includeScript value="{!URLFOR($Resource.Apttus_Config2__YUILibrary, '/yui/build/dragdrop/dragdrop-min.js')}" />
+	<apex:includeScript value="{!URLFOR($Resource.Apttus_Config2__YUILibrary, '/yui/build/animation/animation-min.js')}" />
+	<apex:includeScript value="{!URLFOR($Resource.Apttus_Config2__YUILibrary, '/yui/build/treeview/treeview-min.js')}" />
+	<apex:includeScript value="{!URLFOR($Resource.Apttus_Config2__YUILibrary, '/yui/build/menu/menu-min.js')}" />
+	<apex:includeScript value="{!URLFOR($Resource.Apttus_Config2__YUILibrary, '/yui/build/yahoo/yahoo-min.js')}" />
+	
+	<apex:stylesheet value="{!URLFOR($Resource.Apttus_Config2__YUILibrary, '/yui/build/assets/skins/sam/skin.css')}" />
+	<apex:stylesheet value="{!URLFOR($Resource.Apttus_Config2__YUILibrary, '/yui/build/treeview/assets/skins/sam/treeview.css')}" />
+	<apex:stylesheet value="{!URLFOR($Resource.Apttus_Config2__YUILibrary, '/yui/examples/treeview/assets/css/menu/tree.css')}" />
+	<apex:stylesheet value="{!URLFOR($Resource.Apttus_Config2__YUILibrary, '/yui/build/menu/assets/skins/sam/menu.css')}" />
+	<apex:stylesheet value="{!URLFOR($Resource.Apttus_Config2__YUILibrary, '/yui/build/container/assets/skins/sam/container.css')}" />
+	
+	<apex:stylesheet value="{!$Resource.Apttus_Config2__ConfigStyles}" />
+
+	<style>
+		.ygtv-highlight .ygtv-highlight1,.ygtv-highlight .ygtv-highlight1 .ygtvlabel {
+			background-color: #78c7c7;
+			color: white;
+		}
+	</style>
+	
+	<apex:form id="idForm">
+
+		<apex:outputPanel id="idOptionGroupHierarchy">
+			<apex:pageBlock title="{!Product2.Name}">
+
+				<apex:outputPanel id="idErrorMsg" >
+					<apex:pageMessages />
+				</apex:outputPanel>
+
+				<apex:pageBlockButtons location="both">
+					<apex:commandButton value="{!$Label.apttus_config2__Done}" action="{!done}" immediate="true" />
+					<apex:commandButton value="{!$Label.apttus_config2__OptionGroups}" action="{!addOptionGroups}" />
+				</apex:pageBlockButtons>
+
+				<apex:outputPanel rendered="{!loading}">
+					<script type="text/javascript">
+					
+						YAHOO.namespace("force.com");
+						
+						YAHOO.force.com.myDialog = new Object();
+						YAHOO.force.com.globalCtx = new Object();
+						YAHOO.force.com.clsNodes = new Array();
+						YAHOO.force.com.selectedNode = new Object();
+							
+						/**
+						 * Set cursor busy
+						 */
+						function setCursorBusy() {
+							document.body.style.cursor = 'wait';
+						}
+
+						 /**
+						  * Reset busy cursor
+						  */
+						function setCursorDefault() {
+							document.body.style.cursor = 'default';
+						}	
+
+						/**
+						 * Sets the selected node
+						 * @param ctxNode the context node
+						 */
+						YAHOO.force.com.setNode = function(ctxNode) {
+							
+							// save current selection
+							YAHOO.force.com.selectedNode = ctxNode;
+		
+						}
+						
+					    // Function called when we want to show the dialog
+					    YAHOO.force.com.showDialog = function() {
+					        document.getElementById("confirmationPanel").style.display = "block";
+					        
+					        var confirmMsg = new Object();
+					        if (YAHOO.force.com.selectedNode.data.object.type == "optionGroup") {
+					        	confirmMsg = "{!$Label.ConfirmRemoveOptionGroup}";
+					        } else if (YAHOO.force.com.selectedNode.data.object.type == "option") {
+					        	confirmMsg = "{!$Label.ConfirmRemoveOptionComponent}";
+					        }
+
+						    document.getElementById("confirmationPanelMsg").innerHTML = confirmMsg;
+						    document.getElementById("confirmationPanelMsg").style.fontWeight = "bold";
+
+					        YAHOO.force.com.myDialog.show();
+					    }
+				
+	   
+					   // Function called when we want to hide the dialog
+					    YAHOO.force.com.hideDialog = function() {
+					        YAHOO.force.com.myDialog.hide();
+					    }
+					    
+					    /**
+					     * Build context menu applicable to non-leaf nodes
+					     */
+					    YAHOO.force.com.buildNonLeafMenu = function() {
+					    	
+							// create the menu
+							YAHOO.force.com.nonLeafMenu = new YAHOO.widget.ContextMenu(
+							    "nonLeafMenu",
+							    {
+							        trigger: "treeDiv",
+							        lazyload: true,
+							        constraintoviewport: true,
+							        shadow: false,
+							        itemdata: [
+							            { text: "{!$Label.EditOptionGroups}", onclick : { fn: YAHOO.force.com.editOptionGroup} },
+							            { text: "{!$Label.RemoveOptionGroups}", onclick : { fn: YAHOO.force.com.showRemoveConfirmation} },
+							            { text: "{!$Label.ReorderOptionGroups}", onclick : { fn: YAHOO.force.com.reorderOptionGroups} }
+							        ]							        
+							    }
+							);
+						
+						
+							// capture contextmenu events
+							YAHOO.force.com.nonLeafMenu.subscribe("triggerContextMenu", YAHOO.force.com.onTriggerNonLeafMenu);
+							
+					    }  
+					    
+					    /**
+					     * Build context menu applicable to leaf nodes
+					     */
+					    YAHOO.force.com.buildLeafMenu = function() {
+					    	
+							// create the menu
+							YAHOO.force.com.leafMenu = new YAHOO.widget.ContextMenu(
+							    "leafMenu",
+							    {
+							        trigger: "treeDiv",
+							        lazyload: true,
+							        constraintoviewport: true,
+							        shadow: false,
+							        itemdata: [
+							            { text: "{!$Label.EditOptionGroup}", onclick : { fn: YAHOO.force.com.editOptionGroup} },
+							            { text: "{!$Label.RemoveOptionGroup}", onclick : { fn: YAHOO.force.com.showRemoveConfirmation} },
+							            { text: "{!$Label.ReorderOptionGroups}", onclick : { fn: YAHOO.force.com.reorderOptionGroups} },
+							            { text: "{!$Label.AssociateOptions}", onclick : { fn: YAHOO.force.com.assignGroupComponents} },
+							            { text: "{!$Label.EditOptions}", onclick : { fn: YAHOO.force.com.editGroupComponents} }
+							        ]							        
+							    }
+							);
+						
+						
+							// capture contextmenu events
+							YAHOO.force.com.leafMenu.subscribe("triggerContextMenu", YAHOO.force.com.onTriggerLeafMenu);
+							
+					    }  
+					    
+					    /**
+					     * Build context menu applicable to component nodes
+					     */
+					    YAHOO.force.com.buildComponentMenu = function() {
+					    	
+							// create the menu
+							YAHOO.force.com.componentMenu = new YAHOO.widget.ContextMenu(
+							    "componentMenu",
+							    {
+							        trigger: "treeDiv",
+							        lazyload: true,
+							        constraintoviewport: true,
+							        shadow: false,
+							        itemdata: [
+							            { text: "{!$Label.EditOption}", onclick : { fn: YAHOO.force.com.editComponent} },
+							            { text: "{!$Label.RemoveOption}", onclick : { fn: YAHOO.force.com.showRemoveConfirmation} }
+							        ]							        
+							    }
+							);
+						
+						
+							// capture contextmenu events
+							YAHOO.force.com.componentMenu.subscribe("triggerContextMenu", YAHOO.force.com.onTriggerComponentMenu);
+							
+					    } 
+					   	/**
+						 * Builds the context menu
+						 */
+						YAHOO.force.com.buildContextMenus = function() {
+							YAHOO.force.com.buildLeafMenu();
+							YAHOO.force.com.buildNonLeafMenu();
+							YAHOO.force.com.buildComponentMenu();
+							
+						}	
+						
+						/**
+						 * Determine if context node is component, else, cancel event
+						 */
+						YAHOO.force.com.onTriggerComponentMenu = function(event) {
+													
+							// get the event target	
+						    var target = this.contextEventTarget;
+							// get the context node
+						    var ctxNode = YAHOO.force.com.tree.getNodeByElement(target);
+		
+						    if (!ctxNode) {
+						        // Cancel the display of the ContextMenu instance.
+						        this.cancel();
+						
+						    }
+		
+							// set the selected node
+							YAHOO.force.com.setNode(ctxNode);
+	
+							// if no node selected, abort
+							if (!YAHOO.force.com.selectedNode) {
+						        // Cancel the display of the ContextMenu instance.
+						        this.cancel();
+						    }
+						    
+						   if (YAHOO.force.com.selectedNode.data.object.type == "optionGroup") {
+						    	this.cancel();
+						    	return;
+						    }
+						}	
+						
+						/**
+						 * Determine if context node is leaf, else, cancel event
+						 */
+						YAHOO.force.com.onTriggerNonLeafMenu = function(event) {
+							
+							// get the event target	
+						    var target = this.contextEventTarget;
+							// get the context node
+						    var ctxNode = YAHOO.force.com.tree.getNodeByElement(target);
+		
+						    if (!ctxNode) {
+						        // Cancel the display of the ContextMenu instance.
+						        this.cancel();
+						
+						    }
+		
+							// set the selected node
+							YAHOO.force.com.setNode(ctxNode);
+	
+							// if no node selected, abort
+							if (!YAHOO.force.com.selectedNode) {
+						        // Cancel the display of the ContextMenu instance.
+						        this.cancel();
+						    } else if ((YAHOO.force.com.selectedNode.data.object.type == "option") ||
+						    		((YAHOO.force.com.selectedNode.data.object.type == "optionGroup") 
+						    			&& (YAHOO.force.com.selectedNode.data.object.leaf == "true"))) {
+						    	this.cancel();
+						    	return;
+						    }
+						}
+						
+						/**
+						 * Determine if context node is leaf, else, cancel event
+						 */
+						YAHOO.force.com.onTriggerLeafMenu = function(event) {
+							
+							// get the event target	
+						    var target = this.contextEventTarget;
+							// get the context node
+						    var ctxNode = YAHOO.force.com.tree.getNodeByElement(target);
+		
+						    if (!ctxNode) {
+						        // Cancel the display of the ContextMenu instance.
+						        this.cancel();
+						
+						    }
+		
+							// set the selected node
+							YAHOO.force.com.setNode(ctxNode);
+	
+							// if no node selected, abort
+							if (!YAHOO.force.com.selectedNode) {
+						        // Cancel the display of the ContextMenu instance.
+						        this.cancel();
+						    } else if ((YAHOO.force.com.selectedNode.data.object.type == "option") ||
+						    		((YAHOO.force.com.selectedNode.data.object.type == "optionGroup") 
+						    			&& (YAHOO.force.com.selectedNode.data.object.leaf != "true"))) {
+						    	this.cancel();
+						    	return;
+						    }
+						}
+						
+						/**
+						 * Builds the tree
+						 */
+					    YAHOO.force.com.buildTree = function() {
+							
+							// create tree
+							YAHOO.force.com.tree = new YAHOO.widget.TreeView("treeDiv"); 
+
+							//get root node for tree:
+							var root = YAHOO.force.com.tree.getRoot();
+							var nodeStack = new Array();
+							var parentNode;
+							var parentName;
+							var childNode;
+							var obj;
+							var objLabel;
+							for (i=0; i < YAHOO.force.com.clsNodes.length; i++) {
+								parentNode = root;
+								obj = YAHOO.force.com.clsNodes[i];
+								objParentId = obj.parentId;
+								if (obj.productCount > 0) {
+									objLabel = obj.label + " [" + obj.productCount + "]";
+								} else {
+									objLabel = obj.label;
+								}	
+								for(x=0; x < nodeStack.length; x++) {
+									if (nodeStack[x].data.object.Id == objParentId) {
+										parentNode = nodeStack[x];
+										break;
+									}
+								}
+
+								if (obj.expanded == "true") {					
+									childNode = new YAHOO.widget.MenuNode({label: objLabel, object: obj}, parentNode, true);
+									
+								} else {
+									childNode = new YAHOO.widget.MenuNode({label: objLabel, object: obj}, parentNode, false);
+									childNode.setDynamicLoad(YAHOO.force.com.loadNodeData);
+									
+								}
+								if (obj.imageUrl.length > 0) {
+									childNode.labelStyle = obj.Id;
+								} else if (obj.type == "option") {
+									childNode.labelStyle = "optionsItalic";
+								}
+								childNode.multiExpand = true;
+								nodeStack.push(childNode);
+
+							}
+								
+							// draw the tree
+							YAHOO.force.com.tree.draw();
+						}
+						 
+					    /**
+						 * Handles "contextmenu" events for the element(s) that
+						 * triggered the display of the ContextMenu instance - used
+						 * to set a reference to the MenuNode instance that triggered
+						 * the display of the ContextMenu instance.
+						 * @param event the contextmenu event
+						 */
+						YAHOO.force.com.onDOMReady = function() {
+							
+							// add our custom skin css to the body tag
+							document.body.className = document.body.className + " yui-skin-sam";					
+							
+							// build the tree
+							YAHOO.force.com.buildTree();
+							
+							// build the context menu
+							YAHOO.force.com.buildContextMenus();
+						}
+						
+						/**
+						 * Expands the tree
+						 * @param ctxNode the node to expand
+						 * @param onCompleteCallback callback to invoke after completion
+					     */
+				    	YAHOO.force.com.loadNodeData = function(ctxNode, onCompleteCallback) { 
+				    		
+				    		YAHOO.force.com.clsNodes = new Array();
+				    		ctxNode.data.object.expanded = "true";
+				    		YAHOO.force.com.globalCtx.ctxNode = ctxNode;
+				    		YAHOO.force.com.globalCtx.hasCallback = "true";
+				    		YAHOO.force.com.globalCtx.completeCallback = onCompleteCallback;
+				    		
+			    			// invoke action function
+			    			var paramId = ctxNode.data.object.Id;
+			    			if (ctxNode.data.object.type == "option") {
+			    				paramId = ctxNode.data.object.parentId;
+			    			}
+			    			invokeDoExpand(paramId);
+			    			
+					    }	
+						/**
+						 * Show remove confirmation dialog
+						 */
+						YAHOO.force.com.showRemoveConfirmation = function() {
+
+					        document.body.className = document.body.className + " yui-skin-sam";
+					        YAHOO.force.com.myDialog = new YAHOO.widget.Panel(
+					            "confirmationPanel",  // The id of our dialog container
+					            { 
+					                    width           :   "300px", // You can play with this until it's right
+					                    visible         :   false,   // Should be invisible when rendered
+					                    draggable       :   true,    // Make the dialog draggable
+					                    close           :   false,   // Don't include a close title button
+					                    modal           :   true,    // Make it modal
+					                    fixedCenter     :   true,    // Keep centered if window is scrolled
+					                    zindex          :   40,      // Make sure it's on top of everything
+					                    
+					                    // This line adds the appear/disapper fade effect
+					                    effect          :   {effect:YAHOO.widget.ContainerEffect.FADE,duration:0.35} 
+					            }
+					         );
+					        
+					        // Render the dialog to the document.body level of the DOM
+					        YAHOO.force.com.myDialog.render(document.body);
+					        // display the dialog
+					        YAHOO.force.com.showDialog();
+					    }
+					
+				
+						/**
+						 * Handle remove product option group or product option component
+						 */
+						YAHOO.force.com.remove = function() {
+							setCursorBusy();
+							
+				    		var ctxNode = YAHOO.force.com.selectedNode;
+							
+			    			// invoke action function
+			    			if (ctxNode.data.object.type == "optionGroup") {
+			    				invokeDoRemoveOptionGroup(ctxNode.data.object.Id);
+			    			} else if (ctxNode.data.object.type == "option") {
+			    				invokeDoRemoveComponent(ctxNode.data.object.Id);
+			    			}	
+			    			
+						}
+		
+						/**
+						 * Handle edit product option group
+						 */
+						YAHOO.force.com.editOptionGroup = function() {
+						
+				    		var ctxNode = YAHOO.force.com.selectedNode;
+							
+			    			// invoke action function
+			    			invokeDoEditOptionGroup(ctxNode.data.object.Id);
+				    		
+						}
+		
+						/**
+						 * Handle assign components to option group
+						 */
+						YAHOO.force.com.assignGroupComponents = function() {
+						
+				    		var ctxNode = YAHOO.force.com.selectedNode;
+							
+			    			// invoke action function
+			    			invokeDoAssignGroupComponents(ctxNode.data.object.Id);
+				    		
+						}			
+		
+						/**
+						 * Handle edit all components of selected group
+						 */
+						YAHOO.force.com.editGroupComponents = function() {
+						
+				    		var ctxNode = YAHOO.force.com.selectedNode;
+							
+			    			// invoke action function
+			    			invokeDoEditGroupComponents(ctxNode.data.object.Id);
+				    		
+						}
+		
+						/**
+						 * Handle edit component
+						 */
+						YAHOO.force.com.editComponent = function() {
+						
+				    		var ctxNode = YAHOO.force.com.selectedNode;
+							
+			    			// invoke action function
+			    			invokeDoEditComponent(ctxNode.data.object.Id
+			    						, ctxNode.data.object.rootId);
+				    		
+						}	
+					
+						/**
+						 * Handle reorder classifications action
+						 */
+						YAHOO.force.com.reorderOptionGroups = function() {
+							setCursorBusy();
+							
+				    		var ctxNode = YAHOO.force.com.selectedNode;
+							
+			    			// invoke action function
+			    			invokeDoReorderOptionGroups(ctxNode.data.object.Id);
+			    			
+						} 
+						  
+						/**
+						 * Inject style element into dom for classifiction icons/images
+						 */
+						YAHOO.force.com.createStyle = function(classId, imageUrl) {
+							var styleElm = document.getElementById(classId);
+							if (styleElm == null) {
+								styleElm = document.createElement('style');
+								styleElm.setAttribute("type", "text/css");
+								styleElm.setAttribute("id", classId);
+								var styleAttrs = new String('.' + classId);
+								styleAttrs = styleAttrs.concat(' {background-color:transparent;');
+								styleAttrs = styleAttrs.concat('background-image:url(\'').concat(imageUrl).concat('\');');
+								styleAttrs = styleAttrs.concat('display:block;');
+								styleAttrs = styleAttrs.concat('height:22px;');
+								styleAttrs = styleAttrs.concat('padding-left:20px;');
+								styleAttrs = styleAttrs.concat('background-repeat:no-repeat;');
+								styleAttrs = styleAttrs.concat('background-position:left top;');
+								styleAttrs = styleAttrs.concat('background-attachment:0;}');
+								
+								if(styleElm.styleSheet){// IE
+									styleElm.styleSheet.cssText = styleAttrs;
+								} else {// w3c
+									var styleBody = document.createTextNode(styleAttrs);
+									styleElm.appendChild(styleBody);
+								}
+								
+								document.getElementsByTagName('head')[0].appendChild(styleElm);
+							}
+						}	 
+							
+					    // build the tree as soon as the DOM is in a usable state
+						YAHOO.util.Event.onDOMReady(YAHOO.force.com.onDOMReady);   	
+					
+			    	</script>
+
+					<script type="text/javascript">
+						YAHOO.force.com.clsNodes = new Array();
+					</script>
+					
+					<!-- Adding repeat component and grabbing arrayData (use to reference item) -->
+					<apex:repeat value="{!groupList}" var="grp">
+						<script type="text/javascript">
+						  	var clsNode = new Object();
+						  	clsNode.type = "{!grp.nodeType}";
+						  	clsNode.name = "{!grp.name}";
+						  	clsNode.label = "{!grp.label}";
+						  	clsNode.parentId = "{!grp.parentId}";
+				  			clsNode.rootId = "{!grp.rootId}";
+						  	clsNode.Id = "{!grp.nodeId}";
+						  	clsNode.lvl = "{!grp.nodeLvl}";
+						  	clsNode.leaf = "{!grp.leaf}";
+						  	clsNode.expanded = "{!grp.expanded}";
+						  	clsNode.focus = "{!grp.focus}";
+				  			clsNode.productCount = "{!grp.productCount}";
+				  			clsNode.imageUrl = "{!grp.imageUrl}";
+						  	YAHOO.force.com.clsNodes.push(clsNode);
+						  	
+							if (clsNode.imageUrl.length > 0) {
+								YAHOO.force.com.createStyle(clsNode.Id, clsNode.imageUrl);
+							}
+						</script>
+					</apex:repeat>
+				</apex:outputPanel>
+
+				<apex:outputPanel id="idExpandNode">
+					<apex:outputPanel rendered="{!expandTree}">
+
+						<script type="text/javascript">
+							YAHOO.force.com.clsNodes = new Array();
+							YAHOO.force.com.cmpNodes = new Array();
+						</script>
+
+						<apex:repeat value="{!groupList}" var="grp">
+							<!-- Pushing item into Javascript array -->
+							<script type="text/javascript">
+							  	var clsNode = new Object();
+							  	clsNode.type = "{!grp.nodeType}";
+							  	clsNode.Id = "{!grp.nodeId}";
+							  	clsNode.name = "{!grp.name}";
+							  	clsNode.label = "{!grp.label}";
+					  			clsNode.parentId = "{!grp.parentId}";
+				  				clsNode.rootId = "{!grp.rootId}";
+					  			clsNode.lvl = "{!grp.nodeLvl}";
+					  			clsNode.leaf = "{!grp.leaf}";
+					  			clsNode.expanded = "{!grp.expanded}";
+					  			clsNode.focus = "{!grp.focus}";
+				  				clsNode.productCount = "{!grp.productCount}";
+				  				clsNode.imageUrl = "{!grp.imageUrl}";
+							  	YAHOO.force.com.clsNodes.push(clsNode);
+							  	
+								if (clsNode.imageUrl.length > 0) {
+									YAHOO.force.com.createStyle(clsNode.Id, clsNode.imageUrl);
+								}
+							</script>
+						</apex:repeat>
+
+						<script type="text/javascript">
+							
+							var ctxNode = YAHOO.force.com.globalCtx.ctxNode;
+							var childNode;
+							var obj;
+							var objLabel
+							for (i=0; i < YAHOO.force.com.clsNodes.length; i++) {
+								obj = YAHOO.force.com.clsNodes[i];
+								if (obj.productCount > 0) {
+									objLabel = obj.label + " [" + obj.productCount + "]";
+								} else {
+									objLabel = obj.label;
+								}
+								if (obj.expanded == "true")  {						
+									childNode = new YAHOO.widget.MenuNode({label: objLabel, object: obj}, ctxNode, true);
+									
+								} else {
+									childNode = new YAHOO.widget.MenuNode({label: objLabel, object: obj}, ctxNode, false);
+									childNode.setDynamicLoad(YAHOO.force.com.loadNodeData);
+									
+								}
+								childNode.multiExpand = true;
+								if (obj.imageUrl.length > 0) {
+									childNode.labelStyle = obj.Id;
+								} else if (obj.type == "option") {
+									childNode.labelStyle = "optionsItalic";
+								}
+							}
+													
+					        // callback to indicate completion
+					        if (YAHOO.force.com.globalCtx.hasCallback == "true") {
+					        	YAHOO.force.com.globalCtx.completeCallback(); 
+					        }
+
+							YAHOO.force.com.clsNodes = new Array();
+							
+						</script>
+					</apex:outputPanel>
+				</apex:outputPanel>
+
+				<apex:outputPanel id="idRebuildTreeNode" rendered="{!rebuildTree}">
+					<script type="text/javascript">
+						YAHOO.force.com.clsNodes = new Array();
+					</script>
+					
+					<apex:repeat value="{!groupList}" var="grp">
+						<script>
+						  	var clsNode = new Object();
+						  	clsNode.type = "{!grp.nodeType}";
+						  	clsNode.Id = "{!grp.nodeId}";
+						  	clsNode.name = "{!grp.name}";
+						  	clsNode.label = "{!grp.label}";
+				  			clsNode.parentId = "{!grp.parentId}";
+				  			clsNode.rootId = "{!grp.rootId}";
+				  			clsNode.lvl = "{!grp.nodeLvl}";
+				  			clsNode.leaf = "{!grp.leaf}";
+				  			clsNode.expanded = "{!grp.expanded}";
+				  			clsNode.focus = "{!grp.focus}";
+				  			clsNode.productCount = "{!grp.productCount}";
+				  			clsNode.imageUrl = "{!grp.imageUrl}";
+
+						  	YAHOO.force.com.clsNodes.push(clsNode);
+						  	
+							if (clsNode.imageUrl.length > 0) {
+								YAHOO.force.com.createStyle(clsNode.Id, clsNode.imageUrl);
+							}
+						</script>
+					</apex:repeat>
+					
+					<script type="text/javascript">
+						// rebuild the tree
+						YAHOO.force.com.buildTree();
+						
+						// rebuild the context menu
+						YAHOO.force.com.leafMenu.destroy();
+						YAHOO.force.com.nonLeafMenu.destroy();
+						YAHOO.force.com.componentMenu.destroy();
+						YAHOO.force.com.buildContextMenus();
+						
+					</script>
+				</apex:outputPanel>
+
+			    <!-- This is the content of the tree -->
+				<apex:pageBlockSection title="{!$ObjectType.Apttus_Config2__ProductOptionGroup__c.Label}" columns="1">
+					<apex:outputPanel >				
+						<apex:panelGroup layout="block" rendered="{!hasOptionGroups}" >					
+							<apex:commandLink action="{!expandAll}" value="{!$Label.apttus_config2__ExpandAll}" 
+								onclick="setCursorBusy();" rerender="idOptionGroupHierarchy, idResetCursor" />
+							<span> | </span>
+							<apex:commandLink action="{!collapseAll}" value="{!$Label.apttus_config2__CollapseAll}" 
+								onclick="setCursorBusy();" rerender="idOptionGroupHierarchy, idResetCursor" />
+						</apex:panelGroup>
+					</apex:outputPanel>
+						
+					<apex:outputPanel >
+						<div id="treePanel">
+							<div id="treeDiv"></div>
+						</div>
+					
+					</apex:outputPanel>
+				</apex:pageBlockSection>
+				<!-- This is the content of the modal dialog -->
+				<apex:outputPanel >
+					<div id="confirmationPanel" style="display: none">
+					    <div class="hd">
+					        <apex:outputText value="{!$Label.apttus_config2__RemoveConfirmation}" />
+					    </div> 
+					    <div id="confirmationPanelMsg" class="bd">
+					    </div>
+					    <div class="bd">
+				            <apex:actionRegion >
+				                <div style="text-align: center;" >
+				                    <apex:commandButton value="{!$Label.apttus_config2__Yes}"
+				                    	onclick="YAHOO.force.com.remove();" 
+				                    	oncomplete="YAHOO.force.com.hideDialog();" />
+				                    <apex:commandButton value="{!$Label.apttus_config2__No}" 
+				                    	immediate="true" 
+				                    	oncomplete="YAHOO.force.com.hideDialog();" />
+				                </div>
+				            </apex:actionRegion>
+					    </div>
+					</div>
+				</apex:outputPanel>	
+				<apex:actionFunction action="{!doExpand}" name="invokeDoExpand"
+					rerender="idExpandNode, idResetCursor" immediate="true">
+					<apex:param name="firstParam" assignTo="{!ctxOptionGroupId}" value="" />
+				</apex:actionFunction>
+
+				<apex:actionFunction action="{!doAssignGroupComponents}"
+					name="invokeDoAssignGroupComponents" rerender="idResetCursor"
+					immediate="true">
+					<apex:param name="firstParam" assignTo="{!ctxOptionGroupId}" value="" />
+				</apex:actionFunction>
+
+				<apex:actionFunction action="{!doEditGroupComponents}"
+					name="invokeDoEditGroupComponents" rerender="idResetCursor"
+					immediate="true">
+					<apex:param name="firstParam" assignTo="{!ctxOptionGroupId}" value="" />
+				</apex:actionFunction>
+
+				<apex:actionFunction action="{!doEditOptionGroup}"
+					name="invokeDoEditOptionGroup" rerender="idResetCursor"
+					immediate="true">
+					<apex:param name="firstParam" assignTo="{!ctxOptionGroupId}" value="" />
+				</apex:actionFunction>
+
+				<apex:actionFunction action="{!doEditComponent}"
+					name="invokeDoEditComponent" rerender="idResetCursor"
+					immediate="true">
+					<apex:param name="firstParam" assignTo="{!ctxOptionId}" value="" />
+					<apex:param name="secondParam" assignTo="{!ctxGroupId}" value="" />
+				</apex:actionFunction>
+
+				<apex:actionFunction action="{!doRemoveComponent}"
+					name="invokeDoRemoveComponent" rerender="idOptionGroupHierarchy, idResetCursor"
+					immediate="true">
+					<apex:param name="firstParam" assignTo="{!ctxOptionId}" value="" />
+				</apex:actionFunction>
+
+				<apex:actionFunction action="{!doRemoveOptionGroup}"
+					name="invokeDoRemoveOptionGroup"
+					rerender="idOptionGroupHierarchy, idResetCursor"
+					immediate="true">
+					<apex:param name="firstParam" assignTo="{!ctxOptionGroupId}" value="" />
+				</apex:actionFunction>
+
+				<apex:actionFunction action="{!doReorderOptionGroups}"
+					name="invokeDoReorderOptionGroups"
+					rerender="idResetCursor"
+					immediate="true">
+					<apex:param name="firstParam" assignTo="{!ctxOptionGroupId}" value="" />
+				</apex:actionFunction>
+
+			</apex:pageBlock>
+
+		</apex:outputPanel>
+		
+		<apex:outputPanel id="idResetCursor">
+			<script type="text/javascript">
+				setCursorDefault();
+			</script>
+		</apex:outputPanel>
+		<apex:outputField value="{!Product2.Name}" rendered="false"/>
+	</apex:form>
+</apex:page>

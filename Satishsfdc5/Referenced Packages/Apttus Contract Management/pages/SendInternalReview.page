@@ -1,0 +1,12 @@
+<!-- 
+    Apttus Contract Management
+    SendInternalReview
+     
+    @2009-2013 Apttus Inc. All rights reserved.
+
+ -->
+<apex:page standardController="Apttus__APTS_Agreement__c" 
+		   extensions="Apttus.SendInternalReviewController" 
+		   action="{!onLoad}" >
+		   
+</apex:page>

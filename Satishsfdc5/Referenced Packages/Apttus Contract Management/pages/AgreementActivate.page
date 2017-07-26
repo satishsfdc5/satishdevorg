@@ -1,0 +1,179 @@
+<!-- 
+    Apttus Contract Management
+    AgreementActivate
+     
+    @2009-2011 Apttus Inc. All rights reserved.
+
+ -->
+<apex:page standardController="Apttus__APTS_Agreement__c" 
+		   extensions="Apttus.AgreementActivateController" 
+		   showHeader="true" 
+		   sidebar="true" >
+
+	<apex:sectionHeader title="{!$Label.apttus__ActivateAgreement}" subtitle="{!Apttus__APTS_Agreement__c.Name}" />
+	
+	<apex:form >
+		<!--  required fields -->
+		<apex:outputText value="{!Apttus__APTS_Agreement__c.Apttus__Version_Number__c}" rendered="false"/>
+		<apex:outputText value="{!Apttus__APTS_Agreement__c.Apttus__Status__c}" rendered="false"/>
+		<apex:outputText value="{!Apttus__APTS_Agreement__c.Apttus__Status_Category__c}" rendered="false"/>
+		<apex:outputText value="{!Apttus__APTS_Agreement__c.Apttus__FF_Agreement_Number__c}" rendered="false"/>
+		<apex:outputText value="{!Apttus__APTS_Agreement__c.Apttus__Contract_Start_Date__c}" rendered="false"/>
+		<apex:outputText value="{!Apttus__APTS_Agreement__c.Apttus__Contract_End_Date__c}" rendered="false"/>
+		<apex:outputText value="{!Apttus__APTS_Agreement__c.Apttus__Agreement_Number__c}" rendered="false"/>
+		<apex:outputText value="{!Apttus__APTS_Agreement__c.Apttus__Agreement_Category__c}" rendered="false"/>
+		<apex:outputText value="{!Apttus__APTS_Agreement__c.Apttus__Activated_Date__c}" rendered="false"/>
+		<apex:outputText value="{!Apttus__APTS_Agreement__c.Apttus__Activated_By__c}" rendered="false"/>
+		
+		<apex:outputPanel id="idActivatePanel">
+			
+			<apex:outputPanel rendered="{!NOT(isInitialized)}">
+		        <script>
+		           // register to invoke the function after the page load
+				    window.onload = function() { 
+				       	// initialize the controller
+				        doInit();
+				        
+				    };
+		           
+		        </script>
+		    </apex:outputPanel>
+		     
+		    <apex:outputPanel rendered="{!isInitialized}" >
+		     
+		    	<apex:pageBlock mode="edit" rendered="{!NOT(canEditAgreement)}" >
+					<apex:pageMessages />
+					<apex:outputText value="{!$Label.apttus__InsufficientPrivileges}" 
+									 style="font-family: Arial, Helvetica, sans-serif;font-weight: bold;font-size: 12pt;" /><p/>
+					<apex:outputText value="{!$Label.apttus__InsufficientPrivilegesDetail}" /><br/>
+					<apex:pageBlockButtons location="bottom" >
+						<apex:commandButton action="{!doCancel}" value="{!$Label.apttus__Return}" immediate="true" />
+					</apex:pageBlockButtons>
+				</apex:pageBlock>
+			
+				<apex:pageBlock mode="edit" rendered="{!canEditAgreement && isErrorPage}" >
+					<apex:pageMessages />
+					<apex:pageBlockButtons location="bottom" >
+						<apex:commandButton action="{!doCancel}" value="{!$Label.apttus__Return}" immediate="true" />
+					</apex:pageBlockButtons>
+				</apex:pageBlock>
+		
+				<apex:pageBlock title="{!TEXT(currentPageNumber) & '. ' & $Label.apttus__SelectDocument}" 
+							    mode="edit" 
+							    rendered="{!canEditAgreement && isSelectionPage}" >
+							    
+					<apex:pageMessages />
+					<apex:pageBlockButtons location="bottom" >
+						<apex:commandButton action="{!doNext}" value="{!$Label.apttus__Next}" />
+						<apex:commandButton action="{!doCancel}" value="{!$Label.apttus__Cancel}" immediate="true"/>
+					</apex:pageBlockButtons>
+					<p/>
+					<apex:outputPanel id="idSelectedDocs" rendered="{!hasAvailableDocItems}" >
+						<apex:outputText value="{!$Label.apttus__ActivateSelectDocument1}" /><br/>
+						<apex:outputText value="{!$Label.apttus__ActivateSelectDocument2 & ' ' & $Label.apttus__Next & '.'}" /><p/><p/>
+						<apex:selectList value="{!selectedDocs}" multiselect="true" size="6">
+							<apex:selectOptions value="{!availableDocItems}"></apex:selectOptions>
+						</apex:selectList>
+					</apex:outputPanel>
+				</apex:pageBlock>
+		
+				<apex:pageBlock title="{!TEXT(currentPageNumber) & '. ' & $Label.apttus__EnableContentSearch}" 
+								mode="edit" 
+								rendered="{!canEditAgreement && isSearchablePage}" >
+					<apex:pageMessages />
+					<apex:pageBlockButtons location="bottom" >
+						<apex:commandButton action="{!doPrevious}" value="{!$Label.apttus__Previous}" rendered="{!NOT(isFirstPage)}" />
+						<apex:commandButton action="{!doNext}" value="{!$Label.apttus__Next}" />
+						<apex:commandButton action="{!doCancel}" value="{!$Label.apttus__Cancel}" immediate="true"/>
+					</apex:pageBlockButtons>
+					<p/>
+					<apex:outputPanel id="idSearchableDocs" rendered="{!hasSearchableDocItems}" >
+						<apex:outputText value="{!$Label.apttus__ActivateSelectSearchableDocument1 & ' ' & $Label.apttus__Next & '.'}" /><br/>
+						<apex:outputText value="{!$Label.apttus__ActivateSelectSearchableDocument2}"/><p/><p/>
+						<apex:selectList value="{!searchableDocs}" multiselect="true" size="6">
+							<apex:selectOptions value="{!searchableDocItems}"></apex:selectOptions>
+						</apex:selectList>
+					</apex:outputPanel>
+				</apex:pageBlock>
+		
+				<apex:pageBlock title="{!TEXT(currentPageNumber) & '. ' & $Label.apttus__RemoveDraftDocuments}" 
+								mode="edit" 
+								rendered="{!canEditAgreement && isRemovablePage}" >
+					<apex:pageMessages />
+					<apex:pageBlockButtons location="bottom" >
+						<apex:commandButton action="{!doPrevious}" value="{!$Label.apttus__Previous}" rendered="{!NOT(isFirstPage)}" />
+						<apex:commandButton action="{!doNext}" value="{!$Label.apttus__Next}" />
+						<apex:commandButton action="{!doCancel}" value="{!$Label.apttus__Cancel}" immediate="true"/>
+					</apex:pageBlockButtons>
+					<p/>
+					<apex:outputPanel id="idRemovableDocs" rendered="{!hasRemovableDocItems}" >
+						<apex:outputText value="{!$Label.apttus__ActivateRemoveDocument1 & ' ' & $Label.apttus__Next & '.'}" /><br/>
+						<apex:outputText value="{!$Label.apttus__ActivateRemoveDocument2}"/><p/><p/>
+						<apex:selectList value="{!removableDocs}" multiselect="true" size="6">
+							<apex:selectOptions value="{!removableDocItems}"></apex:selectOptions>
+						</apex:selectList>
+					</apex:outputPanel>
+				</apex:pageBlock>
+		
+				<apex:pageBlock title="{!$Label.apttus__Summary}" 
+								mode="edit" 
+								rendered="{!canEditAgreement && NOT(OR(isErrorPage,IsReviewPage))}" >
+					<apex:outputPanel rendered="{!hasSelectedDocs}">
+						<apex:outputText value="{!$Label.apttus__DocumentsSelectedForActivation}" /><br/>
+						<apex:dataList type="square" value="{!selectedDocInfos}" var="docInfo" >
+							<apex:outputText value="{!docInfo.Name}"/>
+						</apex:dataList>
+			        </apex:outputPanel>
+			        <p/>
+					<apex:outputPanel rendered="{!hasSearchableDocs}">
+						<apex:outputText value="{!$Label.apttus__DocumentsSelectedForContentSearch}" /><br/>
+						<apex:dataList type="square" value="{!searchableDocInfos}" var="docInfo" >
+							<apex:outputText value="{!docInfo.Name}"/>
+						</apex:dataList>
+			        </apex:outputPanel>
+					<p/>
+					<apex:outputPanel rendered="{!hasRemovableDocs}">
+						<apex:outputText value="{!$Label.apttus__DocumentsSelectedForRemoval}" /><br/>
+						<apex:dataList type="square" value="{!removableDocInfos}" var="docInfo" >
+							<apex:outputText value="{!docInfo.Name}"/>
+						</apex:dataList>
+			        </apex:outputPanel>
+				</apex:pageBlock>
+			
+				<apex:pageBlock title="{!TEXT(currentPageNumber) & '. ' & $Label.apttus__ReviewAndActivate}" 
+								mode="edit" 
+								rendered="{!canEditAgreement && IsReviewPage}" >
+					<apex:pageMessages />
+					<apex:pageBlockButtons location="bottom" >
+						<apex:commandButton action="{!doPrevious}" value="{!$Label.apttus__Previous}" rendered="{!NOT(isFirstPage)}" />
+						<apex:commandButton action="{!doActivate}" value="{!$Label.apttus__Activate}" />
+						<apex:commandButton action="{!doCancel}" value="{!$Label.apttus__Cancel}" immediate="true"/>
+					</apex:pageBlockButtons>
+					<apex:pageBlockSection title="{!$Label.apttus__DocumentsSelectedForActivation}" rendered="{!hasSelectedDocs}">
+						<apex:dataList type="square" value="{!selectedDocInfos}" var="docInfo" >
+							<apex:outputText value="{!docInfo.Name}"/>
+						</apex:dataList>
+					</apex:pageBlockSection>
+			        <apex:pageBlockSection title="{!$Label.apttus__DocumentsSelectedForContentSearch}" rendered="{!hasSearchableDocs}">
+						<apex:dataList type="square" value="{!searchableDocInfos}" var="docInfo" >
+							<apex:outputText value="{!docInfo.Name}"/>
+						</apex:dataList>
+					</apex:pageBlockSection>
+					<apex:pageBlockSection title="{!$Label.apttus__DocumentsSelectedForRemoval}" rendered="{!hasRemovableDocs}">
+						<apex:dataList type="square" value="{!removableDocInfos}" var="docInfo" >
+							<apex:outputText value="{!docInfo.Name}"/>
+						</apex:dataList>
+					</apex:pageBlockSection>
+				</apex:pageBlock>
+				
+			</apex:outputPanel>
+			 
+		</apex:outputPanel>
+		
+		<apex:actionFunction name="doInit" 
+    						 action="{!doInit}" 
+    						 reRender="idActivatePanel" />  	
+    						 
+	</apex:form>
+	
+</apex:page>

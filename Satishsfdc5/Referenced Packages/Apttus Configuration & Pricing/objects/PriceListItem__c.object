@@ -1,0 +1,774 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <comment>Edit a price list item</comment>
+        <content>PriceListItem</content>
+        <skipRecordTypeSelect>false</skipRecordTypeSelect>
+        <type>Visualforce</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Follow</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <deprecated>false</deprecated>
+    <description>Represents a product entry in a price list.</description>
+    <enableActivities>true</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>true</enableHistory>
+    <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <fields>
+        <fullName>Active__c</fullName>
+        <defaultValue>true</defaultValue>
+        <deprecated>false</deprecated>
+        <description>Indicates whether the price list item is active. Inactive price list items are ignored.</description>
+        <externalId>false</externalId>
+        <label>Active</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>AllocateGroupAdjustment__c</fullName>
+        <defaultValue>true</defaultValue>
+        <deprecated>false</deprecated>
+        <description>Indicates whether group adjustments should be allocated to the product</description>
+        <externalId>false</externalId>
+        <label>Allocate Group Adjustment</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>AllowManualAdjustment__c</fullName>
+        <defaultValue>true</defaultValue>
+        <deprecated>false</deprecated>
+        <description>Indicates whether manual price adjustments are allowed for the product</description>
+        <externalId>false</externalId>
+        <label>Allow Manual Adjustment</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>AllowProration__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <description>Indicates whether proration is allowed for the product.</description>
+        <externalId>false</externalId>
+        <label>Allow Proration</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>ChargeType__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The charge type associated with the price</description>
+        <externalId>false</externalId>
+        <label>Charge Type</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Standard Price</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>License Fee</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Subscription Fee</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Implementation Fee</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Installation Fee</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Maintenance Fee</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Adjustment</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Cost__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The cost for the product</description>
+        <externalId>false</externalId>
+        <label>Cost</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>5</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Criteria__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The item criteria specification</description>
+        <externalId>false</externalId>
+        <label>Charge Type Criteria</label>
+        <length>4000</length>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>5</visibleLines>
+    </fields>
+    <fields>
+        <fullName>DefaultQuantityDatasource__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The data source which provides the default value for the quantity.Only applicable when the default quantity from is available.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The data source which provides the default value for the quantity.Only applicable when the default quantity from is available.</inlineHelpText>
+        <label>Default Quantity Field</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>DefaultQuantityFrom__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The related object to default the quantity from. If the related object is not available, the quantity default value will be used.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The related object to default the quantity from. If the related object is not available, the quantity default value will be used.</inlineHelpText>
+        <label>Default Quantity From</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Product Configuration</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Product Attribute</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>DefaultQuantity__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The default quantity for the product or service</description>
+        <externalId>false</externalId>
+        <label>Default Quantity</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>5</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>DefaultSellingTerm__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The default selling term for the product or service</description>
+        <externalId>false</externalId>
+        <label>Default Selling Term</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>5</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Description__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The description of the price list.item</description>
+        <externalId>false</externalId>
+        <label>Description</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>EffectiveDate__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The price effective date. The price becomes effective on this date and time.</description>
+        <externalId>false</externalId>
+        <label>Effective Date</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>ExpirationDate__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The price expiration date. The price becomes ineffective after this date and time.</description>
+        <externalId>false</externalId>
+        <label>Expiration Date</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>Frequency__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The frequency associated with the recurring or usage price</description>
+        <externalId>false</externalId>
+        <label>Frequency</label>
+        <picklist>
+            <controllingField>PriceType__c</controllingField>
+            <picklistValues>
+                <fullName>Hourly</fullName>
+                <default>false</default>
+                <controllingFieldValues>Recurring</controllingFieldValues>
+                <controllingFieldValues>Usage</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Daily</fullName>
+                <default>false</default>
+                <controllingFieldValues>Recurring</controllingFieldValues>
+                <controllingFieldValues>Usage</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Monthly</fullName>
+                <default>false</default>
+                <controllingFieldValues>Recurring</controllingFieldValues>
+                <controllingFieldValues>Usage</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Quarterly</fullName>
+                <default>false</default>
+                <controllingFieldValues>Recurring</controllingFieldValues>
+                <controllingFieldValues>Usage</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Half Yearly</fullName>
+                <default>false</default>
+                <controllingFieldValues>Recurring</controllingFieldValues>
+                <controllingFieldValues>Usage</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Yearly</fullName>
+                <default>false</default>
+                <controllingFieldValues>Recurring</controllingFieldValues>
+                <controllingFieldValues>Usage</controllingFieldValues>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>ListPrice__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The list price for the product</description>
+        <externalId>false</externalId>
+        <label>List Price</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>5</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>MaxPrice__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The maximum price that can be charged. The price can be null.</description>
+        <externalId>false</externalId>
+        <label>Max Price</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>5</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>MinMaxPriceAppliesTo__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Indicates the price field the min/max price rule should be applied to</description>
+        <externalId>false</externalId>
+        <label>Min/Max Price Applies To</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Base Price</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Base Extended Price</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>MinPrice__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The minimum price that must be charged. The price can be zero.</description>
+        <externalId>false</externalId>
+        <label>Min Price</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>5</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>NumberOfMatrices__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Indicates the number of price matrices associated with the price list item</description>
+        <externalId>false</externalId>
+        <label>Number Of Matrices</label>
+        <summaryForeignKey>PriceMatrix__c.PriceListItemId__c</summaryForeignKey>
+        <summaryOperation>count</summaryOperation>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Summary</type>
+    </fields>
+    <fields>
+        <fullName>PriceIncludedInBundle__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <description>Indicates whether the option price is included in the bundle. Only applicable to product options.</description>
+        <externalId>false</externalId>
+        <label>Price Included In Bundle</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>PriceListId__c</fullName>
+        <deprecated>false</deprecated>
+        <description>ID of the price list associated with the product</description>
+        <externalId>false</externalId>
+        <label>Price List</label>
+        <referenceTo>PriceList__c</referenceTo>
+        <relationshipLabel>Items</relationshipLabel>
+        <relationshipName>Items</relationshipName>
+        <relationshipOrder>0</relationshipOrder>
+        <reparentableMasterDetail>false</reparentableMasterDetail>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>MasterDetail</type>
+        <writeRequiresMasterRead>false</writeRequiresMasterRead>
+    </fields>
+    <fields>
+        <fullName>PriceMethod__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The price method</description>
+        <externalId>false</externalId>
+        <label>Price Method</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Per Unit</fullName>
+                <default>true</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Flat Price</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Percentage</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>PriceType__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The price type</description>
+        <externalId>false</externalId>
+        <label>Price Type</label>
+        <picklist>
+            <picklistValues>
+                <fullName>One Time</fullName>
+                <default>true</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Recurring</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Usage</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>PriceUom__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The pricing unit of measure for the product</description>
+        <externalId>false</externalId>
+        <label>Price Uom</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Each</fullName>
+                <default>true</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Hour</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Day</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Month</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Year</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Quarter</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Case</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Gallon</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>ProductId__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <deprecated>false</deprecated>
+        <description>ID of the product associated with the price list</description>
+        <externalId>false</externalId>
+        <label>Product</label>
+        <referenceTo>Product2</referenceTo>
+        <relationshipLabel>Price Lists</relationshipLabel>
+        <relationshipName>PriceLists</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>RelatedAdjustmentAmount__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <inlineHelpText>The related item price adjustment amount.</inlineHelpText>
+        <label>Related Adjustment Amount</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>5</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>RelatedAdjustmentAppliesTo__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Indicates the price field the related item price adjustment should be applied to.</description>
+        <externalId>false</externalId>
+        <label>Related Adjustment Applies To</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Base Price</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Base Extended Price</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Extended Price</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>List Price</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>RelatedAdjustmentType__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The related item price adjustment type</description>
+        <externalId>false</externalId>
+        <label>Related Adjustment Type</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Percentage</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>% Discount</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Discount Amount</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>% Markup</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Markup Amount</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Price Factor</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>RelatedItemId__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <deprecated>false</deprecated>
+        <description>ID of the related price list item</description>
+        <externalId>false</externalId>
+        <label>Related Price List Item</label>
+        <referenceTo>PriceListItem__c</referenceTo>
+        <relationshipLabel>Related Price List Items</relationshipLabel>
+        <relationshipName>RelatedPriceListItems</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>RelatedPercentAppliesTo__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Indicates the price field the percentage should be applied to</description>
+        <externalId>false</externalId>
+        <label>Percent Applies To</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Base Price</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Base Extended Price</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>List Price</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>RelatedPercent__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The list price expressed as a percentage of the related price list item</description>
+        <externalId>false</externalId>
+        <label>Percent</label>
+        <precision>14</precision>
+        <required>false</required>
+        <scale>4</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Percent</type>
+    </fields>
+    <fields>
+        <fullName>RollupPriceToBundle__c</fullName>
+        <defaultValue>true</defaultValue>
+        <deprecated>false</deprecated>
+        <description>Indicates whether the quantity is auto updated when the default quantity field gets a new value</description>
+        <externalId>false</externalId>
+        <label>Auto Update Quantity</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>SubType__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The price list item sub type</description>
+        <externalId>false</externalId>
+        <label>Sub Type</label>
+        <picklist>
+            <picklistValues>
+                <fullName>None</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Type__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The price list item type</description>
+        <externalId>false</externalId>
+        <label>Type</label>
+        <picklist>
+            <picklistValues>
+                <fullName>None</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <label>Price List Item</label>
+    <nameField>
+        <displayFormat>PI-{0000000000}</displayFormat>
+        <label>Item Id</label>
+        <trackHistory>false</trackHistory>
+        <type>AutoNumber</type>
+    </nameField>
+    <pluralLabel>Price List Items</pluralLabel>
+    <searchLayouts>
+        <excludedStandardButtons>Accept</excludedStandardButtons>
+        <excludedStandardButtons>New</excludedStandardButtons>
+        <lookupDialogsAdditionalFields>PriceListId__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>ProductId__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>ChargeType__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>Description__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>PriceType__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>PriceMethod__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>ListPrice__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>EffectiveDate__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>ExpirationDate__c</lookupDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>PriceListId__c</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>ProductId__c</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>ChargeType__c</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>Description__c</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>PriceType__c</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>PriceMethod__c</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>ListPrice__c</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>EffectiveDate__c</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>ExpirationDate__c</lookupPhoneDialogsAdditionalFields>
+        <searchFilterFields>NAME</searchFilterFields>
+        <searchFilterFields>PriceListId__c</searchFilterFields>
+        <searchFilterFields>ProductId__c</searchFilterFields>
+        <searchFilterFields>ChargeType__c</searchFilterFields>
+        <searchFilterFields>Description__c</searchFilterFields>
+        <searchFilterFields>PriceType__c</searchFilterFields>
+        <searchFilterFields>PriceMethod__c</searchFilterFields>
+        <searchFilterFields>ListPrice__c</searchFilterFields>
+        <searchFilterFields>EffectiveDate__c</searchFilterFields>
+        <searchFilterFields>ExpirationDate__c</searchFilterFields>
+    </searchLayouts>
+    <sharingModel>ControlledByParent</sharingModel>
+    <webLinks>
+        <fullName>NewPriceListItem</fullName>
+        <availability>online</availability>
+        <description>Create a new price list item</description>
+        <displayType>massActionButton</displayType>
+        <encodingKey>UTF-8</encodingKey>
+        <height>600</height>
+        <linkType>url</linkType>
+        <masterLabel>New Item</masterLabel>
+        <openType>sidebar</openType>
+        <protected>false</protected>
+        <requireRowSelection>false</requireRowSelection>
+        <url>/apex/Apttus_Config2__PriceListItem?priceListId={!PriceList__c.Id}</url>
+    </webLinks>
+</CustomObject>

@@ -1,0 +1,24 @@
+<table height="400" width="550" cellpadding="5" border="0" cellspacing="5" >
+<tr height="400" valign="top" >
+<td style=" color:#000000; font-size:12pt; background-color:#FFFFFF; font-family:arial; bLabel:main; bEditID:r3st1;" tEditID="c1r1" locked="0" aEditID="c1r1" >
+<![CDATA[<FONT face=Verdana,Geneva,Arial,Helvetica,Sans-Serif size=2>Dear {!APTS_Agreement__c.OwnerFullName},</FONT> 
+<P><FONT face=Verdana,Geneva,Arial,Helvetica,Sans-Serif size=2>&nbsp;</FONT></P>
+<P><FONT face=Verdana,Geneva,Arial,Helvetica,Sans-Serif size=2>The following Apttus contract has been activated:</FONT></P>
+<P><FONT face=Verdana,Geneva,Arial,Helvetica,Sans-Serif size=2>&nbsp;</FONT></P>
+<P><FONT face=Verdana,Geneva,Arial,Helvetica,Sans-Serif size=2>Number:{!APTS_Agreement__c.FF_Agreement_Number__c}</FONT></P>
+<P><FONT face=Verdana,Geneva,Arial,Helvetica,Sans-Serif size=2>Name: {!APTS_Agreement__c.Name}</FONT></P>
+<P><FONT face=Verdana,Geneva,Arial,Helvetica,Sans-Serif size=2>Start Date: {!APTS_Agreement__c.Contract_Start_Date__c}</FONT></P>
+<P><FONT face=Verdana,Geneva,Arial,Helvetica,Sans-Serif size=2>End Date: {!APTS_Agreement__c.Contract_End_Date__c}</FONT></P>
+<P><FONT face=Verdana,Geneva,Arial,Helvetica,Sans-Serif size=2>&nbsp;</FONT></P>
+<P><FONT face=Verdana,Geneva,Arial,Helvetica,Sans-Serif size=2>Thank You,</FONT></P>
+<P><FONT face=Verdana,Geneva,Arial,Helvetica,Sans-Serif size=2>Apttus</FONT></P>
+<TABLE id=topTable height=450 cellSpacing=0 cellPadding=0 width=500>
+<TBODY>
+<TR vAlign=top>
+<TD style="FONT-SIZE: 12pt; COLOR: rgb(0,0,0); FONT-FAMILY: arial; BACKGROUND-COLOR: rgb(255,255,255)" height=300 styleinsert="1">
+<TABLE height=400 cellSpacing=5 cellPadding=5 width=550 border=0>
+<TBODY>
+<TR vAlign=top height=400>
+<TD style="FONT-SIZE: 12pt; COLOR: rgb(0,0,0); FONT-FAMILY: arial; BACKGROUND-COLOR: rgb(255,255,255)" locked="0" teditid="c1r1" aeditid="c1r1"><BR></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE>]]></td>
+</tr>
+</table>

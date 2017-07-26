@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fields>
+        <fullName>CreateAgreementWithLineItems__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Create Agreement with line items, if the proposal is accepted.</description>
+        <externalId>false</externalId>
+        <formula>IF (ISPICKVAL(Apttus_Proposal__Approval_Stage__c, &quot;Accepted&quot;) , HYPERLINK(&quot;/apex/Apttus_QPComply__ProposalAgreementCreate?id=&quot; &amp;Id, IMAGE(&quot;/resource/Apttus_QPComply__Button_CreateAgreementWithLineItems&quot;, &quot;Create Agreement with Line Items&quot;),&quot;_self&quot;), NULL)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Create Agreement With Line Items</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <webLinks>
+        <fullName>CreateAgreementWithLineItems</fullName>
+        <availability>online</availability>
+        <description>Create agreement from the proposal</description>
+        <displayType>link</displayType>
+        <height>600</height>
+        <linkType>page</linkType>
+        <masterLabel>Create Agreement (with Line Items)</masterLabel>
+        <openType>sidebar</openType>
+        <page>ProposalAgreementCreate</page>
+        <protected>false</protected>
+    </webLinks>
+</CustomObject>

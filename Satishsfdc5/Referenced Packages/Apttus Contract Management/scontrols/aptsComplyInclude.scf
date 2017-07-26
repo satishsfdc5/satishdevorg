@@ -1,0 +1,113 @@
+<script language="javascript" type="text/javascript">
+
+	// unknown error
+	var cERROR_UNKNOWN = "ERROR: Unknown error:\n";
+	
+   	/**
+	 * Initializes the call
+	 */
+	function aptsComplyInclude_initCall() {
+	
+		try {
+			sforce.connection.sessionId = "{!$Api.Session_ID}"; //to avoid session timeout
+		} catch(e) {
+			erralert(cERROR_UNKNOWN,e);
+		}
+	
+	}
+
+	function aptsComplyInclude_showMsgProgress(msg) {
+	    var html = "<center><p><p><h2>" + msg + "</h2>" +
+	        "<p><img src=\"/img/waiting_dots.gif\" border=\"0\" width=156 height=25></center>";
+	    
+	    aptsComplyInclude_setMain(html);
+	    aptsComplyInclude_showMain();
+	}
+	
+	function aptsComplyInclude_resetMain() {
+	    setMain("");
+	}
+	
+	function aptsComplyInclude_setMain(html) {
+	    document.getElementById("divMain").innerHTML = html;
+	}
+	
+	function aptsComplyInclude_showMain() {
+	    document.getElementById("divMain").style.visibility = "visible";
+	}
+	
+	function aptsComplyInclude_hideMain() {
+	    document.getElementById("divMain").style.visibility = "hidden";
+	}
+
+	function aptsComplyInclude_erroralert(msg,exception) {
+	    try {
+	        var emsg = null;
+	        var efld = null;
+	        var estc = null;
+	        var etid = null;
+	
+	        try {
+	            var hasErrors = (exception.errors!=null);
+	            var hasFault = (exception.faultcode!=null);
+	            //alert("hasErrors="+hasErrors+"\nhasFault="+hasFault);
+	
+	            if (hasErrors) {
+	                emsg = exception.errors.message;
+	                efld = exception.errors.fields;
+	                estc = exception.errors.statusCode;
+	
+	            } else if (hasFault) {
+	                emsg = exception.faultcode;
+	                efld = exception.faultstring;
+	                
+	            } else {
+	                emsg = exception.message;
+	                efld = exception.fields;
+	                estc = exception.statusCode;
+	            }
+	        }
+	        catch(ex) {
+	            emsg = exception.errors.message;
+	            efld = exception.errors.fields;
+	            estc = exception.errors.statusCode;
+	        }
+	
+	        var estr = msg;
+	        var estrdb = estr;
+	        
+	        if (emsg!=null && emsg!="") {
+	            estr += "\nmessage: "+emsg;
+	            estrdb += "<br>message: "+emsg;
+	        }
+	        if (efld!=null && efld!="") {
+	            estr += "\nfields: "+efld;
+	            estrdb += "<br>fields: "+efld;
+	        }
+	        if (estc!=null && estc!="") {
+	            estr += "\nstatusCode: "+estc;
+	            estrdb += "<br>statusCode: "+estc;
+	        }
+	        if (etid!=null && etid!="") {
+	            estr += "\ntargetObjectId: "+etid;
+	            estrdb += "<br>targetObjectId: "+etid;
+	        }
+	        
+	        alert(estr);
+	        //if (gDebug) writeDebugLn("<p>"+estrdb);
+	    }
+	    catch(ex) {
+	        alert(msg+"\n"+exception);
+	        //if (gDebug) writeDebugLn("<p>"+msg+"<br>"+exception);
+	    }
+	}
+	
+	/**
+	 * Navigates to the given url
+	 * @param url the url to navigate to 
+	 */
+	function aptsComplyInclude_navigateTo(url) {
+	    top.location.replace(url);
+	}
+
+</script>

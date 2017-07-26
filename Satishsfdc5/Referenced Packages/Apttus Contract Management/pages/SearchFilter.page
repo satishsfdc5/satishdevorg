@@ -1,0 +1,355 @@
+<!-- 
+    Apttus Contract Management
+    SearchFilter
+     
+    @2012-2013 Apttus Inc. All rights reserved.
+
+ -->
+<apex:page standardController="Apttus__SearchFilter__c" 
+	  	   extensions="Apttus.SearchFilterController" 
+           showHeader="true" 
+           sidebar="true" 
+           standardStylesheets="true"
+           tabStyle="Apttus__SearchFilter__c">	
+    
+    <style>
+		textarea {
+			width: 70%;
+		}
+	</style>
+	
+	<apex:includeScript value="{!URLFOR($Resource.Apttus__JQueryUILibrary19, 'js/jquery-1.8.3.min.js')}"/>
+    <apex:includeScript value="{!URLFOR($Resource.Apttus__JQueryUILibrary19, 'js/jquery-ui-1.9.2.custom.min.js')}"/>
+    
+    <apex:stylesheet value="{!URLFOR($Resource.Apttus__JQueryUILibrary19, 'css/smoothness/jquery-ui-1.9.2.custom.css')}"/>
+	
+    <apex:stylesheet value="{!$Resource.Apttus__ComplyStyles}" />
+    
+    <script type="text/javascript">
+    	// This to make sure jQuery doesn't conflict with any other JS libraries
+    	var j$ = jQuery.noConflict();
+ 		
+ 		j$(document).ready(function(){
+			
+			// setup namespace
+			j$.APTTUS = {};
+			
+			// setup the delete confirmation dialog
+			j$("#confirmationPanel").dialog({
+				autoOpen: false,
+				draggable: false,
+				modal: true,
+				resizable: false,
+				position: 'center',
+				overlay: { 
+		            opacity: 0.5,
+		            backgroundColor: "#000"
+		        } 
+				
+			});
+		 	
+		 	
+		});
+		    
+		/**
+		 * Show delete confirmation dialog
+		 */
+		function showDeleteConfirmation() {
+			
+	      	j$("#confirmationPanel").dialog("open");
+	      	j$("#confirmationPanel").dialog("option" , "title" , "{!$Label.DeleteConfirmationTitle}");
+	      	j$("#confirmationPanel").dialog("option", "position", "center");
+	      	
+	      	return false;
+	      	
+	   	}
+   		
+   		/**
+		 * Hide the delete confirmation dialog
+		 */
+   		function hideDeleteConfirmation(){
+	    	// close the confirmation dialog
+	      	j$("#confirmationPanel").dialog("close");
+	      
+	   	}
+	   	
+    </script>  
+    
+	<apex:sectionHeader title="{!$ObjectType.Apttus__SearchFilter__c.Label & ' ' & $Label.apttus__Edit}" 
+						subtitle="{!$Label.apttus__New & ' ' & $ObjectType.Apttus__SearchFilter__c.Label & ' (' & StepStats & ')'}" 
+						rendered="{!IsAddMode && (CurrentStep == 1)}" />
+	
+	<apex:sectionHeader title="{!$Label.apttus__New & ' ' & $ObjectType.Apttus__SearchFilter__c.Label}" 
+						subtitle="{!BusinessObjectLabel & ' (' & StepStats & ')'}" 
+						rendered="{!IsAddMode && (CurrentStep != 1)}" />
+											
+	<apex:sectionHeader title="{!$ObjectType.Apttus__SearchFilter__c.Label & ' ' & $Label.apttus__Edit}" 
+						subtitle="{!Apttus__SearchFilter__c.Name}" 
+						rendered="{!IsEditMode}" />
+	
+	<apex:sectionHeader title="{!$ObjectType.Apttus__SearchFilter__c.Label}" 
+						subtitle="{!Apttus__SearchFilter__c.Name}" 
+						rendered="{!IsDetailMode}" />
+											
+	<apex:form id="idSearchFilterSO">
+		
+		<!--  required fields -->
+		<apex:outputText value="{!Apttus__SearchFilter__c.Apttus__BusinessObject__c}" rendered="false" />
+		<apex:outputText value="{!Apttus__SearchFilter__c.Apttus__Criteria__c}" rendered="false" />
+		
+		<apex:pageBlock id="idSearchFilterBlock" 
+						title="{!IF(isAddMode, $Label.apttus__Step & ' ' & TEXT(CurrentStep) & ': ' & CurrentStepName, '')}"
+						mode="edit" >
+						
+			<apex:pageMessages />
+			
+			<apex:pageBlockButtons location="both">
+				<apex:commandButton value="{!$Label.apttus__Edit}" 
+								    action="{!doEdit}" 
+								    rendered="{!IsDetailMode}" />
+				<apex:commandButton value="{!$Label.apttus__Next}" 
+								    action="{!doNext}" 
+								    rendered="{!IsAddMode && (CurrentStep == 1)}" />
+				<apex:commandButton value="{!$Label.apttus__Previous}" 
+								    action="{!doPrevious}" 
+								    rendered="{!IsAddMode && (CurrentStep != 1)}" />
+		        <apex:commandButton value="{!$Label.apttus__Save}" 
+		        					action="{!doSave}" 
+		        					rendered="{!NOT(IsDetailMode) && IsLastStep}" />
+		        <apex:commandButton value="{!$Label.apttus__SaveAndNew}" 
+		        				    action="{!doSaveAndNew}" 
+		        				    rendered="{!NOT(IsDetailMode) && IsLastStep}" />
+		        <apex:commandButton value="{!$Label.apttus__Cancel}" 
+		        					action="{!doCancel}" 
+		        					immediate="true" 
+		        					rendered="{!NOT(IsDetailMode)}" />
+		       	<apex:commandButton value="{!$Label.apttus__Delete}" 
+								    onclick="return showDeleteConfirmation();"
+								    rendered="{!IsDetailMode}" />
+		    </apex:pageBlockButtons>
+		    
+		    <apex:pageBlockSection id="idSelectObjectSection" 
+		    					   title="{!$Label.apttus__SelectFilterObjectInstruction}" 
+		    					   columns="2" 
+		    					   collapsible="false" 
+		    					   rendered="{!IsAddMode && (CurrentStep == 1)}" >
+		    	
+				<apex:pageBlockSectionItem >
+					<apex:outputLabel value="{!$ObjectType.Apttus__SearchFilter__c.Fields.Apttus__BusinessObject__c.Label}" 
+									  for="idBusinessObject" />
+					<apex:outputPanel styleClass="requiredInput" layout="block">
+   						<apex:outputPanel styleClass="requiredBlock" layout="block"/>
+  						<apex:selectList id="idBusinessObject" 
+  										 value="{!businessObjectName}" 
+  										 multiselect="false" 
+  										 required="false" 
+  										 size="1" >
+							<apex:selectOptions value="{!businessObjectItems}"></apex:selectOptions>
+						</apex:selectList>
+ 					</apex:outputPanel>
+				</apex:pageBlockSectionItem>
+				
+		    </apex:pageBlockSection>
+		    
+		    <apex:pageBlockSection id="idConfigureFilterSection" 
+		    					   title="{!IF(NOT(IsDetailMode), $Label.apttus__ConfigureFilter, $Label.apttus__FilterDetail)}"
+		    					   columns="1" 
+		    					   collapsible="false" 
+		    					   rendered="{!CurrentStep == 2}" >
+		    	
+		    	<apex:pageBlockSectionItem >
+					<apex:outputLabel value="{!$ObjectType.Apttus__SearchFilter__c.Fields.Apttus__BusinessObject__c.Label}" 
+									  for="idBusinessObject2" />
+					<apex:outputText id="idBusinessObject2" value="{!businessObjectLabel}" />
+				</apex:pageBlockSectionItem>
+				
+				<apex:pageBlockSectionItem rendered="{!NOT(IsDetailMode)}" >
+					<apex:outputLabel value="{!$ObjectType.Apttus__SearchFilter__c.Fields.Name.Label}" 
+									  for="idName" />
+					<apex:outputPanel styleClass="requiredInput" layout="block">
+   						<apex:outputPanel styleClass="requiredBlock" layout="block"/>
+  						<apex:inputField id="idName" 
+  										 value="{!Apttus__SearchFilter__c.Name}" 
+  										 required="false" />
+ 					</apex:outputPanel>
+				</apex:pageBlockSectionItem>
+				<apex:outputField value="{!Apttus__SearchFilter__c.Name}" 
+								  rendered="{!IsDetailMode}" />
+				
+		    	<apex:inputField value="{!Apttus__SearchFilter__c.Apttus__Description__c}" 
+		    					 rendered="{!NOT(IsDetailMode)}" />
+		    	<apex:outputField value="{!Apttus__SearchFilter__c.Apttus__Description__c}" 
+		    					  rendered="{!IsDetailMode}" />				 				 
+		    </apex:pageBlockSection>
+		    
+		    <apex:outputPanel rendered="{!CurrentStep == 2}" >
+		    
+			    <apex:pageBlockSection id="idPredicatesSection" 
+			    					   title="{!$Label.apttus__FilterCriteria}" 
+			    					   columns="2" 
+			    					   collapsible="false" >
+			    					   
+			        <apex:pageBlockTable value="{!predicates}" 
+			        					 var="predicate" 
+			        					 columns="8" 
+			        					 rowClasses="oddRow,evenRow" >
+			        	
+			        	<apex:column width="5%" rendered="{!isAdvancedOptionsMode}" >
+			        		<apex:outputText id="idRowNum" value="{!predicate.RowNum}. " />
+						</apex:column>
+			        	<apex:column headerValue="{!$Label.apttus__Field}" width="25%" >
+			        		<apex:outputPanel styleClass="{!IF(predicate.FieldInError, 'errorRow', '')}" layout="block" >
+			        			<apex:selectList id="idField" 
+			        							 size="1" 
+			        							 value="{!predicate.FieldName}" 
+			        							 disabled="{!IsDetailMode}" > 
+						      		<apex:selectOptions value="{!FieldItems}"></apex:selectOptions>
+						      		<apex:actionSupport event="onchange" 
+						      							action="{!doUpdateFieldInfo}" 
+						      							reRender="idPredicatesSection" />
+						      	</apex:selectList>
+							</apex:outputPanel>
+						</apex:column>
+						<apex:column headerValue="{!$Label.apttus__Operator}" width="25%" >
+					    	<apex:outputPanel styleClass="{!IF(predicate.CompOperInError, 'errorRow', '')}" layout="block" >
+						    	<apex:selectList id="idCompOper" 
+						    					 size="1" 
+						    					 value="{!predicate.CompOper}" 
+						    					 disabled="{!IsDetailMode}" >
+						      		<apex:selectOptions value="{!compOperItems}"></apex:selectOptions>
+						      	</apex:selectList>
+					      	</apex:outputPanel>
+					   	</apex:column>
+				   		<apex:column headerValue="{!$Label.apttus__Value}" width="25%" >
+					    	<apex:outputPanel styleClass="{!IF(predicate.FieldValueInError, 'errorRow', '')}" 
+					    					  layout="block" 
+					    					  rendered="{!NOT(IsDetailMode)}" >
+					    		<apex:inputText id="idFieldValue" 
+					    						size="25" 
+					    						value="{!predicate.FieldValue}" 
+					    						rendered="{!NOT(predicate.IsPicklist)}" />
+					    		<apex:selectList id="idFieldValue2" 
+					    						 size="1" 
+					    						 multiselect="false"
+					    						 value="{!predicate.FieldValue}" 
+					    						 rendered="{!predicate.IsPicklist && NOT(predicate.IsMultiPicklist)}" >
+						      		<apex:selectOptions value="{!predicate.fieldValueItems}"></apex:selectOptions>
+						      	</apex:selectList>
+						      	<apex:selectList id="idFieldValue3" 
+					    						 size="5" 
+					    						 multiselect="true"
+					    						 value="{!predicate.FieldValues}" 
+					    						 rendered="{!predicate.IsPicklist && predicate.IsMultiPicklist}" >
+						      		<apex:selectOptions value="{!predicate.fieldValueItems}"></apex:selectOptions>
+						      	</apex:selectList>
+					   		</apex:outputPanel>
+					   		<apex:outputText value="{!predicate.FieldValue}" 
+					   						 rendered="{!IsDetailMode}" /> 
+					   	</apex:column>
+					   	<apex:column width="5%" >
+					    	<apex:outputText id="idBoolOper" 
+					    					 value="{!predicate.BoolOper}" 
+					    					 rendered="{!NOT(isAdvancedOptionsMode) && NOT(ISBLANK(predicate.BoolOper))}" />
+					    	<apex:commandLink action="{!doAddRow}" 
+								  	  	  	  reRender="idPredicatesSection, idAdvancedOptionsSection" 
+								  	  	  	  rendered="{!NOT(IsDetailMode) && 
+								  	  	  	  			  NOT(isAdvancedOptionsMode) && 
+								  	  	  	  			  ISBLANK(predicate.BoolOper)}" > 
+								<apex:image url="{!$Resource.Apttus__Image_Plus}" 
+			                       			title="{!$Label.apttus__Add}" 
+			                       			alt="{!$Label.apttus__Add}" />  	  	  	  
+							</apex:commandLink>
+					   	</apex:column>
+					   	<apex:column width="5%" >
+					   	<apex:commandLink id="idDeleteRow" 
+									      action="{!doDeleteRow}" 
+									  	  reRender="idPredicatesSection, idAdvancedOptionsSection" 
+									  	  rendered="{!NOT(IsDetailMode) && predicate.RowNum > 1}" >
+							<apex:param name="rowNum" value="{!predicate.RowNum}" />	
+							<apex:image url="{!$Resource.Apttus__Image_Minus}" 
+			                       		title="{!$Label.apttus__Remove}" 
+			                       		alt="{!$Label.apttus__Remove}" />	  
+						</apex:commandLink>
+						</apex:column>
+					   	<apex:column width="10%" >
+					   		<apex:outputText value="{!predicate.ErrorMsg}" style="color:red;" />
+					   	</apex:column>
+					   
+			        </apex:pageBlockTable>
+			        
+			    </apex:pageBlockSection>
+					    
+				<apex:pageBlockSection id="idAdvancedOptionsSection" 
+									   columns="1" 
+									   collapsible="false" >
+				
+					<apex:commandLink id="idShowAdvancedOptions" 
+									  action="{!doShowAdvancedOptions}" 
+									  value="{!$Label.apttus__AdvancedOptions}" 
+									  reRender="idAdvancedOptionsSection, idPredicatesSection" 
+									  rendered="{!NOT(IsDetailMode) && NOT(isAdvancedOptionsMode)}" />
+			        
+			        <apex:outputPanel rendered="{!isAdvancedOptionsMode}">
+						<apex:commandLink id="idAddRow" 
+										  action="{!doAddRow}" 
+										  value="{!$Label.apttus__AddRow}" 
+										  rendered="{!NOT(IsDetailMode)}" 
+										  reRender="idAdvancedOptionsSection, idPredicatesSection" />
+						<span>  </span>
+						<apex:commandLink id="idRemoveRow" 
+										  action="{!doRemoveRow}" 
+										  value="{!$Label.apttus__RemoveRow}" 
+										  reRender="idAdvancedOptionsSection, idPredicatesSection" 
+										  rendered="{!NOT(IsDetailMode) && OkToRemoveRow}" />
+						<apex:outputPanel id="idRemoveRow2" styleClass="greyedLink" rendered="{!NOT(OkToRemoveRow)}" >{!$Label.apttus__RemoveRow}</apex:outputPanel>
+						<p/>	
+			        	<apex:commandLink id="idHideAdvancedOptions" 
+			        					  action="{!doHideAdvancedOptions}" 
+			        					  value="{!$Label.apttus__ClearAdvancedOptions}" 
+			        					  rendered="{!NOT(IsDetailMode)}" 
+			        					  reRender="idAdvancedOptionsSection, idPredicatesSection" />
+			        	<br/>
+			        	<apex:outputText value="{!$Label.apttus__AdvancedFilterCondition}" />
+			        	<br/>
+			        	<apex:inputText size="80" 
+			        					value="{!advancedOptions}" 
+			        					rendered="{!NOT(IsDetailMode)}" />
+			        	<apex:outputText value="{!advancedOptions}" 
+			        					 rendered="{!IsDetailMode}" />
+			        </apex:outputPanel>
+			        
+				</apex:pageBlockSection>
+			</apex:outputPanel>
+			
+		</apex:pageBlock>
+			    			   
+	</apex:form>
+	
+	<!-- This panel represents the delete confirmation dialog that will pop up -->
+	<apex:outputPanel >
+		<div id="confirmationPanel" style="display: none">
+		    <div>
+		    	<apex:outputText value="{!$Label.apttus__DeleteConfirmationMessage}" />
+		    </div>
+		    <p/>
+		    <div>
+		    	<apex:form >
+		            <apex:actionRegion >
+		                <div style="text-align: center; padding-left: 4px;" >
+		                    <apex:commandButton value="{!$Label.apttus__Yes}"
+		                    					action="{!doDelete}"
+		                    					style="width: 50px;"   
+		                    					immediate="true" 
+		                    					reRender="idSearchFilterBlock" 
+		                    					oncomplete="hideDeleteConfirmation();" />
+		                    <apex:commandButton value="{!$Label.apttus__No}" 
+		                    					style="width: 50px;"   
+		                    					onclick="hideDeleteConfirmation();return false;" />
+		                </div>
+		            </apex:actionRegion>
+		         </apex:form>
+		    </div>
+		</div>
+	</apex:outputPanel>
+	
+</apex:page>

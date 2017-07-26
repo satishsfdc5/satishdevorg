@@ -1,0 +1,19 @@
+<table cellpadding="5" width="550" height="400" cellspacing="5" border="0" >
+<tr height="400" valign="top" >
+<td locked="0" style=" font-family:arial; bLabel:main; color:#000000; font-size:12pt; bEditID:r3st1; background-color:#FFFFFF;" aEditID="c1r1" tEditID="c1r1" >
+<![CDATA[<P><FONT size=2>Dear {!Proposal__c.OwnerFullName},</FONT></P>
+<P><FONT size=2></FONT>&nbsp;</P>
+<P><FONT size=2>The following proposal needs approval.</FONT></P>
+<P><FONT size=2></FONT>&nbsp;</P>
+<P><FONT size=2>Proposal #: {!Proposal__c.Name}</FONT></P>
+<P><FONT size=2>Related Opportunity: {!Proposal__c.Opportunity__c}</FONT></P>
+<P><FONT size=2>Proposal Amount: {!Proposal__c.Grand_Total__c}</FONT></P>
+<P><FONT size=2></FONT>&nbsp;</P>
+<P><FONT size=2>Please approve it by clicking on the link below:</FONT></P>
+<P><FONT size=2></FONT>&nbsp;</P>
+<P>{!ApprovalRequest.Internal_URL}</P>
+<P>&nbsp;</P>
+<P><FONT size=2>Thank you,</FONT></P>
+<P><FONT size=2>Apttus</FONT>&nbsp;&nbsp;</P>]]></td>
+</tr>
+</table>

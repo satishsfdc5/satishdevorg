@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fields>
+        <fullName>ConfigurationFinalizedDate__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Date when the configuration was finalized for the agreement</description>
+        <externalId>false</externalId>
+        <label>Configuration Finalized Date</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>Configure__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <formula>IF ( LEN( PriceListId__c ) &gt; 0 , HYPERLINK(&quot;/apex/Apttus_CMConfig__AgreementConfiguration?id=&quot; &amp;Id, IMAGE(&quot;/resource/Apttus_CMConfig__Button_Configure&quot;, &quot;Configure Products&quot;),&quot;_self&quot;), NULL)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Configure Products</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>PriceListId__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <deprecated>false</deprecated>
+        <description>ID of the associated price list</description>
+        <externalId>false</externalId>
+        <label>Price List</label>
+        <referenceTo>Apttus_Config2__PriceList__c</referenceTo>
+        <relationshipLabel>Agreements</relationshipLabel>
+        <relationshipName>Agreements</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>PricingDate__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The pricing date. The product list price is determined based on this date.</description>
+        <externalId>false</externalId>
+        <label>Pricing Date</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>SyncWithOpportunity__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Synchronize the agreement with the associated opportunity</description>
+        <externalId>false</externalId>
+        <formula>IF ( LEN(Apttus__Related_Opportunity__c ) &gt; 0, HYPERLINK(&quot;/apex/Apttus_CMConfig__AgreementSyncWithOpportunity?id=&quot; &amp;Id, IMAGE(&quot;/resource/Apttus_CMConfig__Button_SynchronizeWithOpportunity&quot;, &quot;Sync with Opportunity&quot;),&quot;_self&quot;), NULL)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Synchronize with Opportunity</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <webLinks>
+        <fullName>CloneAgreementWithLineItems</fullName>
+        <availability>online</availability>
+        <description>Clone agreement with line items</description>
+        <displayType>button</displayType>
+        <encodingKey>UTF-8</encodingKey>
+        <height>600</height>
+        <linkType>url</linkType>
+        <masterLabel>Clone (with Line Items)</masterLabel>
+        <openType>sidebar</openType>
+        <protected>false</protected>
+        <url>/apex/Apttus_CMConfig__AgreementClone?id={!Apttus__APTS_Agreement__c.Id}&amp;pageMode=detail</url>
+    </webLinks>
+</CustomObject>

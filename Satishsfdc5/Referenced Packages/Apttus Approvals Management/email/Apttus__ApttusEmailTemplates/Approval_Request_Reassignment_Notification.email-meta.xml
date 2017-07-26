@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Approval Request Reassignment Notification</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>Approval Request Reassignment Notification</name>
+    <style>none</style>
+    <subject>You have been identified as the backup approver for {!Backup_Approver__c.Current_User__c}</subject>
+    <textOnly>Dear {!Backup_Approver__c.Backup_User__c},
+
+
+You have been identified as the backup approver for {!Backup_Approver__c.Current_User__c}. All Approval Requests that are assigned to {!Backup_Approver__c.Current_User__c} will now be automatically reassigned to you. You will be notified by email whenever there is an approval request reassigned to you. This will remain in effect until the following date:
+
+
+Expiration Date: {!Backup_Approver__c.Expiration_Date__c}
+
+
+If the expiration date above is blank, the backup will remain in effect until it is canceled manually by {!Backup_Approver__c.Current_User__c}, or an admin user.
+
+
+Any in flight approval requests assigned to {!Backup_Approver__c.Current_User__c} that were still open at the time the backup went into effect may also have been reassigned to you. Please login to your Salesforce account, navigate to the Console tab, and look under Approval Requests / My Approvals, to see if there are any reassigned requests.
+
+
+Please contact your regional approvals administrator if you have any questions.
+
+
+Thanks</textOnly>
+    <type>custom</type>
+</EmailTemplate>

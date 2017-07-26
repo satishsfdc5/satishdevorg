@@ -1,0 +1,14 @@
+<!-- 
+    Apttus Contract Management
+    AgreementClauseDiff
+     
+    @2011-2013 Apttus Inc. All rights reserved.
+ -->
+<apex:page standardController="Apttus__Agreement_Clause__c"
+		   showHeader="false"
+		   sidebar="false" 
+		   cache="false"  
+		   tabstyle="Apttus__Agreement_Clause__c">
+	
+	<apex:outputText value="{!Apttus__Agreement_Clause__c.Apttus__DiffText__c}" escape="false" />
+</apex:page>

@@ -1,0 +1,52 @@
+<!-- 
+	/**
+	 *	Apttus Approvals Management
+	 *	BackupApprover
+	 *	 
+	 *	@2011 Apttus Inc. All rights reserved.
+	 */
+-->
+<apex:page standardController="User"  extensions="Apttus_Approval.BackupApproverController" >
+
+	<apex:sectionHeader title="{!$Label.apttus_approval__BackupApprover}" subtitle="{!backupApprover.Name}"/>
+	
+    <apex:form >
+    
+		<apex:pageBlock title="{!$Label.apttus_approval__BackupApproverDetail}" mode="edit">
+			<apex:pageMessages />
+			<apex:pageBlockButtons >
+				<apex:commandButton action="{!doSave}" value="{!$Label.apttus_approval__Save}"/>
+				<apex:commandButton action="{!doCancel}" value="{!$Label.apttus_approval__Cancel}" immediate="true"/>
+			</apex:pageBlockButtons>
+			<apex:pageBlockSection title="{!$Label.apttus_approval__Details}" columns="2">
+
+				<apex:outputField value="{!backupApprover.Apttus_Approval__Current_User__c}" />
+                <apex:outputText value="" />
+                
+    			<apex:pageBlockSectionItem >
+                    <apex:outputLabel value="{!$Label.apttus_approval__BackupUser}" for="idBackupUser" />
+                    <apex:outputpanel >
+                    	<apex:inputText id="idBackupUser" value="{!backupApproverName}" />
+                            <apex:commandLink action="{!doLaunchUserSearch}" >
+                                <apex:outputPanel >
+                                    <img src="/img/s.gif" class="lookupIcon"/>
+                                </apex:outputPanel>
+                            </apex:commandLink>
+                    </apex:outputpanel>
+                </apex:pageBlockSectionItem>
+                
+                <p/>
+                
+				<apex:inputField value="{!backupApprover.Apttus_Approval__Transfer_in_flight__c}"/>
+				<apex:outputField value="{!backupApprover.Apttus_Approval__IsActive__c}"/>
+				<apex:inputField value="{!backupApprover.Apttus_Approval__Effective_Date__c}"/>
+				<apex:outputField value="{!backupApprover.Apttus_Approval__InEffect__c}"/>
+				<apex:inputField value="{!backupApprover.Apttus_Approval__Expiration_Date__c}"/>&nbsp;
+				<apex:outputField value="{!backupApprover.Apttus_Approval__Cancellation_Date__c}"/>&nbsp;
+				<apex:inputField value="{!backupApprover.Apttus_Approval__Comment__c}" style="height:100px; width:300px;"/>		
+				
+			</apex:pageBlockSection>
+			
+		</apex:pageBlock>
+    </apex:form>		
+</apex:page>

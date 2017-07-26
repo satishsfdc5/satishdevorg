@@ -1,0 +1,12 @@
+<apex:page standardController="YGGC__Quote__c" extensions="YGGC.QuoteCloneController">
+<apex:stylesheet value="{!URLFOR($Resource.YGGC__applicationStyle, 'applicationstyle.css')}"/>
+<apex:pageMessages />
+<apex:form >
+	<apex:pageBlock title="Clone Quote {!newName}">
+		<apex:pageBlockButtons location="top">
+			<apex:commandButton action="{!cloneQuote}" value="Clone" />
+			<apex:commandButton action="{!cancelClone}" value="Cancel" />
+		</apex:pageBlockButtons>
+	</apex:pageBlock>
+</apex:form>
+</apex:page>

@@ -1,0 +1,72 @@
+<!-- 
+    Apttus Contract Management
+    RuleEdit
+     
+    @2009-2010 Apttus Inc. All rights reserved.
+
+ -->
+<apex:page standardController="Apttus__Agreement_Rule__c"
+		   extensions="Apttus.RuleEditController" 
+		   showHeader="true"
+		   sidebar="true" 
+		   tabStyle="Apttus__Agreement_Rule__c"
+		   recordSetVar="agmtRules">
+
+	<style>
+		.seq_w {
+			width: 25px;
+		}
+		.name_w {
+			width: 200px;
+		}
+		.value_w {
+			width: 250px;
+		}
+	</style>	
+    
+    <apex:sectionHeader title="{!$ObjectType.Apttus__Agreement_Rule__c.Label}" />
+	
+	<apex:form >
+		<apex:pageBlock title="{!$ObjectType.Apttus__Agreement_Rule__c.Label & ' ' & $Label.apttus__Edit}">
+		
+			<apex:pageBlockButtons >
+				<apex:commandButton id="cmdButtonDoSave"  
+									action="{!save}" 
+									value="{!$Label.apttus__Save}" />
+				<apex:commandButton id="cmdButtonDoCancel" 
+									action="{!cancel}" 
+									value="{!$Label.apttus__Cancel}" />
+			</apex:pageBlockButtons>
+			
+			<apex:pageMessages />
+
+			<apex:pageBlockSection title="{!$Label.apttus__Information}" 
+								   columns="1"
+								   collapsible="false">
+				<apex:pageBlockTable value="{!selected}" 
+									 var="agmtRule"
+									 width="100%">
+					<apex:column headerValue="{!$Label.apttus__Active}">
+						<apex:inputField value="{!agmtRule.Apttus__Active__c}"/>
+					</apex:column>
+					<apex:column headerValue="{!$Label.apttus__Seq}">
+						<apex:inputField value="{!agmtRule.Apttus__Order__c}" styleClass="seq_w"/>
+					</apex:column>
+					<apex:column headerValue="{!$Label.apttus__Type}">
+						<apex:inputField value="{!agmtRule.Apttus__Rule_Type__c}"/>
+					</apex:column>
+					<apex:column headerValue="{!$Label.apttus__Object}">
+						<apex:inputField value="{!agmtRule.Apttus__Rule_Object__c}"/>
+					</apex:column>
+					<apex:column headerValue="{!$Label.apttus__Field}">
+						<apex:inputField value="{!agmtRule.Apttus__Rule_Field__c}" styleClass="name_w"/>
+					</apex:column>
+					<apex:column headerValue="[!$Label.Value}">
+						<apex:inputField value="{!agmtRule.Apttus__Rule_Value__c}" styleClass="value_w"/>
+					</apex:column>
+				</apex:pageBlockTable>
+
+			</apex:pageBlockSection>
+		</apex:pageBlock>
+	</apex:form>
+</apex:page>

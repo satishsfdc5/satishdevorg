@@ -1,0 +1,73 @@
+<!-- 
+    Apttus Approvals Management
+    ApprovalRequestAttachment
+     
+    @2010-2011 Apttus Inc. All rights reserved.
+
+ -->
+<apex:page standardController="Apttus_Approval__Approval_Request__c"
+	extensions="Apttus_Approval.ApprovalRequestAttachmentController" tabStyle="Attachment">
+
+	<apex:form >
+		<apex:outputText value="{!Apttus_Approval__Approval_Request__c.Apttus_Approval__Step_Name__c}" rendered="false" />
+		<apex:outputText value="{!Apttus_Approval__Approval_Request__c.Apttus_Approval__Approver_Comments__c}" rendered="false" />
+		
+		<apex:sectionHeader title="Attach File" />
+		<apex:pageBlock mode="edit" id="idAttachPageBlock">
+			<apex:pageBlockSection columns="1">
+				<p />
+				<apex:outputText style="font-weight: bold;" value="{!$Label.apttus_approval__AttachStepOne}" /> 
+				<apex:outputText value="{!$Label.apttus_approval__AttachStepOneHelp}" />
+				<apex:pageBlockSectionItem >
+					<apex:outputPanel styleClass="requiredBlock" layout="block">
+						<apex:inputFile value="{!attachmentFile.Body}"
+							fileName="{!attachmentFile.Name}" required="true" id="idFileInput" />
+						<br />
+						<apex:outputText value="{!errorMessage}" style="font-weight: bold; color: red" />
+					</apex:outputPanel>
+				</apex:pageBlockSectionItem> 
+				
+				<apex:outputText value="{!$Label.apttus_approval__Description}" /> 
+				<apex:outputPanel style="align:left">
+					<apex:inputField value="{!attachmentFile.Description}" style="width:300px"/>
+				</apex:outputPanel>
+				<p />
+				
+				<apex:outputText style="font-weight: bold;" value="{!$Label.apttus_approval__AttachStepTwo}" /> 
+				<apex:outputText value="{!$Label.apttus_approval__AttachStepTwoHelp}" /> 
+				<apex:outputText value="{!$Label.apttus_approval__AttachStepTwoHelp2}" />
+				<apex:pageBlockSectionItem >
+					<apex:outputPanel >
+						<apex:outputText value="" />
+						<apex:commandButton value="{!$Label.apttus_approval__AttachFile}" action="{!doSaveAttachment}" />
+					</apex:outputPanel>
+				</apex:pageBlockSectionItem>
+				<p />
+				
+				<apex:outputText style="font-weight: bold;" value="{!$Label.apttus_approval__AttachStepThree}" /> 
+				<apex:outputText value="{!$Label.apttus_approval__AttachStepThreeHelp}" /> 
+				<apex:pageBlockSectionItem >
+					<apex:outputPanel >
+						<apex:outputText value="" />
+						<apex:commandButton value="{!$Label.apttus_approval__Done}" action="{!doReturn}" />
+					</apex:outputPanel>
+				</apex:pageBlockSectionItem>
+				<p />
+				
+			</apex:pageBlockSection>
+
+			<apex:pageBlockSection columns="1" title="{!$Label.apttus_approval__NewAttachments}"
+				rendered="{!arAttachments.size > 0}">
+
+				<apex:pageBlockTable value="{!arAttachments}" var="arAttachment">
+
+					<apex:column value="{!arAttachment.Name}" />
+					<apex:column value="{!arAttachment.Description}" />
+					<apex:column value="{!arAttachment.BodyLength}" />
+
+				</apex:pageBlockTable>
+
+			</apex:pageBlockSection>
+		</apex:pageBlock>
+	</apex:form>
+</apex:page>

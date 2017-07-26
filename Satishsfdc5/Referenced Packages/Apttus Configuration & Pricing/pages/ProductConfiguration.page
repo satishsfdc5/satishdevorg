@@ -1,0 +1,15 @@
+<!-- 
+    Apttus Config & Pricing
+    ProductConfiguration
+     
+    @2010-2011 Apttus Inc. All rights reserved.
+
+ -->
+<apex:page controller="Apttus_Config2.ProductConfigurationController"
+		   showHeader="false" 
+		   sidebar="false" 
+		   cache="false" 
+		   tabStyle="Product2"
+		   action="{!doLoad}">
+
+</apex:page>

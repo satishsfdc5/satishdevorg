@@ -1,0 +1,2179 @@
+<!-- 
+    Apttus Config & Pricing
+    ViewConfig
+     
+    @2010-2011 Apttus Inc. All rights reserved.
+ -->
+<apex:page standardController="Apttus_Config2__ProductConfiguration__c"
+		   extensions="Apttus_Config2.ViewConfigController" 
+		   showHeader="false" 
+		   sidebar="false"
+		   cache="false" 
+		   tabstyle="Product2" 
+		   action="{!doLoad}">
+	
+	<script type="text/javascript" src="/soap/ajax/25.0/connection.js"></script>
+	<script type="text/javascript" src="/soap/ajax/25.0/apex.js"></script>
+	<apex:include pageName="Apttus_Config2__ConfigJSLibInclude" />
+	
+	<apex:includeScript value="{!URLFOR($Resource.Apttus_Config2__YUILibrary, '/yui/build/yahoo-dom-event/yahoo-dom-event.js')}" />
+	<apex:includeScript value="{!URLFOR($Resource.Apttus_Config2__YUILibrary, '/yui/build/container/container-min.js')}" />
+	<apex:includeScript value="{!URLFOR($Resource.Apttus_Config2__YUILibrary, '/yui/build/dragdrop/dragdrop-min.js')}" />
+	<apex:includeScript value="{!URLFOR($Resource.Apttus_Config2__YUILibrary, '/yui/build/animation/animation-min.js')}" />
+	<apex:includeScript value="{!URLFOR($Resource.Apttus_Config2__YUILibrary, '/yui/build/treeview/treeview-min.js')}" />
+	<apex:includeScript value="{!URLFOR($Resource.Apttus_Config2__YUILibrary, '/yui/build/menu/menu-min.js')}" />
+	<apex:includeScript value="{!URLFOR($Resource.Apttus_Config2__YUILibrary, '/yui/build/yahoo/yahoo-min.js')}" />
+	
+	<apex:stylesheet value="{!URLFOR($Resource.Apttus_Config2__YUILibrary, '/yui/build/assets/skins/sam/skin.css')}" />
+	<apex:stylesheet value="{!URLFOR($Resource.Apttus_Config2__YUILibrary, '/yui/build/treeview/assets/skins/sam/treeview.css')}" />
+	<apex:stylesheet value="{!URLFOR($Resource.Apttus_Config2__YUILibrary, '/yui/examples/treeview/assets/css/menu/tree.css')}" />
+	<apex:stylesheet value="{!URLFOR($Resource.Apttus_Config2__YUILibrary, '/yui/build/menu/assets/skins/sam/menu.css')}" />
+	<apex:stylesheet value="{!URLFOR($Resource.Apttus_Config2__YUILibrary, '/yui/build/container/assets/skins/sam/container.css')}" />
+	
+	<apex:stylesheet value="{!$Resource.Apttus_Config2__ConfigStyles}" />
+	
+	<style>
+		textarea {
+			width: 70%;
+		} 
+		
+	</style>
+	 
+	<apex:form id="idProductConfigurationForm">
+		
+		<!--  required fields -->
+		<apex:outputText value="{!Apttus_Config2__ProductConfiguration__c.Name}" rendered="false" />
+		<apex:outputText value="{!Apttus_Config2__ProductConfiguration__c.Apttus_Config2__Status__c}" rendered="false" />
+			
+		<script type="text/javascript">
+			
+			// Create a namespace for our custom functions
+			YAHOO.namespace("force.com");
+			
+			/**
+			 * Initializes the call
+			 */
+			function initCall() {
+			
+				try {
+					sforce.connection.sessionId = "{!$Api.Session_ID}"; //to avoid session timeout
+				} catch(e) {
+					cp_erroralert(cp_cERROR_UNKNOWN,e);
+					
+				}
+			
+			}
+			
+			// wait panel
+			
+			/**
+			 * Builds the wait panel.
+			 */
+		    YAHOO.force.com.buildWaitPanel = function() {
+		        document.body.className = document.body.className + " yui-skin-sam";
+		        YAHOO.force.com.waitPanel = new YAHOO.widget.Panel(
+		            "waitPanel",  // The id of our dialog container
+		            { 
+		                    width           :   "300px", // You can play with this until it's right
+		                    visible         :   false,   // Should be invisible when rendered
+		                    draggable       :   false,   // Make the dialog draggable
+		                    close           :   false,   // Don't include a close title button
+		                    modal           :   true,    // Make it modal
+		                    fixedCenter     :   true,    // Keep centered if window is scrolled
+		                    zindex          :   40,      // Make sure it's on top of everything
+		                    constraintoviewport: true,
+		                    
+		                    // This line adds the appear/disapper fade effect
+		                    effect			:   {effect:YAHOO.widget.ContainerEffect.FADE,duration:0.25}
+	        							
+		            }
+		        );
+		        
+		        // header
+		        YAHOO.force.com.waitPanel.setHeader("{!$Label.LoadingPage}");
+				// set image
+				YAHOO.force.com.waitPanel.setBody('<center><img src="{!URLFOR($Resource.Image_LoadingPage)}" /></center>');
+		        // Render the dialog to the document.body level of the DOM
+		        YAHOO.force.com.waitPanel.render(document.body);
+		        
+		    }
+	    	
+	    	/**
+			 * Callback when the action button is clicked
+			 */
+			function onActionClick() {
+				// show the modal panel
+				YAHOO.force.com.waitPanel.show();
+				// return false to allow the action to proceed
+				return false;
+				
+			}
+			
+			/**
+			 * Callback when the action is completed
+			 */
+			function onActionComplete() {
+				// hide the modal panel
+				YAHOO.force.com.waitPanel.hide();
+				
+			}
+			
+	    	// confirmation panel
+	    	
+			//YAHOO.force.com.myDialog = new Object();
+			//YAHOO.force.com.selectedLineNbr = new Object();
+						
+			/**
+			 * Build remove confirmation panel
+			 */
+			YAHOO.force.com.buildConfirmationPanel = function() {
+			
+		        document.body.className = document.body.className + " yui-skin-sam";
+		        YAHOO.force.com.confirmationPanel = new YAHOO.widget.Panel(
+		            "confirmationPanel",  // The id of our dialog container
+		            { 
+		                    width           :   "300px", // You can play with this until it's right
+		                    visible         :   false,   // Should be invisible when rendered
+		                    draggable       :   true,    // Make the dialog draggable
+		                    close           :   false,   // Don't include a close title button
+		                    modal           :   true,    // Make it modal
+		                    fixedCenter     :   true,    // Keep centered if window is scrolled
+		                    zindex          :   40,      // Make sure it's on top of everything
+		                    
+		                    // This line adds the appear/disapper fade effect
+		                    effect          :   {effect:YAHOO.widget.ContainerEffect.FADE,duration:0.25} 
+		            }
+		         );
+		        
+		        // Render the dialog to the document.body level of the DOM
+		        YAHOO.force.com.confirmationPanel.render(document.body);
+		        //YAHOO.force.com.confirmationPanel.render();
+		        
+		    }
+		    
+			/**
+			 * Show remove confirmation dialog
+			 */
+			YAHOO.force.com.showRemoveConfirmation = function(lineNumber) {
+				// save selected line item line number
+				YAHOO.force.com.selectedLineNbr = lineNumber;
+				
+				// show the confirmation panel
+				document.getElementById("confirmationPanel").style.display = "block";
+		        YAHOO.force.com.confirmationPanel.show();
+		        
+		    }
+	
+			/**
+			 * Handle remove product option group or product option component
+			 */
+			YAHOO.force.com.remove = function() {
+				// hide the confirmation panel
+		        YAHOO.force.com.confirmationPanel.hide();
+		        // show modal panel
+				YAHOO.force.com.waitPanel.show();
+				// delete the line item
+	    		invokeDoDeleteLineItem(YAHOO.force.com.selectedLineNbr);
+				    			
+			}
+ 
+		    // miscellaneous line item panel
+	    		
+			/**
+			 * Builds the miscellaneous item panel
+			 */
+			YAHOO.force.com.buildMiscItemPanel = function() {
+				//document.body.className = document.body.className + " yui-skin-sam";
+		        
+		        YAHOO.force.com.miscItemPanel = new YAHOO.widget.Panel(
+		            "miscItemPanel",  // The id of our dialog container
+		            { 
+		                    width           :   "400px", // You can play with this until it's right
+		                    visible         :   false,   // Should be invisible when rendered
+		                    draggable       :   true,    // Make the dialog draggable
+		                    close           :   false,   // Don't include a close title button
+		                    modal           :   true,    // Make it modal
+		                    fixedCenter     :   true,    // Keep centered if window is scrolled
+		                    zindex          :   40,      // Make sure it's on top of everything
+		                    
+		                    // This line adds the appear/disapper fade effect
+		                    effect          :   {effect:YAHOO.widget.ContainerEffect.FADE,duration:0.25} 
+		            }
+		         );
+		        
+		        // Render the dialog to the document.body level of the DOM
+		        YAHOO.force.com.miscItemPanel.render(document.body);
+		       
+		    }
+    		
+    		/**
+			 * Callback when the add miscellaneous item button is clicked
+			 */
+			function onAddMiscItemClick() {
+				
+				// reset panel field values
+				fldMiscChargeType.value = "";
+				fldMiscDescription.value = "";
+				fldMiscAmount.value = "";
+				
+				// show the modal panel
+				document.getElementById("miscItemPanel").style.display = "block";
+				YAHOO.force.com.miscItemPanel.show();
+				
+			}		
+			
+			/**
+			 * Callback when the ok action button is clicked
+			 */
+			function onOkActionClick() {
+				// hide the miscellaneous line item panel
+		        YAHOO.force.com.miscItemPanel.hide();
+		        // show modal panel
+				YAHOO.force.com.waitPanel.show();
+				// return false to allow the action to proceed
+				return false;
+				
+			}
+			
+			/**
+			 * Callback when the ok action is completed
+			 */
+			function onOkActionComplete() {
+				// hide the modal panel
+				YAHOO.force.com.waitPanel.hide();
+				
+			}
+			
+			// reprice wait panel
+			
+			/**
+			 * Builds the reprice wait panel.
+			 */
+		    YAHOO.force.com.buildRepriceWaitPanel = function() {
+		        document.body.className = document.body.className + " yui-skin-sam";
+		        YAHOO.force.com.repriceWaitPanel = new YAHOO.widget.Panel(
+		            "repriceWaitPanel",  // The id of our dialog container
+		            { 
+		                    width           :   "300px", // You can play with this until it's right
+		                    visible         :   false,   // Should be invisible when rendered
+		                    draggable       :   false,   // Make the dialog draggable
+		                    close           :   false,   // Don't include a close title button
+		                    modal           :   true,    // Make it modal
+		                    fixedCenter     :   true,    // Keep centered if window is scrolled
+		                    zindex          :   40,      // Make sure it's on top of everything
+		                    constraintoviewport: true,
+		                    
+		                    // This line adds the appear/disapper fade effect
+		                    effect			:   {effect:YAHOO.widget.ContainerEffect.FADE,duration:0.25}
+	        							
+		            }
+		        );
+		        
+		        // header
+		        YAHOO.force.com.repriceWaitPanel.setHeader("{!$Label.Repricing}");
+				// set image
+				YAHOO.force.com.repriceWaitPanel.setBody('<center><img src="{!URLFOR($Resource.Image_LoadingPage)}" /></center>');
+		        // Render the dialog to the document.body level of the DOM
+		        YAHOO.force.com.repriceWaitPanel.render(document.body);
+		        
+		    }
+	    	
+	    	/**
+			 * Callback when the reprice action button is clicked
+			 */
+			function onRepriceAllClick() {
+				// show the modal panel
+				YAHOO.force.com.repriceWaitPanel.show();
+				// return false to allow the action to proceed
+				return false;
+				
+			}
+			
+			/**
+			 * Reprices all line items in the current configuration
+			 */
+			function doRepriceAll() {
+				
+				// get parameters
+				// current configuration id
+				var configId = "{!configurationId}";
+			
+				try {
+					
+					// STEP I - initialize the call
+					initCall();
+				
+					// STEP II - get summary line items from the configuration
+					var result = getSummaryLineItemsForConfiguration(configId);
+					
+					var numItems = result.length;
+					
+					// STEP III - Reprice each summary line item
+					for (var i = 0; i < numItems; i++) {
+						// compute base price
+						computeBasePriceForItemColl(configId, result[i].LineNumber);
+						
+					}
+					
+					// STEP IV - Compute total price
+					computeTotalPriceForCart(configId);
+					
+				} catch(ex) {
+					// hide modal panel
+					YAHOO.force.com.repriceWaitPanel.hide();
+					// display the error
+					cp_erroralert(cp_cERROR_UNKNOWN, ex);
+					
+				} finally {
+					// reload the page
+					doReload();
+					
+				}
+				
+			}
+			
+			/**
+             * Reprices the given line item
+             */
+            function doCheckAndRepriceLineItems() {
+                
+                 // register to invoke the function after the page load
+                var isItemPricePending = "{!IsPricePending}";
+            	var isAdjustmentsPending = "{!IsAdjustmentsPending}";
+            	
+                if (isItemPricePending.toLowerCase() == 'false' && 
+                	isAdjustmentsPending.toLowerCase() == 'false') {
+                    // no pending price or adjustments. abort
+                    return;
+                    
+                }
+                
+                // get parameters
+                // current configuration id
+                var configId = "{!configurationId}";
+        
+                try {
+                	
+                	if (isItemPricePending.toLowerCase() == 'true') {
+	                    // STEP I - get summary line items from the configuration
+	                    var numItems = "{!NumOfLineItemsAwaitingPrice}";
+	                   
+	                    // STEP II - Reprice the line item
+	                    if (numItems > 0) {
+	                        //alert(numItems);
+	                        // show the modal panel
+	                        YAHOO.force.com.repriceWaitPanel.show();
+	                        // reprice line item
+	                        doRepriceLineItem(configId, numItems, 0);
+	                        
+	                    } else if (isAdjustmentsPending.toLowerCase() == 'true') {
+							// show the modal panel
+		                    YAHOO.force.com.repriceWaitPanel.show();
+		                    // apply adjustments
+		                    doApplyAdjustments();
+						
+						} else {
+	                     	// show the modal panel
+	                    	YAHOO.force.com.repriceWaitPanel.show();
+	                    	// compute total price
+	                    	doComputeTotalPrice(configId);
+	                    
+	                    }
+	                    
+					} else if (isAdjustmentsPending.toLowerCase() == 'true') {
+						// show the modal panel
+	                    YAHOO.force.com.repriceWaitPanel.show();
+	                    // apply adjustments
+		                doApplyAdjustments();
+					
+					}
+					
+                } catch(ex) {
+                    // hide modal panel
+                    YAHOO.force.com.repriceWaitPanel.hide();
+                    // display the error
+                    cp_erroralert(cp_cERROR_UNKNOWN, ex);
+                
+                } 
+                
+            }
+            
+            /**
+             * Reprices the given line item
+             */
+            function doRepriceLineItem(configId, numItems, currIndex) {
+                
+                try {
+                    
+                    if (currIndex < numItems) {
+                    
+                        // STEP I - initialize the call
+                        {!ClassName}.doComputeBasePriceForNextItemColl(configId, function(result, event) {
+                        
+                            try {
+                                // check response status
+                                if (event.status) {
+                                    // ok response, increment the index
+                                    currIndex++;
+                                    // check if done
+                                    if (currIndex < numItems) {
+                                        // more to go
+                                        doRepriceLineItem(configId, numItems, currIndex);
+                                        
+                                    } else {
+                                        // compute total price
+                                        doComputeTotalPrice(configId);
+                                    
+                                    }
+                                    
+                                } else {
+                                    // throw exception
+                                    alert(event.message);
+                                    // hide modal panel
+                    				YAHOO.force.com.repriceWaitPanel.hide();
+                                    // reload the page
+                                    //doReload();
+                                
+                                }
+                                
+                            } catch(ex) {
+                                // hide modal panel
+                                YAHOO.force.com.repriceWaitPanel.hide();
+                                // display the error
+                                cp_erroralert(cp_cERROR_UNKNOWN, ex);
+                                // reload the page
+                                //doReload();
+                                  
+                            } 
+                            
+                        }, {escape:true});
+                      
+                     }
+                      
+                } catch(ex) {
+                     // hide modal panel
+                    YAHOO.force.com.repriceWaitPanel.hide();
+                    // display the error
+                    cp_erroralert(cp_cERROR_UNKNOWN, ex);
+                    
+                } 
+                
+            }
+            
+            /**
+             * Reprices the given line item
+             */
+            function doRepriceLineItemColl(configId, lineNumber) {
+ 
+                // STEP I - initialize the call
+                {!ClassName}.doComputeNetPriceForItemColl(configId, lineNumber, function(result, event) {
+                
+                    try {
+	                     // check response status
+	                     if (event.status) {
+	                         // ok response (reload the page)
+	                         
+	                     } else {
+	                         // throw exception
+	                         alert(event.message);
+	                         
+	                     } 
+	                 } catch(ex) {
+	                        // display the error
+	                        cp_erroralert(cp_cERROR_UNKNOWN, ex);
+	                        
+	                 } finally {
+	                    // reload the page
+	                    doReload();
+	                        
+	                 }    
+                    
+                }, {escape:true});
+                       
+            }
+            
+            /**
+             * Computes the total price for the cart
+             */
+            function doComputeTotalPrice(configId) {
+        
+                // STEP I - initialize the call
+                 {!ClassName}.doComputeTotalPriceForCart(configId, function(result, event) {
+                 
+                    try {
+                        // check response status
+                        if (event.status) {
+                            // ok response (reload the page)
+                            
+                        } else {
+                            // throw exception
+                            alert(event.message);
+                            
+                        } 
+                    } catch(ex) {
+                           // display the error
+                           cp_erroralert(cp_cERROR_UNKNOWN, ex);
+                           
+                    } finally {
+                       // reload the page
+                       doReload();
+                           
+                    }   
+                    
+                }, {escape:true});
+                       
+            }
+            
+            /**
+             * Clones the given [rimary line item
+             */
+            function doCopyLineItem(lineNumber) {
+                
+                try {
+                    
+                    // current configuration id
+                	var configId = "{!configurationId}";
+                    // show the modal panel
+                    YAHOO.force.com.waitPanel.show();
+                        
+                    // STEP I - initialize the call
+                    {!ClassName}.doClonePrimaryItemColl(configId, lineNumber, function(result, event) {
+                    
+                        try {
+                            // check response status
+                            if (event.status) {
+                                // ok response, compute total price
+                                doRepriceLineItemColl(configId, event.result);
+                                
+                            } else {
+                                // throw exception
+                                alert(event.message);
+                                // hide modal panel
+                				YAHOO.force.com.waitPanel.hide();
+                                // reload the page
+                                //doReload();
+                            
+                            }
+                            
+                        } catch(ex) {
+                            // hide modal panel
+                            YAHOO.force.com.waitPanel.hide();
+                            // display the error
+                            cp_erroralert(cp_cERROR_UNKNOWN, ex);
+                            // reload the page
+                            //doReload();
+                              
+                        } 
+                        
+                    }, {escape:true});
+                      
+                } catch(ex) {
+                     // hide modal panel
+                    YAHOO.force.com.waitPanel.hide();
+                    // display the error
+                    cp_erroralert(cp_cERROR_UNKNOWN, ex);
+                    
+                } 
+                
+            }
+            
+			/**
+			 * Builds the product detail panel
+			 */
+			YAHOO.force.com.buildProductDetailPanel = function() {
+				//document.body.className = document.body.className + " yui-skin-sam";
+		        
+		        YAHOO.force.com.productDetailPanel = new YAHOO.widget.Panel(
+		            "productDetailPanel",  // The id of our dialog container
+		            { 
+	                    	width           :   "600px", // You can play with this until it's right
+		                    fixedcenter 	:	"contained",
+		                    visible         :   false,   // Should be invisible when rendered
+		                    draggable       :   true,    // Make the dialog draggable
+		                    modal           :   true,    // Make it modal
+		                    close			:	true,
+		                    zindex          :   40,      // Make sure it's on top of everything
+		                    		                    
+		                    // This line adds the appear/disapper fade effect
+		                    effect          :   {effect:YAHOO.widget.ContainerEffect.FADE,duration:0.25} 
+		            }
+		         );
+		        
+		        // Render the dialog to the document.body level of the DOM
+		        YAHOO.force.com.productDetailPanel.render();
+		        
+		    }		
+    		
+    		/**
+			 * Get mouseover product information
+			 */
+			function getProductDetail(productId) {
+				
+				document.getElementById('ctxProductName').innerHTML = "{!$Label.LoadingPage}";
+			    document.getElementById('ctxProductDescription').innerHTML = '';
+			        
+				{!ClassName}.getProductDescription(productId, function(result, event){
+				    if (event.status) {
+				        document.getElementById('ctxProductName').innerHTML = result.Name;
+				        if(result.Description != undefined){
+				        	document.getElementById('ctxProductDescription').innerHTML = result.Description;
+						}
+					} else {
+				    	document.getElementById('ctxProductDescription').innerHTML = event.message;
+					}
+		       	}, {escape:true});
+				
+				showProductDetailPanel();
+				
+			}			
+   		
+    		/**
+			 * Callback when mouseover product information icon
+			 */
+			function showProductDetailPanel() {
+				
+				// show the modal panel
+				document.getElementById("productDetailPanel").style.display = "block";				
+				YAHOO.force.com.productDetailPanel.show();
+				
+			}	
+					
+		    // Function called when the DOM is ready to create the dialog,
+	    	// render the dialog into the document body, add our dialog skin
+	    	// css to the body tag, and wire up the buttons on our dialog   
+			YAHOO.force.com.onDOMReady = function() {
+				// build the confirmation panel
+				YAHOO.force.com.buildConfirmationPanel();
+				// build the misc item panel
+				YAHOO.force.com.buildMiscItemPanel();
+				// build the wait panel
+				YAHOO.force.com.buildWaitPanel();
+				// build the reprice wait panel
+				YAHOO.force.com.buildRepriceWaitPanel();
+				// build the product detail panel
+				YAHOO.force.com.buildProductDetailPanel();
+				// check and reprice pending line items
+                doCheckAndRepriceLineItems();
+				
+			}
+			
+		    // build the tree as soon as the DOM is in a usable state
+			YAHOO.util.Event.onDOMReady(YAHOO.force.com.onDOMReady);   	
+			
+			//hide message and call doHideMessage function to update the appliedActionInfo record HideMessage field
+			function aptHideMessage(ele, actionInfoId){
+				if(ele.parentNode != undefined){
+					ele.parentNode.style.visibility = "hidden";
+				}
+				invokeDoHideMessage(actionInfoId);
+			}	
+			
+		</script>
+		
+		<table style="width: 100%; background-color: #F7F7F7;" width="100%">
+			<tr>
+				<td>
+				<table width="100%">
+					<tr style="background-color: #FFFFFF;">
+						<td><apex:outputPanel style="text-align: left;" layout="block">
+							<apex:panelGrid columns="1">
+								<apex:panelGroup >
+									<apex:outputText escape="false" 
+													 value="&nbsp;{!fromBizType}:"
+													 style="text-transform:uppercase;font-weight:bold;color:#5487B9" />
+									&nbsp;
+									<apex:outputField value="{!ConfigSO[BOLookupFieldName]}" 
+													  rendered="{!ShowBOLookupField}" />
+													  
+									<apex:outputText escape="false"
+													 value="&nbsp;{!fromBizTitle}&nbsp;&nbsp;"
+													 style="font-weight:bold;color:#5487B9;" 
+													 rendered="{!ShowBOTitle}" />
+													 
+								</apex:panelGroup>
+							</apex:panelGrid>
+						</apex:outputPanel></td>
+						<td> 
+						<apex:outputPanel style="text-align: right;" layout="block">
+							<apex:image url="{!$Resource.Apttus_Config2__Apttus_Logo}" title="" alt="" />
+						</apex:outputPanel></td>
+					</tr>
+				</table>
+				</td>
+			</tr>
+			<tr>
+				<td>
+				<table width="100%">
+					<tr>
+						<td>
+							<apex:outputPanel id="idTopNavStage"
+											  style="text-align: left;" 
+											  layout="block">
+
+									<apex:panelGrid columns="1" style="line-height:80%">
+
+										<apex:panelGroup >
+
+											<apex:outputText escape="false" 
+															 value="{!$Label.apttus_config2__STEP}"
+															 style="font-weight:bold;font-size:90%" />
+
+											&nbsp;&nbsp;
+											<apex:outputText escape="false"
+															 value="&nbsp;&nbsp;{!$Label.StageSelect}&nbsp;&nbsp;"
+															 styleClass="aptsConfigStage" />
+				
+											&nbsp;&nbsp;
+											<apex:image url="{!$Resource.Apttus_Config2__Chevron}" title="" alt="" />
+											&nbsp;&nbsp;
+											
+				
+											<apex:outputText escape="false"
+															 value="&nbsp;&nbsp;{!$Label.StageConfigure}&nbsp;&nbsp;"
+															 styleClass="aptsConfigStage" />
+				
+											&nbsp;&nbsp;
+											<apex:image url="{!$Resource.Apttus_Config2__Chevron}" title="" alt="" />
+											&nbsp;&nbsp;
+				
+											<apex:outputText escape="false"
+															 value="&nbsp;&nbsp;{!$Label.StagePrice}&nbsp;&nbsp;"
+															 styleClass="aptsCurrentConfigStage" 
+															 rendered="{!showView && NOT(skipReview)}" />
+											<apex:outputText escape="false"
+															 value="&nbsp;&nbsp;{!$Label.StagePrice}&nbsp;&nbsp;"
+															 styleClass="aptsConfigStage"  
+															 rendered="{!showFinalize || skipReview}" />
+																
+											&nbsp;&nbsp;
+											<apex:image url="{!$Resource.Apttus_Config2__Chevron}" title="" alt="" />
+											&nbsp;&nbsp;
+
+											<apex:outputText escape="false"
+															 value="&nbsp;&nbsp;{!$Label.StageFinalize}&nbsp;&nbsp;"
+															 styleClass="aptsConfigStage"  
+															 rendered="{!showView && NOT(skipReview)}" />
+											<apex:outputText escape="false"
+															 value="&nbsp;&nbsp;{!$Label.StageFinalize}&nbsp;&nbsp;"
+															 styleClass="aptsCurrentConfigStage"  
+															 rendered="{!showFinalize || skipReview}" />
+								
+											<b><apex:actionStatus id="idStatusSelect" 
+																  startText="{!$Label.apttus_config2__StatusMessageUpdatingPage}..." /></b>
+										</apex:panelGroup>
+
+									</apex:panelGrid>
+
+								</apex:outputPanel>
+							</td>
+								
+							<td>
+								<apex:outputPanel id="idTopNavActions" 
+												  style="text-align: right;"
+												  layout="block" >
+									<apex:commandButton value="{!$Label.apttus_config2__Abandon}"
+														action="{!doAbandon}" 
+														immediate="true"
+														style="background-color:#657383;background-image:none;color:white;"/>
+									&nbsp;
+								</apex:outputPanel>
+				
+							</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+		</table>
+
+		<apex:pageBlock id="idViewBlock">
+			
+			<apex:outputPanel id="idErrorMsg" >
+				<apex:pageMessages />
+				<c:RuleMessageDisplay id="idRuleMessageComponent" configId="{!Id}" isInCart="true"/>	
+			</apex:outputPanel>
+			
+			<apex:pageBlockButtons location="top" id="idPageButtons" >
+						
+				<apex:commandButton value="{!$Label.apttus_config2__AddMoreProducts}"
+									action="{!doAddProducts}"
+									onclick="onActionClick();" 
+									oncomplete="onActionComplete();" />
+					
+				<apex:commandButton value="{!$Label.apttus_config2__BackToPricing}"
+									action="{!doPricing}" 
+									rendered="{!showFinalize}" 
+									onclick="onActionClick();" 
+									oncomplete="onActionComplete();" 
+								    rerender="idTopNavStage, idTopNavActions, idViewBlock"/>
+				
+				<apex:commandButton value="{!$Label.apttus_config2__AddMiscellaneousItem}" 
+        					  	    onclick="onAddMiscItemClick();" 
+        					  	    immediate="true" 
+        					  	    rendered="{!isActionAddMiscItemEnabled}"
+        					  	    reRender="dummy" />
+        					  	    	
+				<apex:commandButton value="{!$Label.apttus_config2__ApplyAdjustments}"
+									rendered="{!showView}" 
+									action="{!doApplyAdjustments}"
+									onclick="onActionClick();" 
+									oncomplete="onActionComplete();"
+									reRender="idViewBlock" />
+				
+				<apex:commandButton value="{!$Label.apttus_config2__RepriceAll}"
+									rendered="{!showView}" 
+									action="{!doSaveAll}"
+									onclick="onRepriceAllClick();" 
+									oncomplete="doRepriceAll();"
+									rerender="dummy" />
+									
+				<apex:commandButton value="{!$Label.apttus_config2__ReviewAndFinalize}" 
+									rendered="{!showView && NOT(skipReview)}"
+									action="{!doSaveAndNext}" 
+									status="idStatusSelect"
+									rerender="idErrorMsg, idTopNavStage, idTopNavActions, idViewBlock" />
+				
+				<apex:commandButton value="{!$Label.apttus_config2__Finalize}"
+									action="{!doFinalize}"
+									onclick="onActionClick();" 
+									oncomplete="onActionComplete();"
+									reRender="idErrorMsg" 
+									rendered="{!showFinalize || skipReview}" />
+											
+			</apex:pageBlockButtons>
+			
+			<table style="width:100%">
+				<tr >
+					<td style="width:33%">
+					</td>
+					<td style="width:33%">
+						<apex:outputPanel rendered="{!showFinalize}">
+							<apex:outputText value="{!$Label.apttus_config2__CheckItemsBeforeFinalize}" 
+											 style="font-weight:bold;color:#5487B9;text-transform:uppercase"/>
+						</apex:outputPanel>
+					</td>
+					<td style="width:33%">
+					</td>
+				</tr>
+			</table>
+			
+			<!--  LINE ITEMS -->
+			
+			<apex:tabPanel id="idTabPanel" 
+						   switchType="ajax" 
+						   value="{!curTabSelection}"
+						   inactiveTabClass="inactiveTab" 
+						   tabClass="activeTab"
+						   contentClass="tabContentClass" >
+						   
+				<apex:tab id="idSummaryTab"
+						  label="{!$Label.apttus_config2__Summary}" 
+						  name="viewSummaryTab" 
+						  ontabenter="onActionClick();" 
+						  oncomplete="onActionComplete();" >
+					
+					<table style="width: 100%">
+                        <tr>
+                            <td style="width: 100%" >
+                                <apex:outputPanel layout="block" style="text-align: center;" >
+                                    <apex:commandLink action="{!doToggleDuration}" 
+                                            value="{!$Label.apttus_config2__ShowDuration}" 
+                                            style="color:blue;" 
+                                            rendered="{!isActionShowDurationEnabled && NOT(showDuration)}"
+                                            reRender="idTabPanel"  
+                                            onclick="onActionClick();" 
+                                            oncomplete="onActionComplete();"/>
+                                    &nbsp;
+                                    <apex:commandLink action="{!doToggleDuration}" 
+                                            value="{!$Label.apttus_config2__HideDuration}" 
+                                            style="color:blue;" 
+                                            rendered="{!isActionShowDurationEnabled && showDuration}"
+                                            reRender="idTabPanel"  
+                                            onclick="onActionClick();" 
+                                            oncomplete="onActionComplete();"/>
+                                </apex:outputPanel>
+                            </td>
+                        </tr>       
+                    </table>                 
+                    	  
+					<apex:outputPanel >
+						<apex:pageBlockTable width="100%" 
+											 value="{!summaryLineItemList}" 
+											 var="summaryItem" 
+											 rules="rows" 
+											 rowClasses="oddRow, evenRow" 
+											 headerClass="aptsColHead" >
+							
+							<apex:column rendered="{!showView}" style="text-align:left" >
+								<apex:facet name="header">{!$Label.apttus_config2__Actions}</apex:facet>
+								<apex:PanelGrid columns="4">
+								
+									<!-- Exclamation mark to show config status pending -->
+									<apex:commandLink action="{!doConfigure}" 
+													  rendered="{!(summaryItem.lineItemSO.ConfigStatus__c == ConfigStatusPending || summaryItem.lineItemSO.ConstraintCheckStatus__c == ConfigStatusPending) && 
+													  			  (summaryItem.lineItemSO.LineType__c == LineTypeProduct) && 
+													  			  (summaryItem.lineItemSO.IsPrimaryLine__c) && 
+													  			  ((summaryItem.lineItemSO.hasAttributes__c) || 
+													  			   (summaryItem.lineItemSO.hasOptions__c))}"
+													  reRender="idPrimaryLineItems" 
+													  onclick="onActionClick();" 
+													  oncomplete="onActionComplete();" >
+													  
+										<apex:param name="param1" 
+													assignTo="{!lineItemSOId}"
+													value="{!summaryItem.lineItemSO.Id}" />
+										<apex:image url="{!$Resource.Apttus_Config2__Image_ConfigStatusPending}" 
+				                       				title="{!$Label.apttus_config2__Configure}"
+				                       				alt="{!$Label.apttus_config2__Configure}" />   
+									</apex:commandLink>
+									
+									<!-- Icon for Configure command -->
+									<apex:commandLink action="{!doConfigure}" 
+													  rendered="{!(summaryItem.lineItemSO.LineType__c == LineTypeProduct) && 
+													  			  (summaryItem.lineItemSO.IsPrimaryLine__c) && 
+													  			  ((summaryItem.lineItemSO.hasAttributes__c) || 
+													  			   (summaryItem.lineItemSO.hasOptions__c))}"
+													  reRender="idPrimaryLineItems" 
+													  onclick="onActionClick();" 
+													  oncomplete="onActionComplete();" >
+													  
+										<apex:param name="param1" 
+													assignTo="{!lineItemSOId}"
+													value="{!summaryItem.lineItemSO.Id}" />
+										<apex:image url="{!$Resource.Apttus_Config2__Image_Configure}" 
+				                       				title="{!$Label.apttus_config2__Configure}"
+				                       				alt="{!$Label.apttus_config2__Configure}" />   
+									</apex:commandLink>
+									
+									<!-- Icon for copy command link -->
+									<apex:commandLink onclick="doCopyLineItem('{!summaryItem.lineItemSO.Apttus_Config2__LineNumber__c}');" 
+													  rendered="{!summaryItem.lineItemSO.Apttus_Config2__IsPrimaryLine__c}" 
+													  immediate="true" 
+													  reRender="dummy">
+													  
+										<apex:image url="{!$Resource.Apttus_Config2__Image_CopyLineItem}" 
+				                       				title="{!$Label.apttus_config2__Copy}" 
+				                       				alt="{!$Label.apttus_config2__Copy}" />   
+				                       				
+									</apex:commandLink>
+															
+									<!-- Icon for remove command link -->
+									<apex:commandLink onclick="YAHOO.force.com.showRemoveConfirmation('{!summaryItem.lineItemSO.Apttus_Config2__LineNumber__c}');" 
+													  rendered="{!(summaryItem.lineItemSO.IsPrimaryLine__c) && 
+													  			  (summaryItem.lineItemSO.AllowRemoval__c)}" 
+													  reRender="idErrorMsg" 
+													  immediate="true"
+													  style="color:blue;" >
+													  
+										<apex:image url="{!$Resource.Apttus_Config2__Image_Remove}" 
+				                       				title="{!$Label.apttus_config2__Remove}" 
+				                       				alt="{!$Label.apttus_config2__Remove}" />   
+				                       				
+									</apex:commandLink>
+									
+								</apex:PanelGrid>
+							</apex:column>
+							
+							<apex:column style="width: 10%; max-width: 15%;" 
+										 rendered="{!isColumnTotalingGroupEnabled && isCategorySummary}" >
+								<!-- <apex:facet name="header">{!$Label.apttus_config2__Group}</apex:facet> -->
+								<apex:facet name="header">{!$ObjectType.Apttus_Config2__LineItem__c.Fields.Apttus_Config2__AdHocGroupId__c.Label}</apex:facet>
+								<apex:outputField value="{!summaryItem.lineItemSO.Apttus_Config2__AdHocGroupId__c}"
+												  rendered="{!(summaryItem.lineItemSO.Apttus_Config2__LineType__c == LineTypeProduct)}" />
+							</apex:column>
+							
+							<apex:column style="width: 10%; max-width: 15%;" 
+										 rendered="{!isColumnTotalingGroupEnabled && isAdHocSummary}">
+								<apex:facet name="header">{!$ObjectType.Apttus_Config2__LineItem__c.Fields.Apttus_Config2__AdHocGroupId__c.Label}</apex:facet>
+								<apex:selectList value="{!summaryItem.lineItemSO.Apttus_Config2__AdHocGroupId__c}"
+												 rendered="{!showView}" 
+												 size="1">
+									<apex:selectOptions value="{!totalingGroupItems}" />
+								</apex:selectList>
+								<apex:outputField value="{!summaryItem.lineItemSO.Apttus_Config2__AdHocGroupId__c}"  style="overflow: hidden;"
+												  rendered="{!showFinalize}" />
+							</apex:column>
+							
+							<apex:column style="width: 5%; max-width: 10%;" rendered="{!IsAssetEnabled}">
+                                <apex:facet name="header">{!$ObjectType.Apttus_Config2__LineItem__c.Fields.Apttus_Config2__LineStatus__c.Label}</apex:facet>
+                                <apex:outputField value="{!summaryItem.lineItemSO.Apttus_Config2__LineStatus__c}" rendered="{!summaryItem.lineItemSO.Apttus_Config2__IsPrimaryLine__c}"/>
+                                <apex:outputPanel rendered="{!NOT(summaryItem.lineItemSO.AssetLineItemId__c == null)
+                                                            && (summaryItem.lineItemSO.LineType__c == LineTypeProduct)
+                                                            && (summaryItem.lineItemSO.IsPrimaryLine__c)
+                                                }"> 
+                                    <br/>
+                                    <br/>
+                                    <span>{!$Label.apttus_config2__Asset}-</span><apex:outputField value="{!summaryItem.lineItemSO.Apttus_Config2__AssetLineItemId__c}"/>
+                                </apex:outputPanel>
+                                
+                            </apex:column>
+                            
+							<apex:column style="width: 20%; max-width: 30%;">
+								<apex:facet name="header">{!$ObjectType.Apttus_Config2__LineItem__c.Fields.Apttus_Config2__ProductId__c.Label}</apex:facet>
+								
+								<apex:commandLink rerender="dummy">
+									<apex:image url="{!$Resource.Apttus_Config2__Image_Info}"
+												onclick="getProductDetail('{!summaryItem.lineItemSO.Apttus_Config2__ProductId__c}');"
+												rendered="{!(summaryItem.lineItemSO.LineType__c == LineTypeProduct) &&  
+															(summaryItem.lineItemSO.IsPrimaryLine__c)}" />
+								</apex:commandLink>						
+								&nbsp;
+								<apex:outputField value="{!summaryItem.lineItemSO.Apttus_Config2__ProductId__c}" 
+												  rendered="{!(summaryItem.lineItemSO.LineType__c == LineTypeProduct) &&  
+														      (summaryItem.lineItemSO.IsPrimaryLine__c)}" />
+							</apex:column>
+
+							<apex:column rendered="{!isColumnChargeTypeEnabled}" >
+								<apex:facet name="header">
+									<apex:outputText >{!$Label.Charge}<br></br>{!$Label.apttus_config2__Type}</apex:outputText>
+								</apex:facet>
+								<apex:outputField value="{!summaryItem.lineItemSO.Apttus_Config2__ChargeType__c}" />
+							</apex:column>
+							
+							<apex:column style="text-align:right"
+										 rendered="{!isColumnBasePriceEnabled}" >
+								<apex:facet name="header">
+									<apex:outputText >{!$Label.Base}<br></br>{!$Label.Price}</apex:outputText>
+								</apex:facet>
+								<apex:outputField value="{!summaryItem.lineItemSO.Apttus_Config2__BasePrice__c}" 
+												  rendered="{!IsMultiCurrency}" />
+								<apex:outputText value="{0,number,currency}" 
+												 rendered="{!NOT(IsMultiCurrency)}" >
+									<!-- <apex:param value="{!summaryItem.AdjustedBasePrice}" /> -->
+									<apex:param value="{!summaryItem.lineItemSO.Apttus_Config2__BasePrice__c}" />
+								</apex:outputText>
+							</apex:column>
+							
+							<apex:column rendered="{!isColumnOptionPriceEnabled}" >
+								<apex:facet name="header">
+									<apex:outputText >{!$Label.Option}<br></br>{!$Label.Price}</apex:outputText>
+								</apex:facet>
+								<apex:outputField value="{!summaryItem.lineItemSO.Apttus_Config2__OptionPrice__c}" 
+												  rendered="{!IsMultiCurrency}" />
+								<apex:outputText value="{0,number,currency}" 
+												 rendered="{!NOT(IsMultiCurrency)}" >
+									<apex:param value="{!summaryItem.lineItemSO.Apttus_Config2__OptionPrice__c}" />
+								</apex:outputText>
+							</apex:column>
+							
+							<apex:column style="text-align:center" 
+										 rendered="{!isColumnQuantityEnabled}" >
+								<apex:facet name="header">{!$ObjectType.Apttus_Config2__LineItem__c.Fields.Apttus_Config2__Quantity__c.Label}</apex:facet>
+								<apex:inputField value="{!summaryItem.lineItemSO.Apttus_Config2__Quantity__c}"
+												 onkeypress="return aptIgnoreEnterKey(event);"	
+												 rendered="{!showView && 
+												 			 summaryItem.lineItemSO.IsQuantityModifiable__c && 
+												 			((summaryItem.lineItemSO.LineType__c == LineTypeProduct) ||
+												 			 (summaryItem.lineItemSO.LineType__c == LineTypeOption))}" 
+												 style="width:60px" />
+								<apex:outputText value="{0,number}" 
+												 rendered="{!showFinalize && 
+												 			((summaryItem.lineItemSO.LineType__c == LineTypeProduct) ||
+												 			 (summaryItem.lineItemSO.LineType__c == LineTypeOption))}" >
+									<apex:param value="{!summaryItem.lineItemSO.Apttus_Config2__Quantity__c}" />
+								</apex:outputText>
+								<br />
+								<apex:commandLink value="{!$Label.apttus_config2__Reprice}" 
+												  style="color:blue"
+												  action="{!doRepriceLineItem}" 
+												  reRender="idErrorMsg, idTabPanel"
+												  onclick="onActionClick();" 
+												  oncomplete="onActionComplete();" 
+												  rendered="{!showView && 
+												 			 (summaryItem.lineItemSO.LineType__c == LineTypeProduct) &&
+												 			 (summaryItem.lineItemSO.IsPrimaryLine__c)}" >
+									<apex:param name="param1" 
+												assignTo="{!lineItemLineNbr}"
+												value="{!summaryItem.lineItemSO.Apttus_Config2__LineNumber__c}" />
+								</apex:commandLink>
+							</apex:column>
+							
+							<apex:column rendered="{!isColumnUOMEnabled}" >
+								<apex:facet name="header">{!$Label.apttus_config2__UOM}</apex:facet>
+								<apex:outputField value="{!summaryItem.lineItemSO.Apttus_Config2__PriceUom__c}" />
+							</apex:column>
+							
+							<apex:column style="text-align:right" 
+										 rendered="{!showDuration}" >
+								<apex:facet name="header">{!$ObjectType.Apttus_Config2__LineItem__c.Fields.Apttus_Config2__StartDate__c.Label}</apex:facet>
+								<apex:inputField value="{!summaryItem.lineItemSO.Apttus_Config2__StartDate__c}"
+												 onkeypress="return aptIgnoreEnterKey(event);"
+												 rendered="{!showView && 
+												 			((summaryItem.lineItemSO.LineType__c == LineTypeProduct) ||
+												 			 (summaryItem.lineItemSO.LineType__c == LineTypeOption)) &&
+												 			(summaryItem.lineItemSO.AllowProration__c) && 
+												 			((summaryItem.lineItemSO.PriceType__c == PriceTypeRecurring) ||
+												 			 (summaryItem.lineItemSO.PriceType__c == PriceTypeUsage))}" />
+								<apex:outputField value="{!summaryItem.lineItemSO.Apttus_Config2__StartDate__c}"
+												  rendered="{!(showFinalize || NOT(summaryItem.lineItemSO.AllowProration__c)) && 
+												 			((summaryItem.lineItemSO.LineType__c == LineTypeProduct) ||
+												 			 (summaryItem.lineItemSO.LineType__c == LineTypeOption)) &&
+												 			((summaryItem.lineItemSO.PriceType__c == PriceTypeRecurring) ||
+												 			 (summaryItem.lineItemSO.PriceType__c == PriceTypeUsage))}" />
+							</apex:column>
+							
+							<apex:column style="text-align:right" 
+										 rendered="{!isColumnTermEnabled}" >
+								<apex:facet name="header">{!$Label.apttus_config2__Term}</apex:facet>
+								<apex:inputField value="{!summaryItem.lineItemSO.Apttus_Config2__SellingTerm__c}"
+												 rendered="{!showView && 
+												 			((summaryItem.lineItemSO.LineType__c == LineTypeProduct) ||
+												 			 (summaryItem.lineItemSO.LineType__c == LineTypeOption)) &&
+												 			((summaryItem.lineItemSO.PriceType__c == PriceTypeRecurring) ||
+												 			 (summaryItem.lineItemSO.PriceType__c == PriceTypeUsage))}"  
+												 style="width:60px" />
+								<apex:outputField value="{!summaryItem.lineItemSO.Apttus_Config2__SellingTerm__c}"
+												  rendered="{!showFinalize && 
+												 			((summaryItem.lineItemSO.LineType__c == LineTypeProduct) ||
+												 			 (summaryItem.lineItemSO.LineType__c == LineTypeOption)) &&
+												 			((summaryItem.lineItemSO.PriceType__c == PriceTypeRecurring) ||
+												 			 (summaryItem.lineItemSO.PriceType__c == PriceTypeUsage))}" />
+							</apex:column>
+							
+							<apex:column rendered="{!isColumnFrequencyEnabled}" >
+								<apex:facet name="header">{!$Label.apttus_config2__Frequency}</apex:facet>
+								<apex:inputField value="{!summaryItem.lineItemSO.Apttus_Config2__SellingFrequency__c}"
+												 rendered="{!showView && 
+												 			((summaryItem.lineItemSO.LineType__c == LineTypeProduct) ||
+												 			 (summaryItem.lineItemSO.LineType__c == LineTypeOption)) &&
+												 			(summaryItem.lineItemSO.AllowProration__c) && 
+												 			((summaryItem.lineItemSO.PriceType__c == PriceTypeRecurring) ||
+												 			 (summaryItem.lineItemSO.PriceType__c == PriceTypeUsage))}" />
+								<apex:outputField value="{!summaryItem.lineItemSO.Apttus_Config2__SellingFrequency__c}"
+												  rendered="{!showFinalize || 
+												  			  NOT(summaryItem.lineItemSO.AllowProration__c) ||
+												 			 ((summaryItem.lineItemSO.PriceType__c != PriceTypeRecurring) &&
+												 			  (summaryItem.lineItemSO.PriceType__c != PriceTypeUsage))}" />
+							</apex:column>
+							
+							<apex:column style="text-align:right" 
+										 rendered="{!showDuration}" >
+								<apex:facet name="header">{!$ObjectType.Apttus_Config2__LineItem__c.Fields.Apttus_Config2__EndDate__c.Label}</apex:facet>
+								<apex:inputField value="{!summaryItem.lineItemSO.Apttus_Config2__EndDate__c}"
+												 onkeypress="return aptIgnoreEnterKey(event);"
+												 rendered="{!showView && 
+												 			((summaryItem.lineItemSO.LineType__c == LineTypeProduct) ||
+												 			 (summaryItem.lineItemSO.LineType__c == LineTypeOption)) &&
+												 			(summaryItem.lineItemSO.AllowProration__c) && 
+												 			((summaryItem.lineItemSO.PriceType__c == PriceTypeRecurring) ||
+												 			 (summaryItem.lineItemSO.PriceType__c == PriceTypeUsage))}" />
+								<apex:outputField value="{!summaryItem.lineItemSO.Apttus_Config2__EndDate__c}"
+												  rendered="{!(showFinalize || NOT(summaryItem.lineItemSO.AllowProration__c)) && 
+												 			  ((summaryItem.lineItemSO.LineType__c == LineTypeProduct) ||
+												 			   (summaryItem.lineItemSO.LineType__c == LineTypeOption)) &&
+												 			  ((summaryItem.lineItemSO.PriceType__c == PriceTypeRecurring) ||
+												 			   (summaryItem.lineItemSO.PriceType__c == PriceTypeUsage))}" />
+							</apex:column>
+							
+							<apex:column style="text-align:right" 
+										 rendered="{!(summaryItem.lineItemSO.LineType__c != LineTypeOption) && 
+													 NOT(showDuration)}" >
+								<apex:facet name="header">
+									<apex:outputText >{!$Label.Extended}<br></br>{!$Label.Price}</apex:outputText>
+								</apex:facet>
+								<apex:outputField value="{!summaryItem.lineItemSO.Apttus_Config2__ExtendedPrice__c}" 
+												  rendered="{!IsMultiCurrency}" />
+								<apex:outputText value="{0,number,currency}" 
+												 rendered="{!NOT(IsMultiCurrency)}" >
+									<apex:param value="{!summaryItem.lineItemSO.Apttus_Config2__ExtendedPrice__c}" />
+								</apex:outputText>
+							</apex:column>
+							
+							<apex:column style="text-align:center" 
+										 rendered="{!isColumnAdjustmentTypeEnabled && NOT(showDuration)}" >
+								<apex:facet name="header">
+									<apex:outputText >{!$Label.Adjustment}&nbsp;{!$Label.apttus_config2__Type}</apex:outputText>
+								</apex:facet>
+								<apex:outputField value="{!summaryItem.lineItemSO.Apttus_Config2__AdjustmentType__c}"
+												  rendered="{!(showFinalize) || 
+												  			  (NOT(summaryItem.lineItemSO.AllowManualAdjustment__c))}" /> 
+								<apex:inputField value="{!summaryItem.lineItemSO.Apttus_Config2__AdjustmentType__c}" style="width: 100px;"
+												 rendered="{!(showView) && 
+												             (summaryItem.lineItemSO.AllowManualAdjustment__c)}" />
+							</apex:column>
+							
+							<apex:column style="text-align:right" 
+										 rendered="{!isColumnAdjustmentAmountEnabled && NOT(showDuration)}" >
+								<apex:facet name="header">
+									<apex:outputText >{!$Label.Adjustment}<br></br>{!$Label.apttus_config2__Amount}</apex:outputText>
+								</apex:facet>
+								<apex:outputText value="{0,number}" 
+												 rendered="{!(showFinalize) || 
+												 			 (NOT(summaryItem.lineItemSO.AllowManualAdjustment__c))}" >
+									<apex:param value="{!summaryItem.lineItemSO.Apttus_Config2__AdjustmentAmount__c}" />
+								</apex:outputText>
+								<apex:inputField value="{!summaryItem.lineItemSO.Apttus_Config2__AdjustmentAmount__c}"
+												 onkeypress="return aptIgnoreEnterKey(event);"
+												 style="width:60px" 
+												 rendered="{!(showView) && 
+												 			 (summaryItem.lineItemSO.AllowManualAdjustment__c)}" />
+							</apex:column>
+							
+							<apex:column style="text-align:right"
+										 rendered="{!isColumnAdjustedPriceEnabled}" >
+								<apex:facet name="header">
+									<apex:outputText >{!$Label.Adjusted}<br></br>{!$Label.Price}</apex:outputText>
+								</apex:facet>
+								<apex:outputField value="{!summaryItem.lineItemSO.Apttus_Config2__AdjustedPrice__c}" 
+												  rendered="{!IsMultiCurrency}" />
+								<apex:outputText value="{0,number,currency}" 
+												 rendered="{!NOT(IsMultiCurrency)}" >
+									<apex:param value="{!summaryItem.lineItemSO.Apttus_Config2__AdjustedPrice__c}" />
+								</apex:outputText>
+							</apex:column>
+							
+							<apex:column style="text-align:right" 
+										 rendered="{!isColumnGroupAdjustmentPercentEnabled && 
+													 (summaryItem.lineItemSO.LineType__c != LineTypeOption)}" >
+								<apex:facet name="header">
+									<apex:outputText >{!$Label.apttus_config2__Group}<br></br>{!$Label.AdjustmentPercent}</apex:outputText>
+								</apex:facet>
+								<apex:outputText value="{0,number}">
+									<apex:param value="{!summaryItem.lineItemSO.Apttus_Config2__GroupAdjustmentPercent__c}" />
+								</apex:outputText>
+							</apex:column>
+							
+							<apex:column style="text-align:right">
+								<apex:facet name="header">
+									<apex:outputText >{!$Label.Net}<br></br>{!$Label.Price}</apex:outputText>
+								</apex:facet>
+								<apex:outputField value="{!summaryItem.lineItemSO.Apttus_Config2__NetPrice__c}" 
+												  rendered="{!IsMultiCurrency}" />
+								<apex:outputText value="{0,number,currency}" 
+												 style="{!IF(showFinalize, 'font-weight:bold;', '')}" 
+												 rendered="{!NOT(IsMultiCurrency)}" >
+									<apex:param value="{!summaryItem.lineItemSO.Apttus_Config2__NetPrice__c}" />
+								</apex:outputText>
+							</apex:column>
+							
+							<apex:column style="text-align:right"
+										 rendered="{!isColumnNetAdjustmentPercentEnabled}" >
+								<apex:facet name="header">
+									<apex:outputText >{!$Label.Net}<br></br>{!$Label.AdjustmentPercent}</apex:outputText>
+								</apex:facet>
+								<apex:outputText value="{0,number}">
+									<apex:param value="{!summaryItem.lineItemSO.Apttus_Config2__NetAdjustmentPercent__c}" />
+								</apex:outputText>
+							</apex:column>
+							
+						</apex:pageBlockTable>
+					</apex:outputPanel>
+				</apex:tab>
+				
+				<apex:tab id="idDetailTab" 
+						  label="{!$Label.apttus_config2__Detail}" 
+						  name="viewDetailTab"
+						  ontabenter="onActionClick();" 
+						  oncomplete="onActionComplete();" >
+					
+					<table style="width: 100%">
+                        <tr>
+                            <td style="width: 100%" >
+                                <apex:outputPanel layout="block" style="text-align: center;" >
+                                    <apex:commandLink action="{!doToggleDuration}" 
+                                            value="{!$Label.apttus_config2__ShowDuration}" 
+                                            style="color:blue;" 
+                                            rendered="{!isActionShowDurationEnabled && NOT(showDuration)}"
+                                            reRender="idTabPanel"  
+                                            onclick="onActionClick();" 
+                                            oncomplete="onActionComplete();"/>
+                                    &nbsp;
+                                    <apex:commandLink action="{!doToggleDuration}" 
+                                            value="{!$Label.apttus_config2__HideDuration}" 
+                                            style="color:blue;" 
+                                            rendered="{!isActionShowDurationEnabled && showDuration}"
+                                            reRender="idTabPanel"  
+                                            onclick="onActionClick();" 
+                                            oncomplete="onActionComplete();"/>
+                                </apex:outputPanel>
+                            </td>
+                        </tr>       
+                    </table>                 
+                    	  
+					<apex:outputPanel >
+						<apex:pageBlockTable width="100%" 
+											 value="{!detailLineItemlist}"
+										     var="detailItem" 
+										     rules="rows" 
+										     rowClasses="oddRow, evenRow"
+										     headerClass="aptsColHead" >
+										     
+							<apex:column style="text-align:left" 
+										 rendered="{!showView}">
+								<apex:facet name="header">{!$Label.apttus_config2__Actions}</apex:facet>
+								<apex:PanelGrid columns="4" >
+								
+									<apex:commandLink action="{!doConfigure}"  
+													  rendered="{!(detailItem.lineItemSO.ConfigStatus__c == ConfigStatusPending || summaryItem.lineItemSO.ConstraintCheckStatus__c == ConfigStatusPending) && 
+													  			  (detailItem.lineItemSO.LineType__c == LineTypeProduct) && 
+													  			  (detailItem.lineItemSO.IsPrimaryLine__c) && 
+													  			  ((detailItem.lineItemSO.hasAttributes__c) || 
+													  			   (detailItem.lineItemSO.hasOptions__c))}"
+													  reRender="idDetailLineItems" 
+													  onclick="onActionClick();" 
+													  oncomplete="onActionComplete();" >
+													  
+										<apex:param name="param1" 
+													assignTo="{!lineItemSOId}"
+													value="{!detailItem.lineItemSO.Id}" />
+										<apex:image url="{!$Resource.Apttus_Config2__Image_ConfigStatusPending}" 
+				                       				title="{!$Label.apttus_config2__Configure}" 
+				                       				alt="{!$Label.apttus_config2__Configure}" />
+									</apex:commandLink>
+									
+									<apex:commandLink action="{!doConfigure}"  
+													  rendered="{!(detailItem.lineItemSO.LineType__c == LineTypeProduct) && 
+													  			  (detailItem.lineItemSO.IsPrimaryLine__c) && 
+													  			  ((detailItem.lineItemSO.hasAttributes__c) || 
+													  			   (detailItem.lineItemSO.hasOptions__c))}"
+													  reRender="idDetailLineItems" 
+													  onclick="onActionClick();" 
+													  oncomplete="onActionComplete();" >
+													  
+										<apex:param name="param1" 
+													assignTo="{!lineItemSOId}"
+													value="{!detailItem.lineItemSO.Id}" />
+										<apex:image url="{!$Resource.Apttus_Config2__Image_Configure}" 
+				                       				title="{!$Label.apttus_config2__Configure}" 
+				                       				alt="{!$Label.apttus_config2__Configure}" />
+									</apex:commandLink>
+									
+									<apex:commandLink onclick="doCopyLineItem('{!detailItem.lineItemSO.Apttus_Config2__LineNumber__c}');" 
+													  immediate="true" 
+													  reRender="dummy"
+													  rendered="{!(detailItem.lineItemSO.LineType__c != LineTypeOption) &&  
+													  			   (detailItem.lineItemSO.IsPrimaryLine__c)}"> 
+													  
+										<apex:image url="{!$Resource.Apttus_Config2__Image_CopyLineItem}" 
+				                       				title="{!$Label.apttus_config2__Copy}" 
+				                       				alt="{!$Label.apttus_config2__Copy}" />   
+				                       				
+									</apex:commandLink>
+											
+									<apex:commandLink onclick="YAHOO.force.com.showRemoveConfirmation('{!detailItem.lineItemSO.Apttus_Config2__LineNumber__c}');" 
+													  reRender="idErrorMsg" 
+													  immediate="true"
+													  style="color:blue;" 
+													  rendered="{!(detailItem.lineItemSO.LineType__c != LineTypeOption) &&  
+													  			   (detailItem.lineItemSO.IsPrimaryLine__c) && 
+													  			   (detailItem.lineItemSO.AllowRemoval__c)}">
+													  			   
+										<apex:image url="{!$Resource.Apttus_Config2__Image_Remove}" 
+				                       				title="{!$Label.apttus_config2__Remove}" 
+				                       				alt="{!$Label.apttus_config2__Remove}" />   
+				                       				
+									</apex:commandLink>
+									
+								</apex:PanelGrid>
+							</apex:column>
+							
+							<apex:column style="width: 10%; max-width: 15%;" 
+										 rendered="{!isColumnTotalingGroupEnabled && isCategorySummary}" >
+								<!-- <apex:facet name="header">{!$Label.apttus_config2__Group}</apex:facet> -->
+								<apex:facet name="header">{!$ObjectType.Apttus_Config2__LineItem__c.Fields.Apttus_Config2__AdHocGroupId__c.Label}</apex:facet>
+								<apex:outputField value="{!detailItem.lineItemSO.Apttus_Config2__AdHocGroupId__c}" 
+												  rendered="{!(detailItem.lineItemSO.Apttus_Config2__LineType__c == LineTypeProduct)}" />
+							</apex:column>
+							
+							<apex:column style="width: 10%; max-width: 15%;" 
+										 rendered="{!isColumnTotalingGroupEnabled && isAdHocSummary}">
+								<apex:facet name="header">{!$ObjectType.Apttus_Config2__LineItem__c.Fields.Apttus_Config2__AdHocGroupId__c.Label}</apex:facet>
+								<apex:selectList value="{!detailItem.lineItemSO.Apttus_Config2__AdHocGroupId__c}"
+												 rendered="{!showView}" 
+												 size="1">
+									<apex:selectOptions value="{!totalingGroupItems}" />
+								</apex:selectList>
+								<apex:outputField value="{!detailItem.lineItemSO.Apttus_Config2__AdHocGroupId__c}"
+												  rendered="{!showFinalize}" />
+							</apex:column>
+							
+							<apex:column style="width: 5%; max-width: 10%;" rendered="{!IsAssetEnabled}">
+                                <apex:facet name="header">{!$ObjectType.Apttus_Config2__LineItem__c.Fields.Apttus_Config2__LineStatus__c.Label}</apex:facet>
+                                <apex:outputPanel rendered="{!NOT(detailItem.lineItemSO.AssetLineItemId__c == null)
+                                                            && (detailItem.lineItemSO.LineType__c == LineTypeProduct)
+                                                            && (detailItem.lineItemSO.IsPrimaryLine__c)
+                                                }"> 
+                                    <apex:outputField value="{!detailItem.lineItemSO.Apttus_Config2__AssetLineItemId__c}"/>
+                                    <br/>
+                                    <br/>
+                                </apex:outputPanel>
+                                
+                                <apex:outputField value="{!detailItem.lineItemSO.Apttus_Config2__LineStatus__c}" rendered="{!detailItem.lineItemSO.Apttus_Config2__IsPrimaryLine__c}"/>
+                            </apex:column>
+                            
+							<apex:column style="width: 20%; max-width: 30%;">
+								<apex:facet name="header">{!$ObjectType.Apttus_Config2__LineItem__c.Fields.Apttus_Config2__ProductId__c.Label}</apex:facet>
+								
+								<apex:commandLink rerender="dummy">
+									<apex:image url="{!$Resource.Apttus_Config2__Image_Info}"
+												onclick="getProductDetail('{!detailItem.lineItemSO.Apttus_Config2__ProductId__c}');"
+												rendered="{!(detailItem.lineItemSO.LineType__c == LineTypeProduct) && 
+													  		(detailItem.lineItemSO.IsPrimaryLine__c)}" />
+								</apex:commandLink>
+								&nbsp;
+								<apex:outputField value="{!detailItem.lineItemSO.Apttus_Config2__ProductId__c}"
+												  rendered="{!(detailItem.lineItemSO.LineType__c == LineTypeProduct) && 
+												  		      (detailItem.lineItemSO.IsPrimaryLine__c)}" />
+							</apex:column>
+
+							<apex:column >
+								<apex:facet name="header">{!$ObjectType.Apttus_Config2__LineItem__c.Fields.Apttus_Config2__OptionId__c.Label}</apex:facet>
+								
+								<apex:commandLink rerender="dummy">
+									<apex:image url="{!$Resource.Apttus_Config2__Image_Info}"
+												onclick="getProductDetail('{!detailItem.lineItemSO.Apttus_Config2__OptionId__c}');"
+												rendered="{!(detailItem.lineItemSO.LineType__c == LineTypeOption) && 
+													  		(detailItem.lineItemSO.IsPrimaryLine__c)}" />
+								</apex:commandLink>
+								&nbsp;
+								<apex:outputField value="{!detailItem.lineItemSO.Apttus_Config2__OptionId__c}"
+												  rendered="{!(detailItem.lineItemSO.LineType__c == LineTypeOption) && 
+												  		      (detailItem.lineItemSO.IsPrimaryLine__c)}" />
+							</apex:column>
+
+							<apex:column rendered="{!isColumnChargeTypeEnabled}" >
+								<apex:facet name="header">
+									<apex:outputText >{!$Label.Charge}<br></br>{!$Label.apttus_config2__Type}</apex:outputText>
+								</apex:facet>
+								<apex:outputField value="{!detailItem.lineItemSO.Apttus_Config2__ChargeType__c}" />
+							</apex:column>
+							
+							<apex:column style="text-align:right"
+										 rendered="{!isColumnBasePriceEnabled}" >
+								<apex:facet name="header">
+									<apex:outputText >{!$Label.Base}<br></br>{!$Label.Price}</apex:outputText>
+								</apex:facet>
+								<apex:outputField value="{!detailItem.lineItemSO.Apttus_Config2__BasePrice__c}" 
+												  rendered="{!IsMultiCurrency}" />
+								<apex:outputText value="{0,number,currency}" 
+												 rendered="{!NOT(IsMultiCurrency)}" >
+									<!-- <apex:param value="{!detailItem.AdjustedBasePrice}" /> -->
+									<apex:param value="{!detailItem.lineItemSO.Apttus_Config2__BasePrice__c}" />
+								</apex:outputText>
+							</apex:column>
+							
+							<apex:column rendered="{!isColumnOptionPriceEnabled}" >
+								<apex:facet name="header">
+									<apex:outputText >{!$Label.Option}<br></br>{!$Label.Price}</apex:outputText>
+								</apex:facet>
+								<apex:outputField value="{!detailItem.lineItemSO.Apttus_Config2__OptionPrice__c}" 
+												  rendered="{!IsMultiCurrency}" />
+								<apex:outputText value="{0,number,currency}" 
+												 rendered="{!NOT(IsMultiCurrency)}" >
+									<apex:param value="{!detailItem.lineItemSO.Apttus_Config2__OptionPrice__c}" />
+								</apex:outputText>
+							</apex:column>
+							
+							<apex:column style="text-align:center"
+										 rendered="{!isColumnQuantityEnabled}" >
+								<apex:facet name="header">{!$ObjectType.Apttus_Config2__LineItem__c.Fields.Apttus_Config2__Quantity__c.Label}</apex:facet>
+								<apex:inputField value="{!detailItem.lineItemSO.Apttus_Config2__Quantity__c}"
+												 onkeypress="return aptIgnoreEnterKey(event);"
+												 rendered="{!showView && 
+												 			 detailItem.lineItemSO.IsQuantityModifiable__c &&
+												 			((detailItem.lineItemSO.LineType__c == LineTypeProduct) ||
+												 			 (detailItem.lineItemSO.LineType__c == LineTypeOption))}" 
+												 style="width:60px" />
+								<apex:outputText value="{0,number}" 
+												 rendered="{!showFinalize && 
+												 			((detailItem.lineItemSO.LineType__c == LineTypeProduct) ||
+												 			 (detailItem.lineItemSO.LineType__c == LineTypeOption))}" >
+									<apex:param value="{!detailItem.lineItemSO.Apttus_Config2__Quantity__c}" />
+								</apex:outputText>
+								<br />
+								<apex:commandLink value="{!$Label.apttus_config2__Reprice}"
+												  action="{!doRepriceLineItem}" 
+												  rerender="idErrorMsg, idTabPanel"
+												  onclick="onActionClick();" 
+												  oncomplete="onActionComplete();"   
+												  style="color:blue;"
+												  rendered="{!showView && 
+												 			 (detailItem.lineItemSO.LineType__c == LineTypeProduct) &&
+												 			 (detailItem.lineItemSO.IsPrimaryLine__c)}" >
+									<apex:param name="param1" assignTo="{!lineItemLineNbr}"
+										value="{!detailItem.lineItemSO.Apttus_Config2__LineNumber__c}" />
+								</apex:commandLink>	
+							</apex:column>
+							
+							<apex:column rendered="{!isColumnUOMEnabled}" >
+								<apex:facet name="header">{!$Label.apttus_config2__UOM}</apex:facet>
+								<apex:outputField value="{!detailItem.lineItemSO.Apttus_Config2__PriceUom__c}" />
+							</apex:column>
+							
+							<apex:column style="text-align:right" 
+										 rendered="{!showDuration}" >
+								<apex:facet name="header">{!$ObjectType.Apttus_Config2__LineItem__c.Fields.Apttus_Config2__StartDate__c.Label}</apex:facet>
+								<apex:inputField value="{!detailItem.lineItemSO.Apttus_Config2__StartDate__c}"
+												 onkeypress="return aptIgnoreEnterKey(event);"
+												 rendered="{!showView && 
+												 			((detailItem.lineItemSO.LineType__c == LineTypeProduct) ||
+												 			 (detailItem.lineItemSO.LineType__c == LineTypeOption)) &&
+												 			(detailItem.lineItemSO.AllowProration__c) && 
+												 			((detailItem.lineItemSO.PriceType__c == PriceTypeRecurring) ||
+												 			 (detailItem.lineItemSO.PriceType__c == PriceTypeUsage))}" />
+								<apex:outputField value="{!detailItem.lineItemSO.Apttus_Config2__StartDate__c}"
+												  rendered="{!(showFinalize || NOT(detailItem.lineItemSO.AllowProration__c)) && 
+												 			  ((detailItem.lineItemSO.LineType__c == LineTypeProduct) ||
+												 			   (detailItem.lineItemSO.LineType__c == LineTypeOption)) &&
+												 			  ((detailItem.lineItemSO.PriceType__c == PriceTypeRecurring) ||
+												 			   (detailItem.lineItemSO.PriceType__c == PriceTypeUsage))}" />
+							</apex:column>
+							
+							<apex:column style="text-align:right" 
+										 rendered="{!isColumnTermEnabled}" >
+								<apex:facet name="header">{!$Label.apttus_config2__Term}</apex:facet>
+								<apex:inputField value="{!detailItem.lineItemSO.Apttus_Config2__SellingTerm__c}"
+												 rendered="{!showView && 
+												 			((detailItem.lineItemSO.LineType__c == LineTypeProduct) ||
+												 			 (detailItem.lineItemSO.LineType__c == LineTypeOption)) &&
+												 			((detailItem.lineItemSO.PriceType__c == PriceTypeRecurring) ||
+												 			 (detailItem.lineItemSO.PriceType__c == PriceTypeUsage))}"  
+												 style="width:60px" />
+								<apex:outputField value="{!detailItem.lineItemSO.Apttus_Config2__SellingTerm__c}"
+												  rendered="{!showFinalize && 
+												 			  ((detailItem.lineItemSO.LineType__c == LineTypeProduct) ||
+												 			   (detailItem.lineItemSO.LineType__c == LineTypeOption)) &&
+												 			  ((detailItem.lineItemSO.PriceType__c == PriceTypeRecurring) ||
+												 			   (detailItem.lineItemSO.PriceType__c == PriceTypeUsage))}" />
+							</apex:column>
+							
+							<apex:column rendered="{!isColumnFrequencyEnabled}" >
+								<apex:facet name="header">{!$Label.apttus_config2__Frequency}</apex:facet>
+								<apex:inputField value="{!detailItem.lineItemSO.Apttus_Config2__SellingFrequency__c}"
+												 rendered="{!showView && 
+												 			((detailItem.lineItemSO.LineType__c == LineTypeProduct) ||
+												 			 (detailItem.lineItemSO.LineType__c == LineTypeOption)) &&
+												 			(detailItem.lineItemSO.AllowProration__c) && 
+												 			((detailItem.lineItemSO.PriceType__c == PriceTypeRecurring) ||
+												 			 (detailItem.lineItemSO.PriceType__c == PriceTypeUsage))}" /> 
+								<apex:outputField value="{!detailItem.lineItemSO.Apttus_Config2__SellingFrequency__c}"
+												  rendered="{!showFinalize || 
+												  			  NOT(detailItem.lineItemSO.AllowProration__c) ||
+												 			  ((detailItem.lineItemSO.PriceType__c != PriceTypeRecurring) &&
+												 			   (detailItem.lineItemSO.PriceType__c != PriceTypeUsage))}" />
+							</apex:column>
+							
+							<apex:column style="text-align:right" 
+										 rendered="{!showDuration}" >
+								<apex:facet name="header">{!$ObjectType.Apttus_Config2__LineItem__c.Fields.Apttus_Config2__EndDate__c.Label}</apex:facet>
+								<apex:inputField value="{!detailItem.lineItemSO.Apttus_Config2__EndDate__c}"
+												 onkeypress="return aptIgnoreEnterKey(event);"
+												 rendered="{!showView && 
+												 			((detailItem.lineItemSO.LineType__c == LineTypeProduct) ||
+												 			 (detailItem.lineItemSO.LineType__c == LineTypeOption)) &&
+												 			(detailItem.lineItemSO.AllowProration__c) && 
+												 			((detailItem.lineItemSO.PriceType__c == PriceTypeRecurring) ||
+												 			 (detailItem.lineItemSO.PriceType__c == PriceTypeUsage))}" />
+								<apex:outputField value="{!detailItem.lineItemSO.Apttus_Config2__EndDate__c}"
+												  rendered="{!(showFinalize || NOT(detailItem.lineItemSO.AllowProration__c)) && 
+												 			  ((detailItem.lineItemSO.LineType__c == LineTypeProduct) ||
+												 			   (detailItem.lineItemSO.LineType__c == LineTypeOption)) &&
+												 			  ((detailItem.lineItemSO.PriceType__c == PriceTypeRecurring) ||
+												 			   (detailItem.lineItemSO.PriceType__c == PriceTypeUsage))}" />
+							</apex:column>
+							
+							<apex:column style="text-align:right" 
+										 rendered="{!NOT(showDuration)}" >
+								<apex:facet name="header">
+									<apex:outputText >{!$Label.Extended}<br></br>{!$Label.Price}</apex:outputText>
+								</apex:facet>
+								<apex:outputField value="{!detailItem.lineItemSO.Apttus_Config2__ExtendedPrice__c}" 
+												  rendered="{!IsMultiCurrency}" />
+								<apex:outputText value="{0,number,currency}" 
+												 rendered="{!NOT(IsMultiCurrency)}" >
+									<apex:param value="{!detailItem.lineItemSO.Apttus_Config2__ExtendedPrice__c}" />
+								</apex:outputText>
+							</apex:column>
+							
+							<apex:column style="text-align:center" 
+										 rendered="{!isColumnAdjustmentTypeEnabled && NOT(showDuration)}" >
+								<apex:facet name="header">
+									<apex:outputText >{!$Label.Adjustment}&nbsp;{!$Label.apttus_config2__Type}</apex:outputText>
+								</apex:facet>
+								<apex:outputField value="{!detailItem.lineItemSO.Apttus_Config2__AdjustmentType__c}"
+												  rendered="{!(showFinalize) || 
+												  			  (NOT(detailItem.lineItemSO.AllowManualAdjustment__c))}" />
+								<apex:inputField value="{!detailItem.lineItemSO.Apttus_Config2__AdjustmentType__c}"
+												 rendered="{!(showView) && 
+												             (detailItem.lineItemSO.AllowManualAdjustment__c)}" />
+								
+							</apex:column>
+							
+							<apex:column style="text-align:right" 
+										 rendered="{!isColumnAdjustmentAmountEnabled && NOT(showDuration)}" >
+								<apex:facet name="header">
+									<apex:outputText >{!$Label.Adjustment}<br></br>{!$Label.apttus_config2__Amount}</apex:outputText>
+								</apex:facet>
+								<apex:outputText value="{0,number}" 
+												 rendered="{!(showFinalize) || 
+												 			 (NOT(detailItem.lineItemSO.AllowManualAdjustment__c))}" >
+									<apex:param value="{!detailItem.lineItemSO.Apttus_Config2__AdjustmentAmount__c}" />
+								</apex:outputText>
+								<apex:inputField value="{!detailItem.lineItemSO.Apttus_Config2__AdjustmentAmount__c}"
+												 onkeypress="return aptIgnoreEnterKey(event);"
+												 style="width:60px" 
+												 rendered="{!(showView) && 
+												 			 (detailItem.lineItemSO.AllowManualAdjustment__c)}" />
+							</apex:column>
+							
+							<apex:column style="text-align:right"
+										 rendered="{!isColumnAdjustedPriceEnabled}" >
+								<apex:facet name="header">
+									<apex:outputText >{!$Label.Adjusted}<br></br>{!$Label.Price}</apex:outputText>
+								</apex:facet>
+								<apex:outputField value="{!detailItem.lineItemSO.Apttus_Config2__AdjustedPrice__c}" 
+												  rendered="{!IsMultiCurrency}" />
+								<apex:outputText value="{0,number,currency}" 
+												 rendered="{!NOT(IsMultiCurrency)}" >
+									<apex:param value="{!detailItem.lineItemSO.Apttus_Config2__AdjustedPrice__c}" />
+								</apex:outputText>
+							</apex:column>
+							
+							<apex:column style="text-align:right"
+										 rendered="{!isColumnGroupAdjustmentPercentEnabled}" >
+								<apex:facet name="header">
+									<apex:outputText >{!$Label.apttus_config2__Group}<br></br>{!$Label.AdjustmentPercent}</apex:outputText>
+								</apex:facet>
+								<apex:outputText value="{0,number}">
+									<apex:param value="{!detailItem.lineItemSO.Apttus_Config2__GroupAdjustmentPercent__c}" />
+								</apex:outputText>
+							</apex:column>
+							
+							<apex:column style="text-align:right">
+								<apex:facet name="header">
+									<apex:outputText >{!$Label.Net}<br></br>{!$Label.Price}</apex:outputText>
+								</apex:facet>
+								<apex:outputField value="{!detailItem.lineItemSO.Apttus_Config2__NetPrice__c}" 
+												  rendered="{!IsMultiCurrency}" />
+								<apex:outputText value="{0,number,currency}" 
+												 style="{!IF(showFinalize, 'font-weight:bold;', '')}" 
+												 rendered="{!NOT(IsMultiCurrency)}" >
+									<apex:param value="{!detailItem.lineItemSO.Apttus_Config2__NetPrice__c}" />
+								</apex:outputText>
+							</apex:column>
+							
+							<apex:column style="text-align:right"
+										 rendered="{!isColumnNetAdjustmentPercentEnabled}" >
+								<apex:facet name="header">
+									<apex:outputText >{!$Label.Net}<br></br>{!$Label.AdjustmentPercent}</apex:outputText>
+								</apex:facet>
+								<apex:outputText value="{0,number}">
+									<apex:param value="{!detailItem.lineItemSO.Apttus_Config2__NetAdjustmentPercent__c}" />
+								</apex:outputText>
+							</apex:column>
+							
+						</apex:pageBlockTable>
+					</apex:outputPanel>
+				</apex:tab>
+				
+				<apex:tab id="idAdjTab"
+                          label="{!$Label.apttus_config2__Adjustments}" 
+                          name="viewAdjustmentsTab" 
+                          rendered="{!IsMultiAdjustmentEnabled}" >
+
+                    <apex:outputPanel >
+                        <apex:pageBlockTable width="100%" 
+                                             value="{!LineItemAdjustments}" 
+                                             var="adjInfo" 
+                                             rules="rows" 
+                                             rowClasses="oddRow, evenRow" 
+                                             headerClass="aptsColHead" >
+                            
+                            <apex:column style="width: 150px; max-width: 30%;">
+                                <apex:facet name="header">&nbsp;&nbsp;&nbsp;{!$ObjectType.Apttus_Config2__LineItem__c.Fields.Apttus_Config2__ProductId__c.Label}&nbsp;&nbsp;&nbsp;</apex:facet>
+                                
+                                <apex:commandLink rerender="dummy">
+                                    <apex:image url="{!$Resource.Apttus_Config2__Image_Info}"
+                                                onclick="getProductDetail('{!adjInfo.lineItemSO.Apttus_Config2__ProductId__c}');"
+                                                rendered="{!(adjInfo.lineItemSO.LineType__c == LineTypeProduct) &&  
+                                                            (adjInfo.lineItemSO.IsPrimaryLine__c)}" />
+                                </apex:commandLink>
+                                &nbsp;
+                                <apex:outputField value="{!adjInfo.lineItemSO.Apttus_Config2__ProductId__c}"
+                                                  rendered="{!(adjInfo.lineItemSO.LineType__c == LineTypeProduct) &&  
+                                                              (adjInfo.lineItemSO.IsPrimaryLine__c)}" />
+                            </apex:column>
+
+                            <apex:column rendered="{!isColumnChargeTypeEnabled}" >
+                                <apex:facet name="header">
+                                    <apex:outputText >{!$Label.Charge}<br></br>{!$Label.apttus_config2__Type}</apex:outputText>
+                                </apex:facet>
+                                <apex:outputField value="{!adjInfo.lineItemSO.Apttus_Config2__ChargeType__c}" />
+                            </apex:column>
+                            
+                            <apex:column style="text-align:right"
+                                         rendered="{!isColumnBasePriceEnabled}" >
+                                <apex:facet name="header">
+                                    <apex:outputText >{!$Label.Base}<br></br>{!$Label.Price}</apex:outputText>
+                                </apex:facet>
+                                <apex:outputField value="{!adjInfo.lineItemSO.Apttus_Config2__BasePrice__c}" 
+                                                  rendered="{!IsMultiCurrency}" />
+                                <apex:outputText value="{0,number,currency}" 
+                                                 rendered="{!NOT(IsMultiCurrency)}" >
+                                    <apex:param value="{!adjInfo.lineItemSO.Apttus_Config2__BasePrice__c}" />
+                                </apex:outputText>
+                                
+                            </apex:column>
+                            
+                            <apex:column rendered="{!isColumnOptionPriceEnabled}" >
+                                <apex:facet name="header">
+                                    <apex:outputText >{!$Label.Option}<br></br>{!$Label.Price}</apex:outputText>
+                                </apex:facet>
+                                <apex:outputField value="{!adjInfo.lineItemSO.Apttus_Config2__OptionPrice__c}" 
+                                                  rendered="{!IsMultiCurrency}" />
+                                <apex:outputText value="{0,number,currency}" 
+                                                 rendered="{!NOT(IsMultiCurrency)}" >
+                                    <apex:param value="{!adjInfo.lineItemSO.Apttus_Config2__OptionPrice__c}" />
+                                </apex:outputText>
+                            </apex:column>
+                            
+                            <apex:column style="text-align: center;" 
+                                         rendered="{!isColumnQuantityEnabled}" >
+                                <apex:facet name="header">{!$ObjectType.Apttus_Config2__LineItem__c.Fields.Apttus_Config2__Quantity__c.Label}</apex:facet>
+                                <apex:outputText value="{0,number}" >
+                                    <apex:param value="{!adjInfo.lineItemSO.Apttus_Config2__Quantity__c}" />
+                                         
+                                </apex:outputText>
+                            </apex:column>
+                           	 <apex:column rendered="{!isColumnUOMEnabled}" >
+                                <apex:facet name="header">{!$Label.apttus_config2__UOM}</apex:facet>
+                                <apex:outputField value="{!adjInfo.lineItemSO.Apttus_Config2__PriceUom__c}" />
+                            </apex:column>
+                            
+                            <apex:column style="text-align:right" 
+                                         rendered="{!isColumnTermEnabled}" >
+                                <apex:facet name="header">{!$Label.apttus_config2__Term}</apex:facet>
+                                <apex:outputField value="{!adjInfo.lineItemSO.Apttus_Config2__SellingTerm__c}"
+                                                  rendered="{!((adjInfo.lineItemSO.PriceType__c == PriceTypeRecurring) ||
+                                                               (adjInfo.lineItemSO.PriceType__c == PriceTypeUsage))}" />
+                            </apex:column>
+                            
+                            <apex:column rendered="{!isColumnFrequencyEnabled}" >
+                                <apex:facet name="header">{!$Label.apttus_config2__Frequency}</apex:facet>
+                                <apex:outputField value="{!adjInfo.lineItemSO.Apttus_Config2__SellingFrequency__c}"
+                                                  rendered="{!NOT(adjInfo.lineItemSO.AllowProration__c) ||
+                                                             ((adjInfo.lineItemSO.PriceType__c != PriceTypeRecurring) &&
+                                                              (adjInfo.lineItemSO.PriceType__c != PriceTypeUsage))}" />
+                            </apex:column>
+                            
+                            <apex:column style="text-align: right;">
+                                <apex:facet name="header">
+                                    <apex:outputText >{!$Label.Net}<br></br>{!$Label.Price}</apex:outputText>
+                                </apex:facet>
+                                <apex:outputField value="{!adjInfo.lineItemSO.Apttus_Config2__NetPrice__c}" 
+                                                  rendered="{!IsMultiCurrency}" />
+                                <apex:outputText value="{0,number,currency}" 
+                                                 rendered="{!NOT(IsMultiCurrency)}" >
+                                    <apex:param value="{!adjInfo.lineItemSO.Apttus_Config2__NetPrice__c}" />
+                                </apex:outputText>
+                            </apex:column>
+                            
+                         	<apex:column headerValue="{!$Label.apttus_config2__Adjustments}" >
+						
+								<apex:pageBlockTable value="{!adjInfo.Adjustments}" 
+				        					    	 var="adjItemSO" 
+				        					    	 columns="7" 
+				        					    	 headerClass="aptsColHead" >
+				        			
+				        			<apex:column width="5%" >
+								   		<apex:commandLink action="{!doAddAdjustmentRow}" 
+												  	  	  reRender="idTabPanel" 
+												  	  	  rendered="{!adjItemSO.Apttus_Config2__LineNumber__c < MaxAdjustmentLines}" >
+											<apex:param name="seqNumber" value="{!adjInfo.SeqNumber}" />
+											<apex:param name="rowNum" value="{!adjItemSO.Apttus_Config2__LineNumber__c}" />
+											<apex:image url="{!$Resource.Apttus_Config2__Image_Plus}" 
+					                       				title="{!$Label.apttus_config2__Add}" 
+					                       				alt="{!$Label.apttus_config2__Add}" />
+										</apex:commandLink>
+										<apex:commandLink action="{!doDeleteAdjustmentRow}" 
+												  	  	  reRender="idTabPanel" 
+												  	  	  rendered="{!adjItemSO.Apttus_Config2__LineNumber__c > 1}" >
+											<apex:param name="seqNumber" value="{!adjInfo.SeqNumber}" />
+											<apex:param name="rowNum" value="{!adjItemSO.Apttus_Config2__LineNumber__c}" />
+											<apex:image url="{!$Resource.Apttus_Config2__Image_Minus}" 
+					                       				title="{!$Label.apttus_config2__Remove}" 
+					                       				alt="{!$Label.apttus_config2__Remove}" />
+										</apex:commandLink>
+								   	</apex:column>
+						   			 
+				        			<apex:column headerValue="{!$Label.apttus_config2__Seq}" >
+				        				<apex:outputField value="{!adjItemSO.Apttus_Config2__LineNumber__c}" />
+				        			</apex:column>
+				        			<apex:column headerValue="{!$Label.apttus_config2__Type}" >
+				        				<apex:inputField value="{!adjItemSO.Apttus_Config2__Type__c}" />
+				        			</apex:column>
+				        			<apex:column headerValue="{!$Label.apttus_config2__ApplyTo}" >
+				        				<apex:inputField value="{!adjItemSO.Apttus_Config2__AdjustmentAppliesTo__c}" />
+				        			</apex:column>
+				        			<apex:column >
+		                                <apex:facet name="header">
+		                                    <apex:outputText >{!$Label.Adjustment}&nbsp;{!$Label.apttus_config2__Type}</apex:outputText>
+		                                </apex:facet>
+		                                <apex:outputField value="{!adjItemSO.Apttus_Config2__AdjustmentType__c}"
+		                                                  rendered="{!NOT(adjItemSO.Apttus_Config2__IsModifiable__c)}" />
+		                                <apex:inputField value="{!adjItemSO.Apttus_Config2__AdjustmentType__c}" 
+		                                                 rendered="{!adjItemSO.Apttus_Config2__IsModifiable__c}" />
+		                                                             
+		                            </apex:column>
+				        			
+				        			<apex:column style="text-align:right" >
+		                                <apex:facet name="header">
+		                                    <apex:outputText >{!$Label.Adjustment}&nbsp;{!$Label.apttus_config2__Amount}</apex:outputText>
+		                                </apex:facet>
+		                                <apex:outputText value="{0,number}" 
+		                                                 rendered="{!NOT(adjItemSO.Apttus_Config2__IsModifiable__c)}" >
+		                                    <apex:param value="{!adjItemSO.Apttus_Config2__AdjustmentAmount__c}" />
+		                                </apex:outputText>
+		                                <apex:inputField value="{!adjItemSO.Apttus_Config2__AdjustmentAmount__c}" 
+		                                                 rendered="{!adjItemSO.Apttus_Config2__IsModifiable__c}" />
+		                            </apex:column>
+                            		
+                            		<apex:column width="5%" >
+								   		<apex:commandLink action="{!doMoveUpAdjustmentRow}" 
+												  	  	  reRender="idTabPanel" 
+												  	  	  rendered="{!adjItemSO.Apttus_Config2__LineNumber__c > 1}" >
+											<apex:param name="seqNumber" value="{!adjInfo.SeqNumber}" />
+											<apex:param name="rowNum" value="{!adjItemSO.Apttus_Config2__LineNumber__c}" />
+											<apex:image url="{!$Resource.Apttus_Config2__Image_MoveUp}" 
+					                       				title="{!$Label.apttus_config2__MoveUp}" 
+					                       				alt="{!$Label.apttus_config2__MoveUp}" />
+										</apex:commandLink>
+										<apex:commandLink action="{!doMoveDownAdjustmentRow}" 
+												  	  	  reRender="idTabPanel" 
+												  	  	  rendered="{!adjItemSO.Apttus_Config2__LineNumber__c < adjInfo.LastAdjustmentRowSequence}" >
+											<apex:param name="seqNumber" value="{!adjInfo.SeqNumber}" />
+											<apex:param name="rowNum" value="{!adjItemSO.Apttus_Config2__LineNumber__c}" />
+											<apex:image url="{!$Resource.Apttus_Config2__Image_MoveDown}" 
+					                       				title="{!$Label.apttus_config2__MoveDown}" 
+					                       				alt="{!$Label.apttus_config2__MoveDown}" />
+										</apex:commandLink>
+								   	</apex:column>
+				   	
+				        		</apex:pageBlockTable>
+							</apex:column>
+					
+                        </apex:pageBlockTable>
+                    </apex:outputPanel>
+                </apex:tab>
+                
+				<apex:tab id="idTotalsTab" 
+						  label="{!$Label.apttus_config2__Totals}" 
+						  name="viewTotalsTab"
+						  ontabenter="onActionClick();" 
+						  oncomplete="onActionComplete();" >
+
+					<apex:outputPanel >
+						<apex:pageBlockTable width="100%" 
+											 value="{!totalsLineItemlist}"
+											 var="totalsItem" 
+											 rules="rows" 
+											 rowClasses="oddRow, evenRow"
+											 headerClass="aptsColHead" >
+
+							<apex:column >
+								<apex:facet name="header">{!$Label.apttus_config2__Actions}</apex:facet>
+								<apex:commandLink onclick="YAHOO.force.com.showRemoveConfirmation('{!totalsItem.summaryGroupSO.Apttus_Config2__LineNumber__c}');" 
+												  rendered="{!(totalsItem.summaryGroupSO.Apttus_Config2__AllowRemoval__c)}" 
+												  reRender="idErrorMsg" 
+												  immediate="true"
+												  style="color:blue;" >
+												  
+									<apex:image url="{!$Resource.Apttus_Config2__Image_Remove}" 
+				                       			title="{!$Label.apttus_config2__Remove}" 
+				                       			alt="{!$Label.apttus_config2__Remove}" />   
+								</apex:commandLink>
+							</apex:column>
+							
+							<apex:column >
+								<apex:facet name="header">{!$Label.apttus_config2__Group}</apex:facet>
+								<apex:outputField value="{!totalsItem.summaryGroupSO.Name}" 
+												  styleClass="{!IF((totalsItem.summaryGroupSO.Apttus_Config2__LineType__c == 'Grand Total'), 'grandTotal', '')}" />
+							</apex:column>
+
+							<apex:column >
+								<apex:facet name="header">
+									<apex:outputText >{!$Label.Charge}<br></br>{!$Label.apttus_config2__Type}</apex:outputText>
+								</apex:facet>
+								<apex:outputField value="{!totalsItem.summaryGroupSO.Apttus_Config2__ChargeType__c}" />
+							</apex:column>
+							
+							<apex:column >
+								<apex:facet name="header">{!$Label.apttus_config2__Frequency}</apex:facet>
+								<apex:outputField value="{!totalsItem.summaryGroupSO.Apttus_Config2__Frequency__c}" />
+							</apex:column>
+							
+							<apex:column style="text-align:right;"
+										 rendered="{!isColumnOptionPriceEnabled}" >
+								<apex:facet name="header">
+									<apex:outputText >{!$Label.Option}<br></br>{!$Label.Price}</apex:outputText>
+								</apex:facet>
+								<apex:outputPanel styleClass="{!IF((totalsItem.summaryGroupSO.Apttus_Config2__LineType__c == 'Grand Total'), 'grandTotal', '')}">
+									<apex:outputField value="{!totalsItem.summaryGroupSO.Apttus_Config2__OptionPrice__c}" 
+													  rendered="{!IsMultiCurrency}" />
+									<apex:outputText value="{0,number,currency}" 
+													 rendered="{!NOT(IsMultiCurrency)}" >
+										<apex:param value="{!totalsItem.summaryGroupSO.Apttus_Config2__OptionPrice__c}" />
+									</apex:outputText>
+								</apex:outputPanel>
+							</apex:column>
+							
+							<apex:column style="text-align:right">
+								<apex:facet name="header">
+									<apex:outputText >{!$Label.Extended}<br></br>{!$Label.Price}</apex:outputText>
+								</apex:facet>
+								<apex:outputPanel styleClass="{!IF((totalsItem.summaryGroupSO.Apttus_Config2__LineType__c == 'Grand Total'), 'grandTotal', '')}">
+									<apex:outputField value="{!totalsItem.summaryGroupSO.Apttus_Config2__ExtendedPrice__c}" 
+													  rendered="{!IsMultiCurrency}" />
+									<apex:outputText value="{0,number,currency}" 
+													 rendered="{!NOT(IsMultiCurrency)}" >
+										<apex:param value="{!totalsItem.summaryGroupSO.Apttus_Config2__ExtendedPrice__c}" />
+									</apex:outputText>
+								</apex:outputPanel>
+							</apex:column>
+							
+							<apex:column style="text-align:center"
+										 rendered="{!isColumnAdjustmentTypeEnabled}" >
+								<apex:facet name="header">
+									<apex:outputText >{!$Label.Adjustment}&nbsp;{!$Label.apttus_config2__Type}</apex:outputText>
+								</apex:facet>
+								<apex:outputField value="{!totalsItem.summaryGroupSO.Apttus_Config2__AdjustmentType__c}"
+												  rendered="{!(showFinalize) || 
+												  			  (NOT(totalsItem.summaryGroupSO.AllowManualAdjustment__c))}" /> 			  
+								<apex:selectList size="1" 
+						    					 value="{!totalsItem.summaryGroupSO.Apttus_Config2__AdjustmentType__c}" 
+						    					 multiselect="false" 
+				  								 required="false" 
+				  								 rendered="{!(showView) && 
+												             (totalsItem.summaryGroupSO.AllowManualAdjustment__c)}" >
+						      		<apex:selectOptions value="{!totalsItem.adjustmentTypeItems}"></apex:selectOptions>
+						      	</apex:selectList>
+							      	
+							</apex:column>
+							
+							<apex:column style="text-align:right"
+										 rendered="{!isColumnAdjustmentAmountEnabled}" >
+								<apex:facet name="header">
+									<apex:outputText >{!$Label.Adjustment}<br></br>{!$Label.apttus_config2__Amount}</apex:outputText>
+								</apex:facet>
+								<apex:outputText value="{0,number}" 
+												 rendered="{!(showFinalize) || 
+												 			 (NOT(totalsItem.summaryGroupSO.AllowManualAdjustment__c))}"  >
+									<apex:param value="{!totalsItem.summaryGroupSO.Apttus_Config2__AdjustmentAmount__c}" />
+								</apex:outputText>
+								<apex:inputField value="{!totalsItem.summaryGroupSO.Apttus_Config2__AdjustmentAmount__c}"
+												 onkeypress="return aptIgnoreEnterKey(event);"
+												 style="width:60px" 
+												 rendered="{!(showView) && 
+												 			 (totalsItem.summaryGroupSO.AllowManualAdjustment__c)}" />
+							</apex:column>
+							
+							<apex:column style="text-align:right"
+										 rendered="{!isColumnAdjustedPriceEnabled}" >
+								<apex:facet name="header">
+									<apex:outputText >{!$Label.Adjusted}<br></br>{!$Label.Price}</apex:outputText>
+								</apex:facet>
+								<apex:outputPanel styleClass="{!IF((totalsItem.summaryGroupSO.Apttus_Config2__LineType__c == 'Grand Total'), 'grandTotal', '')}">
+									<apex:outputField value="{!totalsItem.summaryGroupSO.Apttus_Config2__AdjustedPrice__c}" 
+													  rendered="{!IsMultiCurrency}" />
+									<apex:outputText value="{0,number,currency}" 
+													 rendered="{!NOT(IsMultiCurrency)}" >
+										<apex:param value="{!totalsItem.summaryGroupSO.Apttus_Config2__AdjustedPrice__c}" />
+									</apex:outputText>
+								</apex:outputPanel>
+							</apex:column>
+							
+							<apex:column style="text-align:right"
+										 rendered="{!isColumnGroupAdjustmentPercentEnabled}" >
+								<apex:facet name="header">
+									<apex:outputText >{!$Label.apttus_config2__Group}<br></br>{!$Label.AdjustmentPercent}</apex:outputText>
+								</apex:facet>
+								<apex:outputText value="{0,number}">
+									<apex:param value="{!totalsItem.summaryGroupSO.Apttus_Config2__GroupAdjustmentPercent__c}" />
+								</apex:outputText>
+							</apex:column>
+							
+							<apex:column style="text-align:right">
+								<apex:facet name="header">
+									<apex:outputText >{!$Label.Net}<br></br>{!$Label.Price}</apex:outputText>
+								</apex:facet>
+								<apex:outputPanel styleClass="{!IF((totalsItem.summaryGroupSO.Apttus_Config2__LineType__c == 'Grand Total'), 'grandTotal', '')}">
+									<apex:outputField value="{!totalsItem.summaryGroupSO.Apttus_Config2__NetPrice__c}" 
+													  rendered="{!IsMultiCurrency}" />
+									<apex:outputText value="{0,number,currency}" 
+													 style="{!IF(showFinalize, 'font-weight:bold;', '')}"
+													 rendered="{!NOT(IsMultiCurrency)}" >
+										<apex:param value="{!totalsItem.summaryGroupSO.Apttus_Config2__NetPrice__c}" />
+									</apex:outputText>
+								</apex:outputPanel>
+							</apex:column>
+							
+							<apex:column style="text-align:right" 
+								  rendered="{!isColumnNetAdjustmentPercentEnabled}" >
+								<apex:facet name="header">
+									<apex:outputText >{!$Label.Net}<br></br>{!$Label.AdjustmentPercent}</apex:outputText>
+								</apex:facet>
+								<apex:outputText value="{0,number}" 
+												 styleClass="{!IF((totalsItem.summaryGroupSO.Apttus_Config2__LineType__c == 'Grand Total'), 'grandTotal', '')}" >
+									<apex:param value="{!totalsItem.summaryGroupSO.Apttus_Config2__NetAdjustmentPercent__c}" />
+								</apex:outputText>
+							</apex:column>
+						</apex:pageBlockTable>
+					</apex:outputPanel>
+				</apex:tab>
+
+			</apex:tabPanel>
+		</apex:pageBlock>
+		
+		<!-- This is the content of the confirmation dialog -->
+		<apex:outputPanel >
+			<div id="confirmationPanel" style="display: none">
+			    <div class="hd">
+			        <apex:outputText value="{!$Label.apttus_config2__RemoveConfirmation}" />
+			    </div> 
+			    <div class="bd">
+			    	<apex:outputText value="{!$Label.apttus_config2__RemoveProductMessage}" />
+			    </div>
+			    <div class="bd">
+		            <apex:actionRegion >
+		                <div style="text-align: center; padding-left: 4px;" >
+		                    <apex:commandButton value="{!$Label.apttus_config2__Yes}"
+		                    					onclick="YAHOO.force.com.remove();"
+		                    					style="width: 50px;"   
+		                    					immediate="true" 
+		                    					oncomplete="YAHOO.force.com.confirmationPanel.hide();" />
+		                    <apex:commandButton value="{!$Label.apttus_config2__No}" 
+		                    					style="width: 50px;"   
+		                    					onclick="YAHOO.force.com.confirmationPanel.hide();return false;" />
+		                </div>
+		            </apex:actionRegion>
+			    </div>
+			</div>
+		</apex:outputPanel>
+		
+		<apex:actionFunction name="invokeDoProcessMoreRules" 
+							 action="{!doProcessMoreRules}"
+							 reRender="idErrorMsg, idTabPanel"
+							 oncomplete="onActionComplete();" />
+		
+		<apex:actionFunction name="invokeDoDeleteLineItem" 
+							 action="{!doDeleteLineItem}"
+							 reRender="idErrorMsg, idTabPanel" 
+							 oncomplete="YAHOO.force.com.waitPanel.hide();">
+			<apex:param name="firstParam" assignTo="{!lineItemLineNbr}" value="" />
+		</apex:actionFunction>
+				
+		<apex:actionFunction name="invokeDoHideMessage"
+							 action="{!doHideMessage}"
+							 reRender="idErrorMsg"
+							 oncomplete="YAHOO.force.com.waitPanel.hide();" >
+			<apex:param name="param" assignTo="{!appliedActionInfoId}" value="" />
+		</apex:actionFunction>
+		
+		<apex:actionFunction name="doApplyAdjustments" 
+    						 action="{!doApplyAdjustments}" 
+    						 immediate="true" 
+    						 reRender="idViewBlock"
+    						 oncomplete="YAHOO.force.com.repriceWaitPanel.hide();" /> 
+		
+		<apex:actionFunction name="doReload" 
+    						 action="{!doRefreshPage}" 
+    						 immediate="true" 
+    						 oncomplete="YAHOO.force.com.repriceWaitPanel.hide();" /> 
+    						 
+		<!-- This is the product details dialog -->
+		<apex:outputPanel >
+			<div id="productDetailPanel" style="display: none">
+				<apex:outputPanel id="idCtxProductDetail">
+				    <div class="hd">
+				    	<apex:outputPanel >
+				    		<span id="ctxProductName">Hello Name</span>
+				        </apex:outputPanel>	
+				    </div> 
+				    <div class="bd">
+			    		<apex:pageBlock >
+			    			<apex:pageBlockSection columns="1">
+			    				<apex:pageBlockSectionItem >
+                    				<apex:outputLabel value="{!$ObjectType.Product2.Fields.Description.Label}" for="ctxProductDescription"/>
+			    					<span id="ctxProductDescription">Hello Description</span>
+				    			</apex:pageBlockSectionItem>
+			    			</apex:pageBlockSection>
+			    		</apex:pageBlock>
+				    </div> 
+				</apex:outputPanel>	
+			</div>
+		</apex:outputPanel>					
+		
+	</apex:form>
+	
+	<!-- This is the content of the add miscellaneous line item dialog -->
+	<apex:outputPanel >
+		<div id="miscItemPanel" style="display: none">
+		    <div class="hd">
+		        <apex:outputText value="{!$Label.apttus_config2__AddMiscellaneousItem}" />
+		    </div> 
+		    <div class="bd">
+		    	<apex:form >
+		    		<apex:actionRegion >
+			    		<apex:pageBlock >
+			    			<apex:pageBlockSection columns="1">
+			    				
+			    				<apex:pageBlockSectionItem >
+							    	<apex:outputLabel value="{!$ObjectType.Apttus_Config2__LineItem__c.Fields.Apttus_Config2__ChargeType__c.Label}" 
+							    					  for="idMiscChargeType" />
+							    	
+							    	<apex:outputPanel >
+								    	<apex:selectList id="idMiscChargeType" 
+								    					 size="1" 
+								    					 value="{!miscLineItemSO.Apttus_Config2__ChargeType__c}" 
+								    					 multiselect="false" 
+						  								 required="false" >
+								      		<apex:selectOptions value="{!miscChargeTypeItems}"></apex:selectOptions>				      		
+								      	</apex:selectList>
+									    <script>
+					    					var fldMiscChargeType = document.getElementById("{!$Component.idMiscChargeType}");
+					    				
+								      	</script>
+							      	 </apex:outputPanel>	
+								</apex:pageBlockSectionItem>
+								
+								<apex:pageBlockSectionItem >
+				    				<apex:outputLabel value="{!$Label.apttus_config2__Amount}" 
+								    				  for="idMiscAmount" />
+								    <apex:outputPanel >
+					    				<apex:inputField id="idMiscAmount" 
+					    								 onkeypress="return aptIgnoreEnterKey(event);"
+					    								 value="{!miscLineItemSO.Apttus_Config2__BasePrice__c}" />
+					    				
+					    				<script>
+								        	var fldMiscAmount = document.getElementById("{!$Component.idMiscAmount}");
+								        	
+								      	</script>				 
+					    			</apex:outputPanel>
+			    				</apex:pageBlockSectionItem>
+			    								 
+			    				<apex:inputField id="idMiscDescription" 
+			    								 onkeypress="return aptIgnoreEnterKey(event);"
+			    								 value="{!miscLineItemSO.Apttus_Config2__Description__c}" />
+			    								 		 
+			    				<script>
+						        	var fldMiscDescription = document.getElementById("{!$Component.idMiscDescription}");
+						        	
+						      	</script>
+			    			</apex:pageBlockSection>
+			    		</apex:pageBlock>
+		    			<div style="text-align: center;" >
+		                    <apex:commandButton value="{!$Label.apttus_config2__Ok}"
+		                    					action="{!doAddMiscLineItem}"  
+		                    					reRender="idErrorMsg, idTabPanel" 
+		                    					onclick="onOkActionClick();" 
+												oncomplete="onOkActionComplete();" />
+		                    <apex:commandButton value="{!$Label.apttus_config2__Cancel}" 
+		                    					immediate="true" 
+		                    					reRender="idErrorMsg, idTabPanel" 
+		                    					oncomplete="YAHOO.force.com.miscItemPanel.hide();" />
+		                </div>
+		            </apex:actionRegion>
+		    	</apex:form>
+		    </div>
+		</div>
+	</apex:outputPanel>	
+</apex:page>

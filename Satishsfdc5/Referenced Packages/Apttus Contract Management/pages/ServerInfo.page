@@ -1,0 +1,15 @@
+<!-- 
+    Apttus Contract Management
+    ServerInfo
+     
+    @2009-2010 Apttus Inc. All rights reserved.
+
+ -->
+<apex:page showHeader="false" 
+		   contentType="text/xml">
+		   
+	<ServerInfo>
+	  <SessionId>{!$Api.Session_ID}</SessionId>
+	  <ServerURL>{!$Api.Partner_Server_URL_260}</ServerURL>
+	</ServerInfo>
+</apex:page>

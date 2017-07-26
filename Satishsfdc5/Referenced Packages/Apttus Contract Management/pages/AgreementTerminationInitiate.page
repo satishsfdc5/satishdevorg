@@ -1,0 +1,113 @@
+<!-- 
+    Apttus Contract Management
+    AgreementTerminationInitiate
+     
+    @2010-2011 Apttus Inc. All rights reserved.
+
+ -->
+<apex:page standardController="Apttus__APTS_Agreement__c" 
+	  	   extensions="Apttus.AgreementTerminationInitiateController" 
+           showHeader="true" 
+           sidebar="true" 
+           cache="false" 
+           tabStyle="Apttus__APTS_Agreement__c">	
+    
+    <style>
+		textarea {
+			width: 25%;
+		}
+	</style>
+	
+	<apex:form id="idInitiateTermination">
+		
+		<apex:outputPanel id="idInitiateTerminationPanel">
+			
+			<apex:outputPanel rendered="{!NOT(isInitialized)}">
+		        <script>
+		           // register to invoke the function after the page load
+				    window.onload = function() { 
+				       	// initialize the controller
+				        doInit();
+				        
+				    };
+		           
+		        </script>
+		    </apex:outputPanel>
+		    
+		    <apex:outputPanel rendered="{!isInitialized}" >
+		    	
+		    	<apex:pageBlock mode="edit" rendered="{!NOT(canEditAgreement)}" >
+					<apex:pageMessages />
+					<apex:outputText value="{!$Label.apttus__InsufficientPrivileges}" 
+									 style="font-family: Arial, Helvetica, sans-serif;font-weight: bold;font-size: 12pt;" /><p/>
+					<apex:outputText value="{!$Label.apttus__InsufficientPrivilegesDetail}" /><br/>
+					<apex:pageBlockButtons location="bottom" >
+						<apex:commandButton action="{!doReturn}" value="{!$Label.apttus__Return}" immediate="true" />
+					</apex:pageBlockButtons>
+				</apex:pageBlock>
+				
+				<apex:pageBlock id="idTerminateBlock" 
+								title="{!$Label.apttus__InitiateTermination}" 
+								mode="edit" 
+								rendered="{!canEditAgreement}" >
+								
+					<apex:pageMessages />
+					
+					<apex:pageBlockButtons location="both">
+				        <apex:commandButton value="{!$Label.apttus__Initiate}" 
+				        					action="{!doInitiateTermination}" />
+				        <apex:commandButton value="{!$Label.apttus__Cancel}" 
+				        					action="{!doReturn}" 
+				        					immediate="true" />
+				    </apex:pageBlockButtons>
+				    
+				    <apex:pageBlockSection columns="1" collapsible="false">
+					    
+					    <apex:inputField value="{!Apttus__APTS_Agreement__c.Apttus__TerminationComments__c}" required="false" />
+					    <apex:inputField value="{!Apttus__APTS_Agreement__c.Apttus__Termination_Date__c}" required="true" />
+					    <apex:actionStatus id="idSelectStatus" startText="{!$Label.apttus__RefreshStatus}" />
+					</apex:pageBlockSection>
+				    
+					<apex:pageBlockSection title="{!$Label.apttus__ChildAgreements}" columns="1" collapsible="false">
+				        <apex:pageBlockTable value="{!childAgreements}" 
+				        					 var="agreementInfo" 
+				        					 width="100%" 
+				        					 rendered="{!HasChildAgreements}">
+				        	<apex:column >
+								<apex:facet name="header" >
+									<apex:inputCheckbox value="{!isAllChildAgreementsSelected}" >
+										<apex:actionSupport event="onclick" 
+															action="{!doSelectAll}" 
+															reRender="idTerminateBlock" 
+															status="idSelectStatus" />
+									</apex:inputCheckbox>
+								</apex:facet>
+								<apex:inputCheckbox value="{!agreementInfo.selected}" />
+							</apex:column>
+				        	
+				        	<apex:column value="{!agreementInfo.agreementSO.Apttus__FF_Agreement_Number__c}" />
+				        	
+				        	<apex:column headerValue="{!$ObjectType.Apttus__APTS_Agreement__c.Fields.Name.Label}" >
+				        		<apex:outputLink value="/{!agreementInfo.agreementSO.Id}" target="_blank">{!agreementInfo.agreementSO.Name}</apex:outputLink>
+				        	</apex:column>
+				        	
+							<apex:column value="{!agreementInfo.agreementSO.Apttus__Status__c}" />
+							<apex:column value="{!agreementInfo.agreementSO.Apttus__Contract_Start_Date__c}" />
+				          	<apex:column value="{!agreementInfo.agreementSO.Apttus__Contract_End_Date__c}" />
+				          	
+				        </apex:pageBlockTable>
+				        <apex:outputText value="{!$Label.apttus__NoChildAgreementsToDisplay}" rendered="{!NOT(HasChildAgreements)}" />
+				    </apex:pageBlockSection>
+					
+				</apex:pageBlock>
+			</apex:outputPanel>
+			
+		</apex:outputPanel>
+		
+		<apex:actionFunction name="doInit" 
+    						 action="{!doInit}" 
+    						 reRender="idInitiateTerminationPanel" />
+    						 
+	</apex:form>
+
+</apex:page>

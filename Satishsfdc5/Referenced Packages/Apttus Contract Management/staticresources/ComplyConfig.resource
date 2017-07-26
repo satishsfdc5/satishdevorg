@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ComplyConfig>
+	<AgreementSpec>
+		<Description>AgreementSpec contains agreement configuration specification</Description>
+		<DocumentProtectionSpec>
+			<ProtectionEnabled>false</ProtectionEnabled>
+			<Password/>
+		</DocumentProtectionSpec>
+		<CloneSpec>
+			<Description>Clonespec specifies how to handle child objects when an agreement is cloned by the user. The rules can specified as a combination of inclusions and exclusions. The ability to override the base clone specification for a child object is dictated by the isOverridable property attached to each child object specification.</Description>
+			<Includes>
+				<ChildObject>
+					<Name>Note</Name>
+					<IsOverridable>true</IsOverridable>
+				</ChildObject>
+				<ChildObject>
+					<Name>Attachment</Name>
+					<IsOverridable>true</IsOverridable>
+				</ChildObject>
+				<ChildObject>
+					<Name>Apttus__Agreement_Clause__c</Name>
+					<IsOverridable>true</IsOverridable>
+					<!--<NamespacePrefix></NamespacePrefix>-->
+				</ChildObject>
+				<ChildObject>
+					<Name>Apttus__Agreement_Document__c</Name>
+					<IsOverridable>true</IsOverridable>
+					<!--<NamespacePrefix></NamespacePrefix>-->
+				</ChildObject>
+			</Includes>
+		</CloneSpec>
+		<ContentSpec>
+			<Description>Contentspec specifies the tag fields from the agreement for export to a content management system</Description>
+			<TagFields>
+				<TagField>
+					<Name>Apttus__Account__r.Name</Name>
+				</TagField>
+				<TagField>
+					<Name>Apttus__Agreement_Number__c</Name>
+				</TagField>
+				<TagField>
+					<Name>Apttus__FF_Agreement_Number__c</Name>
+				</TagField>
+			</TagFields>
+		</ContentSpec>
+	</AgreementSpec>
+	<TemplateSpec>
+		<Description>TemplateSpec contains agreement template configuration specification</Description>
+		<CloneSpec>
+			<Description>Clonespec specifies how to handle child objects when an agreement template is cloned by the user. The rules can specified as a combination of inclusions and exclusions. The ability to override the base clone specification for a child object is dictated by the isOverridable property attached to each child object specification.</Description>
+			<Includes>
+				<ChildObject>
+					<Name>Note</Name>
+					<IsOverridable>true</IsOverridable>
+				</ChildObject>
+				<ChildObject>
+					<Name>Attachment</Name>
+					<IsOverridable>true</IsOverridable>
+				</ChildObject>
+				<ChildObject>
+					<Name>Apttus__Agreement_Clause__c</Name>
+					<IsOverridable>true</IsOverridable>
+				</ChildObject>
+			</Includes>
+		</CloneSpec>
+	</TemplateSpec>
+	<AgreementRuleSpec>
+		<Description>AgreementRuleSpec contains agreement rule configuration specification</Description>
+		<CloneSpec>
+			<Description>Clonespec specifies how to handle child objects when an agreement rule is cloned by the user. The rules can specified as a combination of inclusions and exclusions. The ability to override the base clone specification for a child object is dictated by the isOverridable property attached to each child object specification.</Description>
+			<Includes>
+				<ChildObject>
+					<Name>Note</Name>
+					<IsOverridable>true</IsOverridable>
+				</ChildObject>
+				<ChildObject>
+					<Name>Attachment</Name>
+					<IsOverridable>true</IsOverridable>
+				</ChildObject>
+				<ChildObject>
+					<Name>Apttus__Agreement_Rule_Condition__c</Name>
+					<IsOverridable>true</IsOverridable>
+					<!--<NamespacePrefix></NamespacePrefix>-->
+				</ChildObject>
+			</Includes>
+		</CloneSpec>
+	</AgreementRuleSpec>
+	<EmailTemplateSpec>
+		<Description>EmailTemplateSpec contains email template configuration specification</Description>
+		<CloneSpec>
+			<Description>Clonespec specifies how to handle child objects when a email template is cloned by the user. The rules can specified as a combination of inclusions and exclusions. The ability to override the base clone specification for a child object is dictated by the isOverridable property attached to each child object specification.</Description>
+			<Includes>
+				<ChildObject>
+					<Name>Attachment</Name>
+					<IsOverridable>false</IsOverridable>
+				</ChildObject>
+			</Includes>
+		</CloneSpec>
+	</EmailTemplateSpec>
+	<QueryTemplateSpec>
+		<Description>QueryTemplateSpec contains query template configuration specification</Description>
+		<CloneSpec>
+			<Description>Clonespec specifies how to handle child objects when a query template is cloned by the user. The rules can specified as a combination of inclusions and exclusions. The ability to override the base clone specification for a child object is dictated by the isOverridable property attached to each child object specification.</Description>
+			<Includes>
+				<ChildObject>
+					<Name>Note</Name>
+					<IsOverridable>true</IsOverridable>
+				</ChildObject>
+				<ChildObject>
+					<Name>Attachment</Name>
+					<IsOverridable>true</IsOverridable>
+				</ChildObject>
+				<ChildObject>
+					<Name>QueryTemplateQualifier__c</Name>
+					<IsOverridable>true</IsOverridable>
+				</ChildObject>
+				<ChildObject>
+					<Name>QueryTemplateFilter__c</Name>
+					<IsOverridable>true</IsOverridable>
+				</ChildObject>
+			</Includes>
+		</CloneSpec>
+	</QueryTemplateSpec>
+	<PDFSecurityDefault>
+		<CanPrint>true</CanPrint>
+		<CanCopy>true</CanCopy>
+		<CanChange>false</CanChange>
+		<CanAddNotes>true</CanAddNotes>
+		<CanFillFields>true</CanFillFields>
+		<CanAssemble>false</CanAssemble>
+	</PDFSecurityDefault>
+</ComplyConfig>

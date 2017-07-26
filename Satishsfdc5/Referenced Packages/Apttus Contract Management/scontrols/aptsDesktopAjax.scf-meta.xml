@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scontrol xmlns="http://soap.sforce.com/2006/04/metadata">
+    <contentSource>Snippet</contentSource>
+    <description>Contains low level functions for calling Ajax directly from the client</description>
+    <encodingKey>UTF-8</encodingKey>
+    <name>aptsDesktopAjax (DEPRECATED)</name>
+    <supportsCaching>true</supportsCaching>
+</Scontrol>

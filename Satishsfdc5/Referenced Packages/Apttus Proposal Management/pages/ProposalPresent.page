@@ -1,0 +1,236 @@
+<!-- 
+    Apttus Proposal Management
+    ProposalPresent
+     
+    @2010-2011 Apttus Inc. All rights reserved.
+
+    parameters
+    ==========
+    Name			| Required | Description
+    ================|==========|======================================================================================
+    id 				| Yes      | The record id of the quote/proposal
+                    |          |
+    documentIdsCsv  | No       | A comma separated list of attachment ids to display to the user. 
+                    |          | The default behavior is to display all attachments associated with the quote/proposal
+                    |          |
+    ===================================================================================================================
+    
+ -->
+ 
+<apex:page standardController="Apttus_Proposal__Proposal__c" 
+	  	   extensions="Apttus_Proposal.ProposalPresentController" 
+           showHeader="true" 
+           sidebar="true" 
+           cache="false" 
+           tabStyle="Apttus_Proposal__Proposal__c">	
+     
+    <script type="text/javascript" src="/soap/ajax/25.0/connection.js"></script>
+	<script type="text/javascript" src="/soap/ajax/25.0/apex.js"></script>
+	<apex:includescript value="{!$Resource.Apttus_Proposal__ProposalJSLib}" />
+	
+	<apex:stylesheet value="{!URLFOR($Resource.Apttus_Proposal__YUILibrary, '/yui/build/assets/skins/sam/skin.css')}" />
+ 
+	<apex:includescript value="{!URLFOR($Resource.Apttus_Proposal__YUILibrary, '/yui/build/yahoo-dom-event/yahoo-dom-event.js')}" />
+	<apex:includescript value="{!URLFOR($Resource.Apttus_Proposal__YUILibrary, '/yui/build/dragdrop/dragdrop-min.js')}" />
+	<apex:includescript value="{!URLFOR($Resource.Apttus_Proposal__YUILibrary, '/yui/build/container/container-min.js')}" />
+	<apex:includescript value="{!URLFOR($Resource.Apttus_Proposal__YUILibrary, '/yui/build/animation/animation-min.js')}" />
+	
+	<script>
+    
+	    // Create a namespace for our custom functions
+	    YAHOO.namespace("force.com");
+		
+		// wait panel
+		
+		/**
+		 * Builds the wait panel.
+		 */
+	    YAHOO.force.com.buildWaitPanel = function() {
+	        document.body.className = document.body.className + " yui-skin-sam";
+	        YAHOO.force.com.waitPanel = new YAHOO.widget.Panel(
+	            "waitPanel",  // The id of our dialog container
+	            { 
+	                    width           :   "300px", // You can play with this until it's right
+	                    visible         :   false,   // Should be invisible when rendered
+	                    draggable       :   false,   // Make the dialog draggable
+	                    close           :   false,   // Don't include a close title button
+	                    modal           :   true,    // Make it modal
+	                    fixedCenter     :   true,    // Keep centered if window is scrolled
+	                    zindex          :   40,      // Make sure it's on top of everything
+	                    constraintoviewport: true,
+	                    
+	                    // This line adds the appear/disapper fade effect
+	                    effect			:   {effect:YAHOO.widget.ContainerEffect.FADE,duration:0.25}
+        							
+	            }
+	        );
+	        
+	        // header
+	        YAHOO.force.com.waitPanel.setHeader("{!$Label.PreparingProposal}");
+			// set image
+			YAHOO.force.com.waitPanel.setBody('<center><img src="{!URLFOR($Resource.Image_LoadingPage)}" /></center>');
+	        // Render the dialog to the document.body level of the DOM
+	        YAHOO.force.com.waitPanel.render(document.body);
+	        
+	    }
+	    
+	    // Function called when the DOM is ready to create the dialog,
+    	// render the dialog into the document body, add our dialog skin
+    	// css to the body tag, and wire up the buttons on our dialog   
+		YAHOO.force.com.onDOMReady = function() {
+			
+			// build the wait panel
+			YAHOO.force.com.buildWaitPanel();
+			
+		}
+		
+	    // build the tree as soon as the DOM is in a usable state
+		YAHOO.util.Event.onDOMReady(YAHOO.force.com.onDOMReady);   	
+		
+	</script>
+	
+	<script type="text/javascript">	
+		
+		/**
+		 * Initializes the call
+		 */
+		function initCall() {
+		
+			try {
+				sforce.connection.sessionId = "{!$Api.Session_ID}"; //to avoid session timeout
+				
+			} catch(ex) {
+				qp_erroralert(qp_cERROR_UNKNOWN,ex);
+				
+			}
+		
+		}
+    
+	    /**
+		 * Callback invoked after a proposal is presented
+		 */
+		function navigateToEmailAuthorPage(proposalId, emailTemplateId, attachmentIds) {
+			
+			// temp email template id
+			var tempEmailTemplateId = null;
+			
+			try {
+				// STEP I - initialize the call
+				initCall();
+				// STEP II - delete the temporary email template
+				// clone email template
+            	tempEmailTemplateId = qp_cloneEmailTemplate(emailTemplateId);
+				// STEP III - add each attachment one at a time to the temporary email template
+				for (var i = 0; i < attachmentIds.length; i++) {
+					// copy the attachment to the email template
+					qp_copyAttachment(tempEmailTemplateId, attachmentIds[i]);
+					
+				}
+		
+				// STEP IV - navigate to the email author page
+				// page url
+				var pageURL = qp_buildEmailAuthorPageURL(proposalId, tempEmailTemplateId);
+				// navigate to the email author page
+				qp_navigateTo(pageURL);
+			
+			} catch(ex) {
+				
+				// hide modal panel
+				YAHOO.force.com.waitPanel.hide();
+   				
+				qp_erroralert(qp_cERROR_UNKNOWN, ex);
+				
+				// delete the temporary email template
+				if (tempEmailTemplateId) {
+					qp_deleteEmailTemplate(tempEmailTemplateId);
+					
+				}
+				
+				// navigate to the proposal detail page
+				qp_navigateTo("/" + proposalId);
+				
+			} 
+		
+		}
+	
+	</script>
+	
+	<apex:form id="idPresentProposal">
+		
+		<apex:pageBlock id="idPresentProposalBlock" title="{!$Label.apttus_proposal__PresentProposal}" mode="detail">
+			<apex:pageMessages />
+			
+			<apex:pageBlockButtons location="top">
+		        <apex:commandButton value="{!$Label.apttus_proposal__Next}" 
+		        					action="{!doNext}" 
+		        					reRender="idAuthorEmailPanel" 
+		        					disabled="{!NOT(hasSelectedAttachmentIds)}" />
+		        <apex:commandButton value="{!$Label.apttus_proposal__Cancel}" 
+		        					action="{!doCancel}" 
+		        					immediate="true" />
+		    </apex:pageBlockButtons>
+		    
+		    <apex:pageBlockSection title="1. {!$Label.apttus_proposal__SelectAttachments}" columns="2" collapsible="false">
+			    
+			    <apex:pageBlockTable value="{!attachments}" 
+			        					 var="attInfo" 
+			        					 columns="5" 
+			        					 width="100%" 
+			        					 rendered="{!hasAttachments}">
+			        					 
+			        <apex:column >
+						<apex:inputCheckbox value="{!attInfo.selected}" >
+		        			<apex:actionSupport event="onclick" action="{!doSelect}" reRender="idPresentProposalBlock" />  
+		        		</apex:inputCheckbox>
+					</apex:column>
+					
+					<apex:column headerValue="{!$ObjectType.Attachment.Fields.Name.Label}" >
+		        		<apex:outputField value="{!attInfo.attSO.Name}" />
+					</apex:column>
+					
+					<apex:column headerValue="{!$ObjectType.Attachment.Fields.ContentType.Label}" >
+		        		<apex:outputField value="{!attInfo.attSO.ContentType}" />
+					</apex:column>
+					
+					<apex:column headerValue="{!$ObjectType.Attachment.Fields.BodyLength.Label}" >
+		        		<apex:outputField value="{!attInfo.attSO.BodyLength}" />
+					</apex:column>
+					
+					<apex:column headerValue="{!$ObjectType.Attachment.Fields.LastModifiedDate.Label}" >
+		        		<apex:outputField value="{!attInfo.attSO.LastModifiedDate}" />
+					</apex:column>
+										 
+			    </apex:pageBlockTable>
+			    <apex:outputText value="{!$Label.apttus_proposal__NoAttachmentsToDisplay}" rendered="{!NOT(hasAttachments)}" />
+				
+			</apex:pageBlockSection>
+		    
+		   	<apex:outputPanel id="idAuthorEmailPanel" >
+				<apex:outputPanel rendered="{!NOT(hasErrors) && (isAuthorEmailStep)}" >
+					<script>
+						
+						// get parameters
+						// proposal id
+						var proposalId = "{!JSENCODE(proposalId)}"; 
+						// email template id
+						var emailTemplateId = "{!JSENCODE(emailTemplateId)}"; 
+						// selected attachments
+						var attachmentIdsCsv = "{!JSENCODE(selectedAttachmentIdsCsv)}"; 
+						
+						// show modal panel
+						YAHOO.force.com.waitPanel.show();
+		            	
+		            	// delay to allow prepare step to run	
+		            	setTimeout(function() {
+		           			// navigate to the email author page
+							navigateToEmailAuthorPage(proposalId, emailTemplateId, attachmentIdsCsv.split(",")); 
+		           		}, 5000);
+						
+					</script>
+				</apex:outputPanel>
+			</apex:outputPanel>
+			
+		</apex:pageBlock>
+	</apex:form>
+	
+</apex:page>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scontrol xmlns="http://soap.sforce.com/2006/04/metadata">
+    <contentSource>Snippet</contentSource>
+    <description>Edits agreement line items in a table</description>
+    <encodingKey>UTF-8</encodingKey>
+    <fileName>aptsEditLineItems</fileName>
+    <name>aptsEditLineItems (DEPRECATED)</name>
+    <supportsCaching>true</supportsCaching>
+</Scontrol>

@@ -1,0 +1,19 @@
+<!-- 
+    Apttus Comply-Config Integration
+    ComplyConfigJSLibInclude
+     
+    @2010-2011 Apttus Inc. All rights reserved.
+
+ -->
+<apex:page >
+	
+	<script>
+
+		// error labels
+		cc_cERROR_UNKNOWN = "{!$Label.ErrorUnknown}"; // "ERROR: Unknown error:\n";
+	    
+	</script>
+	
+	<apex:includescript value="{!$Resource.Apttus_CMConfig__ComplyConfigJSLib}" />
+	
+</apex:page>

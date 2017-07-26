@@ -1,0 +1,1111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Follow</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <deprecated>false</deprecated>
+    <description>Quote/Proposal object which holds dates and line items, many quotes/proposals may be related to a single opportunity, a quote/proposal may have many detail lines</description>
+    <enableActivities>true</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>false</enableHistory>
+    <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <fields>
+        <fullName>Account__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <deprecated>false</deprecated>
+        <description>Prospect Account</description>
+        <externalId>false</externalId>
+        <label>Account</label>
+        <referenceTo>Account</referenceTo>
+        <relationshipName>SFDC_520_Quote</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Amount__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Amount</label>
+        <summarizedField>Proposal_Line_Item__c.Ext_Net_Price__c</summarizedField>
+        <summaryForeignKey>Proposal_Line_Item__c.Proposal__c</summaryForeignKey>
+        <summaryOperation>sum</summaryOperation>
+        <trackTrending>false</trackTrending>
+        <type>Summary</type>
+    </fields>
+    <fields>
+        <fullName>Approval_Stage__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The proposal approval stage</description>
+        <externalId>false</externalId>
+        <label>Approval Stage</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Draft</fullName>
+                <default>true</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Approval Required</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>In Review</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Approved</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Generated</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Presented</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Accepted</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Denied</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>CreateAgreement__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Create Agreement, if the proposal is accepted.</description>
+        <externalId>false</externalId>
+        <formula>IF (ISPICKVAL(Approval_Stage__c, &quot;Accepted&quot;) , HYPERLINK(&quot;/apex/Apttus_Proposal__ProposalAgreementCreate?id=&quot; &amp;Id, IMAGE(&quot;/resource/Apttus_Proposal__Button_CreateAgreement&quot;, &quot;Create Agreement&quot;),&quot;_self&quot;), NULL)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Create Agreement</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Description__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The proposal description</description>
+        <externalId>false</externalId>
+        <label>Description</label>
+        <length>32000</length>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Discount_Percent__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Discount %</label>
+        <precision>5</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackTrending>false</trackTrending>
+        <type>Percent</type>
+    </fields>
+    <fields>
+        <fullName>ExpectedEndDate__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The expected end date for products and services</description>
+        <externalId>false</externalId>
+        <label>Expected End Date</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>ExpectedStartDate__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The expected start date for products and services</description>
+        <externalId>false</externalId>
+        <label>Expected Start Date</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Generate__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Generate a quote/proposal</description>
+        <externalId>false</externalId>
+        <formula>IF (ReadyToGenerate__c, HYPERLINK(&quot;/apex/Apttus_Proposal__ProposalGenerate?id=&quot;&amp;Id , IMAGE(&quot;/resource/Apttus_Proposal__Button_Generate&quot;, &quot;Generate&quot;),&quot;_self&quot;), NULL)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Generate</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Grand_Total__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <formula>Net_Amount__c + Shipping_Handling__c + Sales_Tax_Amount__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Grand Total</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Internal_Deadline__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Internal Deadline</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>MakePrimary__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Make the quote/proposal primary for the associated opportunity</description>
+        <externalId>false</externalId>
+        <formula>IF (AND(LEN(Opportunity__c ) &gt; 0, NOT(Primary__c)), HYPERLINK(&quot;/apex/Apttus_Proposal__ProposalMakePrimary?id=&quot;&amp;Id, IMAGE(&quot;/resource/Apttus_Proposal__Button_MakePrimary&quot;, &quot;Make Primary&quot;),&quot;_self&quot;), NULL)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Make Primary</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Net_Amount__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <formula>Amount__c  * (1 - Discount_Percent__c )</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Net Amount</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Opportunity__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <deprecated>false</deprecated>
+        <description>The related opportunity</description>
+        <externalId>false</externalId>
+        <label>Opportunity</label>
+        <referenceTo>Opportunity</referenceTo>
+        <relationshipLabel>Proposals</relationshipLabel>
+        <relationshipName>R00N70000001yUfDEAU</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Payment_Term__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Payment Term</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Net 30 Days</fullName>
+                <default>true</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>1 Year</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>2 Years</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>3 Years</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Present__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Present the quote/proposal</description>
+        <externalId>false</externalId>
+        <formula>IF (ReadyToPresent__c, HYPERLINK(&quot;/apex/Apttus_Proposal__ProposalPresent?id=&quot;&amp;Id, IMAGE(&quot;/resource/Apttus_Proposal__Button_Present&quot;, &quot;Present&quot;),&quot;_self&quot;), NULL)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Present</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Presented_Date__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The date the quote/proposal was presented to the customer</description>
+        <externalId>false</externalId>
+        <label>Presented Date</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Preview__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Preview a quote/proposal</description>
+        <externalId>false</externalId>
+        <formula>HYPERLINK(&quot;/apex/Apttus_Proposal__ProposalGenerate?id=&quot;&amp;Id &amp; &quot;&amp;action=Preview&quot;, IMAGE(&quot;/resource/Apttus_Proposal__Button_Preview&quot;, &quot;Preview&quot;),&quot;_self&quot;)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Preview</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Primary_Contact__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <deprecated>false</deprecated>
+        <description>The primary contact associated with the quote/proposal</description>
+        <externalId>false</externalId>
+        <label>Primary Contact</label>
+        <referenceTo>Contact</referenceTo>
+        <relationshipLabel>Proposals</relationshipLabel>
+        <relationshipName>Proposals</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Primary__c</fullName>
+        <defaultValue>true</defaultValue>
+        <deprecated>false</deprecated>
+        <description>Indicates whether the quote/proposal is the primary quote to update the related opportunity</description>
+        <externalId>false</externalId>
+        <label>Primary</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Proposal_Approval_Date__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The date the quote/proposal was approved</description>
+        <externalId>false</externalId>
+        <label>Proposal Approval Date</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Proposal_Expiration_Date__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The quote/proposal expiration date</description>
+        <externalId>false</externalId>
+        <label>Proposal Expiration Date</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Proposal_Name__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Proposal Name</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>RFP_Intake_Date__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>RFP Intake Date</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>RFP_Response_Due_Date__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>RFP Response Due Date</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>RFP_Stage__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>RFP Stage</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Expected</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Received</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>First Revision</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Technical Input</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Pricing</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Internal Approval</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Final Draft</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Submitted</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>RFP_Value__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>RFP Value</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>ReadyToGenerate__c</fullName>
+        <defaultValue>true</defaultValue>
+        <deprecated>false</deprecated>
+        <description>Indicates whether the proposal is ready for generation</description>
+        <externalId>false</externalId>
+        <label>Ready To Generate</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>ReadyToPresent__c</fullName>
+        <defaultValue>true</defaultValue>
+        <deprecated>false</deprecated>
+        <description>Indicates whether the proposal is ready for presentation</description>
+        <externalId>false</externalId>
+        <label>Ready To Present</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Request_Approval__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <formula>HYPERLINK(&quot;/servlet/servlet.Integration?lid=01N700000009u2c&amp;eid=&quot;&amp;Id, IMAGE(&quot;/servlet/servlet.ImageServer?oid=00D70000000JXTN&amp;id=01570000000e6nU&quot;, &quot;Submit&quot;) )</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Request Approval</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Risk_Factors__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The risk factors associated with the quote/proposal</description>
+        <externalId>false</externalId>
+        <label>Risk Factors</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Turnaround Time</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Price Pressure</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Technical Delivery</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>MultiselectPicklist</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Sales_Tax_Amount__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <formula>Net_Amount__c *  Sales_Tax_Percent__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Sales Tax Amount</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Sales_Tax_Percent__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Sales Tax %</label>
+        <precision>5</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackTrending>false</trackTrending>
+        <type>Percent</type>
+    </fields>
+    <fields>
+        <fullName>Shipping_Handling__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Shipping &amp; Handling</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Special_Terms__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The special terms associated with the quote/proposal</description>
+        <externalId>false</externalId>
+        <label>Special Terms</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>Strategic_Importance__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The strategic importance of the quote/proposal</description>
+        <externalId>false</externalId>
+        <label>Strategic Importance</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Not Strategic</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Medium</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>High</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Must Win</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>SubmitForApproval__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Submit the quote/proposal for approval</description>
+        <externalId>false</externalId>
+        <formula>IF (ISPICKVAL(Approval_Stage__c, &quot;Approval Required&quot;), HYPERLINK(&quot;/apex/Apttus_Proposal__ProposalSubmit?id=&quot;&amp;Id, IMAGE(&quot;/resource/Apttus_Proposal__Button_SubmitForApproval&quot;, &quot;Submit for Approval&quot;),&quot;_self&quot;), NULL)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Submit For Approval</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Valid_Until_Date__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The date until the quote/proposal is valid</description>
+        <externalId>false</externalId>
+        <label>Valid Until Date</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <label>Quote/Proposal</label>
+    <listViews>
+        <fullName>All</fullName>
+        <columns>NAME</columns>
+        <columns>Opportunity__c</columns>
+        <columns>Approval_Stage__c</columns>
+        <columns>Valid_Until_Date__c</columns>
+        <columns>CREATED_DATE</columns>
+        <columns>OWNER.ALIAS</columns>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+    </listViews>
+    <listViews>
+        <fullName>ApprovedProposals</fullName>
+        <columns>NAME</columns>
+        <columns>Opportunity__c</columns>
+        <columns>Presented_Date__c</columns>
+        <columns>Valid_Until_Date__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Approval_Stage__c</field>
+            <operation>equals</operation>
+            <value>Approved</value>
+        </filters>
+        <filters>
+            <field>Grand_Total__c</field>
+            <operation>greaterThan</operation>
+            <value>100000</value>
+        </filters>
+        <label>Approved Proposals</label>
+    </listViews>
+    <listViews>
+        <fullName>PresentedtoCustomerrecently</fullName>
+        <columns>NAME</columns>
+        <columns>Opportunity__c</columns>
+        <columns>Presented_Date__c</columns>
+        <columns>Net_Amount__c</columns>
+        <columns>Valid_Until_Date__c</columns>
+        <columns>OWNER.ALIAS</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Presented_Date__c</field>
+            <operation>greaterOrEqual</operation>
+            <value>THIS_MONTH,LAST_MONTH</value>
+        </filters>
+        <label>Presented to Customer recently</label>
+    </listViews>
+    <listViews>
+        <fullName>RejectedProposals</fullName>
+        <columns>NAME</columns>
+        <columns>Opportunity__c</columns>
+        <columns>OWNER.ALIAS</columns>
+        <columns>LAST_UPDATE</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Approval_Stage__c</field>
+            <operation>equals</operation>
+            <value>Denied</value>
+        </filters>
+        <label>Rejected Proposals</label>
+    </listViews>
+    <nameField>
+        <displayFormat>Q-{00000000}</displayFormat>
+        <label>Proposal ID</label>
+        <type>AutoNumber</type>
+    </nameField>
+    <pluralLabel>Proposals</pluralLabel>
+    <recordTypes>
+        <fullName>Proposal</fullName>
+        <active>true</active>
+        <description>Proposal</description>
+        <label>Proposal</label>
+        <picklistValues>
+            <picklist>Approval_Stage__c</picklist>
+            <values>
+                <fullName>Accepted</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Approval Required</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Approved</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Denied</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Draft</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>Generated</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>In Review</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Presented</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Payment_Term__c</picklist>
+            <values>
+                <fullName>1 Year</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2 Years</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>3 Years</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Net 30 Days</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>RFP_Stage__c</picklist>
+            <values>
+                <fullName>Expected</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Final Draft</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>First Revision</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Internal Approval</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pricing</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Received</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Submitted</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Technical Input</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Risk_Factors__c</picklist>
+            <values>
+                <fullName>Price Pressure</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Technical Delivery</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Turnaround Time</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Strategic_Importance__c</picklist>
+            <values>
+                <fullName>High</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Medium</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Must Win</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Not Strategic</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>RFP</fullName>
+        <active>true</active>
+        <description>RFP</description>
+        <label>RFP</label>
+        <picklistValues>
+            <picklist>Approval_Stage__c</picklist>
+            <values>
+                <fullName>Accepted</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Approval Required</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Approved</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Denied</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Draft</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>Generated</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>In Review</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Presented</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Payment_Term__c</picklist>
+            <values>
+                <fullName>1 Year</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2 Years</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>3 Years</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Net 30 Days</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>RFP_Stage__c</picklist>
+            <values>
+                <fullName>Expected</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Final Draft</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>First Revision</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Internal Approval</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pricing</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Received</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Submitted</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Technical Input</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Risk_Factors__c</picklist>
+            <values>
+                <fullName>Price Pressure</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Technical Delivery</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Turnaround Time</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Strategic_Importance__c</picklist>
+            <values>
+                <fullName>High</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Medium</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Must Win</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Not Strategic</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <searchLayouts>
+        <customTabListAdditionalFields>Opportunity__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Account__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Net_Amount__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Valid_Until_Date__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Primary__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Approval_Stage__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>CREATED_DATE</customTabListAdditionalFields>
+        <lookupDialogsAdditionalFields>Opportunity__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>Net_Amount__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>Valid_Until_Date__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>Primary__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>Approval_Stage__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>CREATED_DATE</lookupDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>Opportunity__c</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>Account__c</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>Net_Amount__c</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>Valid_Until_Date__c</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>Primary__c</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>Approval_Stage__c</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>CREATED_DATE</lookupPhoneDialogsAdditionalFields>
+        <searchFilterFields>NAME</searchFilterFields>
+        <searchFilterFields>Opportunity__c</searchFilterFields>
+        <searchFilterFields>Account__c</searchFilterFields>
+        <searchFilterFields>Net_Amount__c</searchFilterFields>
+        <searchFilterFields>Valid_Until_Date__c</searchFilterFields>
+        <searchFilterFields>Primary__c</searchFilterFields>
+        <searchFilterFields>Approval_Stage__c</searchFilterFields>
+        <searchFilterFields>CREATED_DATE</searchFilterFields>
+        <searchResultsAdditionalFields>Opportunity__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Account__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Net_Amount__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Valid_Until_Date__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Primary__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Approval_Stage__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>CREATED_DATE</searchResultsAdditionalFields>
+    </searchLayouts>
+    <sharingModel>ReadWrite</sharingModel>
+    <webLinks>
+        <fullName>AddProposalProducts</fullName>
+        <availability>online</availability>
+        <displayType>link</displayType>
+        <height>900</height>
+        <linkType>sControl</linkType>
+        <masterLabel>Add Products</masterLabel>
+        <openType>sidebar</openType>
+        <protected>false</protected>
+        <scontrol>aptsProposalProductAdd</scontrol>
+    </webLinks>
+    <webLinks>
+        <fullName>CloneProposalwithDetails</fullName>
+        <availability>online</availability>
+        <displayType>link</displayType>
+        <height>600</height>
+        <linkType>sControl</linkType>
+        <masterLabel>Clone Proposal with Details</masterLabel>
+        <openType>sidebar</openType>
+        <protected>false</protected>
+        <scontrol>aptsProposalCloneLineItems</scontrol>
+    </webLinks>
+    <webLinks>
+        <fullName>CreateAgreement</fullName>
+        <availability>online</availability>
+        <displayType>link</displayType>
+        <height>600</height>
+        <linkType>sControl</linkType>
+        <masterLabel>Create Agreement</masterLabel>
+        <openType>sidebar</openType>
+        <protected>false</protected>
+        <scontrol>aptsProposalCreateAgreement</scontrol>
+    </webLinks>
+    <webLinks>
+        <fullName>EditProposaProducts</fullName>
+        <availability>online</availability>
+        <displayType>link</displayType>
+        <height>800</height>
+        <linkType>sControl</linkType>
+        <masterLabel>Edit Products</masterLabel>
+        <openType>sidebar</openType>
+        <protected>false</protected>
+        <scontrol>aptsProposalProductEdit</scontrol>
+    </webLinks>
+    <webLinks>
+        <fullName>Generate</fullName>
+        <availability>online</availability>
+        <description>Generate a quote/proposal</description>
+        <displayType>button</displayType>
+        <height>600</height>
+        <linkType>sControl</linkType>
+        <masterLabel>Generate</masterLabel>
+        <openType>sidebar</openType>
+        <protected>false</protected>
+        <scontrol>aptsProposalGenerate</scontrol>
+    </webLinks>
+    <webLinks>
+        <fullName>GenerateProposal</fullName>
+        <availability>online</availability>
+        <displayType>link</displayType>
+        <height>600</height>
+        <linkType>sControl</linkType>
+        <masterLabel>Generate Proposal</masterLabel>
+        <openType>sidebar</openType>
+        <protected>false</protected>
+        <scontrol>aptsProposalGenerate</scontrol>
+    </webLinks>
+    <webLinks>
+        <fullName>NewQuoteProposalFromOpportunity</fullName>
+        <availability>online</availability>
+        <description>Create quote/proposal from the opportunity</description>
+        <displayType>massActionButton</displayType>
+        <encodingKey>UTF-8</encodingKey>
+        <height>600</height>
+        <linkType>url</linkType>
+        <masterLabel>New Quote/Proposal</masterLabel>
+        <openType>sidebar</openType>
+        <protected>false</protected>
+        <requireRowSelection>false</requireRowSelection>
+        <url>/apex/Apttus_Proposal__OpportunityProposalCreate?id={!Opportunity.Id}</url>
+    </webLinks>
+    <webLinks>
+        <fullName>PresentProposal</fullName>
+        <availability>online</availability>
+        <displayType>link</displayType>
+        <height>600</height>
+        <linkType>sControl</linkType>
+        <masterLabel>Present Proposal</masterLabel>
+        <openType>sidebar</openType>
+        <protected>false</protected>
+        <scontrol>aptsProposalPresent</scontrol>
+    </webLinks>
+    <webLinks>
+        <fullName>ReportViewCurrentTotals</fullName>
+        <availability>online</availability>
+        <displayType>link</displayType>
+        <encodingKey>UTF-8</encodingKey>
+        <hasMenubar>false</hasMenubar>
+        <hasScrollbars>true</hasScrollbars>
+        <hasToolbar>false</hasToolbar>
+        <height>600</height>
+        <isResizable>true</isResizable>
+        <linkType>url</linkType>
+        <masterLabel>Report View &amp; Current Totals</masterLabel>
+        <openType>newWindow</openType>
+        <position>none</position>
+        <protected>false</protected>
+        <showsLocation>false</showsLocation>
+        <showsStatus>false</showsStatus>
+        <url>/00O70000001oRTc?pv0={!Proposal__c.Id}</url>
+        <width>900</width>
+    </webLinks>
+    <webLinks>
+        <fullName>SubmitForApproval</fullName>
+        <availability>online</availability>
+        <displayType>link</displayType>
+        <height>600</height>
+        <linkType>sControl</linkType>
+        <masterLabel>Submit For Approval</masterLabel>
+        <openType>sidebar</openType>
+        <protected>false</protected>
+        <scontrol>aptsProposalSubmitForApproval</scontrol>
+    </webLinks>
+    <webLinks>
+        <fullName>SyncWithOpportunity</fullName>
+        <availability>online</availability>
+        <displayType>link</displayType>
+        <hasMenubar>false</hasMenubar>
+        <hasScrollbars>false</hasScrollbars>
+        <hasToolbar>false</hasToolbar>
+        <height>200</height>
+        <isResizable>false</isResizable>
+        <linkType>sControl</linkType>
+        <masterLabel>Synchronize With Opportunity</masterLabel>
+        <openType>newWindow</openType>
+        <position>none</position>
+        <protected>false</protected>
+        <scontrol>aptsProposalProductUpdate</scontrol>
+        <showsLocation>false</showsLocation>
+        <showsStatus>false</showsStatus>
+        <width>400</width>
+    </webLinks>
+</CustomObject>

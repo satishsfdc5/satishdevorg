@@ -1,0 +1,20 @@
+<!-- 
+    Apttus Contract Management
+    OfflineAgreement
+     
+    @2009-2010 Apttus Inc. All rights reserved.
+
+ -->
+<apex:page controller="Apttus.OfflineAgreementController" 
+		   action="{!onLoad}" >
+		   
+	<apex:form >	
+		<apex:pageBlock mode="edit" rendered="{!hasErrors}" >
+			<apex:pageMessages />
+			<apex:pageBlockButtons location="bottom" >
+				<apex:commandButton action="{!doCancel}" value="{!$Label.apttus__Cancel}" immediate="true"/>
+			</apex:pageBlockButtons>
+		</apex:pageBlock>
+	</apex:form>
+	
+</apex:page>

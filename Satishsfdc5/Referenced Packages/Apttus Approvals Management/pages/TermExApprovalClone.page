@@ -1,0 +1,66 @@
+<!-- 
+    Apttus Approvals Management
+    TermExApprovalClone
+     
+    @2010-2011 Apttus Inc. All rights reserved.
+
+ -->
+<apex:page standardController="Apttus_Approval__Term_Exception_Approval__c"
+		   extensions="Apttus_Approval.TermExApprovalCloneController">
+	
+	<apex:stylesheet value="{!URLFOR($Resource.Apttus_Approval__YUILibrary, '/yui/build/assets/skins/sam/skin.css')}" />
+ 
+	<apex:includescript value="{!URLFOR($Resource.Apttus_Approval__YUILibrary, '/yui/build/yahoo-dom-event/yahoo-dom-event.js')}" />
+	<apex:includescript value="{!URLFOR($Resource.Apttus_Approval__YUILibrary, '/yui/build/dragdrop/dragdrop-min.js')}" />
+	<apex:includescript value="{!URLFOR($Resource.Apttus_Approval__YUILibrary, '/yui/build/container/container-min.js')}" />
+	<apex:includescript value="{!URLFOR($Resource.Apttus_Approval__YUILibrary, '/yui/build/animation/animation-min.js')}" />
+	
+	<script>
+    
+	    // Create a namespace for our custom functions
+	    YAHOO.namespace("force.com");
+		
+	    // Function called when the DOM is ready to create the dialog,
+    	// render the dialog into the document body, add our dialog skin
+    	// css to the body tag, and wire up the buttons on our dialog   
+		YAHOO.force.com.onDOMReady = function() {
+			
+			// clone the term ex approval
+			doClone();
+	        
+		}
+		
+	    // build the panel as soon as the DOM is in a usable state
+		YAHOO.util.Event.onDOMReady(YAHOO.force.com.onDOMReady);   	
+		
+	</script>
+	
+	<apex:form >
+
+		<apex:outputText value="{!Apttus_Approval__Term_Exception_Approval__c.Apttus_Approval__Term_Exception__c}" rendered="false"/>
+		<apex:outputText value="{!Apttus_Approval__Term_Exception_Approval__c.Apttus_Approval__Active__c}" rendered="false"/>
+		<apex:outputText value="{!Apttus_Approval__Term_Exception_Approval__c.Apttus_Approval__Assignee_Id__c}" rendered="false"/>
+		<apex:outputText value="{!Apttus_Approval__Term_Exception_Approval__c.Apttus_Approval__Assignee_Type__c}" rendered="false"/>
+		<apex:outputText value="{!Apttus_Approval__Term_Exception_Approval__c.Apttus_Approval__Assignee_User__c}" rendered="false"/>
+		<apex:outputText value="{!Apttus_Approval__Term_Exception_Approval__c.Apttus_Approval__Assignee_Value__c}" rendered="false"/>
+		<apex:outputText value="{!Apttus_Approval__Term_Exception_Approval__c.Apttus_Approval__DependsOn__c}" rendered="false"/>
+		<apex:outputText value="{!Apttus_Approval__Term_Exception_Approval__c.Apttus_Approval__Sequence__c}" rendered="false"/>
+		<apex:outputText value="{!Apttus_Approval__Term_Exception_Approval__c.Name}" rendered="false"/>
+		<apex:outputText value="{!Apttus_Approval__Term_Exception_Approval__c.Apttus_Approval__Notify_Only__c}" rendered="false"/>
+		<apex:outputText value="{!Apttus_Approval__Term_Exception_Approval__c.Apttus_Approval__Send_Email__c}" rendered="false"/>
+		
+		<apex:pageBlock title="{!$Label.apttus_approval__TermExceptionApprovalClone}" 
+						mode="edit" 
+						rendered="{!hasErrors}" >
+						
+			<apex:pageMessages />
+			<apex:pageBlockButtons location="bottom" >
+				<apex:commandButton action="{!doCancel}" value="{!$Label.apttus_approval__Cancel}" immediate="true" />
+			</apex:pageBlockButtons>
+		</apex:pageBlock>
+		
+		<apex:actionFunction name="doClone" 
+    						 action="{!doClone}" /> 
+    						 
+	</apex:form>
+</apex:page>

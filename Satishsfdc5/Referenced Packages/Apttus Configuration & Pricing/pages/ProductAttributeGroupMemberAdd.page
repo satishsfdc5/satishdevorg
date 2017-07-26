@@ -1,0 +1,119 @@
+<!-- 
+    Apttus Config & Pricing
+    ProductAttributeGroupMemberAdd
+     
+    @2010-2011 Apttus Inc. All rights reserved.
+
+ -->
+<apex:page standardController="Apttus_Config2__ProductAttributeGroupMember__c" 
+	  	   extensions="Apttus_Config2.ProductAttrGroupMbrAddController" 
+           showHeader="false" 
+           sidebar="false" 
+           tabStyle="Apttus_Config2__ProductAttributeGroupMember__c">	
+           
+    <apex:includeScript value="{!$Resource.Apttus_Config2__ConfigJSLib}"/>
+    <script>
+      var aptAddedCheckboxes = [];
+    </script>
+    
+    <apex:stylesheet value="{!$Resource.Apttus_Config2__ConfigStyles}" />
+    
+    <style type="text/css">
+    
+		textarea {
+			width: 40%;
+		}
+		
+	</style>
+	
+	<apex:sectionHeader title="{!$ObjectType.Product2.Label & ' ' & productSO.Name}" 
+						subtitle="{!$ObjectType.Apttus_Config2__ProductAttributeGroup__c.Label & ' ' & $Label.apttus_config2__Selection}" />
+											
+	<apex:form id="idAttributeGroupSelection">
+		
+		
+		<apex:pageBlock id="idSearchResultBlock" mode="detail" >
+			<apex:pageMessages />
+			
+			<apex:pageBlockButtons location="both">
+		        <apex:commandButton value="{!$Label.apttus_config2__Select}" 
+		        					action="{!doNext}" />
+		        <apex:commandButton value="{!$Label.apttus_config2__Cancel}" 
+		        					action="{!doCancel}" 
+		        					immediate="true" />
+		    </apex:pageBlockButtons>
+		    
+		    <apex:outputPanel id="idResultSetPanel">
+			    <apex:outputPanel id="idResultStatsPanel" styleClass="bNext" layout="block" style="text-align: right;" rendered="{!hasAttributeGroups}">
+					<font size="1px">{!$Label.PageNbr}:&nbsp;<apex:outputLabel value="{!currentPageNumber}"/>&nbsp;{!$Label.OutOf}&nbsp;<apex:outputLabel value="{!totalPages}"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font>
+					<apex:outputPanel id="idNavigationPanel" styleClass="next" layout="block" rendered="{!OR(hasNextPage,hasPreviousPage)}">
+						<apex:outputPanel rendered="{!NOT(hasPreviousPage)}" styleClass="greyedLink">&lt;{!$Label.PreviousPage}</apex:outputPanel>
+						<apex:commandLink rendered="{!hasPreviousPage}" action="{!previousPage}" reRender="idSearchResultBlock">&lt;{!$Label.PreviousPage}</apex:commandLink>
+						<span> | </span>
+						<apex:outputPanel rendered="{!NOT(hasNextPage)}" styleClass="greyedLink">{!$Label.NextPage}&gt;</apex:outputPanel>
+						<apex:commandLink rendered="{!hasNextPage}" action="{!nextPage}" reRender="idSearchResultBlock">{!$Label.NextPage}&gt;</apex:commandLink>
+					</apex:outputPanel>
+				</apex:outputPanel>
+				&nbsp;
+				<apex:outputPanel id="idRecordSetPanel" >
+					<apex:pageBlockSection title="{!$ObjectType.Apttus_Config2__ProductAttributeGroup__c.LabelPlural}" columns="1" collapsible="false">
+				        <apex:pageBlockTable value="{!attributeGroups}" var="attrGroupInfo" width="100%" rendered="{!hasAttributeGroups}">
+				        <apex:column >
+                            <apex:facet name="header">
+                                <apex:inputCheckbox id="idSelectAllAdded"
+                                onclick="aptToggleSelectAll(this, 'added')" 
+                                onchange="aptToggleSelectAll(this, 'added')"/>
+                            </apex:facet>
+                            <apex:inputCheckbox value="{!attrGroupInfo.selected}" id="idSelectAdded"
+                              	onchange="aptUncheckSelectAll('added');"/>
+                            <script>aptAddedCheckboxes.push("{!$Component.idSelectAdded}");</script>  	
+                        </apex:column>
+				        	<apex:column >
+				        		<apex:facet name="header">
+					        		<apex:commandLink value="{!$ObjectType.Apttus_Config2__ProductAttributeGroup__c.Fields.Name.Label}" 
+					        						  action="{!doSort}" 
+					        						  reRender="idSearchResultBlock">
+	                            		<apex:param name="sortFieldName" value="Name" />
+	                        			<apex:image url="{!$Resource.Apttus_Config2__Image_SortAsc}" 
+	                        						title="{!$Label.apttus_config2__SortedAscending}" 
+	                        						alt="{!$Label.apttus_config2__SortedAscending}" 
+	                        						rendered="{!sortFieldName == 'Name' && sortOrder != 'DESC'}"/>
+	                        			<apex:image url="{!$Resource.Apttus_Config2__Image_SortDesc}" 
+	                        						title="{!$Label.apttus_config2__SortedDescending}" 
+	                        						alt="{!$Label.apttus_config2__SortedDescending}" 
+	                        						rendered="{!sortFieldName == 'Name' && sortOrder == 'DESC'}"/>
+	                        		</apex:commandLink>
+				        		</apex:facet>
+				        		<apex:outputLink value="/{!attrGroupInfo.attrGroupSO.Id}" target="_blank">{!attrGroupInfo.attrGroupSO.Name}</apex:outputLink>
+				        	</apex:column>
+				        	
+				        	<apex:column >
+				        		<apex:facet name="header">
+					        		<apex:commandLink value="{!$ObjectType.Apttus_Config2__ProductAttributeGroup__c.Fields.Apttus_Config2__Description__c.Label}" 
+					        						  action="{!doSort}" 
+					        						  reRender="idSearchResultBlock">
+	                            		<apex:param name="sortFieldName" value="Apttus_Config2__Description__c" />
+	                        			<apex:image url="{!$Resource.Apttus_Config2__Image_SortAsc}" 
+	                        						title="{!$Label.apttus_config2__SortedAscending}" 
+	                        						alt="{!$Label.apttus_config2__SortedAscending}" 
+	                        						rendered="{!sortFieldName == 'Apttus_Config2__Description__c' && sortOrder != 'DESC'}"/>
+	                        			<apex:image url="{!$Resource.Apttus_Config2__Image_SortDesc}" 
+	                        						title="{!$Label.apttus_config2__SortedDescending}" 
+	                        						alt="{!$Label.apttus_config2__SortedDescending}" 
+	                        						rendered="{!sortFieldName == 'Apttus_Config2__Description__c' && sortOrder == 'DESC'}"/>
+	                        		</apex:commandLink>
+				        		</apex:facet>
+				        		<apex:outputLink value="/{!attrGroupInfo.attrGroupSO.Id}" target="_blank">{!attrGroupInfo.attrGroupSO.Apttus_Config2__Description__c}</apex:outputLink>
+				        	</apex:column>
+				        	
+				        </apex:pageBlockTable>
+				        <apex:outputText value="{!$Label.apttus_config2__NoRecordsToDisplay}" rendered="{!NOT(hasAttributeGroups)}" />
+				    </apex:pageBlockSection>
+				</apex:outputPanel>
+			
+			</apex:outputPanel>
+		</apex:pageBlock>
+	
+	</apex:form>
+
+</apex:page>

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomLabels xmlns="http://soap.sforce.com/2006/04/metadata">
+    <labels>
+        <fullName>AvailableAgreementRecordTypes</fullName>
+        <categories>Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Available Agreement Record Types</shortDescription>
+        <value>Available Agreement Record Types</value>
+    </labels>
+    <labels>
+        <fullName>Cancel</fullName>
+        <categories>Button Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Cancel</shortDescription>
+        <value>Cancel</value>
+    </labels>
+    <labels>
+        <fullName>Continue</fullName>
+        <categories>Button Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Continue</shortDescription>
+        <value>Continue</value>
+    </labels>
+    <labels>
+        <fullName>CreatingAgreement</fullName>
+        <categories>Status Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Creating Agreement</shortDescription>
+        <value>Creating Agreement, please wait...</value>
+    </labels>
+    <labels>
+        <fullName>RecordTypeName</fullName>
+        <categories>Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Record Type Name</shortDescription>
+        <value>Record Type Name</value>
+    </labels>
+    <labels>
+        <fullName>RecordTypeOfNewRecord</fullName>
+        <categories>Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>RecordType of new record</shortDescription>
+        <value>Record Type of new record</value>
+    </labels>
+    <labels>
+        <fullName>SelectAgreementRecordType</fullName>
+        <categories>Title</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Select Agreement Record Type</shortDescription>
+        <value>Select Agreement Record Type</value>
+    </labels>
+    <labels>
+        <fullName>SelectAgreementRecordTypeInstruction</fullName>
+        <categories>Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Select Agreement Record Type Instruction</shortDescription>
+        <value>Select a record type for the new agreement. To skip this page in the future, change your record type settings on your personal setup page.</value>
+    </labels>
+</CustomLabels>

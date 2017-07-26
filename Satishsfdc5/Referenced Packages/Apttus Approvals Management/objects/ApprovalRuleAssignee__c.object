@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Follow</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <deprecated>false</deprecated>
+    <description>Represents a single assignee in an approval rule entry</description>
+    <enableActivities>true</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>false</enableHistory>
+    <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <fields>
+        <fullName>AssigneeDescription__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The assignee description</description>
+        <externalId>false</externalId>
+        <label>Assignee Description</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>AssigneeLabel__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The assignee label</description>
+        <externalId>false</externalId>
+        <label>Assignee Label</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>AssigneeType__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The assignee type</description>
+        <externalId>false</externalId>
+        <label>Assignee Type</label>
+        <picklist>
+            <picklistValues>
+                <fullName>User</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Role</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Queue</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>AssigneeValue__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The assignee value</description>
+        <externalId>false</externalId>
+        <label>Assignee Value</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>DependsOn__c</fullName>
+        <deprecated>false</deprecated>
+        <description>List of assignee sequences which must be completed before this assignee</description>
+        <externalId>false</externalId>
+        <label>Assignee Depends On</label>
+        <length>2048</length>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>5</visibleLines>
+    </fields>
+    <fields>
+        <fullName>NotifyOnly__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <description>Designates whether the assignee receives a notification only for the approval request (when set to true) or gets the request assigned to them and receives notification as well (false, which is the default).</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Designates whether the assignee receives a notification only for the approval request (when set to true) or gets the request assigned to them and receives notification as well (false, which is the default).</inlineHelpText>
+        <label>Notify Only</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>RuleEntryId__c</fullName>
+        <deprecated>false</deprecated>
+        <description>ID of the associated rule entry</description>
+        <externalId>false</externalId>
+        <label>Rule Entry</label>
+        <referenceTo>ApprovalRuleEntry__c</referenceTo>
+        <relationshipLabel>Assignees</relationshipLabel>
+        <relationshipName>ApprovalRuleAssignees</relationshipName>
+        <relationshipOrder>0</relationshipOrder>
+        <reparentableMasterDetail>false</reparentableMasterDetail>
+        <trackTrending>false</trackTrending>
+        <type>MasterDetail</type>
+        <writeRequiresMasterRead>false</writeRequiresMasterRead>
+    </fields>
+    <fields>
+        <fullName>SendEmail__c</fullName>
+        <defaultValue>true</defaultValue>
+        <deprecated>false</deprecated>
+        <description>Indicates whether an email notification should be sent to the assignee</description>
+        <externalId>false</externalId>
+        <label>Send Email</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Sequence__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The rule assignee sequence</description>
+        <externalId>false</externalId>
+        <label>Assignee Sequence</label>
+        <precision>5</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <label>Approval Rule Assignee</label>
+    <nameField>
+        <displayFormat>RA-{0000000000}</displayFormat>
+        <label>Assignee Id</label>
+        <type>AutoNumber</type>
+    </nameField>
+    <pluralLabel>Approval Rule Assignees</pluralLabel>
+    <searchLayouts/>
+    <sharingModel>ControlledByParent</sharingModel>
+</CustomObject>

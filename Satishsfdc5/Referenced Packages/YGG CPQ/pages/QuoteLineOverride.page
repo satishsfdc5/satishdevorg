@@ -1,0 +1,4 @@
+<apex:page standardController="YGGC__Quote_Line_Item__c" extensions="YGGC.QuoteLineOverrideController" action="{!gotoQuote}">
+<apex:stylesheet value="{!URLFOR($Resource.YGGC__applicationStyle, 'applicationstyle.css')}"/>
+	{!YGGC__Quote_Line_Item__c.YGGC__Quote__c} 
+</apex:page>

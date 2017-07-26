@@ -1,0 +1,17 @@
+<!-- 
+    Apttus Config & Pricing
+    ButtonConstraintRuleConditionCriteria
+    
+    This page is just to print the Edit Criteria button in standard layout   
+     
+    @2010-2011 Apttus Inc. All rights reserved.
+ -->
+ <apex:page standardController="Apttus_Config2__ConstraintRuleCondition__c" 
+ 			showHeader="false" 
+ 			tabStyle="task" 
+ 			title="Rule Condition Criteria" >
+    <input type="button" 
+    	   name="editCriteria" 
+    	   value="Edit Criteria"  
+    	   onclick="top.location.href='/apex/ConstraintRuleConditionCriteriaEdit?id={!id}';"/>
+</apex:page>

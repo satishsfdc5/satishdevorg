@@ -1,0 +1,582 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <comment>Edit a price rule</comment>
+        <content>PriceRule</content>
+        <skipRecordTypeSelect>false</skipRecordTypeSelect>
+        <type>Visualforce</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Follow</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <deprecated>false</deprecated>
+    <description>Represents a single rule in a price ruleset</description>
+    <enableActivities>true</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>false</enableHistory>
+    <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <fields>
+        <fullName>Active__c</fullName>
+        <defaultValue>true</defaultValue>
+        <deprecated>false</deprecated>
+        <description>Indicates whether the rule is active</description>
+        <externalId>false</externalId>
+        <label>Active</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>AdjustmentAppliesTo__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Indicates the price field the adjustment should be applied to. Not applicable to price override adjustments.</description>
+        <externalId>false</externalId>
+        <label>Adjustment Applies To</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Base Price</fullName>
+                <default>true</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>List Price</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Base Extended Price</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Extended Price</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>AdjustmentChargeType__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The adjustment charge type. Used to create Aggregate line items.</description>
+        <externalId>false</externalId>
+        <label>Adjustment Charge Type</label>
+        <picklist>
+            <controllingField>ApplicationMethod__c</controllingField>
+            <picklistValues>
+                <fullName>Adjustment</fullName>
+                <default>true</default>
+                <controllingFieldValues>Aggregate</controllingFieldValues>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>AllowRemovalOfAdjustment__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <description>Indicates whether user is allowed to remove the aggregate  adjustment</description>
+        <externalId>false</externalId>
+        <label>Allow Removal Of Adjustment</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>AllowableAction__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The action allowed for the end user</description>
+        <externalId>false</externalId>
+        <label>Allowable Action</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Unrestricted</fullName>
+                <default>true</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Adjust Upwards</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Adjust Downwards</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>No Adjustments</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>ApplicationMethod__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The rule application method. This field is deprecated. The Application method is moved to the Price Ruleset..</description>
+        <externalId>false</externalId>
+        <label>Application Method (Deprecated)</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Aggregate</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Allocate</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Description__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The description for the rule</description>
+        <externalId>false</externalId>
+        <label>Description</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>Dimension1Id__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <deprecated>false</deprecated>
+        <description>ID of the first dimension. Only applicable to Dimension rules.</description>
+        <externalId>false</externalId>
+        <label>Dimension 1</label>
+        <referenceTo>PriceDimension__c</referenceTo>
+        <relationshipLabel>Price Rules (Dimension 1)</relationshipLabel>
+        <relationshipName>PriceRules</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Dimension1ValueType__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The value type of the first dimension. Only applicable to Dimension rules.</description>
+        <externalId>false</externalId>
+        <label>Dimension 1 Value Type</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Discrete</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Range</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Weighted Range</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Dimension2Id__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <deprecated>false</deprecated>
+        <description>ID of the second dimension. Only applicable to Dimension rules.</description>
+        <externalId>false</externalId>
+        <label>Dimension 2</label>
+        <referenceTo>PriceDimension__c</referenceTo>
+        <relationshipLabel>Price Rules (Dimension 2)</relationshipLabel>
+        <relationshipName>PriceRules2</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Dimension2ValueType__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The value type of the second dimension. Only applicable to Dimension rules.</description>
+        <externalId>false</externalId>
+        <label>Dimension 2 Value Type</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Discrete</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Range</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Weighted Range</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Dimension3Id__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <deprecated>false</deprecated>
+        <description>ID of the third dimension. Only applicable to Dimension rules.</description>
+        <externalId>false</externalId>
+        <label>Dimension 3</label>
+        <referenceTo>PriceDimension__c</referenceTo>
+        <relationshipLabel>Price Rules (Dimension 3)</relationshipLabel>
+        <relationshipName>PriceRules3</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Dimension3ValueType__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The value type of the third dimension. Only applicable to Dimension rules.</description>
+        <externalId>false</externalId>
+        <label>Dimension 3 Value Type</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Discrete</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Range</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Weighted Range</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Dimension4Id__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <deprecated>false</deprecated>
+        <description>ID of the fourth dimension, Only applicable to Dimension rules.</description>
+        <externalId>false</externalId>
+        <label>Dimension 4</label>
+        <referenceTo>PriceDimension__c</referenceTo>
+        <relationshipLabel>Price Rules (Dimension 4)</relationshipLabel>
+        <relationshipName>PriceRules4</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Dimension4ValueType__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The value type of the fourth dimension. Only applicable to Dimension rules.</description>
+        <externalId>false</externalId>
+        <label>Dimension 4 Value Type</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Discrete</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Range</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Weighted Range</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Dimension5Id__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <deprecated>false</deprecated>
+        <description>ID of the fifth dimension. Only applicable to Dimension rules.</description>
+        <externalId>false</externalId>
+        <label>Dimension 5</label>
+        <referenceTo>PriceDimension__c</referenceTo>
+        <relationshipLabel>Price Rules (Dimension 5)</relationshipLabel>
+        <relationshipName>PriceRules5</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Dimension5ValueType__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The value type of the fifth dimension. Only applicable to Dimension rules.</description>
+        <externalId>false</externalId>
+        <label>Dimension 5 Value Type</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Discrete</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Range</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Weighted Range</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Dimension6Id__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <deprecated>false</deprecated>
+        <description>ID of the sixth dimension. Only applicable to Dimension rules.</description>
+        <externalId>false</externalId>
+        <label>Dimension 6</label>
+        <referenceTo>PriceDimension__c</referenceTo>
+        <relationshipLabel>Price Rules (Dimension 6)</relationshipLabel>
+        <relationshipName>PriceRules6</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Dimension6ValueType__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The value type of the sixth dimension. Only applicable to Dimension rules.</description>
+        <externalId>false</externalId>
+        <label>Dimension 6 Value Type</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Discrete</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Range</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Weighted Range</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>InitialRows__c</fullName>
+        <defaultValue>5</defaultValue>
+        <deprecated>false</deprecated>
+        <description>The number of initial entries in the rule</description>
+        <externalId>false</externalId>
+        <label>Initial Rows</label>
+        <precision>5</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>NumberOfEntries__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Indicates the number of entries associated with the price rule</description>
+        <externalId>false</externalId>
+        <label>Number Of Entries</label>
+        <summaryForeignKey>PriceRuleEntry__c.PriceRuleId__c</summaryForeignKey>
+        <summaryOperation>count</summaryOperation>
+        <trackTrending>false</trackTrending>
+        <type>Summary</type>
+    </fields>
+    <fields>
+        <fullName>RuleType__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The rule type</description>
+        <externalId>false</externalId>
+        <label>Rule Type</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Dimension</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Condition</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Volume</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Inclusion</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>RulesetId__c</fullName>
+        <deprecated>false</deprecated>
+        <description>ID of the associated rule set</description>
+        <externalId>false</externalId>
+        <label>Ruleset</label>
+        <referenceTo>PriceRuleset__c</referenceTo>
+        <relationshipLabel>Rules</relationshipLabel>
+        <relationshipName>Rules</relationshipName>
+        <relationshipOrder>0</relationshipOrder>
+        <reparentableMasterDetail>false</reparentableMasterDetail>
+        <trackTrending>false</trackTrending>
+        <type>MasterDetail</type>
+        <writeRequiresMasterRead>false</writeRequiresMasterRead>
+    </fields>
+    <fields>
+        <fullName>Sequence__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The rule evaluation sequence</description>
+        <externalId>false</externalId>
+        <label>Sequence</label>
+        <precision>5</precision>
+        <required>true</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>StopProcessingMoreRules__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <description>Indicator to prevent subsequent rules from processing</description>
+        <externalId>false</externalId>
+        <label>Stop Processing More Rules</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <label>Price Rule</label>
+    <nameField>
+        <label>Rule Name</label>
+        <type>Text</type>
+    </nameField>
+    <pluralLabel>Price Rules</pluralLabel>
+    <searchLayouts>
+        <excludedStandardButtons>Accept</excludedStandardButtons>
+        <excludedStandardButtons>New</excludedStandardButtons>
+        <lookupDialogsAdditionalFields>Sequence__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>RulesetId__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>RuleType__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>Description__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>ApplicationMethod__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>AdjustmentChargeType__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>AllowableAction__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>Active__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>StopProcessingMoreRules__c</lookupDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>Sequence__c</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>RulesetId__c</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>RuleType__c</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>Description__c</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>ApplicationMethod__c</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>AdjustmentChargeType__c</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>AllowableAction__c</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>Active__c</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>StopProcessingMoreRules__c</lookupPhoneDialogsAdditionalFields>
+        <searchFilterFields>NAME</searchFilterFields>
+        <searchFilterFields>RulesetId__c</searchFilterFields>
+        <searchFilterFields>RuleType__c</searchFilterFields>
+        <searchFilterFields>Description__c</searchFilterFields>
+        <searchFilterFields>ApplicationMethod__c</searchFilterFields>
+        <searchFilterFields>AdjustmentChargeType__c</searchFilterFields>
+        <searchFilterFields>AllowableAction__c</searchFilterFields>
+        <searchFilterFields>Active__c</searchFilterFields>
+        <searchFilterFields>StopProcessingMoreRules__c</searchFilterFields>
+    </searchLayouts>
+    <sharingModel>ControlledByParent</sharingModel>
+    <webLinks>
+        <fullName>EditPriceRule</fullName>
+        <availability>online</availability>
+        <description>Edit rules for a ruleset</description>
+        <displayType>massActionButton</displayType>
+        <encodingKey>UTF-8</encodingKey>
+        <linkType>url</linkType>
+        <masterLabel>Edit Rules</masterLabel>
+        <openType>replace</openType>
+        <protected>false</protected>
+        <requireRowSelection>false</requireRowSelection>
+        <url>/apex/Apttus_Config2__PriceRuleListEdit?rulesetId={!PriceRuleset__c.Id}</url>
+    </webLinks>
+    <webLinks>
+        <fullName>NewPriceRule</fullName>
+        <availability>online</availability>
+        <description>Create a new price rule</description>
+        <displayType>massActionButton</displayType>
+        <encodingKey>UTF-8</encodingKey>
+        <height>600</height>
+        <linkType>url</linkType>
+        <masterLabel>New Rule</masterLabel>
+        <openType>sidebar</openType>
+        <protected>false</protected>
+        <requireRowSelection>false</requireRowSelection>
+        <url>/apex/Apttus_Config2__PriceRule?rulesetId={!PriceRuleset__c.Id}</url>
+    </webLinks>
+</CustomObject>

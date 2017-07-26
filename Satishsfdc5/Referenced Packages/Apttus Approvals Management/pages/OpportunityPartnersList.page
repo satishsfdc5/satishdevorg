@@ -1,0 +1,29 @@
+<!-- 
+	/**
+	 *	Apttus Approvals Management
+	 *	OpportunityPartnersList
+	 *	 
+	 *	@2011 Apttus Inc. All rights reserved.
+	 */
+-->
+<apex:page standardController="Apttus_Approval__Approval_Request__c"
+		extensions="Apttus_Approval.OpportunityPartnersListController">
+	
+	<apex:outputText value="{!Apttus_Approval__Approval_Request__c.Related_Opportunity__r.AccountId}" rendered="false" />
+	
+	<apex:pageBlock title="{!$Label.apttus_approval__OpportunityPartners}" rendered="{!opptyPartners.size > 0}">
+		<apex:pageBlockTable value="{!opptyPartners}" var="opptyPartner">
+			<apex:column headerValue="{!$Label.apttus_approval__Account}">
+				<apex:outputLink value="/{!opptyPartner.AccountToId}">{!opptyPartner.AccountTo.Name}
+				</apex:outputLink>
+			</apex:column>
+			<apex:column headerValue="{!$Label.apttus_approval__Opportunity}">
+				<apex:outputLink value="/{!opptyPartner.OpportunityId}">{!opptyPartner.Opportunity.Name}
+				</apex:outputLink>
+			</apex:column>
+			<apex:column value="{!opptyPartner.Role}"/>
+			<apex:column value="{!opptyPartner.isPrimary}"/>
+		</apex:pageBlockTable>
+	</apex:pageBlock>
+	
+</apex:page>

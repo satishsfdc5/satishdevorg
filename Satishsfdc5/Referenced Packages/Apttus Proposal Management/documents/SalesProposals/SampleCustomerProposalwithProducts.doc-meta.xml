@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Document xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>This sample is intented to be added to as a mail merge template under Setup-Adminstration Setup-Communication Templates-Mail Merge Templates.  Please feel free to modify and add your company logo.</description>
+    <internalUseOnly>false</internalUseOnly>
+    <name>Sample: Customer Proposal with Products</name>
+    <public>false</public>
+</Document>

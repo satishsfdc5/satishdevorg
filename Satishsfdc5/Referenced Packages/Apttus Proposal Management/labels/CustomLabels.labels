@@ -1,0 +1,444 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomLabels xmlns="http://soap.sforce.com/2006/04/metadata">
+    <labels>
+        <fullName>AssignedFormatsForAllProfiles</fullName>
+        <categories>Title</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Assigned Formats for All Profiles</shortDescription>
+        <value>Assigned Formats for All Profiles</value>
+    </labels>
+    <labels>
+        <fullName>AvailableAgreementRecordTypes</fullName>
+        <categories>Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Available Agreement Record Types</shortDescription>
+        <value>Available Agreement Record Types</value>
+    </labels>
+    <labels>
+        <fullName>AvailableProposalRecordTypes</fullName>
+        <categories>Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Available Proposal Record Types</shortDescription>
+        <value>Available Proposal Record Types</value>
+    </labels>
+    <labels>
+        <fullName>Cancel</fullName>
+        <categories>Button Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Cancel</shortDescription>
+        <value>Cancel</value>
+    </labels>
+    <labels>
+        <fullName>CancelConfirmation</fullName>
+        <categories>Dialog Title</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Cancel Confirmation</shortDescription>
+        <value>Are You Sure ?</value>
+    </labels>
+    <labels>
+        <fullName>CancelInstruction</fullName>
+        <categories>Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Cancel Instruction</shortDescription>
+        <value>Please click &quot;Yes&quot; to proceed with the &quot;Cancel&quot; action or click &quot;No&quot; to go back.</value>
+    </labels>
+    <labels>
+        <fullName>Continue</fullName>
+        <categories>Button Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Continue</shortDescription>
+        <value>Continue</value>
+    </labels>
+    <labels>
+        <fullName>CreatingAgreement</fullName>
+        <categories>Status Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Creating Agreement</shortDescription>
+        <value>Creating Agreement, please wait...</value>
+    </labels>
+    <labels>
+        <fullName>CreatingProposal</fullName>
+        <categories>Status Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Creating Proposal</shortDescription>
+        <value>Creating Quote/Proposal, please wait...</value>
+    </labels>
+    <labels>
+        <fullName>DocumentDetail</fullName>
+        <categories>Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Document Detail</shortDescription>
+        <value>Document Detail</value>
+    </labels>
+    <labels>
+        <fullName>DocumentGenerationSuccess</fullName>
+        <categories>Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Document Generation Success</shortDescription>
+        <value>Document generation successful.</value>
+    </labels>
+    <labels>
+        <fullName>Edit</fullName>
+        <categories>Button Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Edit</shortDescription>
+        <value>Edit</value>
+    </labels>
+    <labels>
+        <fullName>FileName</fullName>
+        <categories>Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>File Name</shortDescription>
+        <value>File Name</value>
+    </labels>
+    <labels>
+        <fullName>Generate</fullName>
+        <categories>Button Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Generate</shortDescription>
+        <value>Generate</value>
+    </labels>
+    <labels>
+        <fullName>GenerateProposal</fullName>
+        <categories>Title</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Generate Proposal</shortDescription>
+        <value>Generate Proposal</value>
+    </labels>
+    <labels>
+        <fullName>GeneratingProposal</fullName>
+        <categories>Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Generating Proposal</shortDescription>
+        <value>Generating Proposal - Please wait...</value>
+    </labels>
+    <labels>
+        <fullName>IncludeWatermark</fullName>
+        <categories>Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Include Watermark</shortDescription>
+        <value>Include Watermark</value>
+    </labels>
+    <labels>
+        <fullName>InvalidAttachment</fullName>
+        <categories>Error Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Invalid Attachment</shortDescription>
+        <value>Invalid attachment {0}</value>
+    </labels>
+    <labels>
+        <fullName>InvalidMergeField</fullName>
+        <categories>Error Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Invalid Merge Field</shortDescription>
+        <value>INVALID_FIELD: No such column {0} on entity {1}. If you are attempting to use a custom field, be sure to append the \&apos;__c\&apos; after the custom field name.</value>
+    </labels>
+    <labels>
+        <fullName>InvalidMergeWebserviceEndpoint</fullName>
+        <categories>Error Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Invalid Merge Webservice Endpoint</shortDescription>
+        <value>Invalid Merge Web service Endpoint</value>
+    </labels>
+    <labels>
+        <fullName>LoadingPage</fullName>
+        <categories>Status Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Loading Page</shortDescription>
+        <value>Loading, please wait...</value>
+    </labels>
+    <labels>
+        <fullName>MergeCallTimeout</fullName>
+        <categories>Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Merge Call Timeout</shortDescription>
+        <value>The Generate action is taking longer than {0} seconds to process. 
+Please check back in a few minutes if the quote/proposal document is generated.</value>
+    </labels>
+    <labels>
+        <fullName>Next</fullName>
+        <categories>Button Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Next</shortDescription>
+        <value>Next</value>
+    </labels>
+    <labels>
+        <fullName>No</fullName>
+        <categories>Button Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>No</shortDescription>
+        <value>No</value>
+    </labels>
+    <labels>
+        <fullName>NoAttachmentsToDisplay</fullName>
+        <categories>Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>No Attachments to display</shortDescription>
+        <value>No Attachments to display</value>
+    </labels>
+    <labels>
+        <fullName>NoTemplatesToDisplay</fullName>
+        <categories>Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>No Templates to display</shortDescription>
+        <value>No Templates to display</value>
+    </labels>
+    <labels>
+        <fullName>NullEmailTemplate</fullName>
+        <categories>Error Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Email Template is null</shortDescription>
+        <value>The email template is null or invalid</value>
+    </labels>
+    <labels>
+        <fullName>Options</fullName>
+        <categories>Title</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Options</shortDescription>
+        <value>Options</value>
+    </labels>
+    <labels>
+        <fullName>PreparingProposal</fullName>
+        <categories>Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Preparing Proposal</shortDescription>
+        <value>Preparing Proposal  - Please wait...</value>
+    </labels>
+    <labels>
+        <fullName>PresentProposal</fullName>
+        <categories>Title</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Present Proposal</shortDescription>
+        <value>Present Proposal</value>
+    </labels>
+    <labels>
+        <fullName>Prev</fullName>
+        <categories>Link</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Prev</shortDescription>
+        <value>Prev</value>
+    </labels>
+    <labels>
+        <fullName>ProposalSentConfirmationInstruction</fullName>
+        <categories>Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Proposal Sent Confirmation Instruction</shortDescription>
+        <value>Please click &quot;Yes&quot; if the proposal was sent or click &quot;No&quot; to go back.</value>
+    </labels>
+    <labels>
+        <fullName>ProposalSentConfirmationTitle</fullName>
+        <categories>Title</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Proposal Sent Confirmation Title</shortDescription>
+        <value>Was the Proposal Sent ?</value>
+    </labels>
+    <labels>
+        <fullName>ProposalType</fullName>
+        <categories>Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Proposal Type</shortDescription>
+        <value>Proposal Type</value>
+    </labels>
+    <labels>
+        <fullName>ProposalTypeFormatsForProfile</fullName>
+        <categories>Title</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Proposal Type Formats for Profile</shortDescription>
+        <value>Proposal Type Formats for Profile:</value>
+    </labels>
+    <labels>
+        <fullName>RecordTypeName</fullName>
+        <categories>Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Record Type Name</shortDescription>
+        <value>Record Type Name</value>
+    </labels>
+    <labels>
+        <fullName>RecordTypeOfNewRecord</fullName>
+        <categories>Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>RecordType of new record</shortDescription>
+        <value>Record Type of new record</value>
+    </labels>
+    <labels>
+        <fullName>Return</fullName>
+        <categories>Button Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Return</shortDescription>
+        <value>Return</value>
+    </labels>
+    <labels>
+        <fullName>Save</fullName>
+        <categories>Button Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Save</shortDescription>
+        <value>Save</value>
+    </labels>
+    <labels>
+        <fullName>Select</fullName>
+        <categories>Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Select</shortDescription>
+        <value>Select</value>
+    </labels>
+    <labels>
+        <fullName>SelectAgreementRecordType</fullName>
+        <categories>Title</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Select Agreement Record Type</shortDescription>
+        <value>Select Agreement Record Type</value>
+    </labels>
+    <labels>
+        <fullName>SelectAgreementRecordTypeInstruction</fullName>
+        <categories>Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Select Agreement Record Type Instruction</shortDescription>
+        <value>Select a record type for the new agreement. To skip this page in the future, change your record type settings on your personal setup page.</value>
+    </labels>
+    <labels>
+        <fullName>SelectAttachments</fullName>
+        <categories>Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Select Attachments</shortDescription>
+        <value>Select Attachments</value>
+    </labels>
+    <labels>
+        <fullName>SelectOutputFormat</fullName>
+        <categories>Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Select Output Format</shortDescription>
+        <value>Select Output Format</value>
+    </labels>
+    <labels>
+        <fullName>SelectProfile</fullName>
+        <categories>Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Select Profile</shortDescription>
+        <value>Select Profile:</value>
+    </labels>
+    <labels>
+        <fullName>SelectProposalRecordType</fullName>
+        <categories>Title</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Select Proposal Record Type</shortDescription>
+        <value>Select Proposal Record Type</value>
+    </labels>
+    <labels>
+        <fullName>SelectProposalRecordTypeInstruction</fullName>
+        <categories>Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Select Proposal Record Type Instruction</shortDescription>
+        <value>Select a record type for the new proposal. To skip this page in the future, change your record type settings on your personal setup page.</value>
+    </labels>
+    <labels>
+        <fullName>SelectTemplate</fullName>
+        <categories>Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Select Template</shortDescription>
+        <value>Select template from the list below and click Generate</value>
+    </labels>
+    <labels>
+        <fullName>SetupDocumentOutputFormats</fullName>
+        <categories>Title</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Setup Document Output Formats</shortDescription>
+        <value>Setup Proposal Document Output Formats</value>
+    </labels>
+    <labels>
+        <fullName>Size</fullName>
+        <categories>Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Size</shortDescription>
+        <value>Size</value>
+    </labels>
+    <labels>
+        <fullName>SubmitForApproval</fullName>
+        <categories>Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Submit for Approval</shortDescription>
+        <value>Submitting quote/proposal for approval.</value>
+    </labels>
+    <labels>
+        <fullName>TextEmailTemplate</fullName>
+        <categories>Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Text Email Template</shortDescription>
+        <value>Text Email Template</value>
+    </labels>
+    <labels>
+        <fullName>ViewDocument</fullName>
+        <categories>Title</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>View Document</shortDescription>
+        <value>View the document</value>
+    </labels>
+    <labels>
+        <fullName>ViewFileInstruction</fullName>
+        <categories>Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>View File Instruction</shortDescription>
+        <value>Click here to view this file</value>
+    </labels>
+    <labels>
+        <fullName>Yes</fullName>
+        <categories>Button Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Yes</shortDescription>
+        <value>Yes</value>
+    </labels>
+</CustomLabels>

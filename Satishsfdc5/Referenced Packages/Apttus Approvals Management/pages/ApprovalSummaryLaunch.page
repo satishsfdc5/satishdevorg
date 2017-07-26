@@ -1,0 +1,18 @@
+<!-- 
+	/**
+	 *	Apttus Approvals Management
+	 *	ApprovalSummaryLaunch
+	 *	 
+	 *	@2011 Apttus Inc. All rights reserved.
+	 */
+-->
+<apex:page standardController="Apttus_Approval__Approval_Request__c"
+		   extensions="Apttus_Approval.ApprovalSummaryLaunchController" 
+		   action="{!doLaunchPage}" >
+		   
+	<!--  required fields -->
+	<apex:outputText value="{!Apttus_Approval__Approval_Request__c.Name}" rendered="false" />
+	<apex:outputText value="{!Apttus_Approval__Approval_Request__c.Apttus_Approval__Object_Type__c}" rendered="false" />
+	<apex:outputText value="{!Apttus_Approval__Approval_Request__c.Apttus_Approval__Approval_Process__c}" rendered="false" />
+		
+</apex:page>

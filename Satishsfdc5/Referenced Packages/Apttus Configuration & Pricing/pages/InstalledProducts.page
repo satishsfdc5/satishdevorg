@@ -1,0 +1,313 @@
+<!-- 
+    Apttus Config & Pricing
+    InstalledProducts
+     
+    @2011-2012 Apttus Inc. All rights reserved.
+ -->
+<apex:page standardController="Account"
+		   extensions="Apttus_Config2.InstalledProductsController" 
+		   showHeader="false"
+		   sidebar="false" 
+		   cache="false"  
+		   tabstyle="Account">
+	
+	<apex:includeScript value="{!URLFOR($Resource.Apttus_Config2__YUILibrary, '/yui/build/yahoo-dom-event/yahoo-dom-event.js')}" />
+	<apex:includeScript value="{!URLFOR($Resource.Apttus_Config2__YUILibrary, '/yui/build/container/container-min.js')}" />
+	<apex:includescript value="{!URLFOR($Resource.Apttus_Config2__YUILibrary, '/yui/build/dragdrop/dragdrop-min.js')}" />
+	<apex:includescript value="{!URLFOR($Resource.Apttus_Config2__YUILibrary, '/yui/build/animation/animation-min.js')}" />
+	<apex:includeScript value="{!URLFOR($Resource.Apttus_Config2__YUILibrary, '/yui/build/treeview/treeview-min.js')}" />
+	<apex:includeScript value="{!URLFOR($Resource.Apttus_Config2__YUILibrary, '/yui/build/menu/menu-min.js')}" />
+	<apex:includeScript value="{!URLFOR($Resource.Apttus_Config2__YUILibrary, '/yui/build/yahoo/yahoo-min.js')}" />
+	
+	<apex:stylesheet value="{!URLFOR($Resource.Apttus_Config2__YUILibrary, '/yui/build/assets/skins/sam/skin.css')}" />
+	<apex:stylesheet value="{!URLFOR($Resource.Apttus_Config2__YUILibrary, '/yui/build/treeview/assets/skins/sam/treeview.css')}" />
+	<apex:stylesheet value="{!URLFOR($Resource.Apttus_Config2__YUILibrary, '/yui/examples/treeview/assets/css/menu/tree.css')}" />
+	<apex:stylesheet value="{!URLFOR($Resource.Apttus_Config2__YUILibrary, '/yui/build/menu/assets/skins/sam/menu.css')}" />
+	<apex:stylesheet value="{!URLFOR($Resource.Apttus_Config2__YUILibrary, '/yui/build/container/assets/skins/sam/container.css')}" />
+	
+	<style>
+		.waitIcon{
+		    padding-top: 13px;
+		    padding-right: 0px;
+		    padding-bottom: 7px;
+		    padding-left: 22px;
+		    background: url({!$Resource.Image_LoadingIcon}) 0 12px no-repeat;
+		}	
+	</style>
+	
+	<script type="text/javascript" src="/soap/ajax/25.0/connection.js"></script>
+	<script type="text/javascript" src="/soap/ajax/25.0/apex.js"></script>
+	
+	<apex:includeScript value="{!$Resource.Apttus_Config2__ConfigJSLib}"/>
+	<!-- 
+	<apex:includeScript value="{!$Resource.ConfigPromptJSLib}"/>
+	<apex:includeScript value="{!$Resource.ConfigSelectJSLib}"/>
+	 -->
+	<script type="text/javascript">
+		//set the title and progress bar icon
+		var aptLoadingPageHeader = "{!$Label.LoadingPage}";
+		var aptRuleAlertHeader = "{!$Label.ConstraintRuleAlert}";
+		var aptRenewPanelHeader = "{!$Label.RenewAssetItem}";
+		var aptDialogBody = '<center><img src="{!URLFOR($Resource.Image_LoadingPage)}" /></center>';
+		
+		YAHOO.namespace("force.com");
+		// detail panel
+		YAHOO.force.com.globalCtx = new Object();
+		YAHOO.force.com.clsNodes = new Array();
+		YAHOO.force.com.selectedNode = new Object();
+				
+		//for IE load the script into DOM
+		function loadJSFile(filename){
+			var fileref = document.createElement('script');
+		 	if (typeof fileref != "undefined"){
+			 	fileref.setAttribute("type","text/javascript");
+			 	fileref.setAttribute("src", filename);
+		  		document.getElementsByTagName("head")[0].appendChild(fileref);
+		 	}
+		}
+		//load the JavaScript file. This is necessary for IE
+		loadJSFile("{!$Resource.ConfigPromptJSLib}");
+		loadJSFile("{!$Resource.ConfigSelectJSLib}");
+		
+	</script>
+
+	<apex:stylesheet value="{!$Resource.Apttus_Config2__ConfigStyles}" />
+	
+	<apex:form id="idFormAsset">
+		<apex:outputPanel id="idBrowsePanel">			
+			<table style="width: 100%">
+				<tr valign="top">
+					<td style="width: {!ListedProductsWidth}" valign="top">
+						<apex:pageBlock id="idProductsBlock">
+							<apex:outputPanel id="idErrorMsg"> 
+								<apex:pageMessages />
+							</apex:outputPanel>
+								  
+			<!-- Start Asset Item List -->
+						<apex:pageBlockSection id="idAssetLinesSection" 
+				    					   columns="1"  
+				    					   collapsible="false"
+				    					   showHeader="false"
+				    					   >
+				    		<!-- Start Asset Line Item Paginator -->
+				    		<apex:outputPanel id="idAssetItemPaginationPanel" 
+												  styleClass="aptsPaginator"
+												  layout="block"
+												  rendered="{!assetItemPaging.hasAssetLines}">
+									 	<apex:outputPanel id="idAssetItemPagination" 
+														  layout="inline"
+														  style="text-align: right; width: 100%;"
+														  rendered="{!OR(assetItemPaging.hasNextPage,assetItemPaging.hasPreviousPage)}">
+											<table width="100%"><tr>
+											<td style="text-align: left; vertical-align: middle;">			  
+												<apex:outputText value="{!assetItemPaging.pageStartIndex}-{!assetItemPaging.pageEndIndex} {!$Label.apttus_config2__OutOf} {!assetItemPaging.totalRecords}" />
+												&nbsp;&nbsp;
+												<apex:selectList size="1"
+															 value="{!pageSize}" 
+															 multiselect="false"
+															 onchange="invokeLoadAssetPage();"
+															 styleClass="aptsPageInputSize"
+															>
+													<apex:selectOptions value="{!rowsPerPageList}" />
+												</apex:selectList>
+											</td>
+											<td style="text-align: center; vertical-align: middle; text-color: red;">
+												<!-- Search Asset -->
+		                						<apex:outputPanel style="text-align: right;" layout="block">
+													<!-- SEARCH INPUT -->
+													<apex:inputText value="{!searchInputText}" onkeypress="if(handleEnterKeySearch(event)){return false;};" />
+													<apex:commandButton value="{!$Label.apttus_config2__Search}" 
+																		action="{!doSearchAsset}"
+																		onclick="onActionClick();" 
+																		oncomplete="onActionComplete();"
+																		rerender="idBuildTreeNode, idBrowseBlock, idProductsBlock" />
+												</apex:outputPanel>						
+												<apex:actionStatus id="idAssetItemPageChangeStatus" 
+						                           startText="{!$Label.apttus_config2__Loading}"
+						                           stopText=""/>
+						                    </td>
+											<td style="text-align: right; vertical-align: middle;">		  
+											<apex:outputPanel rendered="{!NOT(assetItemPaging.hasPreviousPage)}"
+															  styleClass="aptsPagingGreyed">&lt;{!$Label.IteratorPrevious}</apex:outputPanel>
+											<apex:commandLink action="{!previousAssetItemPage}" 
+															  rendered="{!assetItemPaging.hasPreviousPage}" 
+															  reRender="idAssetLinesSection" 
+															  status="idAssetItemPageChangeStatus">&lt;{!$Label.IteratorPrevious}</apex:commandLink>
+											<span> | </span>
+											<apex:outputPanel layout="inline" 
+														  	  style="text-align: right; width: 100%;">
+												<apex:outputText value="{!$Label.apttus_config2__Page}"/>
+												<apex:inputText id="idCurrentAssetPageNumber" 
+																value="{!assetItemPaging.currentPageNumber}" 
+																styleClass="aptsPageInput"
+																onkeypress="return aptIgnoreEnterKey(event, invokeLoadAssetPage);"
+																>
+													<apex:actionSupport event="onchange" action="{!loadAssetPage}" 
+																		rerender="idAssetLinesSection" 
+																		status="idAssetItemPageChangeStatus"/>
+												</apex:inputText> 
+												<apex:outputText value="{!$Label.apttus_config2__OutOf} {!assetItemPaging.totalPages}" />
+											</apex:outputPanel>
+											<span> | </span>
+											<apex:outputPanel rendered="{!NOT(assetItemPaging.hasNextPage)}"
+														      styleClass="aptsPagingGreyed">{!$Label.IteratorNext}&gt;</apex:outputPanel>
+											<apex:commandLink action="{!nextAssetItemPage}" 
+															  rendered="{!assetItemPaging.hasNextPage}"
+												 			  reRender="idAssetLinesSection" 
+												 			  status="idAssetItemPageChangeStatus">{!$Label.IteratorNext}&gt;</apex:commandLink>
+											</td></tr></table> 			  
+										</apex:outputPanel>
+										  
+							</apex:outputPanel>	
+				    		<apex:pageBlockTable value="{!assetItemPaging.assetLines}"  
+					        					var="assetInfo" 
+					        					rowClasses="oddRow, evenRow" 
+					        					rendered="{!assetItemPaging.hasAssetLines}" >
+					        					
+					        	<apex:column style="width: 1%;" >
+								  	<apex:commandLink action="{!doShowOptions}" 
+											  	  	  reRender="idProductsBlock"
+											  	  	  onclick="document.getElementById('{!$Component.idLoadingIcon}').src='{!$Resource.Apttus_Config2__Image_LoadingIcon}';" 
+											  	  	  rendered="{!(assetInfo.HasOptions == true && assetInfo.expanded == false)}" >
+										<apex:param name="param1" value="{!assetInfo.asset.Id}" assignTo="{!expandAssetId}"/>
+										<apex:image url="{!$Resource.Apttus_Config2__Image_Plus}" 
+					                      			title="{!$Label.apttus_config2__Add}" 
+					                      			alt="{!$Label.apttus_config2__Add}" />
+									</apex:commandLink>
+									<apex:commandLink action="{!doHideOptions}" 
+											  	  	  reRender="idProductsBlock" 
+											  	  	  onclick="document.getElementById('{!$Component.idLoadingIcon}').src='{!$Resource.Apttus_Config2__Image_LoadingIcon}';" 
+											  	  	  rendered="{!(assetInfo.expanded == true)}" >
+										<apex:param name="param1" value="{!assetInfo.asset.Id}"  assignTo="{!collapseAssetId}"/>
+										<apex:image url="{!$Resource.Apttus_Config2__Image_Minus}" 
+					                      			title="{!$Label.apttus_config2__Remove}" 
+					                      			alt="{!$Label.apttus_config2__Remove}" />
+									</apex:commandLink>
+					        		<apex:image id="idLoadingIcon" value="{!$Resource.Apttus_Config2__Image_Blank}"/>
+								</apex:column>
+					        	<!-- Asset Column1 -->	        	 
+						        <apex:column >
+						        	<apex:facet name="header">
+						        		<div>{!$ObjectType.Apttus_Config2__AssetLineItem__c.Fields.Name.Label}</div>
+						        	</apex:facet>
+									<apex:outputLink value="/{!assetInfo.asset.Id}" target="_blank">{!assetInfo.asset.Name}</apex:outputLink>						        	
+								</apex:column>
+								<apex:column style="width: 30%; max-width: 40%;">
+									<apex:facet name="header">
+										<div>{!$ObjectType.Apttus_Config2__AssetLineItem__c.Fields.Apttus_Config2__ProductId__c.Label}</div>
+									</apex:facet>
+									<apex:outputPanel rendered="{!NOT(assetInfo.IsOption)}"> 
+										<!-- <apex:commandLink rerender="dummy">
+											<apex:image url="{!$Resource.Image_Info}"
+															onclick="getProductDetail(SelectInstalledProductsController, '{!assetInfo.asset.Apttus_Config2__ProductId__c}');"/>
+										</apex:commandLink>	
+										&nbsp;
+										-->
+										<apex:outputField value="{!assetInfo.asset.Apttus_Config2__ProductId__c}"></apex:outputField>
+										<!-- 			
+										<apex:outputText rendered="{!(assetInfo.checked == true)}"><br></br>&nbsp;&radic;&nbsp;&nbsp;
+											<apex:outputText style="color:blue" value="{!$Label.Selected}" />
+										</apex:outputText>
+										-->
+									</apex:outputPanel>
+									<apex:outputPanel rendered="{!(assetInfo.IsOption)}" style="font-style: italic;">
+										<apex:outputField value="{!assetInfo.asset.Apttus_Config2__OptionId__c}"></apex:outputField>			
+									</apex:outputPanel>
+								</apex:column>
+								<apex:column >
+									<apex:facet name="header">
+										<div style="text-align: center;">{!$ObjectType.Apttus_Config2__AssetLineItem__c.Fields.Apttus_Config2__AssetCode__c.Label}</div>
+									</apex:facet>
+									<apex:outputField value="{!assetInfo.asset.Apttus_Config2__AssetCode__c}"/>
+								</apex:column>
+								<apex:column >
+									<apex:facet name="header">
+										<div style="text-align: center;">{!$ObjectType.Apttus_Config2__AssetLineItem__c.Fields.Apttus_Config2__ChargeType__c.Label}</div>
+									</apex:facet> 
+									<apex:outputField value="{!assetInfo.asset.Apttus_Config2__ChargeType__c}"/>
+								</apex:column>
+								<apex:column style="width: 10%; text-align: right" >
+									<apex:facet name="header">
+										<div style="text-align: center;">{!$ObjectType.Apttus_Config2__AssetLineItem__c.Fields.Apttus_Config2__Quantity__c.Label}</div>
+									</apex:facet>
+									<apex:outputText style="text-align: right" value="{0,number,integer}">
+										<apex:param value="{!assetInfo.asset.Apttus_Config2__Quantity__c}"/>
+									</apex:outputText>
+								</apex:column>
+								<apex:column rendered="true">
+									<apex:facet name="header">
+										<div style="text-align: center;">{!$ObjectType.Apttus_Config2__AssetLineItem__c.Fields.Apttus_Config2__SellingTerm__c.Label}</div>
+									</apex:facet>
+									<apex:outputField value="{!assetInfo.asset.Apttus_Config2__SellingTerm__c}"/>
+								</apex:column>
+								<apex:column rendered="true">
+									<apex:facet name="header">
+										<div style="text-align: center;">{!$ObjectType.Apttus_Config2__AssetLineItem__c.Fields.Apttus_Config2__SellingFrequency__c.Label}</div>
+									</apex:facet>
+									<apex:outputField value="{!assetInfo.asset.Apttus_Config2__SellingFrequency__c}"/>
+								</apex:column>
+								<apex:column style="width: 10%; text-align: right" >
+									<apex:facet name="header">
+										<div style="text-align: center;">{!$ObjectType.Apttus_Config2__AssetLineItem__c.Fields.Apttus_Config2__StartDate__c.Label}</div>
+									</apex:facet>
+									<apex:outputField value="{!assetInfo.asset.Apttus_Config2__StartDate__c}" style="text-align: right"/>
+								</apex:column>
+								<apex:column style="width: 10%; text-align: right" >
+									<apex:facet name="header">
+										<div style="text-align: center;">{!$ObjectType.Apttus_Config2__AssetLineItem__c.Fields.Apttus_Config2__EndDate__c.Label}</div>
+									</apex:facet>
+									<apex:outputField value="{!assetInfo.asset.Apttus_Config2__EndDate__c}" style="text-align: right"/>
+								</apex:column>
+								<apex:column style="text-align: right">
+									<apex:facet name="header">
+										<div style="text-align: center;">{!$ObjectType.Apttus_Config2__AssetLineItem__c.Fields.Apttus_Config2__NetPrice__c.Label}</div>
+									</apex:facet>
+									<apex:outputText style="text-align: right" value="{0,number,currency}">
+										<apex:param value="{!assetInfo.asset.Apttus_Config2__NetPrice__c}"/>
+									</apex:outputText>
+								</apex:column>
+								<apex:column >
+									<apex:facet name="header">
+										<div style="text-align: center;">{!$ObjectType.Apttus_Config2__AssetLineItem__c.Fields.Apttus_Config2__AssetStatus__c.Label}</div>
+									</apex:facet>
+									<apex:outputField value="{!assetInfo.asset.Apttus_Config2__AssetStatus__c}"/>
+								</apex:column>					        	
+					        </apex:pageBlockTable>
+				        
+				        <apex:outputText value="{!$Label.apttus_config2__NoRecordsToDisplay}" rendered="{!NOT(assetItemPaging.hasAssetLines)}" />
+				    </apex:pageBlockSection>							
+			
+			<!-- End Asset Item List --> 
+					</apex:pageBlock>
+					</td> 
+				</tr>
+			</table>
+		</apex:outputPanel>
+
+<!-- Action Functions -->		
+		<apex:actionFunction name="invokeDoSearch" 
+							 action="{!doSearchAsset}"
+							 rerender="idBuildTreeNode, idBrowseBlock, idProductsBlock, idSelectedProductsBlock, idRulesBlock"
+							 oncomplete="YAHOO.force.com.waitPanel.hide();" />
+		
+		<apex:actionFunction name="invokeLoadPage" 
+							 action="{!loadPage}"
+							 reRender="idProductsBlock"
+							 status="idPageChangeStatus">
+		</apex:actionFunction>
+		
+		<apex:actionFunction name="invokeLoadAssetPage" 
+							 action="{!loadAssetPage}"
+							 reRender="idAssetLinesSection"
+							 status="idAssetItemPageChangeStatus">
+		</apex:actionFunction>
+	 
+	</apex:form>
+	<script type="text/javascript">
+	  var aptsOnload = function(){
+		YAHOO.util.Event.onDOMReady(YAHOO.force.com.onDOMReady);
+		YAHOO.util.Event.onDOMReady(YAHOO.force.com.onDOMReady2);
+	  }
+	  window.onload = combineFunction(window.onload, aptsOnload);
+	</script>
+</apex:page>

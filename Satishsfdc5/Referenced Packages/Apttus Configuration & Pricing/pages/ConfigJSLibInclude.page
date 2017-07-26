@@ -1,0 +1,19 @@
+<!-- 
+    Apttus Config & Pricing
+    ConfigJSLibInclude
+     
+    @2010-2011 Apttus Inc. All rights reserved.
+
+ -->
+<apex:page >
+	
+	<apex:includescript value="{!$Resource.Apttus_Config2__ConfigJSLib}" />
+	
+	<script>
+
+		// error labels
+		var cp_cERROR_UNKNOWN = "{!$Label.ErrorUnknown}"; // "ERROR: Unknown error:\n";
+	    
+	</script>
+	
+</apex:page>

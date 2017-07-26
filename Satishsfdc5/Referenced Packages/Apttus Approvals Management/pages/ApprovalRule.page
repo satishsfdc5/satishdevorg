@@ -1,0 +1,308 @@
+<!-- 
+    Apttus Approvals Management
+    ApprovalRule
+     
+    @2010-2011 Apttus Inc. All rights reserved.
+
+ -->
+<apex:page standardController="Apttus_Approval__ApprovalRule__c" 
+	  	   extensions="Apttus_Approval.ApprovalRuleController" 
+           showHeader="true" 
+           sidebar="true" 
+           tabStyle="Apttus_Approval__ApprovalRule__c">	
+    
+    <style>
+		textarea {
+			width: 70%;
+		}
+	</style>
+	
+	<apex:sectionHeader title="{!$ObjectType.Apttus_Approval__ApprovalRule__c.Label & ' ' & $Label.apttus_approval__Edit}" 
+						subtitle="{!$Label.apttus_approval__New & ' ' & $ObjectType.Apttus_Approval__ApprovalRule__c.Label & ' (' & StepStats & ')'}" 
+						rendered="{!IsAddMode && (CurrentStep == 1)}" />
+	
+	<apex:sectionHeader title="{!$Label.apttus_approval__New & ' ' & $ObjectType.Apttus_Approval__ApprovalRule__c.Label}" 
+						subtitle="{!BusinessObjectLabel & ' (' & StepStats & ')'}" 
+						rendered="{!IsAddMode && (CurrentStep != 1)}" />
+											
+	<apex:sectionHeader title="{!$ObjectType.Apttus_Approval__ApprovalRule__c.Label & ' ' & $Label.apttus_approval__Edit}" 
+						subtitle="{!Apttus_Approval__ApprovalRule__c.Name}" 
+						rendered="{!IsEditMode}" />
+						
+	<apex:form id="idApprovalRuleSO">
+		
+		<!--  required fields -->
+		<apex:outputText value="{!Apttus_Approval__ApprovalRule__c.Apttus_Approval__BusinessObject__c}" rendered="false" />
+		<apex:outputText value="{!Apttus_Approval__ApprovalRule__c.Apttus_Approval__Criteria__c}" rendered="false" />
+		
+		<apex:pageBlock id="idApprovalRuleBlock" 
+						title="{!IF(isAddMode, $Label.apttus_approval__Step & ' ' & TEXT(CurrentStep) & ': ' & CurrentStepName, '')}"
+						mode="edit" >
+						
+			<apex:pageMessages />
+			
+			<apex:pageBlockButtons location="both">
+				<apex:commandButton value="{!$Label.apttus_approval__Next}" 
+								    action="{!doNext}" 
+								    rendered="{!IsAddMode && (CurrentStep == 1)}" />
+				<apex:commandButton value="{!$Label.apttus_approval__Previous}" 
+								    action="{!doPrevious}" 
+								    rendered="{!IsAddMode && (CurrentStep != 1)}" />
+		        <apex:commandButton value="{!$Label.apttus_approval__Save}" 
+		        					action="{!doSave}" 
+		        					rendered="{!IsLastStep}" />
+		        <apex:commandButton value="{!$Label.apttus_approval__SaveAndNew}" 
+		        				    action="{!doSaveAndNew}" 
+		        				    rendered="{!IsLastStep}" />
+		        <apex:commandButton value="{!$Label.apttus_approval__Cancel}" action="{!doCancel}" immediate="true" />
+		    </apex:pageBlockButtons>
+		    
+		    <apex:pageBlockSection id="idSelectObjectSection" 
+		    					   title="{!$Label.apttus_approval__SelectRuleObjectInstruction}" 
+		    					   columns="2" 
+		    					   collapsible="false" 
+		    					   rendered="{!IsAddMode && (CurrentStep == 1)}" >
+		    	
+				<apex:pageBlockSectionItem >
+					<apex:outputLabel value="{!$ObjectType.Apttus_Approval__ApprovalRule__c.Fields.Apttus_Approval__BusinessObject__c.Label}" 
+									  for="idBusinessObject" />
+					<apex:outputPanel styleClass="requiredInput" layout="block">
+   						<apex:outputPanel styleClass="requiredBlock" layout="block"/>
+  						<apex:selectList id="idBusinessObject" 
+  										 value="{!businessObjectName}" 
+  										 multiselect="false" 
+  										 required="false" 
+  										 size="1" >
+							<apex:selectOptions value="{!businessObjectItems}"></apex:selectOptions>
+						</apex:selectList>
+ 					</apex:outputPanel>
+				</apex:pageBlockSectionItem>
+				
+		    </apex:pageBlockSection>
+		    
+		    <apex:pageBlockSection id="idConfigureRuleSection" 
+		    					   title="{!$Label.apttus_approval__ConfigureRule}" 
+		    					   columns="2" 
+		    					   collapsible="false" 
+		    					   rendered="{!CurrentStep == 2}" >
+		    	
+		    	<apex:pageBlockSectionItem >
+					<apex:outputLabel value="{!$ObjectType.Apttus_Approval__ApprovalRule__c.Fields.Apttus_Approval__BusinessObject__c.Label}" 
+									  for="idBusinessObject2" />
+					<apex:outputText id="idBusinessObject2" value="{!businessObjectLabel}" />
+				</apex:pageBlockSectionItem>
+				<apex:pageBlockSectionItem />
+				
+				<apex:pageBlockSectionItem >
+					<apex:outputLabel value="{!$ObjectType.Apttus_Approval__ApprovalRule__c.Fields.Name.Label}" 
+									  for="idName" />
+					<apex:outputPanel styleClass="requiredInput" layout="block">
+   						<apex:outputPanel styleClass="requiredBlock" layout="block"/>
+  						<apex:inputField id="idName" 
+  										 value="{!Apttus_Approval__ApprovalRule__c.Name}" 
+  										 required="false" />
+ 					</apex:outputPanel>
+				</apex:pageBlockSectionItem>
+				<apex:inputField value="{!Apttus_Approval__ApprovalRule__c.Apttus_Approval__EffectiveDate__c}"/>
+				
+				<apex:pageBlockSectionItem >
+					<apex:outputLabel value="{!$ObjectType.Apttus_Approval__ApprovalRule__c.Fields.Apttus_Approval__Sequence__c.Label}" 
+									  for="idSequence" />
+					<apex:outputPanel styleClass="requiredInput" layout="block">
+   						<apex:outputPanel styleClass="requiredBlock" layout="block"/>
+  						<apex:inputField id="idSequence" 
+  										 value="{!Apttus_Approval__ApprovalRule__c.Apttus_Approval__Sequence__c}" 
+  										 required="false" />
+ 					</apex:outputPanel>
+				</apex:pageBlockSectionItem>
+				<apex:inputField value="{!Apttus_Approval__ApprovalRule__c.Apttus_Approval__ExpirationDate__c}" />
+				
+				<apex:pageBlockSectionItem rendered="{!IsAddMode}" >
+			    	<apex:outputLabel value="{!$ObjectType.Apttus_Approval__ApprovalRule__c.Fields.Apttus_Approval__RuleType__c.Label}" 
+			    					  for="idRuleType" />
+			    	<apex:outputPanel styleClass="requiredInput" layout="block">
+	   					<apex:outputPanel styleClass="requiredBlock" layout="block"/>
+				    	<apex:selectList id="idRuleType" 
+				    					 size="1" 
+				    					 value="{!Apttus_Approval__ApprovalRule__c.Apttus_Approval__RuleType__c}" 
+				    					 multiselect="false" 
+		  								 required="false" >
+				      		<apex:selectOptions value="{!ruleTypeItems}"></apex:selectOptions>
+				      		<apex:actionSupport event="onchange" reRender="idConfigureRuleSection" />
+				      	</apex:selectList>
+				     </apex:outputPanel>
+				</apex:pageBlockSectionItem>
+				<apex:outputField value="{!Apttus_Approval__ApprovalRule__c.Apttus_Approval__RuleType__c}" rendered="{!IsEditMode}" />
+	
+				<apex:inputField value="{!Apttus_Approval__ApprovalRule__c.Apttus_Approval__Description__c}" />
+				
+				<apex:pageBlockSectionItem rendered="{!isDimensionBasedRule}" >
+			    	<apex:outputLabel value="{!$ObjectType.Apttus_Approval__ApprovalRule__c.Fields.Apttus_Approval__Dimension1Id__c.Label}" 
+			    					  for="idDimension1Id" />
+			    	<apex:selectList id="idDimension1Id" size="1" value="{!Apttus_Approval__ApprovalRule__c.Apttus_Approval__Dimension1Id__c}" >
+			      		<apex:selectOptions value="{!ApprovalDimensionItems}"></apex:selectOptions>
+			      	</apex:selectList>
+				</apex:pageBlockSectionItem>
+		    	<apex:inputField value="{!Apttus_Approval__ApprovalRule__c.Apttus_Approval__Dimension1ValueType__c}" 
+		    					 rendered="{!isDimensionBasedRule}" />
+		    	
+		    	<apex:pageBlockSectionItem rendered="{!isDimensionBasedRule}" >
+			    	<apex:outputLabel value="{!$ObjectType.Apttus_Approval__ApprovalRule__c.Fields.Apttus_Approval__Dimension2Id__c.Label}" 
+			    					  for="idDimension2Id" />
+			    	<apex:selectList id="idDimension2Id" size="1" value="{!Apttus_Approval__ApprovalRule__c.Apttus_Approval__Dimension2Id__c}" >
+			      		<apex:selectOptions value="{!ApprovalDimensionItems}"></apex:selectOptions>
+			      	</apex:selectList>
+				</apex:pageBlockSectionItem>
+		    	<apex:inputField value="{!Apttus_Approval__ApprovalRule__c.Apttus_Approval__Dimension2ValueType__c}" 
+		    					 rendered="{!isDimensionBasedRule}" />
+		    					 
+				<apex:pageBlockSectionItem rendered="{!isDimensionBasedRule}" >
+			    	<apex:outputLabel value="{!$ObjectType.Apttus_Approval__ApprovalRule__c.Fields.Apttus_Approval__Dimension3Id__c.Label}" 
+			    					  for="idDimension3Id" />
+			    	<apex:selectList id="idDimension3Id" size="1" value="{!Apttus_Approval__ApprovalRule__c.Apttus_Approval__Dimension3Id__c}" >
+			      		<apex:selectOptions value="{!ApprovalDimensionItems}"></apex:selectOptions>
+			      	</apex:selectList>
+				</apex:pageBlockSectionItem>
+		    	<apex:inputField value="{!Apttus_Approval__ApprovalRule__c.Apttus_Approval__Dimension3ValueType__c}" 
+		    					 rendered="{!isDimensionBasedRule}" />
+		    					 
+		    	<apex:pageBlockSectionItem rendered="{!isDimensionBasedRule}" >
+			    	<apex:outputLabel value="{!$ObjectType.Apttus_Approval__ApprovalRule__c.Fields.Apttus_Approval__Dimension4Id__c.Label}" 
+			    					  for="idDimension4Id" />
+			    	<apex:selectList id="idDimension4Id" size="1" value="{!Apttus_Approval__ApprovalRule__c.Apttus_Approval__Dimension4Id__c}" >
+			      		<apex:selectOptions value="{!ApprovalDimensionItems}"></apex:selectOptions>
+			      	</apex:selectList>
+				</apex:pageBlockSectionItem>
+		    	<apex:inputField value="{!Apttus_Approval__ApprovalRule__c.Apttus_Approval__Dimension4ValueType__c}" 
+		    					 rendered="{!isDimensionBasedRule}" />
+		    	
+		    	<apex:pageBlockSectionItem rendered="{!isDimensionBasedRule}" >
+			    	<apex:outputLabel value="{!$ObjectType.Apttus_Approval__ApprovalRule__c.Fields.Apttus_Approval__Dimension5Id__c.Label}" 
+			    					  for="idDimension5Id" />
+			    	<apex:selectList id="idDimension5Id" size="1" value="{!Apttus_Approval__ApprovalRule__c.Apttus_Approval__Dimension5Id__c}" >
+			      		<apex:selectOptions value="{!ApprovalDimensionItems}"></apex:selectOptions>
+			      	</apex:selectList>
+				</apex:pageBlockSectionItem>
+		    	<apex:inputField value="{!Apttus_Approval__ApprovalRule__c.Apttus_Approval__Dimension5ValueType__c}" 
+		    					 rendered="{!isDimensionBasedRule}" />
+		    	
+		    	<apex:pageBlockSectionItem rendered="{!isDimensionBasedRule}" >
+			    	<apex:outputLabel value="{!$ObjectType.Apttus_Approval__ApprovalRule__c.Fields.Apttus_Approval__Dimension6Id__c.Label}" 
+			    					  for="idDimension6Id" />
+			    	<apex:selectList id="idDimension6Id" size="1" value="{!Apttus_Approval__ApprovalRule__c.Apttus_Approval__Dimension6Id__c}" >
+			      		<apex:selectOptions value="{!ApprovalDimensionItems}"></apex:selectOptions>
+			      	</apex:selectList>
+				</apex:pageBlockSectionItem>
+		    	<apex:inputField value="{!Apttus_Approval__ApprovalRule__c.Apttus_Approval__Dimension6ValueType__c}" 
+		    					 rendered="{!isDimensionBasedRule}" />
+		    	
+		    	<apex:inputField value="{!Apttus_Approval__ApprovalRule__c.Apttus_Approval__Active__c}" />
+		    					 				 
+		    </apex:pageBlockSection>
+		    
+		    <apex:outputPanel rendered="{!CurrentStep == 2}" >
+		    
+			    <apex:pageBlockSection id="idPredicatesSection" 
+			    					   title="{!$Label.apttus_approval__RuleCriteria}" 
+			    					   columns="2" 
+			    					   collapsible="false" >
+			    					   
+			        <apex:pageBlockTable value="{!predicates}" 
+			        					 var="predicate" 
+			        					 columns="8" 
+			        					 rowClasses="oddRow,evenRow" >
+			        	
+			        	<apex:column width="5%" rendered="{!isAdvancedOptionsMode}" >
+			        		<apex:outputText id="idRowNum" value="{!predicate.RowNum}. " />
+						</apex:column>
+			        	<apex:column headerValue="{!$Label.apttus_approval__Field}" width="25%" >
+			        		<apex:outputPanel styleClass="{!IF(predicate.FieldInError, 'errorRow', '')}" layout="block" >
+			        			<apex:selectList id="idField" size="1" value="{!predicate.FieldName}" >
+						      		<apex:selectOptions value="{!FieldItems}"></apex:selectOptions>
+						      	</apex:selectList>
+							</apex:outputPanel>
+						</apex:column>
+						<apex:column headerValue="{!$Label.apttus_approval__Operator}" width="25%" >
+					    	<apex:outputPanel styleClass="{!IF(predicate.CompOperInError, 'errorRow', '')}" layout="block" >
+						    	<apex:selectList id="idCompOper" size="1" value="{!predicate.CompOper}" >
+						      		<apex:selectOptions value="{!compOperItems}"></apex:selectOptions>
+						      	</apex:selectList>
+					      	</apex:outputPanel>
+					   	</apex:column>
+				   		<apex:column headerValue="{!$Label.apttus_approval__Value}" width="25%" >
+					    	<apex:outputPanel styleClass="{!IF(predicate.FieldValueInError, 'errorRow', '')}" layout="block" >
+					    		<apex:inputText id="idFieldValue" size="25" value="{!predicate.FieldValue}" />
+					   		</apex:outputPanel>
+					   	</apex:column>
+					   	<apex:column width="5%" >
+					    	<apex:outputText id="idBoolOper" 
+					    					 value="{!predicate.BoolOper}" 
+					    					 rendered="{!NOT(isAdvancedOptionsMode) && NOT(ISBLANK(predicate.BoolOper))}" />
+					    	<apex:commandLink action="{!doAddRow}" 
+								  	  	  	  reRender="idPredicatesSection, idAdvancedOptionsSection" 
+								  	  	  	  rendered="{!NOT(isAdvancedOptionsMode) && ISBLANK(predicate.BoolOper)}" > 
+								<apex:image url="{!$Resource.Apttus_Approval__Image_Plus2}" 
+			                       			title="{!$Label.apttus_approval__Add}" 
+			                       			alt="{!$Label.apttus_approval__Add}" />  	  	  	  
+							</apex:commandLink>
+					   	</apex:column>
+					   	<apex:column width="5%" >
+					   	<apex:commandLink id="idDeleteRow" 
+									      action="{!doDeleteRow}" 
+									  	  reRender="idPredicatesSection, idAdvancedOptionsSection" 
+									  	  rendered="{!predicate.RowNum > 1}" >
+							<apex:param name="rowNum" value="{!predicate.RowNum}" />	
+							<apex:image url="{!$Resource.Apttus_Approval__Image_Minus2}" 
+			                       		title="{!$Label.apttus_approval__Remove}" 
+			                       		alt="{!$Label.apttus_approval__Remove}" />	  
+						</apex:commandLink>
+						</apex:column>
+					   	<apex:column width="10%" >
+					   		<apex:outputText value="{!predicate.ErrorMsg}" style="color:red;" />
+					   	</apex:column>
+					   
+			        </apex:pageBlockTable>
+			        
+			    </apex:pageBlockSection>
+					    
+				<apex:pageBlockSection id="idAdvancedOptionsSection" 
+									   columns="1" 
+									   collapsible="false" >
+				
+					<apex:commandLink id="idShowAdvancedOptions" 
+									  action="{!doShowAdvancedOptions}" 
+									  value="{!$Label.apttus_approval__AdvancedOptions}" 
+									  reRender="idAdvancedOptionsSection, idPredicatesSection" 
+									  rendered="{!NOT(isAdvancedOptionsMode)}" />
+			        
+			        <apex:outputPanel rendered="{!isAdvancedOptionsMode}">
+						<apex:commandLink id="idAddRow" 
+										  action="{!doAddRow}" 
+										  value="{!$Label.apttus_approval__AddRow}" 
+										  reRender="idAdvancedOptionsSection, idPredicatesSection" />
+						<span>  </span>
+						<apex:commandLink id="idRemoveRow" 
+										  action="{!doRemoveRow}" 
+										  value="{!$Label.apttus_approval__RemoveRow}" 
+										  reRender="idAdvancedOptionsSection, idPredicatesSection" 
+										  rendered="{!OkToRemoveRow}" />
+						<apex:outputPanel id="idRemoveRow2" styleClass="greyedLink" rendered="{!NOT(OkToRemoveRow)}" >Remove Row</apex:outputPanel>
+						<p/>	
+			        	<apex:commandLink id="idHideAdvancedOptions" 
+			        					  action="{!doHideAdvancedOptions}" 
+			        					  value="{!$Label.apttus_approval__ClearAdvancedOptions}" 
+			        					  reRender="idAdvancedOptionsSection, idPredicatesSection" />
+			        	<br/>
+			        	<apex:outputText value="{!$Label.apttus_approval__AdvancedFilterCondition}" />
+			        	<br/>
+			        	<apex:inputText id="idAdvancedOptions" size="80" value="{!advancedOptions}" />
+			        </apex:outputPanel>
+			        
+				</apex:pageBlockSection>
+			</apex:outputPanel>
+			
+		</apex:pageBlock>
+			    			   
+	</apex:form>
+
+</apex:page>

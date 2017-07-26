@@ -1,0 +1,380 @@
+<!-- 
+    Apttus Contract Management
+    CycleTimeGroupShared
+     
+    @2009-2010 Apttus Inc. All rights reserved.
+
+ -->
+<apex:page standardController="Apttus__CycleTimeGroup__c"
+		   extensions="Apttus.CycleTimeGroupController" 
+		   showHeader="true"
+		   sidebar="true" 
+		   tabStyle="Apttus__CycleTimeGroup__c" >
+
+	<apex:stylesheet value="{!URLFOR($Resource.Apttus__YUILibrary, '/yui/build/assets/skins/sam/skin.css')}" />
+
+	<style>
+	.comments_w {
+		width: 300px;
+	}
+	.name_w {
+		width: 250px;
+	}
+	.ptBreadcrumb_w {
+	    font-family: 'Verdana', 'Geneva', sans-serif;
+		font-size: 91.3%;
+	    color: #333;
+	    margin-bottom: -15px;
+	    height:15px;
+	    vertical-align:middle;
+	}
+	</style>
+	 
+	<apex:includescript value="{!URLFOR($Resource.Apttus__YUILibrary, '/yui/build/yahoo-dom-event/yahoo-dom-event.js')}" />
+	<apex:includescript value="{!URLFOR($Resource.Apttus__YUILibrary, '/yui/build/dragdrop/dragdrop-min.js')}" />
+	<apex:includescript value="{!URLFOR($Resource.Apttus__YUILibrary, '/yui/build/container/container-min.js')}" />
+	<apex:includescript value="{!URLFOR($Resource.Apttus__YUILibrary, '/yui/build/animation/animation-min.js')}" />
+	
+	<script type="text/javascript" src="/soap/ajax/26.0/connection.js"></script>
+	<script type="text/javascript" src="/soap/ajax/26.0/apex.js"></script>
+		
+	<script>
+		var showConfirmation = "{!showConfirmation}";
+    	
+	    // Create a namespace for our custom functions
+	    YAHOO.namespace("force.com");
+	
+	    // Function called when we want to show the dialog
+	    YAHOO.force.com.showMe = function() {
+	        document.getElementById("confirmationPanel").style.display = "block";
+	        YAHOO.force.com.myDialog.show();
+	    }
+	   
+	   // Function called when we want to hide the dialog
+	    YAHOO.force.com.hideMe = function() {
+	        YAHOO.force.com.myDialog.hide();
+	    }
+
+	    // Function called when the DOM is ready to create the dialog,
+	    // render the dialog into the document body, add our dialog skin
+	    // css to the body tag, and wire up the buttons on our dialog    
+	    YAHOO.force.com.init = function() {
+	        document.body.className = document.body.className + " yui-skin-sam";
+	        YAHOO.force.com.myDialog = new YAHOO.widget.Panel(
+	            "confirmationPanel",  // The id of our dialog container
+	            { 
+	                    width           :   "300px", // You can play with this until it's right
+	                    visible         :   false,   // Should be invisible when rendered
+	                    draggable       :   true,    // Make the dialog draggable
+	                    close           :   false,   // Don't include a close title button
+	                    modal           :   true,    // Make it modal
+	                    fixedCenter     :   true,    // Keep centered if window is scrolled
+	                    zindex          :   40,      // Make sure it's on top of everything
+	                    
+	                    // This line adds the appear/disapper fade effect
+	                    effect          :   {effect:YAHOO.widget.ContainerEffect.FADE,duration:0.35} 
+	            }
+	         );
+	        
+	        // Render the dialog to the document.body level of the DOM
+	        YAHOO.force.com.myDialog.render(document.body);
+	        // display the dialog
+	        YAHOO.force.com.showMe();
+	    }
+		if (showConfirmation.valueOf() == 'true') {  
+		    // Add the init method to the window.load event
+		    YAHOO.util.Event.addListener(window, "load", YAHOO.force.com.init);
+	    } 
+
+	</script>	
+			
+	<apex:form >
+
+    	<apex:inputHidden value="{!Apttus__CycleTimeGroup__c.Id}"/>
+    	<apex:inputHidden value="{!Apttus__CycleTimeGroup__c.Name}"/>
+    	<apex:inputHidden value="{!Apttus__CycleTimeGroup__c.Apttus__Cycle_Time_Field__c}"/>
+    	<apex:inputHidden value="{!Apttus__CycleTimeGroup__c.Apttus__Field_Label__c}"/>
+    	<apex:inputHidden value="{!Apttus__CycleTimeGroup__c.Apttus__From__c}"/>
+    	<apex:inputHidden value="{!Apttus__CycleTimeGroup__c.Apttus__To__c}"/>
+    	<apex:inputHidden value="{!Apttus__CycleTimeGroup__c.Apttus__Is_Active__c}"/>
+    	<apex:inputHidden value="{!Apttus__CycleTimeGroup__c.Apttus__Description__c}"/>
+    	
+    	<apex:sectionHeader title="{!$ObjectType.Apttus__CycleTimeGroup__c.LabelPlural}" />
+
+    	<apex:outputLink styleClass="ptBreadcrumb_w" 
+    					 value="{!retURL}" 
+    					 rendered="{!customMode == 'view'}">
+    		&nbsp;&#171;&nbsp;{!$Label.BackToList & ': ' & $ObjectType.CycleTimeGroup__c.LabelPlural}
+    	</apex:outputLink>
+
+		<!-- NEW   NEW   NEW   NEW   NEW   NEW   NEW   NEW   NEW   NEW   NEW   NEW  -->
+		
+		<apex:pageBlock id="idBlockNew" 
+						rendered="{!customMode == 'new'}" 
+						mode="edit">
+			<apex:pageBlockButtons location="top">
+				<apex:outputPanel >
+					<apex:commandButton action="{!doNext}" 
+										value="{!$Label.apttus__Next}"
+										disabled="{!disableNextButton = true}" />
+					<apex:commandButton action="{!cancel}" value="{!$Label.apttus__Cancel}" />
+				</apex:outputPanel>
+			</apex:pageBlockButtons>
+			<apex:pageBlockButtons location="bottom">
+				<apex:outputPanel >
+					<apex:commandButton action="{!doNext}" 
+										value="{!$Label.apttus__Next}"
+										disabled="{!disableNextButton = true}" />
+					<apex:commandButton action="{!doCancel}" immediate="true" value="{!$Label.apttus__Cancel}" />
+				</apex:outputPanel>
+			</apex:pageBlockButtons>
+			
+			<apex:pageMessages />
+
+			<apex:outputPanel >
+				<apex:pageBlockSection id="idSelectField" 
+									   title="{!$Label.apttus__SelectField}" 
+									   columns="1" 
+									   collapsible="false"  >
+					<apex:pageBlockSectionItem >&nbsp;
+					</apex:pageBlockSectionItem>
+					<apex:panelGroup >
+						<b><apex:outputText >{!$Label.apttus__CTGroupSelectFieldInstruction}</apex:outputText></b>
+						&nbsp;
+						<apex:selectList value="{!agmtField}" 
+										 size="1" 
+										 multiselect="false" 
+										 onchange="setNextButton();" 
+										 required="true">
+				            <apex:selectOptions value="{!agmtFields}" >
+	                    	</apex:selectOptions>
+				        </apex:selectList>  
+					</apex:panelGroup> 
+					<apex:pageBlockSectionItem >&nbsp;
+					</apex:pageBlockSectionItem>
+				</apex:pageBlockSection>
+			</apex:outputPanel>
+			
+		</apex:pageBlock>
+		
+		<!-- ADD  ADD  ADD  ADD  ADD  ADD  ADD  ADD  ADD  ADD  ADD  ADD -->
+		
+		<apex:pageBlock rendered="{!customMode == 'add'}"  mode="edit">
+			<apex:pageBlockButtons location="top">
+				<apex:outputPanel >
+					<apex:commandButton action="{!doPrevious}" immediate="true" value="{!$Label.apttus__Previous}" />
+					<apex:commandButton action="{!doSaveAdd}" value="{!$Label.apttus__Save}" />
+					<apex:commandButton action="{!doSaveAddAndNew}" value="{!$Label.apttus__SaveAndNew}" />
+					<apex:commandButton action="{!doCancel}" immediate="true" value="{!$Label.apttus__Cancel}" />
+				</apex:outputPanel>
+			</apex:pageBlockButtons>
+
+			<apex:pageBlockButtons location="bottom">
+				<apex:outputPanel >
+					<apex:commandButton action="{!doPrevious}" immediate="true" value="{!$Label.apttus__Previous}" />
+					<apex:commandButton action="{!doSaveAdd}" value="{!$Label.apttus__Save}" />
+					<apex:commandButton action="{!doSaveAddAndNew}" value="{!$Label.apttus__SaveAndNew}" />
+					<apex:commandButton action="{!doCancel}" immediate="true" value="{!$Label.apttus__Cancel}" />
+				</apex:outputPanel>
+			</apex:pageBlockButtons>
+			
+			<apex:pageMessages />
+
+			<apex:outputPanel >
+				<apex:pageBlockSection title="{!$Label.apttus__EditGroupDefinition}" columns="1" collapsible="false" >
+ 
+					<apex:pageBlockSectionItem >
+						<apex:outputLabel value="{!$Label.apttus__Field2}" for="idOutputField"/>
+						<apex:outputField value="{!ctGroup.Apttus__Field_Label__c}" id="idOutputField" />
+					</apex:pageBlockSectionItem>
+					
+					<apex:pageBlockSectionItem >
+						<apex:outputLabel value="{!$Label.apttus__Name}" for="idInputName"/>
+						<apex:inputField value="{!ctGroup.Name}" id="idInputName" required="true" styleClass="name_w"/>
+					</apex:pageBlockSectionItem>
+					
+					<apex:pageBlockSectionItem rendered="{!isFieldPicklist = true}">
+						<apex:outputLabel value="{!$Label.apttus__From}" for="idInputFromPicklistValue" />
+						<apex:selectList id="idInputFromPicklistValue" 
+										 value="{!ctGroup.Apttus__From__c}" 
+										 size="1" 
+										 multiselect="false" >
+				            <apex:selectOptions value="{!fromPicklistValues}" >
+				            </apex:selectOptions>
+				        </apex:selectList>    
+					</apex:pageBlockSectionItem>					
+					<apex:pageBlockSectionItem rendered="{!isFieldPicklist = true}">
+						<apex:outputLabel value="{!$Label.apttus__To}" for="idInputToPicklistValue" />
+						<apex:selectList id="idInputToPicklistValue" 
+										 value="{!ctGroup.Apttus__To__c}" 
+										 size="1"  
+										 multiselect="false" >
+				            <apex:selectOptions value="{!toPicklistValues}"/>
+				        </apex:selectList> 
+					</apex:pageBlockSectionItem>
+
+					<apex:pageBlockSectionItem rendered="{!isFieldPicklist = false}" >
+						<apex:outputLabel value="{!$Label.apttus__From}" for="idInputFromValue" />
+						<apex:inputField value="{!ctGroup.Apttus__From__c}" id="idInputFromValue"  required="true"/>
+					</apex:pageBlockSectionItem>
+					<apex:pageBlockSectionItem rendered="{!isFieldPicklist = false}" >
+						<apex:outputLabel value="{!$Label.apttus__To}" for="idInputToValue"  />
+						<apex:inputField value="{!ctGroup.Apttus__To__c}" id="idInputToValue"  required="true"/>
+					</apex:pageBlockSectionItem>
+
+					<apex:pageBlockSectionItem >
+						<apex:outputLabel value="{!$Label.apttus__Description}" for="idInputDesc"/>
+						<apex:inputTextArea id="idInputDesc" 
+											value="{!ctGroup.Apttus__Description__c}"  
+											rows="3" 
+											styleClass="comments_w" />
+					</apex:pageBlockSectionItem>
+					
+				</apex:pageBlockSection>
+			</apex:outputPanel>
+		</apex:pageBlock>
+		
+		<!-- EDIT  EDIT  EDIT  EDIT  EDIT  EDIT  EDIT  EDIT  EDIT  EDIT  EDIT -->
+		
+		<apex:pageBlock rendered="{!customMode == 'edit'}"  mode="edit">
+			<apex:pageBlockButtons location="top">
+				<apex:outputPanel >
+					<apex:commandButton action="{!doSaveEdit}" value="{!$Label.apttus__Save}" />
+					<apex:commandButton action="{!doCancel}" immediate="true"  value="{!$Label.apttus__Cancel}" />
+				</apex:outputPanel>
+			</apex:pageBlockButtons>
+
+			<apex:pageBlockButtons location="bottom">
+				<apex:outputPanel >
+					<apex:commandButton action="{!doSaveEdit}" value="{!$Label.apttus__Save}" />
+					<apex:commandButton action="{!doCancel}" immediate="true"  value="{!$Label.apttus__Cancel}" />
+				</apex:outputPanel>
+			</apex:pageBlockButtons>
+			
+			<apex:pageMessages />
+
+			<apex:outputPanel >
+				<apex:pageBlockSection title="{!$Label.apttus__EditGroupDefinition}" columns="1" collapsible="false" >
+ 
+					<apex:pageBlockSectionItem >
+						<apex:outputLabel value="{!$Label.apttus__Field2}" for="idOutputField"/>
+						<apex:outputField value="{!ctGroup.Apttus__Field_Label__c}" id="idOutputField" />
+					</apex:pageBlockSectionItem>
+					
+					<apex:pageBlockSectionItem >
+						<apex:outputLabel value="{!$Label.apttus__Name}" for="idInputName"/>
+						<apex:inputField value="{!ctGroup.Name}" id="idInputName" required="true"  styleClass="name_w"/>
+					</apex:pageBlockSectionItem>
+
+					<apex:pageBlockSectionItem >
+						<apex:outputLabel value="{!$Label.apttus__From}" for="idOutputFromValue" />
+						<apex:outputField value="{!ctGroup.Apttus__From__c}" id="idOutputFromValue"  />
+					</apex:pageBlockSectionItem>
+					<apex:pageBlockSectionItem >
+						<apex:outputLabel value="{!$Label.apttus__To}" for="idOutputToValue"  />
+						<apex:outputField value="{!ctGroup.Apttus__To__c}" id="idOutputToValue" />
+					</apex:pageBlockSectionItem>
+
+					<apex:pageBlockSectionItem >
+						<apex:outputLabel value="{!$Label.apttus__Description}" for="idInputDesc"/>
+						<apex:inputTextArea id="idInputDesc" 
+											value="{!ctGroup.Apttus__Description__c}" 
+											rows="3" 
+											styleClass="comments_w" />
+					</apex:pageBlockSectionItem>
+
+				</apex:pageBlockSection>
+			</apex:outputPanel>
+		</apex:pageBlock>
+				
+		<!-- VIEW  VIEW  VIEW  VIEW  VIEW  VIEW  VIEW  VIEW  VIEW  VIEW  VIEW  VIEW -->
+		
+		<apex:pageBlock rendered="{!customMode == 'view'}">	
+			<apex:pageBlockButtons location="top">
+				<apex:outputPanel >
+					<apex:commandButton action="{!doEdit}" value="{!$Label.apttus__Edit}" />
+					<apex:commandButton action="{!doConfirmDelete}" value="Delete" rendered="{!ctGroup.Apttus__Is_Active__c = false}" />
+					<apex:commandButton action="{!doConfirmActivate}" value="Activate" rendered="{!ctGroup.Apttus__Is_Active__c = false}"/>
+					<apex:commandButton action="{!doConfirmDeactivate}" value="Deactivate" rendered="{!ctGroup.Apttus__Is_Active__c = true}"/>
+				</apex:outputPanel>
+			</apex:pageBlockButtons>
+
+			<apex:pageBlockButtons location="bottom">
+				<apex:outputPanel >
+					<apex:commandButton action="{!doEdit}" value="Edit" />
+					<apex:commandButton action="{!doConfirmDelete}" value="{!$Label.apttus__Delete}" rendered="{!ctGroup.Apttus__Is_Active__c = false}" />
+					<apex:commandButton action="{!doConfirmActivate}" value="{!$Label.apttus__Activate}" rendered="{!ctGroup.Apttus__Is_Active__c = false}"/>
+					<apex:commandButton action="{!doConfirmDeactivate}" value="{!$Label.apttus__Deactivate}" rendered="{!ctGroup.Apttus__Is_Active__c = true}"/>
+				</apex:outputPanel>
+			</apex:pageBlockButtons>
+			
+			<apex:pageMessages />
+
+			<apex:outputPanel >
+				<apex:pageBlockSection title="{!$Label.apttus__ViewGroupDefinition}" columns="1" collapsible="false" >
+ 
+					<apex:pageBlockSectionItem >
+						<apex:outputLabel value="{!$Label.apttus__Field2}" for="idOutputField"/>
+						<apex:outputField value="{!ctGroup.Apttus__Field_Label__c}" id="idOutputField" />
+					</apex:pageBlockSectionItem>
+					
+					<apex:pageBlockSectionItem >
+						<apex:outputLabel value="{!$Label.apttus__Name}" for="idOutputName"/>
+						<apex:outputField value="{!ctGroup.Name}" id="idOutputName" />
+					</apex:pageBlockSectionItem>
+
+					<apex:pageBlockSectionItem >
+						<apex:outputLabel value="{!$Label.apttus__Active}" for="idOutputIsActive"/>
+						<apex:outputField value="{!ctGroup.Apttus__Is_Active__c}" id="idOutputIsActive" />
+					</apex:pageBlockSectionItem>
+
+					<apex:pageBlockSectionItem >
+						<apex:outputLabel value="{!$Label.apttus__From}" for="idOutputFromValue" />
+						<apex:outputField value="{!ctGroup.Apttus__From__c}" id="idOutputFromValue" />
+					</apex:pageBlockSectionItem>
+					<apex:pageBlockSectionItem >
+						<apex:outputLabel value="{!$Label.apttus__To}" for="idOutputToValue"  />
+						<apex:outputField value="{!ctGroup.Apttus__To__c}" id="idOutputToValue" />
+					</apex:pageBlockSectionItem>
+
+					<apex:pageBlockSectionItem >
+						<apex:outputLabel value="{!$Label.apttus__Description}" for="idOutputDesc"/>
+						<apex:outputField value="{!ctGroup.Apttus__Description__c}" id="idOutputDesc"/>
+					</apex:pageBlockSectionItem>
+
+				</apex:pageBlockSection>
+			</apex:outputPanel>
+		</apex:pageBlock>
+		<apex:actionFunction action="{!doSetNextButton}" name="setNextButton" rerender="idBlockNew"/>
+
+	<!-- This is the content of the modal dialog -->
+	<div id="confirmationPanel" style="display: none" >
+	    <div class="hd">
+	        <apex:outputText value="{!$Label.apttus__CTGroupConfirmation}" />
+	    </div> 
+	    <div class="bd">
+		    <apex:outputPanel >
+		    	<table>
+			    	<tr><td>{!confirmMsg1}</td></tr>
+			    	<tr><td></td></tr>
+			    	<tr><td>{!confirmMsg2}</td></tr>
+			    	<tr><td></td></tr>
+			    	<tr><td><b>{!confirmMsg3}</b></td></tr>
+		    	</table>
+		    </apex:outputPanel>
+	    </div> 
+	    <div class="bd">
+            <apex:actionRegion >
+                <div style="text-align: center;" >
+                    <apex:commandButton value="{!$Label.apttus__Yes}" action="{!doRedirect}" rendered="{!confirmRedirect}" oncomplete="YAHOO.force.com.hideMe();" />
+                    <apex:commandButton value="{!$Label.apttus__Yes}" action="{!doSaveDelete}" rendered="{!confirmDelete}" oncomplete="YAHOO.force.com.hideMe();" />
+                    <apex:commandButton value="{!$Label.apttus__Yes}" action="{!doActivate}" rendered="{!confirmActivate}" oncomplete="YAHOO.force.com.hideMe();" />
+                    <apex:commandButton value="{!$Label.apttus__Yes}" action="{!doDeactivate}" rendered="{!confirmDeactivate}" oncomplete="YAHOO.force.com.hideMe();" />
+                    <apex:commandButton value="{!$Label.apttus__No}" action="{!doCancel}" immediate="true" oncomplete="YAHOO.force.com.hideMe();" />
+                </div>
+            </apex:actionRegion>
+	    </div>
+	</div>
+
+	</apex:form>
+</apex:page>

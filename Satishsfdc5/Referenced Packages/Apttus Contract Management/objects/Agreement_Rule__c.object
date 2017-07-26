@@ -1,0 +1,351 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <content>AgreementRuleClone</content>
+        <skipRecordTypeSelect>false</skipRecordTypeSelect>
+        <type>Visualforce</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <comment>Edit Agreement Rule</comment>
+        <content>AgreementRule</content>
+        <skipRecordTypeSelect>false</skipRecordTypeSelect>
+        <type>Visualforce</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Follow</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <comment>Create Agreement Rule</comment>
+        <content>AgreementRule</content>
+        <skipRecordTypeSelect>false</skipRecordTypeSelect>
+        <type>Visualforce</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <comment>View Agreement Rule</comment>
+        <content>AgreementRuleDetail</content>
+        <skipRecordTypeSelect>false</skipRecordTypeSelect>
+        <type>Visualforce</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <deprecated>false</deprecated>
+    <description>Specifies a rule used to evaluate various agreement actions such as submit request</description>
+    <enableActivities>true</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>false</enableHistory>
+    <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <fields>
+        <fullName>Active__c</fullName>
+        <defaultValue>true</defaultValue>
+        <deprecated>false</deprecated>
+        <description>Rule active indicator. Inactive rules are ignored by the rule selection process</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Indicates whether the rule is active. Inactive rules are ignored.</inlineHelpText>
+        <label>Active</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>ConditionFilterLogic__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The condition filter logic expression</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Enter any combination of AND, OR, parenthesis, and numbers representing the expressions. These are the only values that can be used. Using other values may cause unexpected behavior.</inlineHelpText>
+        <label>Condition Filter Logic</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>EditInclusionCriteria__c</fullName>
+        <deprecated>false</deprecated>
+        <description>&quot;Edit Inclusion Criteria&quot; custom button</description>
+        <externalId>false</externalId>
+        <formula>IF (True, HYPERLINK(&quot;apex/Apttus__RuleInclusionCriteriaEdit?id=&quot; &amp;Id, IMAGE(&quot;/resource/Apttus__Button_EditCriteria&quot;, &quot;Edit Inclusion Criteria&quot;),&quot;_self&quot;), NULL)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Edit Inclusion Criteria</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>InclusionCriteriaCompOper__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The rule inclusion criteria comparison operator</description>
+        <externalId>false</externalId>
+        <label>Inclusion Criteria Operator</label>
+        <picklist>
+            <picklistValues>
+                <fullName>equal to</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>not equal to</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>InclusionCriteriaFieldName__c</fullName>
+        <deprecated>false</deprecated>
+        <description>he rule inclusion criteria field</description>
+        <externalId>false</externalId>
+        <label>Inclusion Criteria Field</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>InclusionCriteriaFieldValue__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The rule inclusion criteria value</description>
+        <externalId>false</externalId>
+        <label>Inclusion Criteria Value</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Order__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Rule sequence</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Rule sequence</inlineHelpText>
+        <label>Sequence</label>
+        <precision>2</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Rule_Description__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Rule Description</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>Rule_Field__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Rule Field</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Rule_Object__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Rule Object</label>
+        <picklist>
+            <controllingField>Rule_Type__c</controllingField>
+            <picklistValues>
+                <fullName>APTS_Agreement__c</fullName>
+                <default>false</default>
+                <controllingFieldValues>Agreement Type</controllingFieldValues>
+                <controllingFieldValues>Submit Request Mode</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>APTS_Template__c</fullName>
+                <default>false</default>
+                <controllingFieldValues>Agreement Template</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>EmailTemplate</fullName>
+                <default>false</default>
+                <controllingFieldValues>Email Template</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>QueueSObject</fullName>
+                <default>false</default>
+                <controllingFieldValues>Queue Assignment</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Folder</fullName>
+                <default>false</default>
+                <controllingFieldValues>Document Folder</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Apttus__APTS_Agreement__c</fullName>
+                <default>false</default>
+                <controllingFieldValues>Agreement Type</controllingFieldValues>
+                <controllingFieldValues>Submit Request Mode</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Apttus__APTS_Template__c</fullName>
+                <default>false</default>
+                <controllingFieldValues>Agreement Template</controllingFieldValues>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Rule_Type__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Rule Type</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Agreement Template</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Agreement Type</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Email Template</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Queue Assignment</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Submit Request Mode</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Document Folder</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Rule_Value__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Rule Value</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <label>Agreement Rule</label>
+    <listViews>
+        <fullName>All</fullName>
+        <columns>NAME</columns>
+        <columns>Active__c</columns>
+        <columns>Order__c</columns>
+        <columns>Rule_Type__c</columns>
+        <columns>Rule_Object__c</columns>
+        <columns>Rule_Field__c</columns>
+        <columns>Rule_Value__c</columns>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+    </listViews>
+    <nameField>
+        <displayFormat>R-{0000}</displayFormat>
+        <label>Name</label>
+        <type>AutoNumber</type>
+    </nameField>
+    <pluralLabel>Agreement Rules</pluralLabel>
+    <searchLayouts>
+        <customTabListAdditionalFields>Active__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Order__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Rule_Type__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Rule_Object__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Rule_Field__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Rule_Value__c</customTabListAdditionalFields>
+        <listViewButtons>Edit</listViewButtons>
+        <lookupDialogsAdditionalFields>Active__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>Order__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>Rule_Type__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>Rule_Object__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>Rule_Field__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>Rule_Value__c</lookupDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>Active__c</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>Order__c</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>Rule_Type__c</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>Rule_Object__c</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>Rule_Field__c</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>Rule_Value__c</lookupPhoneDialogsAdditionalFields>
+        <searchFilterFields>NAME</searchFilterFields>
+        <searchFilterFields>Active__c</searchFilterFields>
+        <searchFilterFields>Order__c</searchFilterFields>
+        <searchFilterFields>Rule_Type__c</searchFilterFields>
+        <searchFilterFields>Rule_Object__c</searchFilterFields>
+        <searchFilterFields>Rule_Field__c</searchFilterFields>
+        <searchFilterFields>Rule_Value__c</searchFilterFields>
+        <searchResultsAdditionalFields>Active__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Order__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Rule_Type__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Rule_Object__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Rule_Field__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Rule_Value__c</searchResultsAdditionalFields>
+    </searchLayouts>
+    <sharingModel>ReadWrite</sharingModel>
+    <webLinks>
+        <fullName>Edit</fullName>
+        <availability>online</availability>
+        <description>Editing of multiple selected rules</description>
+        <displayType>massActionButton</displayType>
+        <height>600</height>
+        <linkType>page</linkType>
+        <masterLabel>Edit</masterLabel>
+        <openType>sidebar</openType>
+        <page>RuleEdit</page>
+        <protected>false</protected>
+        <requireRowSelection>true</requireRowSelection>
+    </webLinks>
+</CustomObject>

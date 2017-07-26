@@ -1,0 +1,95 @@
+<!-- 
+    Apttus Proposal Management
+    CancelActionInterceptor
+     
+    @2010-2011 Apttus Inc. All rights reserved.
+
+ -->
+<apex:page controller="Apttus_Proposal.CancelActionController" 
+		   tabStyle="Apttus_Proposal__Proposal__c">
+	
+	<apex:stylesheet value="{!URLFOR($Resource.Apttus_Proposal__YUILibrary, '/yui/build/assets/skins/sam/skin.css')}" />
+ 
+	<apex:includescript value="{!URLFOR($Resource.Apttus_Proposal__YUILibrary, '/yui/build/yahoo-dom-event/yahoo-dom-event.js')}" />
+	<apex:includescript value="{!URLFOR($Resource.Apttus_Proposal__YUILibrary, '/yui/build/dragdrop/dragdrop-min.js')}" />
+	<apex:includescript value="{!URLFOR($Resource.Apttus_Proposal__YUILibrary, '/yui/build/container/container-min.js')}" />
+	<apex:includescript value="{!URLFOR($Resource.Apttus_Proposal__YUILibrary, '/yui/build/animation/animation-min.js')}" />
+	
+	<script>
+    
+	    // Create a namespace for our custom functions
+	    YAHOO.namespace("force.com");
+		
+		/**
+		 * Builds the confirmation panel
+		 */
+		YAHOO.force.com.buildConfirmationPanel = function() {
+			document.body.className = document.body.className + " yui-skin-sam";
+	        
+	        YAHOO.force.com.confimationPanel = new YAHOO.widget.Panel(
+	            "confirmationPanel",  // The id of our dialog container
+	            { 
+	                    width           :   "300px", // You can play with this until it's right
+	                    visible         :   false,   // Should be invisible when rendered
+	                    draggable       :   false,   // Make the dialog draggable
+	                    close           :   false,   // Don't include a close title button
+	                    modal           :   true,    // Make it modal
+	                    fixedCenter     :   true,    // Keep centered if window is scrolled
+	                    zindex          :   40,      // Make sure it's on top of everything
+	                    
+	                    // This line adds the appear/disapper fade effect
+	                    effect          :   {effect:YAHOO.widget.ContainerEffect.FADE,duration:0.25} 
+	            }
+	         );
+	        
+	        // Render the dialog to the document.body level of the DOM
+	        YAHOO.force.com.confimationPanel.render(document.body);
+	       
+	    }
+		     
+	    // Function called when the DOM is ready to create the dialog,
+    	// render the dialog into the document body, add our dialog skin
+    	// css to the body tag, and wire up the buttons on our dialog   
+		YAHOO.force.com.onDOMReady = function() {
+			// build the confirmation panel
+			YAHOO.force.com.buildConfirmationPanel();
+			// show the modal panel
+			document.getElementById("confirmationPanel").style.display = "block";
+			YAHOO.force.com.confimationPanel.show();
+			
+		}
+		
+	    // build the tree as soon as the DOM is in a usable state
+		YAHOO.util.Event.onDOMReady(YAHOO.force.com.onDOMReady);   
+		
+	</script>
+	
+	<!-- This is the content of the modal dialog -->
+	<div id="confirmationPanel" style="display: none" >
+	    <div class="hd">
+	        <apex:outputText value="{!$Label.apttus_proposal__CancelConfirmation}" />
+	    </div> 
+	    <div class="bd">
+	        <apex:form >
+	            <apex:actionRegion >
+	                <div style="text-align: center;" >
+	                    <apex:commandButton value="{!$Label.apttus_proposal__Yes}" 
+	                    					action="{!doOK}" 
+	                    					immediate="true" 
+	                    					oncomplete="YAHOO.force.com.confimationPanel.hide();" />
+	                    <apex:commandButton value="{!$Label.apttus_proposal__No}" 
+	                    					action="{!doCancel}" 
+	                    					immediate="true" 
+	                    					oncomplete="YAHOO.force.com.confimationPanel.hide();" />
+	                </div>
+	            </apex:actionRegion>
+	        </apex:form>
+	    </div>
+	    <div class="ft" style="font-size: 10px; font-weight: bold;">
+	        <apex:outputPanel layout="block">
+	            {!$Label.apttus_proposal__CancelInstruction}
+	        </apex:outputPanel>
+	    </div>
+	</div>
+
+</apex:page>

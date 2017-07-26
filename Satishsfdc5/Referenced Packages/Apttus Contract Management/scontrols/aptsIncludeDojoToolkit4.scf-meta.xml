@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scontrol xmlns="http://soap.sforce.com/2006/04/metadata">
+    <contentSource>Snippet</contentSource>
+    <description>Dojo Toolkit 4</description>
+    <encodingKey>UTF-8</encodingKey>
+    <fileName>aptsIncludeDojoToolkit4</fileName>
+    <name>aptsIncludeDojoToolkit4 (DEPRECATED)</name>
+    <supportsCaching>true</supportsCaching>
+</Scontrol>

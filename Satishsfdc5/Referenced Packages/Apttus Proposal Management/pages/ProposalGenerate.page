@@ -1,0 +1,478 @@
+<!-- 
+    Apttus Proposal Management
+    ProposalGenerate
+     
+    @2010-2011 Apttus Inc. All rights reserved.
+
+ -->
+<apex:page standardController="Apttus_Proposal__Proposal__c" 
+	  	   extensions="Apttus_Proposal.ProposalGenerateController" 
+           showHeader="true" 
+           sidebar="true" 
+           cache="false" 
+           tabStyle="Apttus_Proposal__Proposal__c">	
+     
+	<apex:includescript value="{!$Resource.Apttus_Proposal__ProposalJSLib}" />
+	
+	<apex:stylesheet value="{!URLFOR($Resource.Apttus_Proposal__YUILibrary, '/yui/build/assets/skins/sam/skin.css')}" />
+ 
+	<apex:includescript value="{!URLFOR($Resource.Apttus_Proposal__YUILibrary, '/yui/build/yahoo-dom-event/yahoo-dom-event.js')}" />
+	<apex:includescript value="{!URLFOR($Resource.Apttus_Proposal__YUILibrary, '/yui/build/dragdrop/dragdrop-min.js')}" />
+	<apex:includescript value="{!URLFOR($Resource.Apttus_Proposal__YUILibrary, '/yui/build/container/container-min.js')}" />
+	<apex:includescript value="{!URLFOR($Resource.Apttus_Proposal__YUILibrary, '/yui/build/animation/animation-min.js')}" />
+	
+	<script>
+    
+	    // Create a namespace for our custom functions
+	    YAHOO.namespace("force.com");
+		
+		// load panel
+		
+		/**
+		 * Builds the load panel.
+		 */
+	    YAHOO.force.com.buildLoadPanel = function() {
+	        document.body.className = document.body.className + " yui-skin-sam";
+	        YAHOO.force.com.loadPanel = new YAHOO.widget.Panel(
+	            "loadPanel",  // The id of our dialog container
+	            { 
+	                    width           :   "300px", // You can play with this until it's right
+	                    visible         :   false,   // Should be invisible when rendered
+	                    draggable       :   false,   // Make the dialog draggable
+	                    close           :   false,   // Don't include a close title button
+	                    modal           :   true,    // Make it modal
+	                    fixedCenter     :   true,    // Keep centered if window is scrolled
+	                    zindex          :   40,      // Make sure it's on top of everything
+	                    constraintoviewport: true,
+	                    
+	                    // This line adds the appear/disapper fade effect
+	                    effect			:   {effect:YAHOO.widget.ContainerEffect.FADE,duration:0.25}
+        							
+	            }
+	        );
+	        
+	        // header
+	        YAHOO.force.com.loadPanel.setHeader("{!$Label.LoadingPage}");
+			// set image
+			YAHOO.force.com.loadPanel.setBody('<center><img src="{!URLFOR($Resource.Image_LoadingPage)}" /></center>');
+	        // Render the dialog to the document.body level of the DOM
+	        YAHOO.force.com.loadPanel.render(document.body);
+	        
+	    }
+	    
+		// wait panel
+		
+		/**
+		 * Builds the wait panel.
+		 */
+	    YAHOO.force.com.buildWaitPanel = function() {
+	        document.body.className = document.body.className + " yui-skin-sam";
+	        YAHOO.force.com.waitPanel = new YAHOO.widget.Panel(
+	            "waitPanel",  // The id of our dialog container
+	            { 
+	                    width           :   "300px", // You can play with this until it's right
+	                    visible         :   false,   // Should be invisible when rendered
+	                    draggable       :   false,   // Make the dialog draggable
+	                    close           :   false,   // Don't include a close title button
+	                    modal           :   true,    // Make it modal
+	                    fixedCenter     :   true,    // Keep centered if window is scrolled
+	                    zindex          :   40,      // Make sure it's on top of everything
+	                    constraintoviewport: true,
+	                    
+	                    // This line adds the appear/disapper fade effect
+	                    effect			:   {effect:YAHOO.widget.ContainerEffect.FADE,duration:0.25}
+        							
+	            }
+	        );
+	        
+	        // header
+	        YAHOO.force.com.waitPanel.setHeader("{!$Label.GeneratingProposal}");
+			// set image
+			YAHOO.force.com.waitPanel.setBody('<center><img src="{!URLFOR($Resource.Image_LoadingPage)}" /></center>');
+	        // Render the dialog to the document.body level of the DOM
+	        YAHOO.force.com.waitPanel.render(document.body);
+	        
+	    }
+	    
+	    // Function called when the DOM is ready to create the dialog,
+    	// render the dialog into the document body, add our dialog skin
+    	// css to the body tag, and wire up the buttons on our dialog   
+		YAHOO.force.com.onDOMReady = function() {
+			
+			// build the load panel
+			YAHOO.force.com.buildLoadPanel();
+			// build the wait panel
+			YAHOO.force.com.buildWaitPanel();
+			
+		}
+		
+	    // build the tree as soon as the DOM is in a usable state
+		YAHOO.util.Event.onDOMReady(YAHOO.force.com.onDOMReady);   	
+		
+	</script>
+	
+	<script type="text/javascript">	
+		
+    	/**
+		 * Callback after a template is selected
+		 * templateId the selected template id
+		 */
+		function onSelectTemplate(templateId) {
+			
+			// show modal panel
+			YAHOO.force.com.loadPanel.show();
+			
+			// call the action
+			doSelect(""+ templateId +"");
+			
+		}
+		
+    	/**
+		 * Go back to the detail page
+		 */
+		function goBack() {
+			// get the proposal id
+			var proposalId = "{!proposalId}";
+		
+			// go back to the detail page
+			qp_navigateTo("/" + proposalId);
+			
+		}
+		
+		/**
+		 * Cancel the generation
+		 */
+		function cancel() {
+			// Go back to the detail page
+			goBack();
+			
+		}
+		
+		/**
+		 * Callback after the document was downloaded
+		 */
+		function afterDownload() {
+			
+			// delay to allow the document to be downloaded	
+           	setTimeout(function() {
+           		
+           		// back to the proposal detail page
+         		//goBack();
+         		// return to the proposal detail page
+         		doReturn();
+          	}, 5000);
+           	
+           	// return true to allow the download to proceed
+           	return true;
+           	
+		}
+		
+		/**
+		 * Callback after the timeout occurred
+		 */
+		function afterTimeout() {
+			
+			try {
+				
+				// get the timeout message
+				var cMsg = "{!JSENCODE(TimeoutMessage)}";
+				var message = "";
+				var lines = cMsg.split("\\n");
+				for (var i = 0; i < lines.length; i++) {
+					if (i > 0) {
+						message += "\n";
+						
+					}
+					message += lines[i];
+					
+				}
+				
+				// hide modal panel
+				YAHOO.force.com.waitPanel.hide();
+   				
+				// show timeout message
+				if (confirm(message)) {
+					// back to proposal detail page
+					goBack();
+					
+				}
+				
+			} catch(ex) {
+				qp_erroralert(qp_cERROR_UNKNOWN,ex);
+				// back to proposal detail page
+				goBack();
+				
+			} 
+           	
+		}
+		
+		/**
+		 * Callback after generate is done
+		 */
+		function afterGenerate() {
+			
+			// cancel timeout
+			cancelTimeout();
+			// hide modal panel
+			YAHOO.force.com.waitPanel.hide();
+			
+		}
+		
+		/**
+		 * Cancel the timeout
+		 */
+		function cancelTimeout() {
+		
+			if (gTimeoutId != null) {
+				clearTimeout(gTimeoutId);
+				gTimeoutId = null;
+				
+			}
+			
+		}
+		
+		/**
+		 * Calls the do generate document action
+		 */
+		function callDoGenerateDoc() {
+            
+            var exception = null;
+           
+            try {
+            
+            	var timeoutMillis = parseInt("{!CallTimeoutMillis}") + 5000;
+            	
+            	// show modal panel
+				YAHOO.force.com.waitPanel.show();
+            	
+            	// delay to allow prepare step to run	
+            	setTimeout(function() {
+           			try {
+           				// generate the document
+           				doGenerateDoc();
+           			} catch (e) {
+           				qp_erroralert("generateDoc():", e);
+           				// back to agreement detail page
+           				goBack();
+           				
+           			} 
+           			
+           		}, 5000);
+            	
+            	// delay until timeout	
+            	gTimeoutId = setTimeout(function() {
+           						try {
+           							// handle timeout
+          							afterTimeout();
+			           			} catch (e) {
+			           				qp_erroralert("afterTimeout():", e);
+			           				// back to proposal detail page
+			           				goBack();
+			           				
+			           			} 
+          			
+          					 }, timeoutMillis);
+          					 
+            } catch(ex) {
+            	exception = ex;
+            	// hide modal panel
+				YAHOO.force.com.waitPanel.hide();
+				
+            	qp_erroralert("generateDoc():", ex);
+            	
+            } finally {
+				if (exception != null) {
+           			// back to proposal detail page
+					goBack();
+					
+				} 
+				
+            }
+            
+        }
+	
+	</script>
+	
+	<apex:sectionHeader title="{!$Label.apttus_proposal__GenerateProposal}" subtitle="{!Apttus_Proposal__Proposal__c.Apttus_Proposal__Proposal_Name__c}"/>
+	
+	<apex:form id="idGenerateProposal">
+	
+		<!--  required fields -->
+		<apex:outputText value="{!Apttus_Proposal__Proposal__c.Name}" rendered="false"/>
+		<apex:outputText value="{!Apttus_Proposal__Proposal__c.Apttus_Proposal__Proposal_Name__c}" rendered="false"/>
+		<apex:outputText value="{!Apttus_Proposal__Proposal__c.Apttus_Proposal__Description__c}" rendered="false"/>
+		<apex:outputText value="{!Apttus_Proposal__Proposal__c.Apttus_Proposal__Approval_Stage__c}" rendered="false"/>
+		<apex:outputText value="{!Apttus_Proposal__Proposal__c.RecordTypeId}" rendered="false"/>
+		<apex:outputText value="{!Apttus_Proposal__Proposal__c.RecordType.Name}" rendered="false"/>
+		
+    	<apex:outputPanel id="idInputPanel" >
+	    	<apex:pageBlock mode="edit" rendered="{!NOT(DocGenerated)}">
+	        	<apex:pageMessages />
+				
+		        <apex:pageBlockSection title="{!$Label.apttus_proposal__Options}" columns="1">
+		        
+			        <apex:panelGrid columns="1" >
+			            <apex:outputLabel value="1. {!$Label.apttus_proposal__SelectOutputFormat}" 
+			            				  for="idOutputFormat" 
+			            				  style="font-weight:bold" />
+			            <apex:selectRadio id="idOutputFormat" 
+			            				  value="{!selectedOutputFormat}" 
+			            				  disabled="{!NOT(showOutputFormats)}" >
+			                <apex:selectOptions value="{!outputFormats}"/>
+			            </apex:selectRadio>
+			        	<p/>
+			        </apex:panelGrid>
+			        
+			        <apex:panelGrid columns="1" rendered="{!showWatermark}" >
+			            <apex:outputLabel value="2. {!$Label.apttus_proposal__IncludeWatermark}"  
+			            				  for="idWatermark" 
+			            				  style="font-weight:bold" />
+			            <apex:inputCheckbox id="idWatermark" 
+			            					value="{!includeWatermark}"
+										    selected="{!includeWatermark}" 
+										    disabled="{!NOT(showWatermark)}" />	    
+
+			        	<p/>
+			        </apex:panelGrid>
+					        
+			        <apex:panelGrid columns="1">
+			            <apex:outputText value="{!IF(showWatermark, '3. ' & $Label.apttus_proposal__SelectTemplate, '2. ' & $Label.apttus_proposal__SelectTemplate)}" 
+			            				 style="font-weight:bold" />
+			        	<p/>
+			        </apex:panelGrid>
+			        
+				</apex:pageBlockSection>
+	    	</apex:pageBlock>
+    	</apex:outputPanel>	
+    	
+		<apex:outputPanel id="idTemplatePanel" >
+		    <apex:pageBlock rendered="{!NOT(DocGenerated)}">
+		    
+		        <apex:pageBlockButtons location="top">
+		        	<apex:outputPanel id="idButtonsTop" >
+						<apex:commandButton value="{!$Label.apttus_proposal__Generate}" 
+											onclick="callDoGenerateDoc()" 
+											reRender="idInputPanel, idOutputPanel" 
+											disabled="{!NOT(hasSelectedTemplateId)}"/>
+				    	<apex:commandButton value="{!$Label.apttus_proposal__Cancel}" 
+			        						action="{!doReturn}" 
+			        						immediate="true" />
+			        </apex:outputPanel>
+		        </apex:pageBlockButtons>
+		        
+		        <apex:pageBlockButtons location="bottom">
+		        	<apex:outputPanel id="idButtonsBottom" >
+						<apex:commandButton value="{!$Label.apttus_proposal__Generate}" 
+											onclick="callDoGenerateDoc()" 
+											reRender="idInputPanel, idOutputPanel" 
+											disabled="{!NOT(hasSelectedTemplateId)}"/>
+				    	<apex:commandButton value="{!$Label.apttus_proposal__Cancel}" 
+			        						action="{!doReturn}" 
+			        						immediate="true" />
+			        </apex:outputPanel>
+		        </apex:pageBlockButtons>
+		        
+		        <apex:pageBlockSection title="Templates" 
+		        					   columns="1" 
+		        					   collapsible="false">
+		        					   
+		            <apex:pageBlockTable value="{!templates}" 
+		            					 var="templateInfo" 
+		            					 width="100%" 
+		            					 rendered="{!hasTemplates}">
+		            					 
+		                <apex:column headervalue="{!$Label.apttus_proposal__Select}" >
+		                    <apex:outputPanel rendered="{!templateInfo.selected}" >
+								<input type="radio" 
+									   checked="{!templateInfo.selected}"
+									   onclick="onSelectTemplate('{!templateInfo.templateSO.Id}')" />
+							</apex:outputPanel>
+							<apex:outputPanel rendered="{!NOT(templateInfo.selected)}">
+								<input type="radio"
+									   onclick="onSelectTemplate('{!templateInfo.templateSO.Id}')" />
+							</apex:outputPanel>
+		                </apex:column>
+		                
+		                <!-- 
+		                <apex:column >
+							<input type="radio" 
+								   onclick="doSelect('{!template.Id}')"/> 
+						</apex:column>
+						-->
+						<apex:column value="{!templateInfo.templateSO.Name}" />
+		                <apex:column value="{!templateInfo.templateSO.Apttus__Guidance__c}" />
+		                <apex:column value="{!templateInfo.templateSO.Apttus__Category__c}" />
+		                <apex:column value="{!templateInfo.templateSO.Apttus__Subcategory__c}" />
+		                
+		            </apex:pageBlockTable>
+		            
+		            <apex:outputText value="{!$Label.apttus_proposal__NoTemplatesToDisplay}" rendered="{!NOT(hasTemplates)}" />
+		            
+		        </apex:pageBlockSection>  
+        
+		    </apex:pageBlock>
+    	
+    	</apex:outputPanel>	
+    	
+    	<apex:outputPanel id="idOutputPanel" >
+    		
+    		<apex:pageBlock rendered="{!DocGenerated}">
+    			
+	        	<apex:pageBlockButtons location="bottom">
+			    	<apex:commandButton value="{!$Label.apttus_proposal__Return}" 
+			    						action="{!doReturn}" 
+			    						immediate="true" />
+	        	</apex:pageBlockButtons>
+				<apex:outputText style="font-size: 12px; font-weight: bold;" 
+								 value="{!$Label.apttus_proposal__DocumentGenerationSuccess}" />
+				<p/>
+				<apex:pageBlockSection title="{!$Label.apttus_proposal__DocumentDetail}" columns="1">
+					<apex:pageBlockSectionItem >
+						<apex:outputLabel style="font-weight: bold;" 
+										  value="{!$Label.apttus_proposal__FileName}" 
+										  for="idFileName" />
+    					<apex:outputText id="idFileName" value="{!docInfo.docName}" />
+    				</apex:pageBlockSectionItem>
+    				<apex:pageBlockSectionItem >
+						<apex:outputLabel style="font-weight: bold;" 
+										  value="{!$Label.apttus_proposal__Size}" 
+										  for="idFileSize" />
+    					<apex:outputText id="idFileSize" 
+    									 style="font-weight: bold;" 
+    									 value="{!docInfo.bodyLength}KB" />
+    				</apex:pageBlockSectionItem>
+    				<apex:pageBlockSectionItem >
+    					<apex:outputLabel value="" for="idFileLink" />
+    					<apex:outputLink id="idFileLink" 
+    									 value="{!docURL}" 
+    									 charset="UTF-8" 
+    									 type="{!docInfo.contentType}" 
+    									 title="{!$Label.apttus_proposal__ViewDocument}" 
+    									 target="_blank" 
+    									 onclick="afterDownload();">{!$Label.apttus_proposal__ViewFileInstruction}</apex:outputLink>
+    				</apex:pageBlockSectionItem>
+    			</apex:pageBlockSection>
+	    	</apex:pageBlock>
+	    	
+	    </apex:outputPanel>	
+	    
+		<!--  Javascript functions -->
+    	<apex:actionFunction name="doSelect" 
+    						 action="{!doSelect}" 
+    						 oncomplete="YAHOO.force.com.loadPanel.hide();" 
+    						 reRender="idInputPanel,idTemplatePanel"  >
+        	<apex:param name="templateId" value="" />
+     	</apex:actionFunction>    	
+    	
+    	<apex:actionFunction name="doGenerateDoc" 
+    						 action="{!doGenerateDoc}" 
+    						 oncomplete="afterGenerate()" 
+    						 reRender="idInputPanel,idTemplatePanel,idOutputPanel" 
+    						 timeout="{!CallTimeoutMillis}" />
+    	
+    	<apex:actionFunction name="doReturn" 
+    						 action="{!doReturn}" />  
+    						 
+	</apex:form>
+	
+</apex:page>

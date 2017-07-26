@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Follow</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <deprecated>false</deprecated>
+    <description>Holds the data captured on fields for cycle time reporting</description>
+    <enableActivities>false</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>false</enableHistory>
+    <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <fields>
+        <fullName>After__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The field value after the modification</description>
+        <externalId>false</externalId>
+        <label>After</label>
+        <length>80</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Agreement__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The agreement associated with the field</description>
+        <externalId>false</externalId>
+        <label>Agreement</label>
+        <referenceTo>APTS_Agreement__c</referenceTo>
+        <relationshipLabel>Cycle Time Field Data</relationshipLabel>
+        <relationshipName>Cycle_Time_Field_Data</relationshipName>
+        <relationshipOrder>0</relationshipOrder>
+        <reparentableMasterDetail>false</reparentableMasterDetail>
+        <trackTrending>false</trackTrending>
+        <type>MasterDetail</type>
+        <writeRequiresMasterRead>false</writeRequiresMasterRead>
+    </fields>
+    <fields>
+        <fullName>Before__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The field value before the modification</description>
+        <externalId>false</externalId>
+        <label>Before</label>
+        <length>80</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Begin_Datetime__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The datetime when the field acquired the before value</description>
+        <externalId>false</externalId>
+        <label>Begin Datetime</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>Cycle_Time_Field__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <deprecated>false</deprecated>
+        <description>The field associated with the cycle time data</description>
+        <externalId>false</externalId>
+        <label>Cycle Time Field</label>
+        <referenceTo>CycleTimeField__c</referenceTo>
+        <relationshipLabel>Cycle Time Field Data</relationshipLabel>
+        <relationshipName>Cycle_Time_Field_Data</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Duration_Business_Hours__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The duration (in hours) the field held the before value</description>
+        <externalId>false</externalId>
+        <label>Duration (Hours)</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>4</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>End_Datetime__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The datetime when the field acquired the after value</description>
+        <externalId>false</externalId>
+        <label>End Datetime</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>DateTime</type>
+    </fields>
+    <label>Cycle Time Field Data</label>
+    <nameField>
+        <displayFormat>CTFD-{00000000}</displayFormat>
+        <label>CT Field Data</label>
+        <type>AutoNumber</type>
+    </nameField>
+    <pluralLabel>Cycle Time Field Data</pluralLabel>
+    <searchLayouts/>
+    <sharingModel>ControlledByParent</sharingModel>
+</CustomObject>

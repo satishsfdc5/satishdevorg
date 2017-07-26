@@ -1,0 +1,74 @@
+<!-- 
+    Apttus Config & Pricing
+    ProductOptionComponent
+     
+    @2010-2011 Apttus Inc. All rights reserved.
+
+ -->
+<apex:page standardController="Apttus_Config2__ProductOptionGroup__c"
+			extensions="Apttus_Config2.ProductOptionComponentController"  
+			showHeader="false" 
+			sidebar="false" 
+			cache="false" 
+			tabStyle="Product2">
+	
+	<apex:includeScript value="{!$Resource.Apttus_Config2__ConfigJSLib}"/>
+		
+	<apex:form id="idProductOptionComponentForm">
+	
+		<apex:outputField value="{!Apttus_Config2__ProductOptionGroup__c.Apttus_Config2__OptionGroupId__c}"
+			rendered="false" />
+		<apex:outputField value="{!Apttus_Config2__ProductOptionGroup__c.ProductId__r.Name}"
+			rendered="false" />
+		<apex:outputField value="{!Apttus_Config2__ProductOptionGroup__c.Apttus_Config2__ProductId__c}"
+			rendered="false" />
+		<apex:outputField value="{!Apttus_Config2__ProductOptionGroup__c.Apttus_Config2__ModifiableType__c}"
+			rendered="false" />
+		<apex:outputField value="{!Apttus_Config2__ProductOptionGroup__c.Apttus_Config2__MinOptions__c}"
+			rendered="false" />
+		<apex:outputField value="{!Apttus_Config2__ProductOptionGroup__c.Apttus_Config2__MaxOptions__c}"
+			rendered="false" />
+
+		<apex:pageBlock id="idOptionGroupBlock" title="{!productName}">
+
+			<apex:outputPanel id="idErrorMsg" >
+				<apex:pageMessages />
+			</apex:outputPanel>
+
+			<apex:pageBlockButtons location="both">
+				<apex:commandButton value="{!$Label.apttus_config2__Done}" action="{!doDone}" />
+			</apex:pageBlockButtons>
+
+			<apex:pageBlockSection id="idOptionGroupSection" columns="2">
+				<apex:outputField value="{!productOptionGroup.Apttus_Config2__OptionGroupId__c}" />
+				<apex:outputField value="{!productOptionGroup.Apttus_Config2__ModifiableType__c}" />
+				<apex:outputField value="{!productOptionGroup.Apttus_Config2__MinOptions__c}" />
+				<apex:outputField value="{!productOptionGroup.Apttus_Config2__MaxOptions__c}" />
+			</apex:pageBlockSection>
+			
+			
+			<!--  Product Option Components -->
+			<apex:pageBlockSection columns="1">
+				<c:ProductOptionComponentSearch id="idProductOptionComponentSearch"
+					pageController="{!this}" 
+					selectButtonLabel="{!removeButtonLabel}"
+					autoSearch="true"  
+					tableTitle="{!associatedOptionsLabel}"
+					preFilterXml="{!productOptionComponentFilterXml}" />
+			</apex:pageBlockSection>
+
+			<!--  Classification Products -->
+			<apex:pageBlockSection columns="1">
+				<c:ProductClassificationSearch id="idProductClassificationSearch"
+					pageController="{!this}" 
+					selectButtonLabel="{!associateButtonLabel}"
+					autoSearch="true" 
+					tableTitle="{!availableOptionsLabel}" 
+					preFilterXml="{!productClassificationFilterXml}" />
+			</apex:pageBlockSection>
+
+		</apex:pageBlock>
+
+	</apex:form>
+	
+</apex:page>

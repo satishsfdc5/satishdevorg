@@ -1,0 +1,251 @@
+<!-- 
+    Apttus Contract Management
+    AgreementRecordPurge
+     
+    @2009-2010 Apttus Inc. All rights reserved.
+
+ -->
+<apex:page standardController="Apttus__APTS_Agreement__c" 
+	  	   extensions="Apttus.AgreementRecordPurgeController" 
+           showHeader="true" 
+           sidebar="true" 
+           cache="false" 
+           tabStyle="Apttus__APTS_Agreement__c">	
+     
+    <style>
+		textarea {
+			width: 35%;
+		}
+	</style>
+	
+	<apex:form id="idPurgeAgreements">
+		
+		<apex:pageBlock id="idSearchBlock" title="{!$Label.apttus__PurgeAgreements}" mode="detail">
+			<apex:pageMessages />
+			
+			<apex:pageBlockButtons location="both">
+		        <apex:commandButton value="{!$Label.apttus__Purge}" action="{!doPurge}" disabled="{!NOT(HasRecordsSelected)}" />
+		        <apex:commandButton value="{!$Label.apttus__Return}" action="{!doReturn}" immediate="true" />
+		    </apex:pageBlockButtons>
+		    
+		    <apex:pageBlockSection title="{!$Label.apttus__SearchFilter}" columns="2" collapsible="true">
+			    
+			    <apex:inputField id="idRetentionDate" value="{!Apttus__APTS_Agreement__c.Apttus__RetentionDate__c}" required="true" />
+			    
+			    <apex:pageBlockSectionItem />
+			     
+				<apex:pageBlockSectionItem >
+					<apex:outputLabel value="{!$Label.apttus__LimitRows}" for="idLimitRows" />
+			    	<apex:inputText value="{!limitRows}" required="false" />	
+			    </apex:pageBlockSectionItem>
+			   
+			    <apex:panelGrid columns="2">
+			    	<apex:commandButton action="{!doSearch}" value="{!'  ' & $Label.apttus__Go & '!  '}"  
+			    						reRender="idSearchBlock" 
+			    						status="idSearchStatus">
+			    	</apex:commandButton>
+					<apex:actionStatus id="idSearchStatus" startText="{!$Label.apttus__Searching}" />
+					<apex:actionStatus id="idSelectStatus" startText="{!$Label.apttus__Refreshing}" />
+				</apex:panelGrid>
+				
+			</apex:pageBlockSection>
+		    
+		    <apex:outputPanel id="idResultSetPanel">
+			    <apex:outputPanel id="idResultStatsPanel" styleClass="bNext" layout="block" style="text-align: right;" rendered="{!hasAgreements}">
+					<font size="1px">{!$Label.PageNbr}:&nbsp;<apex:outputLabel value="{!currentPageNumber}"/>&nbsp;{!$Label.OutOf}&nbsp;<apex:outputLabel value="{!totalPages}"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font>
+					<apex:outputPanel id="idNavigationPanel" styleClass="next" layout="block" rendered="{!OR(hasNextPage,hasPreviousPage)}">
+						<apex:outputPanel rendered="{!NOT(hasPreviousPage)}" styleClass="greyedLink">&lt;{!$Label.PreviousPage}</apex:outputPanel>
+						<apex:commandLink rendered="{!hasPreviousPage}" action="{!previousPage}" reRender="idResultSetPanel">&lt;{!$Label.PreviousPage}</apex:commandLink>
+						<span> | </span>
+						<apex:outputPanel rendered="{!NOT(hasNextPage)}" styleClass="greyedLink">{!$Label.NextPage}&gt;</apex:outputPanel>
+						<apex:commandLink rendered="{!hasNextPage}" action="{!nextPage}" reRender="idResultSetPanel">{!$Label.NextPage}&gt;</apex:commandLink>
+					</apex:outputPanel>
+				</apex:outputPanel>
+				&nbsp;
+				<apex:outputPanel id="idRecordSetPanel" >
+					<apex:pageBlockSection title="{!$Label.apttus__Records}" columns="1" collapsible="true">
+				        <apex:pageBlockTable value="{!agreements}" var="agreementInfo" width="100%" rendered="{!hasAgreements}">
+				        	<apex:column >
+								<apex:facet name="header" >
+									<apex:inputCheckbox value="{!isAllRecordsSelected}" >
+										<apex:actionSupport event="onclick" action="{!doSelectAll}" reRender="idSearchBlock" status="idSelectStatus" />
+									</apex:inputCheckbox>
+								</apex:facet>
+								<apex:inputCheckbox value="{!agreementInfo.selected}" >
+				        			<apex:actionSupport event="onclick" action="{!doSelect}" reRender="idSearchBlock" />  
+				        		</apex:inputCheckbox>
+							</apex:column>
+				        	
+				        	<apex:column value="{!agreementInfo.agreementSO.Apttus__FF_Agreement_Number__c}" >
+				        		<apex:facet name="header">
+					        		<apex:commandLink value="{!$ObjectType.Apttus__APTS_Agreement__c.Fields.Apttus__FF_Agreement_Number__c.Label}" 
+					        						  action="{!doSort}" 
+					        						  reRender="idSearchBlock">
+	                            		<apex:param name="sortFieldName" value="Apttus__FF_Agreement_Number__c" />	          
+	                        			<apex:image url="{!$Resource.Apttus__Image_SortAsc}" 
+	                        						title="{!$Label.apttus__SortedAscending}" 
+	                        						alt="{!$Label.apttus__SortedAscending}" 
+	                        						rendered="{!sortFieldName == 'Apttus__FF_Agreement_Number__c' && sortOrder != 'DESC'}"/>	                        						
+	                        			<apex:image url="{!$Resource.Apttus__Image_SortDesc}" 
+	                        						title="{!$Label.apttus__SortedDescending}" 
+	                        						alt="{!$Label.apttus__SortedDescending}" 
+	                        						rendered="{!sortFieldName == 'Apttus__FF_Agreement_Number__c' && sortOrder == 'DESC'}"/>
+	                        		</apex:commandLink>
+				        		</apex:facet>
+				        	</apex:column>
+				        	
+				        	<apex:column >
+				        		<apex:facet name="header">
+					        		<apex:commandLink value="{!$ObjectType.Apttus__APTS_Agreement__c.Fields.Name.Label}" 
+					        						  action="{!doSort}" 
+					        						  reRender="idSearchBlock">
+	                            		<apex:param name="sortFieldName" value="Name" />
+	                        			<apex:image url="{!$Resource.Apttus__Image_SortAsc}" 
+	                        						title="{!$Label.apttus__SortedAscending}" 
+	                        						alt="{!$Label.apttus__SortedAscending}" 
+	                        						rendered="{!sortFieldName == 'Name' && sortOrder != 'DESC'}"/>
+	                        			<apex:image url="{!$Resource.Apttus__Image_SortDesc}" 
+	                        						title="{!$Label.apttus__SortedDescending}" 
+	                        						alt="{!$Label.apttus__SortedDescending}" 
+	                        						rendered="{!sortFieldName == 'Name' && sortOrder == 'DESC'}"/>
+	                        		</apex:commandLink>
+				        		</apex:facet>
+				        		<apex:outputLink value="/{!agreementInfo.agreementSO.Id}" target="_blank">{!agreementInfo.agreementSO.Name}</apex:outputLink>
+				        	</apex:column>
+				        								
+							<apex:column value="{!agreementInfo.agreementSO.Apttus__Account__c}" >
+				        		<apex:facet name="header">
+					        		<apex:commandLink value="{!$ObjectType.Apttus__APTS_Agreement__c.Fields.Apttus__Account__c.Label}" 
+					        						  action="{!doSort}" 
+					        						  reRender="idSearchBlock">
+	                            		<apex:param name="sortFieldName" value="Apttus__Account__r.Name" />
+	                        			<apex:image url="{!$Resource.Apttus__Image_SortAsc}" 
+	                        						title="{!$Label.apttus__SortedAscending}" 
+	                        						alt="{!$Label.apttus__SortedAscending}" 
+	                        						rendered="{!sortFieldName == 'Apttus__Account__r.Name' && sortOrder != 'DESC'}"/>
+	                        			<apex:image url="{!$Resource.Apttus__Image_SortDesc}" 
+	                        						title="{!$Label.apttus__SortedDescending}" 
+	                        						alt="{!$Label.apttus__SortedDescending}" 
+	                        						rendered="{!sortFieldName == 'Apttus__Account__r.Name' && sortOrder == 'DESC'}"/>
+	                        		</apex:commandLink>
+				        		</apex:facet>
+				        	</apex:column>
+				        	
+							<apex:column value="{!agreementInfo.agreementSO.Apttus__Status__c}" >
+				        		<apex:facet name="header">
+					        		<apex:commandLink value="{!$ObjectType.Apttus__APTS_Agreement__c.Fields.Apttus__Status__c.Label}" 
+					        						  action="{!doSort}" 
+					        						  reRender="idSearchBlock">
+	                            		<apex:param name="sortFieldName" value="Apttus__Status__c" />
+	                        			<apex:image url="{!$Resource.Apttus__Image_SortAsc}" 
+	                        						title="{!$Label.apttus__SortedAscending}" 
+	                        						alt="{!$Label.apttus__SortedAscending}" 
+	                        						rendered="{!sortFieldName == 'Apttus__Status__c' && sortOrder != 'DESC'}"/>
+	                        			<apex:image url="{!$Resource.Apttus__Image_SortDesc}" 
+	                        						title="{!$Label.apttus__SortedDescending}" 
+	                        						alt="{!$Label.apttus__SortedDescending}" 
+	                        						rendered="{!sortFieldName == 'Apttus__Status__c' && sortOrder == 'DESC'}"/>
+	                        		</apex:commandLink>
+				        		</apex:facet>
+				        	</apex:column>
+				        	
+							<apex:column value="{!agreementInfo.agreementSO.Apttus__Contract_Start_Date__c}" >
+								<apex:facet name="header">
+					        		<apex:commandLink value="{!$ObjectType.Apttus__APTS_Agreement__c.Fields.Apttus__Contract_Start_Date__c.Label}" 
+					        						  action="{!doSort}" 
+					        						  reRender="idSearchBlock">
+	                            		<apex:param name="sortFieldName" value="Apttus__Contract_Start_Date__c" />
+	                        			<apex:image url="{!$Resource.Apttus__Image_SortAsc}" 
+	                        						title="{!$Label.apttus__SortedAscending}" 
+	                        						alt="{!$Label.apttus__SortedAscending}" 
+	                        						rendered="{!sortFieldName == 'Apttus__Contract_Start_Date__c' && sortOrder != 'DESC'}"/>
+	                        			<apex:image url="{!$Resource.Apttus__Image_SortDesc}" 
+	                        						title="{!$Label.apttus__SortedDescending}" 
+	                        						alt="{!$Label.apttus__SortedDescending}" 
+	                        						rendered="{!sortFieldName == 'Apttus__Contract_Start_Date__c' && sortOrder == 'DESC'}"/>
+	                        		</apex:commandLink>
+				        		</apex:facet>
+							</apex:column>
+							
+				          	<apex:column value="{!agreementInfo.agreementSO.Apttus__Contract_End_Date__c}" >
+				          		<apex:facet name="header">
+					        		<apex:commandLink value="{!$ObjectType.Apttus__APTS_Agreement__c.Fields.Apttus__Contract_End_Date__c.Label}" 
+					        						  action="{!doSort}" 
+					        						  reRender="idSearchBlock">
+	                            		<apex:param name="sortFieldName" value="Apttus__Contract_End_Date__c" />
+	                        			<apex:image url="{!$Resource.Apttus__Image_SortAsc}" 
+	                        						title="{!$Label.apttus__SortedAscending}" 
+	                        						alt="{!$Label.apttus__SortedAscending}" 
+	                        						rendered="{!sortFieldName == 'Apttus__Contract_End_Date__c' && sortOrder != 'DESC'}"/>
+	                        			<apex:image url="{!$Resource.Apttus__Image_SortDesc}" 
+	                        						title="{!$Label.apttus__SortedDescending}" 
+	                        						alt="{!$Label.apttus__SortedDescending}" 
+	                        						rendered="{!sortFieldName == 'Apttus__Contract_End_Date__c' && sortOrder == 'DESC'}"/>
+	                        		</apex:commandLink>
+				        		</apex:facet>
+				          	</apex:column>
+				          	
+				          	<apex:column value="{!agreementInfo.agreementSO.Apttus__Activated_Date__c}" >
+				          		<apex:facet name="header">
+					        		<apex:commandLink value="{!$ObjectType.Apttus__APTS_Agreement__c.Fields.Apttus__Activated_Date__c.Label}" 
+					        						  action="{!doSort}" 
+					        						  reRender="idSearchBlock">
+	                            		<apex:param name="sortFieldName" value="Apttus__Activated_Date__c" />
+	                        			<apex:image url="{!$Resource.Apttus__Image_SortAsc}" 
+	                        						title="{!$Label.apttus__SortedAscending}" 
+	                        						alt="{!$Label.apttus__SortedAscending}" 
+	                        						rendered="{!sortFieldName == 'Apttus__Activated_Date__c' && sortOrder != 'DESC'}"/>
+	                        			<apex:image url="{!$Resource.Apttus__Image_SortDesc}" 
+	                        						title="{!$Label.apttus__SortedDescending}" 
+	                        						alt="{!$Label.apttus__SortedDescending}" 
+	                        						rendered="{!sortFieldName == 'Apttus__Activated_Date__c' && sortOrder == 'DESC'}"/>
+	                        		</apex:commandLink>
+				        		</apex:facet>
+				          	</apex:column>
+				          	
+				          	<apex:column value="{!agreementInfo.agreementSO.Apttus__RetentionDate__c}" >
+				          		<apex:facet name="header">
+					        		<apex:commandLink value="{!$ObjectType.Apttus__APTS_Agreement__c.Fields.Apttus__RetentionDate__c.Label}" 
+					        						  action="{!doSort}" 
+					        						  reRender="idSearchBlock">
+	                            		<apex:param name="sortFieldName" value="Apttus__RetentionDate__c" />
+	                        			<apex:image url="{!$Resource.Apttus__Image_SortAsc}" 
+	                        						title="{!$Label.apttus__SortedAscending}" 
+	                        						alt="{!$Label.apttus__SortedAscending}" 
+	                        						rendered="{!sortFieldName == 'Apttus__RetentionDate__c' && sortOrder != 'DESC'}"/>
+	                        			<apex:image url="{!$Resource.Apttus__Image_SortDesc}" 
+	                        						title="{!$Label.apttus__SortedDescending}" 
+	                        						alt="{!$Label.apttus__SortedDescending}" 
+	                        						rendered="{!sortFieldName == 'Apttus__RetentionDate__c' && sortOrder == 'DESC'}"/>
+	                        		</apex:commandLink>
+				        		</apex:facet>
+				          	</apex:column>
+				          	
+				          	<apex:column value="{!agreementInfo.agreementSO.Apttus__RetentionPolicyId__c}" >
+				          		<apex:facet name="header">
+					        		<apex:commandLink value="{!$ObjectType.Apttus__APTS_Agreement__c.Fields.Apttus__RetentionPolicyId__c.Label}" 
+					        						  action="{!doSort}" 
+					        						  reRender="idSearchBlock">
+	                            		<apex:param name="sortFieldName" value="Apttus__RetentionPolicyId__r.Name" />
+	                        			<apex:image url="{!$Resource.Apttus__Image_SortAsc}" 
+	                        						title="{!$Label.apttus__SortedAscending}" 
+	                        						alt="{!$Label.apttus__SortedAscending}" 
+	                        						rendered="{!sortFieldName == 'Apttus__RetentionPolicyId__r.Name' && sortOrder != 'DESC'}"/>
+	                        			<apex:image url="{!$Resource.Apttus__Image_SortDesc}" 
+	                        						title="{!$Label.apttus__SortedDescending}" 
+	                        						alt="{!$Label.apttus__SortedDescending}" 
+	                        						rendered="{!sortFieldName == 'Apttus__RetentionPolicyId__r.Name' && sortOrder == 'DESC'}"/>
+	                        		</apex:commandLink>
+				        		</apex:facet>
+				          	</apex:column>
+				          	
+				        </apex:pageBlockTable>
+				        <apex:outputText value="{!$Label.apttus__NoRecordsToDisplay}" rendered="{!NOT(hasAgreements)}" />
+				    </apex:pageBlockSection>
+				</apex:outputPanel>
+			
+			</apex:outputPanel>
+		</apex:pageBlock>
+	</apex:form>
+
+</apex:page>

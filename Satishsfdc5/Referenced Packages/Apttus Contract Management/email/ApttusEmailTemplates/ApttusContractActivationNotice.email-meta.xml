@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Apttus Contract Activation Notice</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>ApttusLetterhead</letterhead>
+    <name>Apttus Contract Activation Notice</name>
+    <style>freeForm</style>
+    <subject>Apttus Contract Activation Notice</subject>
+    <textOnly>Dear {!APTS_Agreement__c.OwnerFullName},
+
+The following Apttus contract has been activated:
+
+Number:{!APTS_Agreement__c.FF_Agreement_Number__c}
+Name: {!APTS_Agreement__c.Name}
+Start Date: {!APTS_Agreement__c.Contract_Start_Date__c}
+End Date: {!APTS_Agreement__c.Contract_End_Date__c}
+
+Thank You,
+Apttus</textOnly>
+    <type>html</type>
+</EmailTemplate>

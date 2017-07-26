@@ -1,0 +1,47 @@
+<!-- 
+    Apttus Approvals Management
+    OpportunityApprovalSummary
+     
+    @2010-2011 Apttus Inc. All rights reserved.
+
+ -->
+<apex:page standardController="Apttus_Approval__Approval_Request__c"
+		showHeader="true" 
+		sidebar="true"
+		cache="false" 
+		tabstyle="Apttus_Approval__Approval_Request__c" >
+		
+	<apex:sectionHeader title="{!$Label.apttus_approval__ApprovalRequest}" 
+			subtitle="{!$ObjectType.Opportunity.Label} {!Apttus_Approval__Approval_Request__c.Related_Opportunity__r.Name}"/>
+	
+	<style type="text/css">
+		.boldRedText {
+			font-weight:bold;
+			color:#FF0000;
+		}
+	</style>		
+	
+	<apex:pageBlock title="{!$ObjectType.Opportunity.Label} {!$Label.apttus_approval__Information}">
+		
+		<apex:pageBlockSection columns="1">
+			<apex:outputField value="{!Apttus_Approval__Approval_Request__c.Related_Opportunity__r.Name}"/>
+			<apex:outputField value="{!Apttus_Approval__Approval_Request__c.Related_Opportunity__r.AccountId}"/>
+			<apex:outputField value="{!Apttus_Approval__Approval_Request__c.Related_Opportunity__r.OwnerId}"/>
+			<apex:outputField value="{!Apttus_Approval__Approval_Request__c.Related_Opportunity__r.Amount}"/>
+			<apex:outputField value="{!Apttus_Approval__Approval_Request__c.Related_Opportunity__r.TotalOpportunityQuantity}"/>
+			<p/>&nbsp;	
+			<apex:outputField value="{!Apttus_Approval__Approval_Request__c.Related_Opportunity__r.Apttus_Approval__Approval_Status__c}"/>
+			<apex:outputField value="{!Apttus_Approval__Approval_Request__c.Related_Opportunity__r.Description}"/>
+		</apex:pageBlockSection>
+		
+		<apex:include pageName="Apttus_Approval__ApprovalAction" />
+		
+	</apex:pageBlock>
+	
+	<apex:include pageName="Apttus_Approval__ApprovalRequestsList"/>
+	
+	<apex:include pageName="Apttus_Approval__OpportunityProductsList"/>
+	
+	<apex:include pageName="Apttus_Approval__OpportunityPartnersList"/>
+		
+</apex:page>

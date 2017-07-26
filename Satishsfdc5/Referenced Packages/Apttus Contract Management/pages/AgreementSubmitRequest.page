@@ -1,0 +1,226 @@
+<!-- 
+    Apttus Contract Management
+    AgreementSubmitRequest
+     
+    @2009-2011 Apttus Inc. All rights reserved.
+
+ -->
+<apex:page standardController="Apttus__APTS_Agreement__c" 
+		   extensions="Apttus.AgreementSubmitRequestController" >
+		   
+	<apex:include pageName="Apttus__ComplyJSLibInclude" />
+	
+	<apex:stylesheet value="{!URLFOR($Resource.Apttus__YUILibrary, '/yui/build/assets/skins/sam/skin.css')}" />
+ 
+	<apex:includescript value="{!URLFOR($Resource.Apttus__YUILibrary, '/yui/build/yahoo-dom-event/yahoo-dom-event.js')}" />
+	<apex:includescript value="{!URLFOR($Resource.Apttus__YUILibrary, '/yui/build/dragdrop/dragdrop-min.js')}" />
+	<apex:includescript value="{!URLFOR($Resource.Apttus__YUILibrary, '/yui/build/container/container-min.js')}" />
+	<apex:includescript value="{!URLFOR($Resource.Apttus__YUILibrary, '/yui/build/animation/animation-min.js')}" />
+	
+	<script>
+    
+	    // Create a namespace for our custom functions
+	    YAHOO.namespace("force.com");
+		
+		// wait panel
+		
+		/**
+		 * Builds the wait panel.
+		 */
+	    YAHOO.force.com.buildWaitPanel = function() {
+	        document.body.className = document.body.className + " yui-skin-sam";
+	        YAHOO.force.com.waitPanel = new YAHOO.widget.Panel(
+	            "waitPanel",  // The id of our dialog container
+	            { 
+	                    width           :   "300px", // You can play with this until it's right
+	                    visible         :   false,   // Should be invisible when rendered
+	                    draggable       :   false,   // Make the dialog draggable
+	                    close           :   false,   // Don't include a close title button
+	                    modal           :   true,    // Make it modal
+	                    fixedCenter     :   true,    // Keep centered if window is scrolled
+	                    zindex          :   40,      // Make sure it's on top of everything
+	                    constraintoviewport: true,
+	                    
+	                    // This line adds the appear/disapper fade effect
+	                    effect			:   {effect:YAHOO.widget.ContainerEffect.FADE,duration:0.25}
+        							
+	            }
+	        );
+	        
+	        // header
+	        YAHOO.force.com.waitPanel.setHeader("{!$Label.SubmittingAgreement}");
+			// set image
+			YAHOO.force.com.waitPanel.setBody('<center><img src="{!URLFOR($Resource.Image_LoadingPage)}" /></center>');
+	        // Render the dialog to the document.body level of the DOM
+	        YAHOO.force.com.waitPanel.render(document.body);
+	        
+	    }
+	    
+	    // Function called when the DOM is ready to create the dialog,
+    	// render the dialog into the document body, add our dialog skin
+    	// css to the body tag, and wire up the buttons on our dialog   
+		YAHOO.force.com.onDOMReady = function() {
+			
+			// build the wait panel
+			YAHOO.force.com.buildWaitPanel();
+			// show modal panel
+			YAHOO.force.com.waitPanel.show();
+			// init process
+			//btnInitProcess.click();
+			// initialize the controller
+			doInit();
+	        
+		}
+		
+	    // build the panel as soon as the DOM is in a usable state
+		YAHOO.util.Event.onDOMReady(YAHOO.force.com.onDOMReady);   	
+		
+	</script>
+	
+    <apex:form id="submitRequest">
+    	
+		<!--  required fields -->
+		<apex:outputText value="{!Apttus__APTS_Agreement__c.Name}" rendered="false"/>
+		<apex:outputText value="{!Apttus__APTS_Agreement__c.Apttus__Version_Number__c}" rendered="false"/>
+		<apex:outputText value="{!Apttus__APTS_Agreement__c.Apttus__Status__c}" rendered="false"/>
+		<apex:outputText value="{!Apttus__APTS_Agreement__c.Apttus__Status_Category__c}" rendered="false"/>
+		<apex:outputText value="{!Apttus__APTS_Agreement__c.Apttus__FF_Agreement_Number__c}" rendered="false"/>
+		<apex:outputText value="{!Apttus__APTS_Agreement__c.Apttus__Contract_Start_Date__c}" rendered="false"/>
+		<apex:outputText value="{!Apttus__APTS_Agreement__c.Apttus__Contract_End_Date__c}" rendered="false"/>
+		<apex:outputText value="{!Apttus__APTS_Agreement__c.Apttus__Agreement_Number__c}" rendered="false"/>
+		<apex:outputText value="{!Apttus__APTS_Agreement__c.Apttus__Requestor__c}" rendered="false"/>
+		<apex:outputText value="{!Apttus__APTS_Agreement__c.Apttus__Primary_Contact__c}" rendered="false"/>
+		<apex:outputText value="{!Apttus__APTS_Agreement__c.OwnerId}" rendered="false"/>
+		
+		<!--  hidden action buttons -->
+		<!-- 
+		<apex:commandButton id="btnInitProcess" 
+							action="{!doInitProcess}" 
+							value="Initialize Process" 
+							style="display: none" 
+							reRender="idOutputPanel" />
+		<apex:commandButton id="btnSubmitRequest" 
+							action="{!doSubmitRequest}" 
+							value="Submit Request" 
+							style="display: none" 
+							reRender="idOutputPanel" />
+		<apex:commandButton id="btnDestroyProcess" 
+							action="{!doDestroyProcess}" 
+							value="Destroy Process" 
+							style="display: none" 
+							reRender="dummy"/>
+		
+		<script>
+        	//var btnInitProcess = document.getElementById("{!$Component.btnInitProcess}");
+        	//var btnSubmitRequest = document.getElementById("{!$Component.btnSubmitRequest}");
+        	//var btnDestroyProcess = document.getElementById("{!$Component.btnDestroyProcess}");
+        	
+      	</script>
+		-->
+		<apex:outputPanel id="idSubmitRequestPanel">
+			
+	    	<apex:pageBlock mode="edit" rendered="{!isInitialized && NOT(canEditAgreement)}" >
+				<apex:pageMessages />
+				<apex:outputText value="{!$Label.apttus__InsufficientPrivileges}" 
+								 style="font-family: Arial, Helvetica, sans-serif;font-weight: bold;font-size: 12pt;" /><p/>
+				<apex:outputText value="{!$Label.apttus__InsufficientPrivilegesDetail}" /><br/>
+				<apex:pageBlockButtons location="bottom" >
+					<apex:commandButton action="{!doCancel}" value="{!$Label.apttus__Return}" immediate="true" />
+				</apex:pageBlockButtons>
+				<script>
+					// hide modal panel
+					YAHOO.force.com.waitPanel.hide();
+				</script>
+			</apex:pageBlock>
+				
+			<apex:pageBlock mode="edit" rendered="{!canEditAgreement && isErrorPage}" >
+				<apex:pageMessages />
+				<apex:pageBlockButtons location="bottom" >
+					<apex:commandButton action="{!doCancel}" value="{!$Label.apttus__Cancel}" immediate="true" />
+				</apex:pageBlockButtons>
+				<script>
+					// hide modal panel
+					YAHOO.force.com.waitPanel.hide();
+				</script>
+			</apex:pageBlock>
+				
+			<apex:outputPanel rendered="{!canEditAgreement && isInitPage}" >
+				<script>
+					// show modal panel
+					YAHOO.force.com.waitPanel.show();
+	    			// init process
+					//btnInitProcess.click();
+					doInitProcess();
+				</script>
+			</apex:outputPanel>
+				
+			<apex:outputPanel rendered="{!canEditAgreement && isSubmitRequestPage}" >
+				<script>
+					// show modal panel
+					YAHOO.force.com.waitPanel.show();
+	    			// submit request
+					//btnSubmitRequest.click();
+					doSubmitRequest();
+				</script>
+			</apex:outputPanel>
+		
+			<apex:outputPanel rendered="{!canEditAgreement && isConfirmationPage}" >
+				<script>
+					// get the agreement id
+					var agreementId = "{!agreementId}";
+					
+					try {
+						// hide modal panel
+						YAHOO.force.com.waitPanel.hide();
+	    				// destroy process
+						//btnDestroyProcess.click();
+						doDestroyProcess();
+						// get the confirmation message
+						var cMsg = "{!JSENCODE(confirmationMessage)}";
+						var message = "";
+						var lines = cMsg.split("\\n");
+						for (var i = 0; i < lines.length; i++) {
+							if (i > 0) {
+								message += "\n";
+								
+							}
+							message += lines[i];
+							
+						}
+						
+						// show confirmation message
+						alert(message);
+						
+					} catch(ex) {
+						erroralert(cERROR_UNKNOWN, ex);
+						
+					} finally {
+						// back to the detail page
+						navigateTo("/" + agreementId);
+						
+					}
+					
+				</script>
+			</apex:outputPanel>
+				
+		</apex:outputPanel>
+		
+		<apex:actionFunction name="doInit" 
+    						 action="{!doInit}" 
+    						 reRender="idSubmitRequestPanel" /> 
+    						 
+    	<apex:actionFunction name="doInitProcess" 
+    						 action="{!doInitProcess}" 
+    						 reRender="idSubmitRequestPanel" /> 
+    	
+    	<apex:actionFunction name="doSubmitRequest" 
+    						 action="{!doSubmitRequest}" 
+    						 reRender="idSubmitRequestPanel" /> 
+    						 
+    	<apex:actionFunction name="doDestroyProcess" 
+    						 action="{!doDestroyProcess}" 
+    						 reRender="dummy" /> 
+    						 					 					 
+	</apex:form>
+	
+</apex:page>

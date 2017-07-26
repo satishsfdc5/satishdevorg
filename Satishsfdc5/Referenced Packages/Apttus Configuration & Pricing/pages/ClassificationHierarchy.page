@@ -1,0 +1,1181 @@
+<!-- 
+ 	Apttus Config & Pricing
+ 	ClassificationHierarchy
+ 	 
+ 	@2010-2011 Apttus Inc. All rights reserved.
+ -->
+<apex:page standardController="Apttus_Config2__ClassificationName__c"
+		   extensions="Apttus_Config2.ClassificationHierarchyController" 
+		   showHeader="false"
+		   sidebar="false" 
+		   cache="false"
+		   action="{!onLoad}">
+
+	<apex:includeScript value="{!URLFOR($Resource.Apttus_Config2__YUILibrary, '/yui/build/yahoo-dom-event/yahoo-dom-event.js')}" />
+	<apex:includeScript value="{!URLFOR($Resource.Apttus_Config2__YUILibrary, '/yui/build/container/container-min.js')}" />
+	<apex:includeScript value="{!URLFOR($Resource.Apttus_Config2__YUILibrary, '/yui/build/dragdrop/dragdrop-min.js')}" />
+	<apex:includeScript value="{!URLFOR($Resource.Apttus_Config2__YUILibrary, '/yui/build/animation/animation-min.js')}" />
+	<apex:includeScript value="{!URLFOR($Resource.Apttus_Config2__YUILibrary, '/yui/build/treeview/treeview-min.js')}" />
+	<apex:includeScript value="{!URLFOR($Resource.Apttus_Config2__YUILibrary, '/yui/build/menu/menu-min.js')}" />
+	<apex:includeScript value="{!URLFOR($Resource.Apttus_Config2__YUILibrary, '/yui/build/yahoo/yahoo-min.js')}" />
+	
+	<apex:stylesheet value="{!URLFOR($Resource.Apttus_Config2__YUILibrary, '/yui/build/assets/skins/sam/skin.css')}" />
+	<apex:stylesheet value="{!URLFOR($Resource.Apttus_Config2__YUILibrary, '/yui/build/treeview/assets/skins/sam/treeview.css')}" />
+	<apex:stylesheet value="{!URLFOR($Resource.Apttus_Config2__YUILibrary, '/yui/examples/treeview/assets/css/menu/tree.css')}" />
+	<apex:stylesheet value="{!URLFOR($Resource.Apttus_Config2__YUILibrary, '/yui/build/menu/assets/skins/sam/menu.css')}" />
+	<apex:stylesheet value="{!URLFOR($Resource.Apttus_Config2__YUILibrary, '/yui/build/container/assets/skins/sam/container.css')}" />
+
+	<!-- 
+	<apex:stylesheet value="{!URLFOR($Resource.YUILibrary, '/yui/build/fonts/fonts-min.css')}" />
+	-->
+
+
+	<!--  treeview -->
+
+	<!--  context menu -->
+	
+	<apex:stylesheet value="{!$Resource.Apttus_Config2__ConfigStyles}" />
+	
+	<style>
+		.ygtv-highlight .ygtv-highlight1,.ygtv-highlight .ygtv-highlight1 .ygtvlabel {
+			background-color: #78c7c7;
+			color: white;
+		}
+	</style>
+
+	<apex:form id="idForm">
+		<apex:outputPanel id="idErrorMsg">
+			<apex:pageMessages />
+		</apex:outputPanel>
+		
+		<apex:outputPanel id="idClassHierarchy">
+			<apex:pageBlock title="{!$Label.apttus_config2__CategoryHierarchy}"
+							rendered="{!showHierarchy}">
+
+				<apex:pageBlockButtons location="both">
+					<apex:outputPanel >
+						<apex:commandButton value="{!$Label.apttus_config2__Done}" 
+											action="{!done}"
+											immediate="true" />
+						<b><apex:actionStatus id="idStatusUpdate" 
+											  startText="{!$Label.apttus_config2__StatusMessageUpdatingPage}..." /></b>
+					</apex:outputPanel>
+				</apex:pageBlockButtons>
+
+				<apex:outputPanel rendered="{!loading}">
+				
+					<script type="text/javascript">
+						
+						// Create a namespace for our custom functions
+						YAHOO.namespace("force.com");
+						
+						// wait panel
+			
+						/**
+						 * Builds the wait panel.
+						 */
+					    YAHOO.force.com.buildWaitPanel = function() {
+					        document.body.className = document.body.className + " yui-skin-sam";
+					        YAHOO.force.com.waitPanel = new YAHOO.widget.Panel(
+					            "waitPanel",  // The id of our dialog container
+					            { 
+					                    width           :   "300px", // You can play with this until it's right
+					                    visible         :   false,   // Should be invisible when rendered
+					                    draggable       :   false,   // Make the dialog draggable
+					                    close           :   false,   // Don't include a close title button
+					                    modal           :   true,    // Make it modal
+					                    fixedCenter     :   true,    // Keep centered if window is scrolled
+					                    zindex          :   40,      // Make sure it's on top of everything
+					                    constraintoviewport: true,
+					                    
+					                    // This line adds the appear/disapper fade effect
+					                    effect			:   {effect:YAHOO.widget.ContainerEffect.FADE,duration:0.25}
+				        							
+					            }
+					        );
+					        
+					        // header
+					        YAHOO.force.com.waitPanel.setHeader("{!$Label.LoadingPage}");
+							// set image
+							YAHOO.force.com.waitPanel.setBody('<center><img src="{!URLFOR($Resource.Image_LoadingPage)}" /></center>');
+					        // Render the dialog to the document.body level of the DOM
+					        YAHOO.force.com.waitPanel.render(document.body);
+					        
+					    }
+				    	
+				    	/**
+						 * Callback when the action button is clicked
+						 */
+						function onActionClick() {
+							// show the modal panel
+							YAHOO.force.com.waitPanel.show();
+							// return false to allow the action to proceed
+							return false;
+							
+						}
+						
+						/**
+						 * Callback when the action is completed
+						 */
+						function onActionComplete() {
+							// hide the modal panel
+							YAHOO.force.com.waitPanel.hide();
+							
+						}
+						
+						// detail panel 
+						
+						YAHOO.force.com.globalCtx = new Object();
+						YAHOO.force.com.clsNodes = new Array();
+						YAHOO.force.com.selectedNode = new Object();
+						YAHOO.force.com.hasErrors = new Boolean();
+						YAHOO.force.com.lastNode;
+							
+						/**
+						 * Set cursor busy
+						 */
+						function setCursorBusy() {
+							document.body.style.cursor = 'wait';
+							
+						}
+						 
+						 /**
+						  * Reset busy cursor
+						  */
+						function setCursorDefault() {
+							document.body.style.cursor = 'default';
+							
+						}	
+
+							
+						/**
+						 * Sets the selected node
+						 * @param ctxNode the context node
+						 */
+						YAHOO.force.com.setNode = function(ctxNode) {
+							
+							// save current selection
+							YAHOO.force.com.selectedNode = ctxNode;
+							if (YAHOO.force.com.lastNode != undefined && YAHOO.force.com.lastNode.highlightState == 1) {
+								YAHOO.force.com.lastNode.toggleHighlight();
+							}
+							if (ctxNode.highlightState != 1) {
+								ctxNode.toggleHighlight();
+								YAHOO.force.com.lastNode = ctxNode;
+							}
+							
+						}
+						
+					    // Function called when we want to show the dialog
+					    YAHOO.force.com.showRemoveDialog = function() {
+					        document.getElementById("removePanel").style.display = "block";
+					        YAHOO.force.com.removeDialog.show();
+					    }
+		
+					    // Function called when we want to hide the remove dialog
+					    YAHOO.force.com.hideRemoveDialog = function() {
+					        YAHOO.force.com.removeDialog.hide();
+					    }
+
+					    // Function called when we want to show the rebuild dialog
+					    YAHOO.force.com.showRebuildDialog = function() {
+					        document.getElementById("rebuildPanel").style.display = "block";
+					        YAHOO.force.com.rebuildDialog.show();
+					    }
+					    
+					    // Function called when we want to hide the rebuild dialog
+					    YAHOO.force.com.hideRebuildDialog = function() {
+					        YAHOO.force.com.rebuildDialog.hide();
+					    }
+					    
+						/**
+						 * Hides the detail panel
+						 */
+					    YAHOO.force.com.hideDetail = function() {
+					    	YAHOO.force.com.detailPanel.hide();
+					    } 
+					    
+					   	/**
+						 * Builds the context menu
+						 */
+						YAHOO.force.com.buildContextMenu = function() {
+							YAHOO.force.com.buildRootMenu();
+							YAHOO.force.com.buildNonRootMenu();
+					    } 
+					    
+					    /**
+					     * When menu is hidden remove highlight from context node 
+					     */
+					    YAHOO.force.com.onHideMenu = function() { 
+ 					        if (YAHOO.force.com.lastNode != undefined && YAHOO.force.com.lastNode.highlightState == 1) {
+								YAHOO.force.com.lastNode.toggleHighlight();
+							}
+ 					        
+					    }
+					    
+					    /**
+					     * When a node is exapanded 
+					     */
+					    YAHOO.force.com.onExpand = function(node) { 
+					    	node.multiExpand = true;
+ 					        //alert('expand = ' + node.data.object.label + ', node.multiExpand = ' + node.multiExpand);
+ 					        invokeMarkExpand(node.data.object.Id);
+					    }
+					    
+					    /**
+					     * When a node is collapsed 
+					     */
+					    YAHOO.force.com.onCollapse = function(node) { 
+					    	node.multiExpand = true;
+ 					        //alert('collapse = ' + node.data.object.label);
+ 					        invokeMarkCollapse(node.data.object.Id);
+					    }
+
+					   	/**
+						 * Builds the context menu
+						 */
+						YAHOO.force.com.buildRootMenu = function() {
+
+							// create the menu
+							YAHOO.force.com.rootMenu = new YAHOO.widget.ContextMenu(
+							    "rootMenu",
+							    {
+							        trigger: "treeDiv",
+							        lazyload: true,
+							        constraintoviewport: true,
+							        shadow: false,
+							        itemdata: [
+							            { text: "{!$Label.Image}", onclick : { fn: YAHOO.force.com.editImage} },
+							            { text: "{!$Label.AddCategory}", onclick : { fn: YAHOO.force.com.addClassification} },
+							            { text: "{!$Label.EditCategory}", onclick : { fn: YAHOO.force.com.editClassification} },
+							            { text: "{!$Label.RebuildHierarchy}", onclick : { fn: YAHOO.force.com.showRebuildConfirmation} },
+							            { text: "{!$Label.AssociateProducts}", onclick : { fn: YAHOO.force.com.assignProducts} }
+							        ]							        
+							    }
+							);
+						
+						
+							// capture contextmenu events
+							YAHOO.force.com.rootMenu.subscribe("triggerContextMenu", YAHOO.force.com.onTriggerRootMenu);
+							YAHOO.force.com.rootMenu.subscribe("hide", YAHOO.force.com.onHideMenu);
+							
+						}	 
+					    
+					   	/**
+						 * Builds the context menu
+						 */
+						YAHOO.force.com.buildNonRootMenu = function() {
+
+							// create the menu
+							YAHOO.force.com.nonRootMenu = new YAHOO.widget.ContextMenu(
+							    "nonRootMenu",
+							    {
+							        trigger: "treeDiv",
+							        lazyload: true,
+							        constraintoviewport: true,
+							        shadow: false,
+							        itemdata: [
+							            { text: "{!$Label.AddCategory}", onclick : { fn: YAHOO.force.com.addClassification} },
+							            { text: "{!$Label.RemoveCategory}", onclick : { fn: YAHOO.force.com.showRemoveConfirmation} },
+							            { text: "{!$Label.EditCategory}", onclick : { fn: YAHOO.force.com.editClassification} },
+							            { text: "{!$Label.Image}", onclick : { fn: YAHOO.force.com.editImage} },
+							            { text: "{!$Label.AssociateProducts}", onclick : { fn: YAHOO.force.com.assignProducts} },
+							            { text: "{!$Label.ReorderCategories}", onclick : { fn: YAHOO.force.com.reorderClassifications} }
+							        ]							        
+							    }
+							);
+						
+							// capture contextmenu events
+							YAHOO.force.com.nonRootMenu.subscribe("triggerContextMenu", YAHOO.force.com.onTriggerNonRootMenu);
+							YAHOO.force.com.nonRootMenu.subscribe("hide", YAHOO.force.com.onHideMenu);
+							
+						}	
+						
+				    	/**
+						 * Builds the detail panel.
+						 */
+					    YAHOO.force.com.buildDetailPanel = function() {
+					        //document.body.className = document.body.className + " yui-pe-content";
+					        // create the detail panel
+					        YAHOO.force.com.detailPanel = new YAHOO.widget.Panel(
+					            "detailPanel",  // The id of our dialog container
+					            { 
+					                    width              :   "auto",  // You can play with this until it's right
+					                    visible            :   false,   // Should be invisible when rendered
+					                    draggable          :   true,    // Make the dialog draggable
+					                    close              :   true,    // Include a close title button
+					                    modal              :   false,   // Make it modal
+					                    fixedcenter        :   true,    // Keep centered if window is scrolled
+					                    zindex             :   40,      // Make sure it's on top of everything
+					                    constraintoviewport:   true     // Constrain to viewport
+					                    
+					            }
+					         );
+					        
+					        // Render the panel to the document.body level of the DOM
+					        //YAHOO.force.com.detailPanel.render(document.body);
+					        YAHOO.force.com.detailPanel.render();
+					        
+					    }
+						
+						/**
+						 * Builds the tree
+						 */
+					    YAHOO.force.com.buildTree = function() {
+							
+							// create tree
+							YAHOO.force.com.tree = new YAHOO.widget.TreeView("treeDiv"); 
+							//YAHOO.force.com.tree.singleNodeHighlight = true;
+							
+							YAHOO.force.com.tree.subscribe("expand", YAHOO.force.com.onExpand); 
+							YAHOO.force.com.tree.subscribe("collapse", YAHOO.force.com.onCollapse); 
+				            	 
+							//get root node for tree:
+							var root = YAHOO.force.com.tree.getRoot();
+							
+							var rootElement;
+							var objLabel = null;
+							var obj = YAHOO.force.com.clsNodes[0];
+							
+							if (obj.productCount > 0) {
+								objLabel = obj.label + " [" + obj.productCount + "]";
+							} else {
+								objLabel = obj.label;
+							}	
+							if (YAHOO.force.com.clsNodes.length > 1) {
+								rootElement = new YAHOO.widget.MenuNode({label: objLabel, object: obj}, root, true);
+							} else {
+								rootElement = new YAHOO.widget.MenuNode({label: objLabel, object: obj}, root, false);
+								rootElement.setDynamicLoad(YAHOO.force.com.loadNodeData);
+							}	
+
+							if ((YAHOO.force.com.hasErrors == "true") && (obj.focus == "true")) {
+								rootElement.enableHighlight = true;
+								rootElement.toggleHighlight();
+							}
+							if (obj.imageUrl.length > 0) {
+								rootElement.labelStyle = obj.Id;
+							}
+							
+							var nodeStack = new Array();
+							nodeStack.push(rootElement);
+							
+							var parentNode;
+							var parentName;
+							var childNode;
+							for (i=1; i < YAHOO.force.com.clsNodes.length; i++) {
+							
+								obj = YAHOO.force.com.clsNodes[i];
+								objParentId = obj.parentId;
+								if (obj.productCount > 0) {
+									objLabel = obj.label + " [" + obj.productCount + "]";
+								} else {
+									objLabel = obj.label;
+								}	
+								for(x=0; x < nodeStack.length; x++) {
+									if (nodeStack[x].data.object.Id == objParentId) {
+										parentNode = nodeStack[x];
+										break;
+									}
+								}
+
+								if ((obj.expanded == "true") || (obj.leaf == "true")) {					
+									childNode = new YAHOO.widget.MenuNode({label: objLabel, object: obj}, parentNode, true);
+								} else {
+									childNode = new YAHOO.widget.MenuNode({label: objLabel, object: obj}, parentNode, false);
+									childNode.setDynamicLoad(YAHOO.force.com.loadNodeData);
+								}
+								childNode.setUpLabel(objLabel);
+							
+								if ((YAHOO.force.com.hasErrors == "true") && (obj.focus == "true")) {
+									childNode.enableHighlight = true;
+									childNode.toggleHighlight();
+								}
+								if (obj.imageUrl.length > 0) {
+									childNode.labelStyle = obj.Id;
+								}
+								nodeStack.push(childNode);
+							}
+							
+							// draw the tree
+							YAHOO.force.com.tree.render();
+						}
+		
+					    /**
+						 * Handles "contextmenu" events for the element(s) that
+						 * triggered the display of the ContextMenu instance - used
+						 * to set a reference to the TextNode instance that triggered
+						 * the display of the ContextMenu instance.
+						 * @param event the contextmenu event
+						 */
+						YAHOO.force.com.onDOMReady = function() {
+							
+							// add our custom skin css to the body tag
+							document.body.className = document.body.className + " yui-skin-sam";					
+							
+							// build the tree
+							YAHOO.force.com.buildTree();
+							
+							// build the context menu
+							YAHOO.force.com.buildContextMenu();
+				
+							// build the detail panel
+							YAHOO.force.com.buildDetailPanel();
+							
+							// build the wait panel
+							YAHOO.force.com.buildWaitPanel();
+							
+				
+						}
+							
+						/**
+						 * Handles "contextmenu" events for the element(s) that
+						 * triggered the display of the ContextMenu instance - used
+						 * to set a reference to the TextNode instance that triggered
+						 * the display of the ContextMenu instance.
+						 * @param event the contextmenu event
+						 */
+						YAHOO.force.com.onTriggerRootMenu = function(event) {
+		
+							// hide the detail panel
+							YAHOO.force.com.hideDetail();
+							
+							// get the event target	
+						    var target = this.contextEventTarget;
+							// get the context node
+						    var ctxNode = YAHOO.force.com.tree.getNodeByElement(target);
+		
+						    if (!ctxNode) {
+						        // Cancel the display of the ContextMenu instance.
+						        this.cancel();
+						
+						    }
+		
+							// set the selected node
+							YAHOO.force.com.setNode(ctxNode);
+	
+							// if no node selected, abort
+							if (!YAHOO.force.com.selectedNode) {
+						        // Cancel the display of the ContextMenu instance.
+						        this.cancel();
+						    }
+							
+						    // determine if this is a non-root (when lvl == 0)
+						    if ((YAHOO.force.com.selectedNode.data.object.lvl != 0)){ 
+						    		//|| (YAHOO.force.com.selectedNode.data.object.productCount > 0)){//commented by dd
+						    	//alert("Cancelling - YAHOO.force.com.onTriggerRootMenu");
+						    	this.cancel();
+						    	return;
+						    }
+						}
+							
+						/**
+						 * Handles "contextmenu" events for the element(s) that
+						 * triggered the display of the ContextMenu instance - used
+						 * to set a reference to the TextNode instance that triggered
+						 * the display of the ContextMenu instance.
+						 * @param event the contextmenu event
+						 */
+						YAHOO.force.com.onTriggerNonRootMenu = function(event) {
+		
+							// hide the detail panel
+							YAHOO.force.com.hideDetail();
+							
+							// get the event target	
+						    var target = this.contextEventTarget;
+							// get the context node
+						    var ctxNode = YAHOO.force.com.tree.getNodeByElement(target);
+		
+						    if (!ctxNode) {
+						        // Cancel the display of the ContextMenu instance.
+						        this.cancel();
+						
+						    }
+		
+							// set the selected node
+							YAHOO.force.com.setNode(ctxNode);
+	
+							// if no node selected, abort
+							if (!YAHOO.force.com.selectedNode) {
+						        // Cancel the display of the ContextMenu instance.
+						        this.cancel();
+						        return;
+						    }
+						    // determine if this is a non-root (when lvl != 0) OR
+						    //		it is a root with associated products
+						    if ((YAHOO.force.com.selectedNode.data.object.lvl == 0)) {
+						    		//&& (YAHOO.force.com.selectedNode.data.object.productCount == 0)) { commented by dd
+						    	//alert("Cancelling - YAHOO.force.com.onTriggerNonRootMenu");
+						    	this.cancel();
+						    	return;
+						    }
+						}		
+						
+						/**
+						 * Expands the tree
+						 * @param ctxNode the node to expand
+						 * @param onCompleteCallback callback to invoke after completion
+					     */
+				    	YAHOO.force.com.loadNodeData = function(ctxNode, onCompleteCallback) { 
+				    		
+				    		YAHOO.force.com.clsNodes = new Array();
+				    		ctxNode.data.object.expanded = "true";
+				    		YAHOO.force.com.globalCtx.ctxNode = ctxNode;
+				    		YAHOO.force.com.globalCtx.hasCallback = "true";
+				    		YAHOO.force.com.globalCtx.completeCallback = onCompleteCallback;
+				    		
+			    			// invoke action function
+			    			invokeDoExpand(ctxNode.data.object.Id);
+			    			
+					    }	
+					
+						/**
+						 * Show remove classification confirmation dialog
+						 */
+						YAHOO.force.com.showRemoveConfirmation = function() {
+						
+							// hide the detail panel
+							YAHOO.force.com.hideDetail();
+							
+					        document.body.className = document.body.className + " yui-skin-sam";
+					        YAHOO.force.com.removeDialog = new YAHOO.widget.Panel(
+					            "removePanel",  // The id of our dialog container
+					            { 
+					                    width           :   "300px", // You can play with this until it's right
+					                    visible         :   false,   // Should be invisible when rendered
+					                    draggable       :   true,    // Make the dialog draggable
+					                    close           :   false,   // Don't include a close title button
+					                    modal           :   true,    // Make it modal
+					                    fixedCenter     :   true,    // Keep centered if window is scrolled
+					                    zindex          :   40,      // Make sure it's on top of everything
+					                    
+					                    // This line adds the appear/disapper fade effect
+					                    effect          :   {effect:YAHOO.widget.ContainerEffect.FADE,duration:0.25} 
+					            }
+					         );
+					        
+					        // Render the dialog to the document.body level of the DOM
+					        YAHOO.force.com.removeDialog.render(document.body);
+					        // display the dialog
+					        YAHOO.force.com.showRemoveDialog();
+					    }
+					    
+					    /**
+						 * Show remove classification confirmation dialog
+						 */
+						YAHOO.force.com.showRebuildConfirmation = function() {
+						
+							// hide the detail panel
+							YAHOO.force.com.hideDetail();
+							
+					        document.body.className = document.body.className + " yui-skin-sam";
+					        YAHOO.force.com.rebuildDialog = new YAHOO.widget.Panel(
+					            "rebuildPanel",  // The id of our dialog container
+					            { 
+					                    width           :   "300px", // You can play with this until it's right
+					                    visible         :   false,   // Should be invisible when rendered
+					                    draggable       :   true,    // Make the dialog draggable
+					                    close           :   false,   // Don't include a close title button
+					                    modal           :   true,    // Make it modal
+					                    fixedCenter     :   true,    // Keep centered if window is scrolled
+					                    zindex          :   40,      // Make sure it's on top of everything
+					                    
+					                    // This line adds the appear/disapper fade effect
+					                    effect          :   {effect:YAHOO.widget.ContainerEffect.FADE,duration:0.25} 
+					            }
+					         );
+					        
+					        // Render the dialog to the document.body level of the DOM
+					        YAHOO.force.com.rebuildDialog.render(document.body);
+					        // display the dialog
+					        YAHOO.force.com.showRebuildDialog();
+					    }
+					
+						/**
+						 * Handle reorder classifications action
+						 */
+						YAHOO.force.com.reorderClassifications = function() {
+							// setCursorBusy();
+							
+							// show modal panel
+							YAHOO.force.com.waitPanel.show();
+				
+				    		var ctxNode = YAHOO.force.com.selectedNode;
+							
+			    			// invoke action function
+			    			invokeDoReorderClassifications(ctxNode.data.object.Id);
+			    			
+						}
+					
+						/**
+						 * Handle remove classification action
+						 */
+						YAHOO.force.com.removeClassification = function() {
+							//setCursorBusy();
+							
+							// show modal panel
+							YAHOO.force.com.waitPanel.show();
+							
+				    		var ctxNode = YAHOO.force.com.selectedNode;
+							
+			    			// invoke action function
+			    			invokeDoRemoveClassification(ctxNode.data.object.Id);
+			    			
+						}
+						
+						/**
+						 * Handle edit image action
+						 */
+						YAHOO.force.com.editImage = function() {
+							//setCursorBusy();
+							
+							// show modal panel
+							YAHOO.force.com.waitPanel.show();
+							
+				    		var ctxNode = YAHOO.force.com.selectedNode;
+							
+			    			// invoke action function
+			    			invokeDoEditImage(ctxNode.data.object.Id);
+			    			
+						}	
+						
+						/**
+						 * Handle add products action
+						 */
+						YAHOO.force.com.assignProducts = function() {
+							//setCursorBusy();
+							
+							// show modal panel
+							YAHOO.force.com.waitPanel.show();
+							
+				    		var ctxNode = YAHOO.force.com.selectedNode;
+							
+			    			// invoke action function
+			    			invokeDoAssignProducts(ctxNode.data.object.Id);
+			    			
+						}		
+						
+						/**
+						 * Handle add classification action
+						 */
+						YAHOO.force.com.addClassification = function() {
+							setCursorBusy();
+							
+				    		var ctxNode = YAHOO.force.com.selectedNode;
+
+			    			// invoke action function
+			    			invokeDoAddClassification(ctxNode.data.object.Id);
+				    		
+						}		
+							  		
+						/**
+						 * Handle edit classification action
+						 */
+						YAHOO.force.com.editClassification = function() {
+							setCursorBusy();
+							
+				    		var ctxNode = YAHOO.force.com.selectedNode;
+							
+			    			// invoke action function
+			    			invokeDoEditClassification(ctxNode.data.object.Id);
+				    		
+						}
+						
+						/**
+						 * Handle edit classification action
+						 */
+						YAHOO.force.com.repairTree = function() {
+							// show modal panel
+							YAHOO.force.com.waitPanel.show();
+				
+				    		var ctxNode = YAHOO.force.com.selectedNode;
+							
+			    			// invoke action function
+			    			invokeDoRepairTree(ctxNode.data.object.Id);
+				    		
+						}	
+						  
+						/**
+						 * Inject style element into dom for classifiction icons/images
+						 */
+						YAHOO.force.com.createStyle = function(classId, imageUrl) {
+						
+							var styleElm = document.getElementById(classId);
+							
+							if (styleElm == null) {
+								styleElm = document.createElement('style');
+								styleElm.setAttribute("type", "text/css");
+								styleElm.setAttribute("id", classId);
+								
+								var styleAttrs = new String('.' + classId);
+								
+								styleAttrs = styleAttrs.concat(' {background-color:transparent;');
+								styleAttrs = styleAttrs.concat('background-image:url(\'').concat(imageUrl).concat('\');');
+								styleAttrs = styleAttrs.concat('display:block;');
+								styleAttrs = styleAttrs.concat('height:22px;');
+								styleAttrs = styleAttrs.concat('padding-left:20px;');
+								styleAttrs = styleAttrs.concat('background-repeat:no-repeat;');
+								styleAttrs = styleAttrs.concat('background-position:left top;');
+								styleAttrs = styleAttrs.concat('background-attachment:0;}');
+								
+								if(styleElm.styleSheet){// IE
+									styleElm.styleSheet.cssText = styleAttrs;
+									
+								} else {// w3c
+									var styleBody = document.createTextNode(styleAttrs);
+									styleElm.appendChild(styleBody);
+									
+								}
+								
+								document.getElementsByTagName('head')[0].appendChild(styleElm);
+								
+							}
+							
+						}			
+										
+					    // build the tree as soon as the DOM is in a usable state
+						YAHOO.util.Event.onDOMReady(YAHOO.force.com.onDOMReady);   	
+					
+			    	</script>
+				</apex:outputPanel>
+
+				<!-- This is the content of the tree -->
+				<apex:outputPanel >
+					<apex:panelGroup layout="block">
+						<apex:commandLink action="{!expandAll}"
+										  value="{!$Label.apttus_config2__ExpandAll}" 
+										  onclick="onActionClick();" 
+										  oncomplete="onActionComplete();"
+										  reRender="idBuildTreeNode,  idResetCursor" />
+						<span> | </span>
+						<apex:commandLink action="{!collapseAll}"
+										  value="{!$Label.apttus_config2__CollapseAll}" 
+										  onclick="onActionClick();" 
+										  oncomplete="onActionComplete();"
+										  reRender="idBuildTreeNode, idResetCursor" />
+					</apex:panelGroup>
+				</apex:outputPanel>
+				<p />
+				<apex:outputPanel >
+					<div id="treePanel">
+					<div id="treeDiv" class="ygtv-highlight"></div>
+					</div>
+				</apex:outputPanel> 
+				
+				<!-- This is the content of the modal dialog --> 
+				<apex:outputPanel >
+					<div id="removePanel" style="display: none">
+						<div class="hd"><apex:outputText value="{!$Label.apttus_config2__RemoveConfirmation}" /></div>
+						<div class="bd">
+							<apex:outputPanel >
+								<b>{!$Label.apttus_config2__ConfirmRemoveClassification}</b>
+							</apex:outputPanel>
+						</div>
+						<div class="bd">
+							<apex:actionRegion >
+								<div style="text-align: center;">
+									<apex:commandButton value="{!$Label.apttus_config2__Yes}"
+														onclick="YAHOO.force.com.removeClassification();"
+													    oncomplete="YAHOO.force.com.hideRemoveDialog();" /> 
+									<apex:commandButton value="{!$Label.apttus_config2__No}" 
+														immediate="true"
+														oncomplete="YAHOO.force.com.hideRemoveDialog();" />
+								</div>
+							</apex:actionRegion>
+						</div>
+					</div>
+				</apex:outputPanel>
+				
+				<!-- This is the content of the modal dialog --> 
+				<apex:outputPanel >
+					<div id="rebuildPanel" style="display: none">
+						<div class="hd"><apex:outputText value="{!$Label.apttus_config2__RebuildConfirmation}" /></div>
+						<div class="bd">
+							<apex:outputPanel >
+								<b>{!$Label.apttus_config2__ConfirmRebuildHierarchy}</b>
+							</apex:outputPanel>
+						</div>
+						<div class="bd">
+							<apex:actionRegion >
+								<div style="text-align: center;">
+									<apex:commandButton value="{!$Label.apttus_config2__Yes}"
+														onclick="YAHOO.force.com.repairTree();"
+													    oncomplete="YAHOO.force.com.hideRebuildDialog();" /> 
+									<apex:commandButton value="{!$Label.apttus_config2__No}" 
+														immediate="true"
+														oncomplete="YAHOO.force.com.hideRebuildDialog();" />
+								</div>
+							</apex:actionRegion>
+						</div>
+					</div>
+				</apex:outputPanel>
+				
+			</apex:pageBlock>
+
+		</apex:outputPanel>
+
+		<apex:outputPanel id="idExpandTreeNode">
+		
+			<apex:outputPanel rendered="{!expandTree}">
+
+				<apex:repeat value="{!contextClassList}" var="cls">
+					<!-- Pushing item into Javascript array -->
+					<script type="text/javascript">
+						  	var clsNode = new Object();
+						  	
+						  	clsNode.label = "{!cls.label}";
+						  	clsNode.name = "{!cls.name}";
+				  			clsNode.parentId = "{!cls.parentId}";
+						  	clsNode.Id = "{!cls.nodeId}";
+				  			clsNode.lvl = "{!cls.nodeLvl}";
+				  			clsNode.leaf = "{!cls.leaf}";
+				  			clsNode.expanded = "{!cls.expanded}";
+				  			clsNode.focus = "{!cls.focus}";
+			  				clsNode.productCount = "{!cls.productCount}";
+			  				clsNode.imageUrl = "{!cls.imageUrl}";
+						  	
+						  	YAHOO.force.com.clsNodes.push(clsNode);
+						  	
+							if (clsNode.imageUrl.length > 0) {
+								YAHOO.force.com.createStyle(clsNode.Id, clsNode.imageUrl);
+							}
+							
+						</script>
+				</apex:repeat>
+
+				<script type="text/javascript">
+						
+					var ctxNode = YAHOO.force.com.globalCtx.ctxNode;
+					var childNode;
+					var obj;
+					var objLabel;
+					
+					for (i=0; i < YAHOO.force.com.clsNodes.length; i++) {
+						obj = YAHOO.force.com.clsNodes[i];
+						if (obj.productCount > 0) {
+							objLabel = obj.label + " [" + obj.productCount + "]";
+						} else {
+							objLabel = obj.label;
+						}
+						
+						if ((obj.expanded == "true") || (obj.leaf == "true")) {						
+							childNode = new YAHOO.widget.TextNode({label: objLabel, object: obj, expanded: true}, ctxNode, true);
+						} else {
+							childNode = new YAHOO.widget.TextNode({label: objLabel, object: obj, expanded: false}, ctxNode, false);
+							childNode.setDynamicLoad(YAHOO.force.com.loadNodeData);
+						}
+						childNode.setUpLabel(objLabel);
+						if (obj.imageUrl.length > 0) {
+							childNode.labelStyle = obj.Id;
+						}
+						
+					}
+					
+			        // callback to indicate completion
+			        if (YAHOO.force.com.globalCtx.hasCallback == "true") {
+			        	YAHOO.force.com.globalCtx.completeCallback(); 
+			        }
+
+					YAHOO.force.com.clsNodes = new Array();
+					
+				</script>
+				
+			</apex:outputPanel>
+		</apex:outputPanel>
+
+		<apex:outputPanel id="idBuildTreeNode">
+			<apex:outputPanel rendered="{!buildTree}">
+			
+				<script type="text/javascript">
+					YAHOO.force.com.clsNodes = new Array();
+					YAHOO.force.com.hasErrors = "{!hasErrors}";
+				</script>
+				
+				<apex:repeat value="{!classList}" var="cls">
+				
+					<script>
+					  	var clsNode = new Object();
+					  	
+					  	clsNode.label = "{!cls.label}";
+					  	clsNode.name = "{!cls.name}";
+			  			clsNode.parentId = "{!cls.parentId}";
+					  	clsNode.Id = "{!cls.nodeId}";
+			  			clsNode.lvl = "{!cls.nodeLvl}";
+			  			clsNode.leaf = "{!cls.leaf}";
+			  			clsNode.expanded = "{!cls.expanded}";
+			  			clsNode.focus = "{!cls.focus}";
+			  			clsNode.productCount = "{!cls.productCount}";
+			  			clsNode.imageUrl = "{!cls.imageUrl}";
+			  			
+					  	YAHOO.force.com.clsNodes.push(clsNode);
+					  	
+						if (clsNode.imageUrl.length > 0) {
+							YAHOO.force.com.createStyle(clsNode.Id, clsNode.imageUrl);
+						}
+						
+					</script>
+				</apex:repeat>
+
+				<script type="text/javascript">
+					// rebuild the tree
+					YAHOO.force.com.buildTree();
+					
+					// rebuild the context menu
+					if (YAHOO.force.com.rootMenu) {
+						YAHOO.force.com.rootMenu.destroy();
+					}
+					
+					//if (YAHOO.force.com.nonRootMenu) {
+						YAHOO.force.com.nonRootMenu.destroy();
+					//}
+					YAHOO.force.com.buildContextMenu();
+		
+					// rebuild the detail panel
+					YAHOO.force.com.buildDetailPanel();
+					
+				</script>
+			</apex:outputPanel>
+		</apex:outputPanel>
+		
+		<apex:actionFunction action="{!doExpand}" 
+							 name="invokeDoExpand"
+							 reRender="idExpandTreeNode" 
+							 immediate="true"
+							 status="idStatusUpdate">
+			<apex:param name="firstParam" assignTo="{!contextNodeId}" value="" />
+		</apex:actionFunction>
+		<apex:actionFunction action="{!markExpanded}" 
+							 name="invokeMarkExpand"
+							 reRender="dummy">
+			<apex:param name="firstParam" assignTo="{!contextNodeId}" value="" />
+		</apex:actionFunction>
+		<apex:actionFunction action="{!markCollapsed}" 
+							 name="invokeMarkCollapse"
+							 reRender="dummy">
+			<apex:param name="firstParam" assignTo="{!contextNodeId}" value="" />
+		</apex:actionFunction>
+
+		<apex:actionFunction action="{!doAddClassification}"
+							 name="invokeDoAddClassification"
+							 reRender="idClassHierarchy, idBuildTreeNode, idEditClassification, idResetCursor, idErrorMsg"
+							 immediate="true">
+			<apex:param name="firstParam" assignTo="{!contextNodeId}" value="" />
+		</apex:actionFunction>
+
+		<apex:actionFunction action="{!doEditClassification}"
+							 name="invokeDoEditClassification"
+							 reRender="idClassHierarchy, idEditClassification, idResetCursor, idErrorMsg"
+							 immediate="true">
+			<apex:param name="firstParam" assignTo="{!contextNodeId}" value="" />
+		</apex:actionFunction>
+
+		<apex:actionFunction action="{!doEditImage}" 
+							 name="invokeDoEditImage"
+							 oncomplete="YAHOO.force.com.waitPanel.hide();"
+							 reRender="idErrorMsg" 
+							 immediate="true">
+			<apex:param name="firstParam" assignTo="{!contextNodeId}" value="" />
+		</apex:actionFunction>
+
+		<apex:actionFunction action="{!doAssignProducts}"
+							 name="invokeDoAssignProducts" 
+							 oncomplete="YAHOO.force.com.waitPanel.hide();"
+							 reRender="idErrorMsg" 
+							 immediate="true">
+			<apex:param name="firstParam" assignTo="{!contextNodeId}" value="" />
+		</apex:actionFunction>
+
+		<apex:actionFunction action="{!doRemoveClassification}"
+							 name="invokeDoRemoveClassification"
+							 oncomplete="YAHOO.force.com.waitPanel.hide();"
+							 reRender="idBuildTreeNode, idResetCursor, idErrorMsg"
+							 immediate="true" 
+							 status="idStatusUpdate">
+			<apex:param name="firstParam" assignTo="{!contextNodeId}" value="" />
+		</apex:actionFunction>
+
+		<apex:actionFunction action="{!doReorderClassifications}"
+							 name="invokeDoReorderClassifications"
+							 oncomplete="YAHOO.force.com.waitPanel.hide();"
+							 reRender="idClassHierarchy, idEditClassification, idBuildTreeNode, idResetCursor, idErrorMsg, idResetCursor"
+							 immediate="true">
+			<apex:param name="firstParam" assignTo="{!contextNodeId}" value="" />
+		</apex:actionFunction>
+
+		<apex:actionFunction name="invokeDoCancelRemoveClassification"
+							 reRender="idClassHierarchy, idResetCursor" 
+							 immediate="true">
+		</apex:actionFunction>
+		<apex:actionFunction name="invokeDoRepairTree"
+							 action="{!doRepairTree}"
+							 oncomplete="YAHOO.force.com.waitPanel.hide();"
+							 reRender="idClassHierarchy, idEditClassification, idBuildTreeNode, idResetCursor, idErrorMsg, idResetCursor"
+							 immediate="true">
+			<apex:param name="firstParam" assignTo="{!contextNodeId}" value="" />
+		</apex:actionFunction>
+     	  
+		
+		<apex:outputPanel id="idEditClassification">
+		
+			<apex:pageBlock rendered="{!showEditClassification}"
+							title="{!editTitle}" id="idAddClassBlock" >
+							
+				<apex:pageBlockButtons location="both">
+				
+					<apex:commandButton value="{!$Label.apttus_config2__Save}"
+										action="{!saveEditClassification}"
+										rendered="{!editClass.Id != null}"
+										rerender="idErrorMsg, idClassHierarchy, idBuildTreeNode, idEditClassification, idResetCursor"
+										onclick="setCursorBusy();" 
+										status="idStatusUpdate" />
+										
+					<apex:commandButton value="{!$Label.apttus_config2__Save}"
+										action="{!saveAddClassification}"
+										rendered="{!editClass.Id == null}"
+										rerender="idErrorMsg, idClassHierarchy, idBuildTreeNode, idEditClassification, idResetCursor"
+										onclick="setCursorBusy();" 
+										status="idStatusUpdate" />
+										
+					<apex:commandButton value="{!$Label.apttus_config2__SaveAndNew}"
+										action="{!saveAddAndNewClassification}"
+										rendered="{!editClass.Id == null}"
+										rerender="idErrorMsg, idEditClassification, idResetCursor"
+										onclick="setCursorBusy();" 
+										status="idStatusUpdate" />
+										
+					<apex:commandButton value="{!$Label.apttus_config2__Cancel}"
+										action="{!cancelEditClassification}"
+										rerender="idClassHierarchy, idBuildTreeNode, idBuildTreeNode, idEditClassification, idResetCursor"
+										onclick="setCursorBusy();" 
+										immediate="true" />
+										
+				</apex:pageBlockButtons>
+				
+				<b><apex:outputText value="{!$Label.apttus_config2__Hierarchy}: {!classAnsestorChain}"
+									styleClass="aptsBreadcrumb" /></b>
+				<p/>
+				<apex:pageBlockSection columns="1" id="idAddClassBlockSection">
+					<apex:inputField id="idClassificationLabel" 
+									 value="{!editClass.Apttus_Config2__Label__c}"
+									 onchange="setClassName('{!$Component.idAddClassBlockSection.idClassificationLabel}',
+											  '{!$Component.idAddClassBlockSection.idClassificationName}');"
+									 style="width: 150px" />
+									 
+					<apex:inputField id="idClassificationName" 
+									 value="{!editClass.Name}" 
+									 required="true"
+						 			 style="width: 150px" />
+					
+					<apex:inputField id="idGuidePage" 
+									 value="{!editClass.Apttus_Config2__GuidePage__c}" 
+									 rendered="{!isOffering}" />
+									 
+					<apex:inputField id="idExpandedByDefault" 
+									 value="{!editClass.Apttus_Config2__ExpandedByDefault__c}"/>
+						 			 	 			 
+					<apex:inputField id="idIncludeInTotalsView" 
+									 value="{!editClass.Apttus_Config2__IncludeInTotalsView__c}" 
+									 rendered="{!isOffering}" />
+						 			 	 			 
+					<apex:inputField value="{!editClass.Apttus_Config2__MinOptions__c}"
+									 rendered="{!(isGroup && isLeaf)}" />
+									 
+					<apex:inputField value="{!editClass.Apttus_Config2__MaxOptions__c}"
+									 rendered="{!(isGroup && isLeaf)}" />
+									 
+				</apex:pageBlockSection>
+
+				<script type="text/javascript">
+					document.getElementById("{!$Component.idAddClassBlockSection.idClassificationLabel}").focus();
+					
+				</script>
+				
+			</apex:pageBlock>
+			
+			<apex:pageBlock title="{!$Label.apttus_config2__Categories}"
+							rendered="{!showReorderClassifications}" 
+							mode="edit">
+
+				<apex:pageBlockButtons location="both">
+					<apex:outputPanel >
+						<apex:commandButton value="{!$Label.apttus_config2__Done}"
+											action="{!doneReordering}"
+											rerender="idEditClassification, idClassHierarchy, idBuildTreeNode, idResetCursor, idErrorMsg" />
+											
+						<b><apex:actionStatus id="idReorderStatusUpdate" 
+											  startText="{!$Label.apttus_config2__StatusMessageUpdatingPage}..." /></b>
+					</apex:outputPanel>
+				</apex:pageBlockButtons>
+				
+				<apex:pageBlockSection columns="2">
+				
+					<apex:pageBlockTable value="{!classWrapperList}" 
+										 var="lvlClassSO"
+										 width="100%">
+
+						<apex:column headerValue="{!$ObjectType.Apttus_Config2__ClassificationHierarchy__c.Fields.Name.Label}">
+							<apex:outputField value="{!lvlClassSO.classSO.Apttus_Config2__Label__c}" />
+						</apex:column>
+
+						<apex:column width="20px">
+							<apex:commandLink action="{!doMoveUpRow}"
+											  reRender="idEditClassification"
+											  rendered="{!lvlClassSO.canMoveUp}"
+											  status="idReorderStatusUpdate">
+								<apex:param name="seqNum" 
+											assignTo="{!contextNodeId}"
+											value="{!lvlClassSO.classSO.Id}" />
+								<apex:image url="{!$Resource.Apttus_Config2__Image_MoveUp}"
+											title="{!$Label.apttus_config2__MoveUp}" 
+											alt="{!$Label.apttus_config2__MoveUp}" />
+							</apex:commandLink>
+							
+							<apex:commandLink action="{!doMoveDownRow}"
+											  reRender="idEditClassification"
+											  rendered="{!lvlClassSO.canMoveDown}"
+											  status="idReorderStatusUpdate">
+								<apex:param name="seqNum" 
+											assignTo="{!contextNodeId}"
+											value="{!lvlClassSO.classSO.Id}" />
+								<apex:image url="{!$Resource.Apttus_Config2__Image_MoveDown}"
+											title="{!$Label.apttus_config2__MoveDown}" 
+											alt="{!$Label.apttus_config2__MoveDown}" />
+							</apex:commandLink>
+							
+						</apex:column>
+
+					</apex:pageBlockTable>
+				</apex:pageBlockSection>
+			</apex:pageBlock>
+		</apex:outputPanel>
+
+		<apex:outputPanel id="idResetCursor">
+		
+			<script type="text/javascript">
+				setCursorDefault();
+			</script>
+		
+		</apex:outputPanel>
+		
+		<script type="text/javascript">
+		
+			function setClassName(fromId, toId) {
+				var nameElm = new Object();
+				var labelElm = new Object();
+				nameElm = document.getElementById(toId);
+				
+				if (nameElm.value.length == 0) {
+					labelElm = document.getElementById(fromId);
+					nameElm.value = labelElm.value;
+					
+				}
+			}
+			
+		</script>
+
+		<apex:inputHidden value="{!Apttus_Config2__ClassificationName__c.Name}" />
+		<apex:inputHidden value="{!Apttus_Config2__ClassificationName__c.Apttus_Config2__HierarchyLabel__c}" />
+		<apex:inputHidden value="{!Apttus_Config2__ClassificationName__c.Apttus_Config2__Type__c}" />
+		<apex:inputHidden value="{!Apttus_Config2__ClassificationName__c.Apttus_Config2__GuidePage__c}" />
+	</apex:form>
+</apex:page>

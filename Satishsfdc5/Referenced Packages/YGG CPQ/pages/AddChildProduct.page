@@ -1,0 +1,67 @@
+<apex:page standardController="Product2" extensions="YGGC.ProductController">
+	<apex:stylesheet value="{!URLFOR($Resource.YGGC__applicationStyle, 'applicationstyle.css')}"/>
+    <apex:form >
+        <apex:pageBlock title="{!prod.Name}">
+            <apex:pageBlockButtons >
+                <apex:commandButton action="{!returnToProductDetail}" value="Back"/>             
+            </apex:pageBlockButtons>
+            <apex:pageMessages />
+            <apex:pageBlockTable value="{!newChildProduct}" var="p" >
+                 <apex:column headerValue="Child Product">
+                    <apex:inputField value="{!p.YGGC__Child__c}"/>
+                 </apex:column>
+                 <apex:column headerValue="Choice">
+                    <apex:inputField value="{!p.YGGC__Choice__c}" />
+                 </apex:column>
+                 <!-- <apex:column headerValue="Option Code">
+                    <apex:inputField value="{!p.Option_Code__c}"/>
+                 </apex:column> -->
+                 <apex:column headerValue="Min Quantity">
+                    <apex:inputField style="width:20px" value="{!p.YGGC__Min_Quantity__c}"/>
+                 </apex:column>
+                 <apex:column headerValue="Max Quantity">
+                    <apex:inputField style="width:20px" value="{!p.YGGC__Max_Quantity__c}"/>
+                 </apex:column>
+                 <apex:column headerValue="Default Quantity">
+                    <apex:inputField style="width:20px" value="{!p.YGGC__Default_Quantity__c}"/>
+                 </apex:column>
+            </apex:pageBlockTable> 
+            <apex:commandButton action="{!addNewChildProduct}" value="Add"/>&nbsp;&nbsp;
+        </apex:pageBlock>
+        
+        <apex:pageBlock title="Child Products {!prod.YGGC__Display_Format__c}">
+            <apex:pageBlockButtons >
+               <apex:commandButton action="{!returnToProductDetail}" value="Back"/>
+               <apex:commandButton value="Save Changes" action="{!saveExistingChildProducts}" disabled="{!ISNULL(childProducts)}" />
+            </apex:pageBlockButtons>
+            <apex:pageBlockTable value="{!childProducts}" var="p" rendered="{!NOT(ISNULL(childProducts))}">
+                 <apex:column headerValue="Sort Order">
+                     <apex:inputField style="width:20px"  value="{!p.YGGC__Sort_Order__c}"/>
+                 </apex:column>
+                 <apex:column headerValue="Product" value="{!p.Child__r.Name}"/>
+                 <apex:column headerValue="Choice">
+                    <apex:inputField value="{!p.YGGC__Choice__c}"/>
+                 </apex:column>
+                 <!-- <apex:column headerValue="Option Code">
+                    <apex:inputField value="{!p.Option_Code__c}" />
+                 </apex:column> -->
+                 <apex:column headerValue="Min Quantity">
+                    <apex:inputField style="width:20px" value="{!p.YGGC__Min_Quantity__c}"/>
+                 </apex:column>
+                 <apex:column headerValue="Max Quantity">
+                    <apex:inputField style="width:20px" value="{!p.YGGC__Max_Quantity__c}"/>
+                 </apex:column>
+                 <apex:column headerValue="Default Quantity">
+                    <apex:inputField style="width:20px" value="{!p.YGGC__Default_Quantity__c}"/>
+                 </apex:column>
+                 <apex:column headerValue="">
+                    <apex:commandLink action="{!deleteChildProduct}" value="Del">
+                        <apex:param name="childId" value="{!p.Id}"/>
+                    </apex:commandLink>
+                 </apex:column>
+                 
+            </apex:pageBlockTable>
+            <apex:outputText value="No records to display" rendered="{!ISNULL(childProducts)}" />
+        </apex:pageBlock>
+    </apex:form>            
+</apex:page>

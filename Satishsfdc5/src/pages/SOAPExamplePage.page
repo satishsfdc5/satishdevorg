@@ -1,0 +1,7 @@
+<apex:page controller="SOAPExample">
+<apex:form >
+    <apex:commandButton action="{!show}" value="Show"/>
+    <apex:outputText value="{!result}"/>
+</apex:form>
+  
+</apex:page>

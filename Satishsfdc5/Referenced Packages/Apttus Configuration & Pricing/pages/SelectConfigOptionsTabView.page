@@ -1,0 +1,1421 @@
+<!-- 
+    Apttus Config & Pricing
+    SelectConfigOptionsTabView
+     
+    @2010-2011 Apttus Inc. All rights reserved.
+ -->
+<apex:page standardController="Apttus_Config2__LineItem__c"
+		   extensions="Apttus_Config2.SelectConfigOptionsTabViewController" 
+		   showHeader="false"
+		   sidebar="false" 
+		   cache="false" tabstyle="Product2">
+
+	<apex:stylesheet value="{!$Resource.Apttus_Config2__ConfigStyles}" />
+	<apex:stylesheet value="{!URLFOR($Resource.Apttus_Config2__YUILibrary, '/yui/build/assets/skins/sam/skin.css')}" />
+	
+	<apex:includescript value="{!URLFOR($Resource.Apttus_Config2__YUILibrary, '/yui/build/yahoo-dom-event/yahoo-dom-event.js')}" />
+	<apex:includescript value="{!URLFOR($Resource.Apttus_Config2__YUILibrary, '/yui/build/dragdrop/dragdrop-min.js')}" />
+	<apex:includescript value="{!URLFOR($Resource.Apttus_Config2__YUILibrary, '/yui/build/container/container-min.js')}" />
+	<apex:includescript value="{!URLFOR($Resource.Apttus_Config2__YUILibrary, '/yui/build/animation/animation-min.js')}" />
+	
+	<script type="text/javascript" src="/soap/ajax/25.0/connection.js"></script>
+	<script type="text/javascript" src="/soap/ajax/25.0/apex.js"></script>
+	
+	<apex:includeScript value="{!$Resource.Apttus_Config2__ConfigJSLib}"/>
+	<!-- 
+	<apex:includeScript value="{!$Resource.ConfigPromptJSLib}"/>
+	<apex:includeScript value="{!$Resource.ConfigSelectJSLib}"/>
+	 -->
+	<script type="text/javascript">
+		//set the title and progress bar icon
+		var aptLoadingPageHeader = "{!$Label.LoadingPage}";
+		var aptRuleAlertHeader = "{!$Label.ConstraintRuleAlert}";
+		var aptDialogBody = '<center><img src="{!URLFOR($Resource.Image_LoadingPage)}" /></center>';
+		
+		YAHOO.namespace("force.com");
+		// detail panel
+		YAHOO.force.com.globalCtx = new Object();
+		YAHOO.force.com.clsNodes = new Array();
+		YAHOO.force.com.selectedNode = new Object();
+				
+		//for IE load the script into DOM
+		function loadJSFile(filename){
+			var fileref = document.createElement('script');
+		 	if (typeof fileref != "undefined"){
+			 	fileref.setAttribute("type","text/javascript");
+			 	fileref.setAttribute("src", filename);
+		  		document.getElementsByTagName("head")[0].appendChild(fileref);
+		 	}
+		}
+		//load the JavaScript file. This is necessary for IE
+		loadJSFile("{!$Resource.ConfigPromptJSLib}");
+		//loadJSFile("{!$Resource.ConfigSelectJSLib}");
+		
+	</script>
+	
+	<script type="text/javascript">
+		/**
+         * Initializes the call to webservices api
+         */
+        function initCall() {
+        	try {
+            	sforce.connection.sessionId = "{!$Api.Session_ID}"; //to avoid session timeout
+                        
+            } catch(ex) {
+            	cp_erroralert(cp_cERROR_UNKNOWN,ex);
+                        
+			}
+        }					
+	</script>
+	
+	<script type="text/javascript">
+		/**
+		 * Launch doSelectGroupOption
+		 */
+		function invokeDoSelectOption(ctxOptionId, ctxGroupId) {
+			
+			// show the modal panel
+			YAHOO.force.com.waitPanel.show();
+			// dispatch the action
+			sfdcDoSelectOption(ctxOptionId, ctxGroupId);
+		}		
+			
+	</script>
+	
+	<apex:form id="idForm">
+		
+		<!--  required fields -->
+		<apex:outputText value="{!Apttus_Config2__LineItem__c.Apttus_Config2__ProductId__c}" rendered="false" />
+		<apex:outputText value="{!Apttus_Config2__LineItem__c.ProductId__r.Name}" rendered="false" />
+		<apex:outputText value="{!Apttus_Config2__LineItem__c.Apttus_Config2__ConfigurationId__c}" rendered="false" />
+		<apex:outputText value="{!Apttus_Config2__LineItem__c.Apttus_Config2__LineNumber__c}" rendered="false" />
+		<apex:outputText value="{!Apttus_Config2__LineItem__c.Apttus_Config2__Quantity__c}" rendered="false" />
+		<apex:outputText value="{!Apttus_Config2__LineItem__c.Apttus_Config2__Term__c}" rendered="false" />
+		<apex:outputText value="{!Apttus_Config2__LineItem__c.Apttus_Config2__SellingTerm__c}" rendered="false" />
+		<apex:outputText value="{!Apttus_Config2__LineItem__c.Apttus_Config2__Frequency__c}" rendered="false" />
+		<apex:outputText value="{!Apttus_Config2__LineItem__c.Apttus_Config2__SellingFrequency__c}" rendered="false" />
+		<apex:outputText value="{!Apttus_Config2__LineItem__c.Apttus_Config2__StartDate__c}" rendered="false" />
+		<apex:outputText value="{!Apttus_Config2__LineItem__c.Apttus_Config2__EndDate__c}" rendered="false" />
+		<apex:outputText value="{!Apttus_Config2__LineItem__c.Apttus_Config2__Customizable__c}" rendered="false" />
+		<apex:outputText value="{!Apttus_Config2__LineItem__c.Apttus_Config2__HasOptions__c}" rendered="false" />
+		<apex:outputText value="{!Apttus_Config2__LineItem__c.Apttus_Config2__HasAttributes__c}" rendered="false" />
+
+		<table style="width: 100%; background-color: #F7F7F7;" width="100%">
+			<tr>
+				<td>
+				<table width="100%">
+					<tr style="background-color: #FFFFFF;">
+						<td><apex:outputPanel style="text-align: left;" layout="block">
+							<apex:panelGrid columns="1">
+								<apex:panelGroup >
+									<apex:outputText escape="false" 
+													 value="&nbsp;{!fromBizType}:"
+													 style="text-transform:uppercase;font-weight:bold;color:#5487B9" />
+									&nbsp;
+									<apex:outputField value="{!ConfigSO[BOLookupFieldName]}" 
+													  rendered="{!ShowBOLookupField}" />
+													  
+									<apex:outputText escape="false"
+													 value="&nbsp;{!fromBizTitle}&nbsp;&nbsp;"
+													 style="font-weight:bold;color:#5487B9;" 
+													 rendered="{!ShowBOTitle}" />
+													 
+								</apex:panelGroup>
+							</apex:panelGrid>
+						</apex:outputPanel></td>
+						<td> 
+						<apex:outputPanel style="text-align: right;" layout="block">
+							<apex:image url="{!$Resource.Apttus_Config2__Apttus_Logo}" title="" alt="" />
+						</apex:outputPanel></td>
+					</tr>
+				</table>
+				</td>
+			</tr>
+			<tr>
+				<td>
+				<table width="100%">
+					<tr>
+						<td>
+							<apex:outputPanel id="idTopNavStage"
+											  style="text-align: left;" 
+											  layout="block">
+
+									<apex:panelGrid columns="1" style="line-height:80%">
+
+										<apex:panelGroup >
+
+											<apex:outputText escape="false" 
+															 value="{!$Label.apttus_config2__STEP}"
+															 style="font-weight:bold;font-size:90%" />
+
+											&nbsp;&nbsp;
+											<apex:outputText escape="false"
+															 value="&nbsp;&nbsp;{!$Label.StageSelect}&nbsp;&nbsp;"
+															 styleClass="aptsConfigStage" />
+
+											&nbsp;&nbsp;
+											<apex:image url="{!$Resource.Apttus_Config2__Chevron}" title="" alt="" />
+											&nbsp;&nbsp;
+							
+											<apex:outputText escape="false"
+															 value="&nbsp;&nbsp;{!$Label.StageConfigure}&nbsp;&nbsp;"
+															 styleClass="aptsCurrentConfigStage" />
+
+											&nbsp;&nbsp;
+											<apex:image url="{!$Resource.Apttus_Config2__Chevron}" title="" alt="" />
+											&nbsp;&nbsp;
+
+											<apex:outputText escape="false"
+															 value="&nbsp;&nbsp;{!$Label.StagePrice}&nbsp;&nbsp;"
+															 styleClass="aptsConfigStage" />
+
+											&nbsp;&nbsp;
+											<apex:image url="{!$Resource.Apttus_Config2__Chevron}" title="" alt="" />
+											&nbsp;&nbsp;
+
+											<apex:outputText escape="false"
+															 value="&nbsp;&nbsp;{!$Label.StageFinalize}&nbsp;&nbsp;"
+															 styleClass="aptsConfigStage"  />
+
+											<b><apex:actionStatus id="idStatusSelect" 
+																  startText="{!$Label.apttus_config2__StatusMessageUpdatingPage}..." /></b>
+										</apex:panelGroup>
+
+									</apex:panelGrid>
+
+								</apex:outputPanel>
+							</td>
+							
+							<td>
+								<apex:outputPanel id="idTopNavActions" 
+												  style="text-align: right;"
+												  layout="block" >
+									<apex:commandButton value="{!$Label.apttus_config2__Abandon}"
+													    action="{!doAbandon}" 
+													    immediate="true"
+														style="background-color:#657383;background-image:none;color:white;"/>
+									&nbsp;
+									&nbsp;
+									<apex:image url="{!$Resource.Apttus_Config2__Cart}" 
+												title="{!$Label.apttus_config2__Cart}"
+												alt="{!$Label.apttus_config2__Cart}" />
+									<apex:commandLink value="{!$Label.apttus_config2__MySelections}"
+													  action="{!doViewCart}"
+													  reRender="idErrorMsg" 
+													  style="color:blue;font-weight:bold" 
+													  onclick="onActionClick();" 
+													  oncomplete="onActionComplete();" />
+									&nbsp;
+									<apex:outputText value="({!cartSummaryInfo})" />
+									&nbsp;
+								</apex:outputPanel>
+			
+							</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+		</table>
+
+		<apex:pageBlock >
+			<apex:outputPanel id="idErrorMsg">
+				<apex:pageMessages />
+				<c:RuleMessageDisplay id="idRuleMessageComponent" configId="{!ConfigurationId}" contextLineNumber="{!ContextLineNumber}" hasChoice="{!RuleResult.isEmpty == false}"/>	
+			</apex:outputPanel>
+
+			<apex:pageBlockButtons location="top">
+				<apex:commandButton value="{!$Label.apttus_config2__RemoveItem}" 
+									onclick="YAHOO.force.com.showRemoveConfirmation('{!prodLineItemSO.Apttus_Config2__LineNumber__c}');return false;"/>
+				<apex:commandButton value="{!$Label.apttus_config2__AddMoreProducts}"
+									action="{!gotoSelectPage}" 
+									rendered="true" 
+									reRender="idErrorMsg"
+									/>
+									<!-- rendered="{!backToSelection}" /> -->
+				<apex:commandButton value="{!$Label.apttus_config2__BackToDetail}"
+									action="{!doBackToDetail}" 
+									rendered="{!backToDetail}" 
+									reRender="idErrorMsg"
+									/>
+				<apex:commandButton value="{!$Label.apttus_config2__GoToPricing}"
+									action="{!doUpdateCart}"
+									reRender="idErrorMsg" 
+									onclick="onActionClick();" 
+									oncomplete="onActionComplete();" />
+			</apex:pageBlockButtons>
+
+			<apex:outputPanel style="text-align:left" rendered="{!NOT(hasErrors)}">
+				<apex:outputText >&lt;</apex:outputText>
+				<apex:commandLink action="{!doSwitchToListView}"
+								  value="{!$Label.apttus_config2__ListView}" 
+								  style="color:blue;" 
+								  onclick="onActionClick();" 
+								  oncomplete="onActionComplete();" />
+				<apex:outputText escape="false" 
+								 value="&nbsp;|&nbsp;" />
+				<apex:commandLink action="{!doSwitchToIconView}"
+								  value="{!$Label.apttus_config2__HierarchyView}" 
+								  style="color:blue;" 
+								  onclick="onActionClick();" 
+								  oncomplete="onActionComplete();" />
+				<apex:outputText >&gt;</apex:outputText>
+			</apex:outputPanel>
+			&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 		
+			<apex:outputText style="font-weight:bold;color:#5487B9;text-transform:uppercase"
+							 value="{!$Label.apttus_config2__ConfigureOptionsFor}" />
+			&nbsp;				 
+			<apex:outputText style="font-weight:bold;color:#5487B9;" 
+							 value="{!Apttus_Config2__LineItem__c.ProductId__r.Name}" />
+							 
+			<apex:outputPanel id="idGroupOptionsPanel" rendered="{!NOT(hasErrors)}" >
+				<table style="width: 100%">
+					<tr>
+						<td style="width: 70%" valign="top"><apex:pageBlock >
+
+							<apex:tabPanel id="idTabPanel" 
+										   switchType="ajax" 
+										   value="{!curTabSelection}"
+								 		   inactiveTabClass="inactiveTab"
+										   tabClass="activeTab" 
+										   contentClass="tabContentClass" >
+
+								<apex:tab id="idGroup1Tab" 
+										  label="{!group1TabLabel}" 
+										  name="{!group1TabName}"
+									 	  rendered="{!group1TabEnabled}" 
+										  ontabenter="onActionClick();" 
+						  				  oncomplete="onActionComplete();" >
+						  				  
+									<apex:dataTable value="{!group1OptionInfos}"
+													var="group1OptionInfo" 
+													width="100%">
+													
+										<apex:column >
+											<apex:pageBlockSection title="{!group1OptionInfo.groupLineage}" 
+																   columns="1">
+																   
+												<apex:pageBlockTable value="{!group1OptionInfo.optionList}"
+																	 var="option"
+																	 rules="rows" 
+																	 rowClasses="oddRow, evenRow" 
+																	 width="100%"
+																	 columns="4">
+
+													<apex:column width="5%"> 
+														<apex:outputPanel rendered="{!NOT(ISNULL(group1OptionInfo.groupSO.Apttus_Config2__MaxOptions__c)) && group1OptionInfo.groupSO.Apttus_Config2__MaxOptions__c == 1}">
+															<apex:outputPanel rendered="{!option.checked}">
+																<input type="radio" 
+																	   checked="{!option.checked}"
+																	   disabled="{!option.disabled}" 
+																	   onclick="invokeDoSelectOption('{!option.optionId}', '{!group1OptionInfo.groupSO.Id}');">
+																</input>
+															</apex:outputPanel>
+															<apex:outputPanel rendered="{!NOT(option.checked)}">
+																<apex:outputPanel rendered="{!NOT(option.disabled)}">
+																	<input type="radio"
+																	   onclick="invokeDoSelectOption('{!option.optionId}', '{!group1OptionInfo.groupSO.Id}');">
+																	</input>
+																</apex:outputPanel>
+																<apex:outputPanel rendered="{!option.disabled}">
+																	<input type="radio" disabled="true"></input>
+																</apex:outputPanel>
+															</apex:outputPanel>													
+														</apex:outputPanel>
+														<apex:outputPanel rendered="{!NOT(group1OptionInfo.groupSO.Apttus_Config2__MaxOptions__c == 1)}">
+															<apex:inputCheckbox value="{!option.checked}" 
+																				selected="{!option.checked}"
+																			    disabled="{!option.disabled}" 
+																				onclick="invokeDoSelectOption('{!option.optionId}', '{!group1OptionInfo.groupSO.Id}');">
+															</apex:inputCheckbox>
+														</apex:outputPanel>
+													</apex:column>
+													
+													<apex:column width="15%">
+														<apex:image value="{!option.optionImageSrc}"
+																	style="width:50px; height:50px; vertical-align:top;"
+																	onclick="aptCreatePopup('{!(option.optionContentUrl)}', '{!option.optionDescription}', {!option.isEmbedType});"
+																	rendered="{!(option.optionImageSrc != null)}" />
+													</apex:column>
+													
+													<apex:column width="40%">
+														<apex:commandLink rerender="dummy">
+																<apex:image url="{!$Resource.Apttus_Config2__Image_Info}"
+																			onclick="getProductDetail({!ClassName}, '{!option.componentProductId}');"
+																			rendered="{!NOT(ISNULL(option.componentSO.Apttus_Config2__ComponentProductId__c))}"/>
+														</apex:commandLink>	
+														&nbsp;
+														<apex:outputField value="{!option.componentSO.Apttus_Config2__ComponentProductId__c}" />
+			                                            <apex:outputText value="{!option.optionName}"
+			                                                        	 style="font-weight:bold;" 
+			                                                        	 rendered="{!(ISNULL(option.componentSO.Apttus_Config2__ComponentProductId__c))}"/> 
+													</apex:column>
+													<apex:column width="40%">
+														<apex:dataList value="{!option.chargeList}" 
+																	   var="price">
+															<apex:outputPanel rendered="{!IsMultiCurrency}" >
+																<apex:outputText value="{0} - ">
+																	<apex:param value="{!price.chargeType}" />
+																</apex:outputText>
+																<apex:outputField value="{!price.charge.Apttus_Config2__ListPrice__c}" />
+															</apex:outputPanel>
+															<apex:outputPanel rendered="{!NOT(IsMultiCurrency)}" >
+																<apex:outputText value="{0} - {1, number,currency}">
+																	<apex:param value="{!price.chargeType}" />
+																	<apex:param value="{!price.charge.Apttus_Config2__ListPrice__c}" />
+																</apex:outputText>
+															</apex:outputPanel>
+														</apex:dataList>
+													</apex:column>
+													
+												</apex:pageBlockTable>
+												
+												<apex:outputText value="{!$Label.apttus_config2__NoRecordsToDisplay}"
+																 rendered="{!group1OptionInfo.optionList.size == 0}" />
+																 
+											</apex:pageBlockSection>
+										</apex:column>
+										
+									</apex:dataTable>	
+								</apex:tab>
+								
+								<apex:tab id="idGroup2Tab" 
+										  label="{!group2TabLabel}" 
+										  name="{!group2TabName}"
+										  rendered="{!group2TabEnabled}" 
+										  ontabenter="onActionClick();" 
+						  				  oncomplete="onActionComplete();" >
+										  
+									<apex:dataTable value="{!group2OptionInfos}"
+													var="group2OptionInfo"  
+													width="100%">
+													
+										<apex:column >
+											<apex:pageBlockSection title="{!group2OptionInfo.groupLineage}"  
+																   columns="1">
+																   
+												<apex:pageBlockTable value="{!group2OptionInfo.optionList}" 
+																	 var="option"
+																	 rules="rows" 
+																	 rowClasses="oddRow, evenRow" 
+																	 width="100%"
+																	 columns="4">
+																	 
+													<apex:column width="5%">
+														<apex:outputPanel rendered="{!NOT(ISNULL(group2OptionInfo.groupSO.Apttus_Config2__MaxOptions__c)) && group2OptionInfo.groupSO.Apttus_Config2__MaxOptions__c == 1}">
+															<apex:outputPanel rendered="{!option.checked}">
+																<input type="radio" 
+																	   checked="{!option.checked}"
+																	   disabled="{!option.disabled}" 
+																	   onclick="invokeDoSelectOption('{!option.optionId}', '{!group2OptionInfo.groupSO.Id}');">
+																</input>
+															</apex:outputPanel>
+															<apex:outputPanel rendered="{!NOT(option.checked)}">
+																<apex:outputPanel rendered="{!NOT(option.disabled)}">
+																	<input type="radio"
+																	   onclick="invokeDoSelectOption('{!option.optionId}', '{!group2OptionInfo.groupSO.Id}');">
+																	</input>
+																</apex:outputPanel>
+																<apex:outputPanel rendered="{!option.disabled}">
+																	<input type="radio" disabled="true"></input>
+																</apex:outputPanel>
+															</apex:outputPanel>													
+														</apex:outputPanel>
+														<apex:outputPanel rendered="{!NOT(group2OptionInfo.groupSO.Apttus_Config2__MaxOptions__c == 1)}">
+															<apex:inputCheckbox value="{!option.checked}"
+																				selected="{!option.checked}"
+																				disabled="{!option.disabled}" 
+																				onclick="invokeDoSelectOption('{!option.optionId}', '{!group2OptionInfo.groupSO.Id}');">
+															</apex:inputCheckbox>
+														</apex:outputPanel>
+													</apex:column>
+													
+													<apex:column width="15%">
+														<apex:image value="{!option.optionImageSrc}"
+																	style="width:50px; height:50px; vertical-align:top;"
+																	onclick="aptCreatePopup('{!(option.optionContentUrl)}', '{!option.optionDescription}', {!option.isEmbedType});"
+																	rendered="{!(option.optionImageSrc != null)}" />
+													</apex:column>
+													
+													<apex:column width="40%">
+														<apex:commandLink rerender="dummy">
+																<apex:image url="{!$Resource.Apttus_Config2__Image_Info}"
+																			onclick="getProductDetail({!ClassName}, '{!option.componentProductId}');"
+																			rendered="{!NOT(ISNULL(option.componentSO.Apttus_Config2__ComponentProductId__c))}"/>
+														</apex:commandLink>	
+														&nbsp;
+														<apex:outputField value="{!option.componentSO.Apttus_Config2__ComponentProductId__c}" />
+			                                            <apex:outputText value="{!option.optionName}"
+			                                                        	 style="font-weight:bold;" 
+			                                                        	 rendered="{!(ISNULL(option.componentSO.Apttus_Config2__ComponentProductId__c))}"/> 
+													</apex:column>
+													
+													<apex:column width="40%">
+														<apex:dataList value="{!option.chargeList}" 
+																	   var="price">
+															<apex:outputPanel rendered="{!IsMultiCurrency}" >
+																<apex:outputText value="{0} - ">
+																	<apex:param value="{!price.chargeType}" />
+																</apex:outputText>
+																<apex:outputField value="{!price.charge.Apttus_Config2__ListPrice__c}" />
+															</apex:outputPanel>
+															<apex:outputPanel rendered="{!NOT(IsMultiCurrency)}" >
+																<apex:outputText value="{0} - {1, number,currency}">
+																	<apex:param value="{!price.chargeType}" />
+																	<apex:param value="{!price.charge.Apttus_Config2__ListPrice__c}" />
+																</apex:outputText>
+															</apex:outputPanel>
+														</apex:dataList>
+													</apex:column>
+													
+												</apex:pageBlockTable>
+												
+												<apex:outputText value="{!$Label.apttus_config2__NoRecordsToDisplay}"
+																 rendered="{!group2OptionInfo.optionList.size == 0}" />
+													
+											</apex:pageBlockSection>
+										</apex:column>
+										
+									</apex:dataTable>
+								</apex:tab>
+
+								<apex:tab id="idGroup3Tab" 
+										  label="{!group3TabLabel}" 
+										  name="{!group3TabName}"
+									 	  rendered="{!group3TabEnabled}" 
+									 	  ontabenter="onActionClick();" 
+						  				  oncomplete="onActionComplete();" >
+						  				  
+									<apex:dataTable value="{!group3OptionInfos}"
+													var="group3OptionInfo" 
+													width="100%" >
+													
+										<apex:column >
+											<apex:pageBlockSection title="{!group3OptionInfo.groupLineage}"  
+																   columns="1">
+																   
+												<apex:pageBlockTable value="{!group3OptionInfo.optionList}"
+																	 var="option"
+																	 rules="rows" 
+																	 rowClasses="oddRow, evenRow" 
+																	 width="100%"
+																	 columns="4">
+																	 
+													<apex:column width="5%" >
+														<apex:outputPanel rendered="{!NOT(ISNULL(group3OptionInfo.groupSO.Apttus_Config2__MaxOptions__c)) && group3OptionInfo.groupSO.Apttus_Config2__MaxOptions__c == 1}">
+															<apex:outputPanel rendered="{!option.checked}">
+																<input type="radio" 
+																	   checked="{!option.checked}"
+																	   disabled="{!option.disabled}" 
+																	   onclick="invokeDoSelectOption('{!option.optionId}', '{!group3OptionInfo.groupSO.Id}');">
+																</input>
+															</apex:outputPanel>
+															<apex:outputPanel rendered="{!NOT(option.checked)}">
+																<apex:outputPanel rendered="{!NOT(option.disabled)}">
+																	<input type="radio"
+																	   onclick="invokeDoSelectOption('{!option.optionId}', '{!group3OptionInfo.groupSO.Id}');">
+																	</input>
+																</apex:outputPanel>
+																<apex:outputPanel rendered="{!option.disabled}">
+																	<input type="radio" disabled="true"></input>
+																</apex:outputPanel>
+															</apex:outputPanel>													
+														</apex:outputPanel>
+														<apex:outputPanel rendered="{!NOT(group3OptionInfo.groupSO.Apttus_Config2__MaxOptions__c == 1)}">
+															<apex:inputCheckbox value="{!option.checked}" 
+																				selected="{!option.checked}"
+																				disabled="{!option.disabled}" 
+																				onclick="invokeDoSelectOption('{!option.optionId}', '{!group3OptionInfo.groupSO.Id}');">
+															</apex:inputCheckbox>
+														</apex:outputPanel>
+													</apex:column>
+													
+													<apex:column width="15%" >
+														<apex:image value="{!option.optionImageSrc}"
+																	style="width:50px; height:50px; vertical-align:top;"
+																	onclick="aptCreatePopup('{!(option.optionContentUrl)}', '{!option.optionDescription}', {!option.isEmbedType});"
+																	rendered="{!(option.optionImageSrc != null)}" />
+													</apex:column>
+													
+													<apex:column width="40%" >
+														<apex:commandLink rerender="dummy">
+																<apex:image url="{!$Resource.Apttus_Config2__Image_Info}"
+																			onclick="getProductDetail({!ClassName}, '{!option.componentProductId}');"
+																			rendered="{!NOT(ISNULL(option.componentSO.Apttus_Config2__ComponentProductId__c))}"/>
+														</apex:commandLink>	
+														&nbsp;
+														<apex:outputField value="{!option.componentSO.Apttus_Config2__ComponentProductId__c}" />
+			                                            <apex:outputText value="{!option.optionName}"
+			                                                        	 style="font-weight:bold;" 
+			                                                        	 rendered="{!(ISNULL(option.componentSO.Apttus_Config2__ComponentProductId__c))}"/> 
+													</apex:column>
+													
+													<apex:column width="40%" >
+														<apex:dataList value="{!option.chargeList}" 
+																	   var="price">
+															<apex:outputPanel rendered="{!IsMultiCurrency}" >
+																<apex:outputText value="{0} - ">
+																	<apex:param value="{!price.chargeType}" />
+																</apex:outputText>
+																<apex:outputField value="{!price.charge.Apttus_Config2__ListPrice__c}" />
+															</apex:outputPanel>
+															<apex:outputPanel rendered="{!NOT(IsMultiCurrency)}" >
+																<apex:outputText value="{0} - {1, number,currency}">
+																	<apex:param value="{!price.chargeType}" />
+																	<apex:param value="{!price.charge.Apttus_Config2__ListPrice__c}" />
+																</apex:outputText>
+															</apex:outputPanel>
+														</apex:dataList>
+													</apex:column>
+													
+												</apex:pageBlockTable>
+												
+												<apex:outputText value="{!$Label.apttus_config2__NoRecordsToDisplay}"
+																 rendered="{!group3OptionInfo.optionList.size == 0}" />
+																 
+											</apex:pageBlockSection>
+										</apex:column>
+									</apex:dataTable>
+								</apex:tab>
+
+								<apex:tab id="idGroup4Tab" 
+										  label="{!group4TabLabel}" 
+										  name="{!group4TabName}"
+									 	  rendered="{!group4TabEnabled}"
+									 	  ontabenter="onActionClick();" 
+						  				  oncomplete="onActionComplete();" >
+						  				  
+									<apex:dataTable value="{!group4OptionInfos}"
+													var="group4OptionInfo"  
+													width="100%" >
+													
+										<apex:column >
+											<apex:pageBlockSection title="{!group4OptionInfo.groupLineage}"  
+																   columns="1">
+																   
+												<apex:pageBlockTable value="{!group4OptionInfo.optionList}"
+																	 var="option"
+																	 rules="rows" 
+																	 rowClasses="oddRow, evenRow" 
+																	 width="100%"
+																	 columns="4">
+																	 
+													<apex:column width="5%" >
+														<apex:outputPanel rendered="{!NOT(ISNULL(group4OptionInfo.groupSO.Apttus_Config2__MaxOptions__c)) && group4OptionInfo.groupSO.Apttus_Config2__MaxOptions__c == 1}">
+															<apex:outputPanel rendered="{!option.checked}">
+																<input type="radio" 
+																	   checked="{!option.checked}"
+																	   disabled="{!option.disabled}" 
+																	   onclick="invokeDoSelectOption('{!option.optionId}', '{!group4OptionInfo.groupSO.Id}');">
+																</input>
+															</apex:outputPanel>
+															<apex:outputPanel rendered="{!NOT(option.checked)}">
+																<apex:outputPanel rendered="{!NOT(option.disabled)}">
+																	<input type="radio"
+																	   onclick="invokeDoSelectOption('{!option.optionId}', '{!group4OptionInfo.groupSO.Id}');">
+																	</input>
+																</apex:outputPanel>
+																<apex:outputPanel rendered="{!option.disabled}">
+																	<input type="radio" disabled="true"></input>
+																</apex:outputPanel>
+															</apex:outputPanel>													
+														</apex:outputPanel>
+														<apex:outputPanel rendered="{!NOT(group4OptionInfo.groupSO.Apttus_Config2__MaxOptions__c == 1)}">
+															<apex:inputCheckbox value="{!option.checked}" 
+																				selected="{!option.checked}"
+																				disabled="{!option.disabled}" 
+																				onclick="invokeDoSelectOption('{!option.optionId}', '{!group4OptionInfo.groupSO.Id}');">
+															</apex:inputCheckbox>
+														</apex:outputPanel>
+													</apex:column>
+													
+													<apex:column width="15%" >
+														<apex:image value="{!option.optionImageSrc}"
+																	style="width:50px; height:50px; vertical-align:top;"
+																	onclick="aptCreatePopup('{!(option.optionContentUrl)}', '{!option.optionDescription}', {!option.isEmbedType});"
+																	rendered="{!(option.optionImageSrc != null)}" />
+													</apex:column>
+													
+													<apex:column width="40%" >
+														<apex:commandLink rerender="dummy">
+																<apex:image url="{!$Resource.Apttus_Config2__Image_Info}"
+																			onclick="getProductDetail({!ClassName}, '{!option.componentProductId}');"
+																			rendered="{!NOT(ISNULL(option.componentSO.Apttus_Config2__ComponentProductId__c))}"/>
+														</apex:commandLink>	
+														&nbsp;
+														<apex:outputField value="{!option.componentSO.Apttus_Config2__ComponentProductId__c}" />
+			                                            <apex:outputText value="{!option.optionName}"
+			                                                        	 style="font-weight:bold;" 
+			                                                        	 rendered="{!(ISNULL(option.componentSO.Apttus_Config2__ComponentProductId__c))}"/> 
+													</apex:column>
+													
+													<apex:column width="40%" >
+														<apex:dataList value="{!option.chargeList}" 
+																	   var="price">
+															<apex:outputPanel rendered="{!IsMultiCurrency}" >
+																<apex:outputText value="{0} - ">
+																	<apex:param value="{!price.chargeType}" />
+																</apex:outputText>
+																<apex:outputField value="{!price.charge.Apttus_Config2__ListPrice__c}" />
+															</apex:outputPanel>
+															<apex:outputPanel rendered="{!NOT(IsMultiCurrency)}" >
+																<apex:outputText value="{0} - {1, number,currency}">
+																	<apex:param value="{!price.chargeType}" />
+																	<apex:param value="{!price.charge.Apttus_Config2__ListPrice__c}" />
+																</apex:outputText>
+															</apex:outputPanel>
+														</apex:dataList>
+													</apex:column>
+												</apex:pageBlockTable>
+												
+												<apex:outputText value="{!$Label.apttus_config2__NoRecordsToDisplay}"
+																 rendered="{!group4OptionInfo.optionList.size == 0}" />
+																 
+											</apex:pageBlockSection>
+										</apex:column>
+									</apex:dataTable>
+								</apex:tab>
+
+								<apex:tab id="idGroup5Tab" 
+										  label="{!group5TabLabel}" 
+										  name="{!group5TabName}"
+									 	  rendered="{!group5TabEnabled}"
+									 	  ontabenter="onActionClick();" 
+						  				  oncomplete="onActionComplete();" >
+						  				  
+									<apex:dataTable value="{!group5OptionInfos}"
+													var="group5OptionInfo"  
+													width="100%" >
+													
+										<apex:column >
+											<apex:pageBlockSection title="{!group5OptionInfo.groupLineage}"  
+																   columns="1">
+																   
+												<apex:pageBlockTable value="{!group5OptionInfo.optionList}"
+																	 var="option"
+																	 rules="rows" 
+																	 rowClasses="oddRow, evenRow" 
+																	 width="100%"
+																	 columns="4">
+																	 
+													<apex:column width="5%" >
+														<apex:outputPanel rendered="{!NOT(ISNULL(group5OptionInfo.groupSO.Apttus_Config2__MaxOptions__c)) && group5OptionInfo.groupSO.Apttus_Config2__MaxOptions__c == 1}">
+															<apex:outputPanel rendered="{!option.checked}">
+																<input type="radio" 
+																	   checked="{!option.checked}"
+																	   disabled="{!option.disabled}" 
+																	   onclick="invokeDoSelectOption('{!option.optionId}', '{!group5OptionInfo.groupSO.Id}');">
+																</input>
+															</apex:outputPanel>
+															<apex:outputPanel rendered="{!NOT(option.checked)}">
+																<apex:outputPanel rendered="{!NOT(option.disabled)}">
+																	<input type="radio"
+																	   onclick="invokeDoSelectOption('{!option.optionId}', '{!group5OptionInfo.groupSO.Id}');">
+																	</input>
+																</apex:outputPanel>
+																<apex:outputPanel rendered="{!option.disabled}">
+																	<input type="radio" disabled="true"></input>
+																</apex:outputPanel>
+															</apex:outputPanel>													
+														</apex:outputPanel>
+														<apex:outputPanel rendered="{!NOT(group5OptionInfo.groupSO.Apttus_Config2__MaxOptions__c == 1)}">
+															<apex:inputCheckbox value="{!option.checked}" 
+																				selected="{!option.checked}"
+																				disabled="{!option.disabled}" 
+																				onclick="invokeDoSelectOption('{!option.optionId}', '{!group5OptionInfo.groupSO.Id}');">
+															</apex:inputCheckbox>
+														</apex:outputPanel>
+													</apex:column>
+													
+													<apex:column width="15%" >
+														<apex:image value="{!option.optionImageSrc}"
+																	style="width:50px; height:50px; vertical-align:top;"
+																	onclick="aptCreatePopup('{!(option.optionContentUrl)}', '{!option.optionDescription}', {!option.isEmbedType});"
+																	rendered="{!(option.optionImageSrc != null)}" />
+													</apex:column> 
+													
+													<apex:column width="40%" >
+														<apex:commandLink rerender="dummy">
+																<apex:image url="{!$Resource.Apttus_Config2__Image_Info}"
+																			onclick="getProductDetail({!ClassName}, '{!option.componentProductId}');"
+																			rendered="{!NOT(ISNULL(option.componentSO.Apttus_Config2__ComponentProductId__c))}"/>
+														</apex:commandLink>	
+														&nbsp;
+														<apex:outputField value="{!option.componentSO.Apttus_Config2__ComponentProductId__c}" />
+			                                            <apex:outputText value="{!option.optionName}"
+			                                                        	 style="font-weight:bold;" 
+			                                                        	 rendered="{!(ISNULL(option.componentSO.Apttus_Config2__ComponentProductId__c))}"/> 
+													</apex:column>
+													
+													<apex:column width="40%" >
+														<apex:dataList value="{!option.chargeList}" 
+																	   var="price">
+															<apex:outputPanel rendered="{!IsMultiCurrency}" >
+																<apex:outputText value="{0} - ">
+																	<apex:param value="{!price.chargeType}" />
+																</apex:outputText>
+																<apex:outputField value="{!price.charge.Apttus_Config2__ListPrice__c}" />
+															</apex:outputPanel>
+															<apex:outputPanel rendered="{!NOT(IsMultiCurrency)}" >
+																<apex:outputText value="{0} - {1, number,currency}">
+																	<apex:param value="{!price.chargeType}" />
+																	<apex:param value="{!price.charge.Apttus_Config2__ListPrice__c}" />
+																</apex:outputText>
+															</apex:outputPanel>
+														</apex:dataList>
+													</apex:column>
+													
+												</apex:pageBlockTable>
+												
+												<apex:outputText value="{!$Label.apttus_config2__NoRecordsToDisplay}"
+																 rendered="{!group5OptionInfo.optionList.size == 0}" />
+													
+											</apex:pageBlockSection>
+										</apex:column>
+									</apex:dataTable>
+								</apex:tab>
+
+								<apex:tab id="idGroup6Tab" 
+										  label="{!group6TabLabel}" 
+										  name="{!group6TabName}"
+									 	  rendered="{!group6TabEnabled}"
+									 	  ontabenter="onActionClick();" 
+						  				  oncomplete="onActionComplete();" >
+						  				  
+									<apex:dataTable value="{!group6OptionInfos}"
+													var="group6OptionInfo" 
+													width="100%" >
+													
+										<apex:column >
+											<apex:pageBlockSection title="{!group6OptionInfo.groupLineage}"  
+																   columns="1">
+																   
+												<apex:pageBlockTable value="{!group6OptionInfo.optionList}"
+																	 var="option"
+																	 rules="rows" 
+																	 rowClasses="oddRow, evenRow" 
+																	 width="100%"
+																	 columns="4">
+																	 
+													<apex:column width="5%" >
+														<apex:outputPanel rendered="{!NOT(ISNULL(group6OptionInfo.groupSO.Apttus_Config2__MaxOptions__c)) && group6OptionInfo.groupSO.Apttus_Config2__MaxOptions__c == 1}">
+															<apex:outputPanel rendered="{!option.checked}">
+																<input type="radio" 
+																	   checked="{!option.checked}"
+																	   disabled="{!option.disabled}" 
+																	   onclick="invokeDoSelectOption('{!option.optionId}', '{!group6OptionInfo.groupSO.Id}');">
+																</input>
+															</apex:outputPanel>
+															<apex:outputPanel rendered="{!NOT(option.checked)}">
+																<apex:outputPanel rendered="{!NOT(option.disabled)}">
+																	<input type="radio"
+																	   onclick="invokeDoSelectOption('{!option.optionId}', '{!group6OptionInfo.groupSO.Id}');">
+																	</input>
+																</apex:outputPanel>
+																<apex:outputPanel rendered="{!option.disabled}">
+																	<input type="radio" disabled="true"></input>
+																</apex:outputPanel>
+															</apex:outputPanel>													
+														</apex:outputPanel>
+														<apex:outputPanel rendered="{!NOT(group6OptionInfo.groupSO.Apttus_Config2__MaxOptions__c == 1)}">
+															<apex:inputCheckbox value="{!option.checked}" 
+																				selected="{!option.checked}"
+																				disabled="{!option.disabled}" 
+																				onclick="invokeDoSelectOption('{!option.optionId}', '{!group6OptionInfo.groupSO.Id}');">
+															</apex:inputCheckbox>
+														</apex:outputPanel>
+													</apex:column>
+													
+													<apex:column width="15%" >
+														<apex:image value="{!option.optionImageSrc}"
+																	style="width:50px; height:50px; vertical-align:top;"
+																	onclick="aptCreatePopup('{!(option.optionContentUrl)}', '{!option.optionDescription}', {!option.isEmbedType});"
+																	rendered="{!(option.optionImageSrc != null)}" />
+													</apex:column>
+													
+													<apex:column width="40%" >
+														<apex:commandLink rerender="dummy">
+																<apex:image url="{!$Resource.Apttus_Config2__Image_Info}"
+																			onclick="getProductDetail({!ClassName}, '{!option.componentProductId}');"
+																			rendered="{!NOT(ISNULL(option.componentSO.Apttus_Config2__ComponentProductId__c))}"/>
+														</apex:commandLink>	
+														&nbsp;
+														<apex:outputField value="{!option.componentSO.Apttus_Config2__ComponentProductId__c}" />
+			                                            <apex:outputText value="{!option.optionName}"
+			                                                        	 style="font-weight:bold;" 
+			                                                        	 rendered="{!(ISNULL(option.componentSO.Apttus_Config2__ComponentProductId__c))}"/> 
+													</apex:column>
+													
+													<apex:column width="40%" >
+														<apex:dataList value="{!option.chargeList}" 
+																	   var="price">
+															<apex:outputPanel rendered="{!IsMultiCurrency}" >
+																<apex:outputText value="{0} - ">
+																	<apex:param value="{!price.chargeType}" />
+																</apex:outputText>
+																<apex:outputField value="{!price.charge.Apttus_Config2__ListPrice__c}" />
+															</apex:outputPanel>
+															<apex:outputPanel rendered="{!NOT(IsMultiCurrency)}" >
+																<apex:outputText value="{0} - {1, number,currency}">
+																	<apex:param value="{!price.chargeType}" />
+																	<apex:param value="{!price.charge.Apttus_Config2__ListPrice__c}" />
+																</apex:outputText>
+															</apex:outputPanel>
+														</apex:dataList>
+													</apex:column>
+												</apex:pageBlockTable>
+												
+												<apex:outputText value="{!$Label.apttus_config2__NoRecordsToDisplay}"
+																 rendered="{!group6OptionInfo.optionList.size == 0}" />
+																 
+											</apex:pageBlockSection>
+										</apex:column>
+									</apex:dataTable>
+								</apex:tab>
+
+								<apex:tab id="idGroup7Tab" 
+										  label="{!group7TabLabel}" 
+										  name="{!group7TabName}"
+									 	  rendered="{!group7TabEnabled}"
+									 	  ontabenter="onActionClick();" 
+						  				  oncomplete="onActionComplete();" >
+						  				  
+									<apex:dataTable value="{!group7OptionInfos}"
+													var="group7OptionInfo"  
+													width="100%" >
+													
+										<apex:column >
+											<apex:pageBlockSection title="{!group7OptionInfo.groupLineage}"  
+																   columns="1">
+																   
+												<apex:pageBlockTable value="{!group7OptionInfo.optionList}"
+																	 var="option"
+																	 rules="rows" 
+																	 rowClasses="oddRow, evenRow" 
+																	 width="100%"
+																	 columns="4">
+																	 
+													<apex:column width="5%" >
+														<apex:outputPanel rendered="{!NOT(ISNULL(group7OptionInfo.groupSO.Apttus_Config2__MaxOptions__c)) && group7OptionInfo.groupSO.Apttus_Config2__MaxOptions__c == 1}">
+															<apex:outputPanel rendered="{!option.checked}">
+																<input type="radio" 
+																	   checked="{!option.checked}"
+																	   disabled="{!option.disabled}" 
+																	   onclick="invokeDoSelectOption('{!option.optionId}', '{!group7OptionInfo.groupSO.Id}');">
+																</input>
+															</apex:outputPanel>
+															<apex:outputPanel rendered="{!NOT(option.checked)}">
+																<apex:outputPanel rendered="{!NOT(option.disabled)}">
+																	<input type="radio"
+																	   onclick="invokeDoSelectOption('{!option.optionId}', '{!group7OptionInfo.groupSO.Id}');">
+																	</input>
+																</apex:outputPanel>
+																<apex:outputPanel rendered="{!option.disabled}">
+																	<input type="radio" disabled="true"></input>
+																</apex:outputPanel>
+															</apex:outputPanel>													
+														</apex:outputPanel>
+														<apex:outputPanel rendered="{!NOT(group7OptionInfo.groupSO.Apttus_Config2__MaxOptions__c == 1)}">
+															<apex:inputCheckbox value="{!option.checked}"
+																				selected="{!option.checked}"
+																				disabled="{!option.disabled}" 
+																				onclick="invokeDoSelectOption('{!option.optionId}', '{!group7OptionInfo.groupSO.Id}');">
+															</apex:inputCheckbox>
+														</apex:outputPanel>
+													</apex:column>
+													
+													<apex:column width="15%" >
+														<apex:image value="{!option.optionImageSrc}"
+																	style="width:50px; height:50px; vertical-align:top;"
+																	onclick="aptCreatePopup('{!(option.optionContentUrl)}', '{!option.optionDescription}', {!option.isEmbedType});"
+																	rendered="{!(option.optionImageSrc != null)}" />
+													</apex:column>
+													
+													<apex:column width="40%" >
+														<apex:commandLink rerender="dummy">
+																<apex:image url="{!$Resource.Apttus_Config2__Image_Info}"
+																			onclick="getProductDetail({!ClassName}, '{!option.componentProductId}');"
+																			rendered="{!NOT(ISNULL(option.componentSO.Apttus_Config2__ComponentProductId__c))}"/>
+														</apex:commandLink>	
+														&nbsp;
+														<apex:outputField value="{!option.componentSO.Apttus_Config2__ComponentProductId__c}" />
+			                                            <apex:outputText value="{!option.optionName}"
+			                                                        	 style="font-weight:bold;" 
+			                                                        	 rendered="{!(ISNULL(option.componentSO.Apttus_Config2__ComponentProductId__c))}"/> 
+													</apex:column>
+													
+													<apex:column width="40%" >
+														<apex:dataList value="{!option.chargeList}" 
+																	   var="price">
+															<apex:outputPanel rendered="{!IsMultiCurrency}" >
+																<apex:outputText value="{0} - ">
+																	<apex:param value="{!price.chargeType}" />
+																</apex:outputText>
+																<apex:outputField value="{!price.charge.Apttus_Config2__ListPrice__c}" />
+															</apex:outputPanel>
+															<apex:outputPanel rendered="{!NOT(IsMultiCurrency)}" >
+																<apex:outputText value="{0} - {1, number,currency}">
+																	<apex:param value="{!price.chargeType}" />
+																	<apex:param value="{!price.charge.Apttus_Config2__ListPrice__c}" />
+																</apex:outputText>
+															</apex:outputPanel>
+														</apex:dataList>
+													</apex:column>
+													
+												</apex:pageBlockTable>
+												
+												<apex:outputText value="{!$Label.apttus_config2__NoRecordsToDisplay}"
+																 rendered="{!group7OptionInfo.optionList.size == 0}" />
+																 
+											</apex:pageBlockSection>
+										</apex:column>
+									</apex:dataTable>
+								</apex:tab>
+
+							</apex:tabPanel>
+
+						</apex:pageBlock></td>
+
+							<td style="width: 30%" valign="top"><apex:pageBlock id="idLineItemsBlock">
+
+								<apex:pageBlockSection columns="1"
+														rendered="{!NOT(HideListedProductsPriceColumn)}" 
+													   	title="{!Apttus_Config2__LineItem__c.ProductId__r.Name}">
+													   
+									<apex:inputField value="{!prodLineItemSO.Apttus_Config2__Quantity__c}" />
+									
+									<apex:inputField value="{!prodLineItemSO.Apttus_Config2__StartDate__c}"
+													 rendered="{!(prodLineItemSO.PriceType__c == PriceTypeRecurring) ||
+																 (prodLineItemSO.PriceType__c == PriceTypeUsage)}" />
+									
+									<apex:pageBlockSectionItem >
+								    	<apex:outputLabel value="{!$Label.apttus_config2__Term}" 
+								    					  for="idSellingTerm" />
+								    	<apex:inputField id="idSellingTerm" value="{!prodLineItemSO.Apttus_Config2__SellingTerm__c}" />
+									</apex:pageBlockSectionItem>
+																 
+									<apex:inputField value="{!prodLineItemSO.Apttus_Config2__EndDate__c}"
+													 rendered="{!(prodLineItemSO.PriceType__c == PriceTypeRecurring) ||
+																 (prodLineItemSO.PriceType__c == PriceTypeUsage)}" />
+																 
+									<apex:pageBlockSectionItem rendered="{!(prodLineItemSO.PriceType__c == PriceTypeRecurring) ||
+												 		   				   (prodLineItemSO.PriceType__c == PriceTypeUsage)}" >
+								    	<apex:outputLabel value="{!$Label.apttus_config2__Frequency}" 
+								    					  for="idSellingFrequency" />
+								    	<apex:inputField id="idSellingFrequency" value="{!prodLineItemSO.Apttus_Config2__SellingFrequency__c}" />
+									</apex:pageBlockSectionItem>
+									
+									<apex:pageBlockSectionItem rendered="{!(prodLineItemSO.PriceType__c != PriceTypeRecurring) &&
+																 		   (prodLineItemSO.PriceType__c != PriceTypeUsage)}" >
+								    	<apex:outputLabel value="{!$Label.apttus_config2__Frequency}" 
+								    					  for="idSellingFrequency2" />
+								    	<apex:outputField id="idSellingFrequency2" value="{!prodLineItemSO.Apttus_Config2__SellingFrequency__c}" />
+									</apex:pageBlockSectionItem>
+									<apex:dataTable width="100%" 
+													value="{!productItemList}" 
+													style="font-size:90%" 
+													var="productItem">
+													
+										<apex:column >
+											<apex:outputText value="{!productItem.lineItemSO.Apttus_Config2__ChargeType__c}:" />
+										</apex:column>
+										
+										<apex:column style="text-align:right;">
+											<apex:outputField value="{!productItem.lineItemSO.Apttus_Config2__NetPrice__c}" 
+															  rendered="{!IsMultiCurrency}" />
+											<apex:outputText value="{0,number,currency}"
+															 rendered="{!NOT(IsMultiCurrency)}" >
+												<apex:param value="{!productItem.lineItemSO.Apttus_Config2__NetPrice__c}" />
+											</apex:outputText>
+										</apex:column>
+										
+									</apex:dataTable>
+								</apex:pageBlockSection>
+
+								<apex:pageBlockSection columns="1" title="{!$Label.apttus_config2__MyOptions}" >
+
+									<apex:pageBlockTable width="100%" 
+														 value="{!optionItemTree}"  
+														 style="font-size:85%"
+														 var="option" >
+														 
+										<apex:column colspan="4" rendered="{!option.showLineage}">
+											<apex:outputText value="{!option.lineage}" 
+															 style="font-weight:bold;text-transform:uppercase;"/>
+										</apex:column>
+										
+										<apex:column rendered="{!NOT(option.showLineage)}" style="padding-left: 4px;">
+											<apex:outputField rendered="{!option.lineItem.lineItemSO.Apttus_Config2__IsPrimaryLine__c}"
+																		  value="{!option.lineItem.lineItemSO.Apttus_Config2__OptionId__c}" />
+											<br/>
+											<apex:outputField rendered="{!isAssetEnabled}"  
+																value="{!option.lineItem.lineItemSO.Apttus_Config2__LineStatus__c}"
+														 		style="font-size: 10px;" />																			  
+										</apex:column>
+
+										<apex:column rendered="{!NOT(option.showLineage)}" >
+											<apex:outputField value="{!option.lineItem.lineItemSO.Apttus_Config2__ChargeType__c}"  />
+										</apex:column>
+										
+										<apex:column style="text-align:right;"  
+													 rendered="{!NOT(option.showLineage)}" >
+											<apex:outputField value="{!option.lineItem.lineItemSO.Apttus_Config2__ListPrice__c}" 
+															  rendered="{!IsMultiCurrency}" />
+											<apex:outputText value="{0,number,currency}" 
+															 rendered="{!NOT(IsMultiCurrency)}" >
+												<apex:param value="{!option.lineItem.lineItemSO.Apttus_Config2__ListPrice__c}" />
+											</apex:outputText>
+										</apex:column>
+
+									</apex:pageBlockTable>
+
+								</apex:pageBlockSection>
+
+							</apex:pageBlock>
+							<br/>
+<!-- Start Shopping Cart -->
+				<apex:pageBlock id="idSelectedProductsBlock">
+					<apex:pageBlockSection columns="1" 
+										   collapsible="false"
+										   title="{!$Label.apttus_config2__SelectedProducts}">
+						<apex:outputPanel id="idPaginationPanel" 
+											  styleClass="bNext"
+											  layout="block" 
+											  style="text-align: right;"
+											  rendered="{!lineItemPaging.hasDisplayLines}">
+								<font size="1px"> 
+									<apex:outputPanel id="idNavSelectedPanel"  
+													  styleClass="next"
+													  layout="block" 
+													  rendered="{!OR(lineItemPaging.hasNextPage,lineItemPaging.hasPreviousPage)}">
+										<apex:outputPanel rendered="{!NOT(lineItemPaging.hasPreviousPage)}"
+														  styleClass="greyedLink">&lt;{!$Label.IteratorPrevious}</apex:outputPanel>
+										<apex:commandLink action="{!previousLineItemPage}" 
+														  rendered="{!lineItemPaging.hasPreviousPage}" 
+														  reRender="idSelectedProductsBlock">&lt;{!$Label.IteratorPrevious}</apex:commandLink>
+										<span> | </span>
+										<apex:outputText value="{!$Label.apttus_config2__Page}: {!lineItemPaging.currentPageNumber} {!$Label.apttus_config2__OutOf} {!lineItemPaging.totalPages}" />
+										<span> | </span>
+										<apex:outputPanel rendered="{!NOT(lineItemPaging.hasNextPage)}"
+													      styleClass="greyedLink">{!$Label.IteratorNext}&gt;</apex:outputPanel>
+										<apex:commandLink action="{!nextLineItemPage}" 
+														  rendered="{!lineItemPaging.hasNextPage}"
+											 			  reRender="idSelectedProductsBlock">{!$Label.IteratorNext}&gt;</apex:commandLink>
+									</apex:outputPanel> 
+								</font> 
+						</apex:outputPanel>										 	   
+						<!-- Shopping Cart ProductInfo -->
+						<apex:pageBlockTable value="{!lineItemPaging.displayLines}" 
+											 var="lineItem"
+											 width="100%" 
+											 rules="rows" 
+											 rowClasses="oddRow, evenRow"
+											 rendered="{!lineItemPaging.hasDisplayLines}">
+									<!-- Start Group By Search Attribute Value -->		 		 
+									<apex:column style="width: 50px; max-width: 100px; white-space: nowrap;" rendered="{!lineItem.isSearchItem}">
+										<apex:outputPanel rendered="{!(lineItem.searchAttrSO.Apttus_Config2__ValueType__c == ValueTypeDefault)}"> 
+											<apex:commandLink value="{!$Label.apttus_config2__GuideMe}"
+															    action="{!gotoSearchDefault}"
+															    onclick="onActionClick();" 
+																oncomplete="onActionComplete();"
+																style="color: blue; white-space: nowrap;"
+															    reRender="idTopNavActions, idSelectedProductsBlock, idRulesBlock" >
+											</apex:commandLink>
+										</apex:outputPanel>
+										<apex:outputPanel rendered="{!(lineItem.searchAttrSO.Apttus_Config2__ValueType__c == ValueTypeProduct)}"> 
+											<apex:commandLink value="{!$Label.apttus_config2__GuideMe}"
+															    action="{!gotoSearchProduct}"
+															    onclick="onActionClick();" 
+																oncomplete="onActionComplete();"
+																style="color:blue;"
+															    reRender="idTopNavActions, idSelectedProductsBlock, idRulesBlock" >
+													<apex:param name="param1" 
+															assignTo="{!selectedProductId}"
+															value="{!lineItem.searchAttrSO.Apttus_Config2__BaseProductId__c}" />
+											</apex:commandLink>
+										</apex:outputPanel>
+									</apex:column>	        	 
+						        	<apex:column rendered="{!lineItem.isSearchItem}"> 
+						        		<apex:outputPanel rendered="{!(lineItem.searchAttrSO.Apttus_Config2__ValueType__c == ValueTypeDefault)}"> 
+											<apex:outputText value="{!$Label.apttus_config2__SearchDefault}"/>
+										</apex:outputPanel>
+										<apex:outputPanel rendered="{!(lineItem.searchAttrSO.Apttus_Config2__ValueType__c == ValueTypeProduct)}">
+											<apex:outputField value="{!lineItem.searchAttrSO.Apttus_Config2__BaseProductId__c}"></apex:outputField> 
+										</apex:outputPanel>				
+									</apex:column>													 
+									<!-- End of Group By Search Attribute Value -->	
+									<!-- Start Selected Line Item -->														 
+									<apex:column style="width: 28px; max-width: 36px; text-align: center;" rendered="{!lineItem.isLineItem}">
+											<apex:commandLink rerender="dummy">
+												<apex:image url="{!$Resource.Apttus_Config2__Image_Remove}" alt="{!$Label.apttus_config2__Remove}"
+															onclick="YAHOO.force.com.showRemoveConfirmation('{!lineItem.lineItemSO.Apttus_Config2__LineNumber__c}');return false;"/>
+											</apex:commandLink>	
+									</apex:column>
+									<apex:column >
+										<apex:outputField value="{!lineItem.lineItemSO.Apttus_Config2__ProductId__c}"
+														 style="font-size: 10px; font-weight: bold;" />
+										<br/>
+										<apex:outputField rendered="{!isAssetEnabled}"  
+														  value="{!lineItem.lineItemSO.Apttus_Config2__LineStatus__c}"
+														  style="font-size: 10px;" />												 
+									</apex:column>
+									<!-- 								
+									<apex:column style="text-align: right">
+										<apex:outputField value="{!lineItem.lineItemSO.AdjustedPrice__c}" />
+									</apex:column>
+									-->
+						</apex:pageBlockTable>
+			
+					</apex:pageBlockSection>
+					</apex:pageBlock>
+						</td>
+					</tr>
+				</table>
+			</apex:outputPanel>
+
+		</apex:pageBlock>
+<!-- End Shopping Cart -->
+		
+<!-- This is the product details dialog -->
+		<apex:outputPanel >
+			<div id="productDetailPanel" style="display: none">
+				<apex:outputPanel id="idCtxProductDetail">
+				    <div class="hd">
+				    	<apex:outputPanel >
+				    		<span id="ctxProductName">Hello Name</span>
+				        </apex:outputPanel>	
+				    </div> 
+				    <div class="bd">
+			    		<apex:pageBlock >
+			    			<apex:pageBlockSection columns="1">
+			    				<apex:pageBlockSectionItem >
+                    				<apex:outputLabel value="{!$ObjectType.Product2.Fields.Description.Label}" for="ctxProductDescription"/>
+			    					<span id="ctxProductDescription">Hello Description</span>
+				    			</apex:pageBlockSectionItem>
+			    			</apex:pageBlockSection>
+			    		</apex:pageBlock>
+				    </div> 
+				</apex:outputPanel>	
+			</div>
+		</apex:outputPanel>		
+		
+<!-- This is the content of the confirmation dialog -->
+		<apex:outputPanel >
+			<div id="confirmationPanel" style="display: none">
+			    <div class="hd">
+			        <apex:outputText value="{!$Label.apttus_config2__RemoveConfirmation}" />
+			    </div> 
+			    <div class="bd">
+			    	<apex:outputText value="{!$Label.apttus_config2__RemoveProductMessage}" />
+			    </div>
+			    <div class="bd">
+		            <apex:actionRegion >
+		                <div style="text-align: center; padding-left: 4px;" >
+		                    <apex:commandButton value="{!$Label.apttus_config2__Yes}"
+		                    					onclick="YAHOO.force.com.remove();"
+		                    					style="width: 50px;"   
+		                    					immediate="true" 
+		                    					oncomplete="YAHOO.force.com.confirmationPanel.hide();" />
+		                    <apex:commandButton value="{!$Label.apttus_config2__No}" 
+		                    					style="width: 50px;"   
+		                    					onclick="YAHOO.force.com.confirmationPanel.hide();return false;" />
+		                </div>
+		            </apex:actionRegion>
+			    </div>
+			</div>
+		</apex:outputPanel>
+			
+<!-- Begin Constraint Rule Alert -->		
+<!-- This is the select choice dialog -->
+		<apex:outputPanel >
+			<div id="choicePanel" style="display: block">
+				<apex:outputPanel id="idChoicePanel">
+<!-- Start Choice Body -->
+
+<!-- Start Rule Result -->		
+				<div id="aptRuleResult" style="{border: 2px solid gray; width: 100%;}">
+						<apex:pageBlock id="idRulesBlock">
+									<apex:outputPanel rendered="{!NOT(ruleResult.isEmpty)}">
+										<div style="width: 98%; padding-left: 10px; padding-left: 10px;">	
+											<div style="width: 98%; height: 40px; color: black; border: 1px solid #990000; padding-left: 5px; font-weight: bold; overflow: auto;">
+												<apex:outputText value="{!ruleResult.Message}"/>
+											</div>  
+										</div>
+									</apex:outputPanel>	
+									<div style="{!ruleResult.tableStyle}">
+									<apex:pageBlockSection columns="1" 
+												   collapsible="false"
+												   showHeader="{!ruleResult.isShowMessage}"
+												   rendered="{!NOT(ruleResult.isEmpty)}"
+												   >
+										<!-- Begin List of Options -->
+												<apex:pageBlockTable value="{!ruleResult.optionInfos}"
+																	 rendered="{!ruleResult.hasOptions}"	
+																	 var="option"
+																	 rules="rows" 
+																	 rowClasses="oddRow, evenRow" 
+																	 width="100%"
+																	 columns="3"> 
+																	 
+													<apex:column width="20%" >
+														<apex:outputPanel >
+															<apex:inputCheckbox value="{!option.checked}" 
+																				selected="{!option.checked}"
+																				disabled="{!option.disabled}" 
+																				onclick="invokeDoSelectOption('{!option.optionId}', '{!option.groupId}');">
+															</apex:inputCheckbox>
+														</apex:outputPanel>
+													</apex:column>
+													
+													<apex:column width="40%" >
+														<apex:outputField value="{!option.componentSO.Apttus_Config2__ComponentProductId__c}" />
+			                                            <!-- 
+			                                            <apex:outputText value="{!option.optionName}"
+			                                                             style="font-weight:bold;" /> 
+			                                            -->
+													</apex:column>
+													
+													<apex:column width="40%" >
+														<apex:dataList value="{!option.chargeList}" 
+																	   var="price">
+															<apex:outputPanel rendered="{!IsMultiCurrency}" >
+																<apex:outputText value="{0} - ">
+																	<apex:param value="{!price.chargeType}" />
+																</apex:outputText>
+																<apex:outputField value="{!price.charge.Apttus_Config2__ListPrice__c}" />
+															</apex:outputPanel>
+															<apex:outputPanel rendered="{!NOT(IsMultiCurrency)}" >
+																<apex:outputText value="{0} - {1, number,currency}">
+																	<apex:param value="{!price.chargeType}" />
+																	<apex:param value="{!price.charge.Apttus_Config2__ListPrice__c}" />
+																</apex:outputText>
+															</apex:outputPanel>
+														</apex:dataList>
+													</apex:column>
+													
+												</apex:pageBlockTable>  
+										<!-- End List of Options -->
+										<!-- Begin List of Products -->
+												<apex:pageBlockTable value="{!ruleResult.products}"
+																	 rendered="{!ruleResult.hasProducts}"	 
+																	 var="productSO"
+																	 rules="rows" 
+																	 rowClasses="oddRow, evenRow" 
+																	 width="100%"
+																	 columns="3"> 
+																	 
+													<apex:column width="20%" >
+														<apex:commandButton value="{!$Label.apttus_config2__Select}"
+																	    action="{!doSelectProduct}" 
+																	    onclick="onActionClick();" 
+																		oncomplete="onActionComplete();"
+																		rendered="{!ruleResult.isSelect}"
+																	    reRender="idTopNavActions, idErrorMsg, idRulesBlock, idSelectedProductsBlock" >
+																<apex:param name="param1" 
+																			assignTo="{!selectedProductId}"
+																			value="{!productSO.Id}" />
+																<apex:param name="param2" 
+																			assignTo="{!ruleActionId}"
+																			value="{!ruleResult.ruleActionId}" />
+														</apex:commandButton>
+														<apex:commandButton value="{!$Label.apttus_config2__Remove}" 
+																		action="{!doRemoveProduct}" 
+																		onclick="onActionClick();" 
+																		oncomplete="onActionComplete();"
+																		rendered="{!ruleResult.isRemove}"
+																	    reRender="idErrorMsg, idRulesBlock, idSelectedProductsBlock" >
+																<apex:param name="param1" 
+																			assignTo="{!selectedProductId}" 
+																			value="{!productSO.Id}" />
+																<apex:param name="param2" 
+																			assignTo="{!ruleActionId}"
+																			value="{!ruleResult.ruleActionId}" />
+														</apex:commandButton>
+													</apex:column>
+												 
+													<apex:column >
+														<apex:outputText value="{!productSO.Name}"
+																		 style="font-weight:bold;" />
+													</apex:column>
+												
+												</apex:pageBlockTable>
+										<!-- End List of Products -->
+										
+									</apex:pageBlockSection>
+									</div> 
+<!-- End Rule Result -->								
+							
+<!-- End Choice Body -->
+				    <div>
+				        <div style="text-align: center;" >
+				        <apex:outputPanel >
+				        	<!-- 
+				        	<input type="button" value="{!$Label.apttus_config2__Cancel}" style="width: 60px;" onclick="YAHOO.force.com.choicePanel.hide();"/>
+							-->		
+							<apex:commandButton value="{!$Label.apttus_config2__Cancel}"
+											    action="{!doIgnoreAction}" 
+											    onclick="onActionClick();" 
+												oncomplete="onActionComplete();"
+												reRender="idErrorMsg, idTopNavActions, idSelectedProductsBlock, idRulesBlock" >
+													<apex:param name="param1" 
+																assignTo="{!ignoreActionId}"
+																value="{!ruleResult.ruleActionId}" />
+							</apex:commandButton>		
+						</apex:outputPanel>
+								
+						</div>
+					</div> 
+							 
+					</apex:pageBlock>
+				</div> 
+			</apex:outputPanel>	 
+		</div>
+	</apex:outputPanel>	
+	
+<!-- End of Constraint Rule Alert -->
+		
+<!--  Javascript functions -->
+		<apex:actionFunction name="invokeDoDeleteLineItem" 
+							 action="{!doDeleteLineItem}"
+							 rerender="idTopNavActions, idTabPanel, idLineItemsBlock, idSelectedProductsBlock, idErrorMsg, idRulesBlock"
+							 oncomplete="onActionComplete();">
+			<apex:param name="firstParam" assignTo="{!lineItemLineNbr}" value="" />
+		</apex:actionFunction>
+				
+		<apex:actionFunction name="sfdcDoSelectOption"
+							 action="{!doSelectOption}" 
+							 rerender="idTopNavActions, idTabPanel, idLineItemsBlock, idSelectedProductsBlock, idErrorMsg, idRulesBlock"
+							 oncomplete="onActionComplete();" >
+			<apex:param name="firstParam" assignTo="{!ctxOptionId}" value="" />
+			<apex:param name="secondParam" assignTo="{!ctxGroupId}" value="" />
+		</apex:actionFunction>
+
+	    <apex:actionFunction name="invokeDoHideMessage"
+							 action="{!doHideMessage}"
+							 reRender="idErrorMsg"
+							 oncomplete="YAHOO.force.com.waitPanel.hide();" >
+			<apex:param name="param" assignTo="{!appliedActionInfoId}" value="" />
+		</apex:actionFunction>
+		
+		<apex:actionFunction name="invokeDoProcessMoreRules" 
+							 action="{!doProcessMoreRules}"
+							 rerender="idTopNavActions, idTabPanel, idLineItemsBlock, idSelectedProductsBlock, idErrorMsg, idRulesBlock"
+							 oncomplete="onActionComplete();" />
+		
+	</apex:form>
+	
+	<script type="text/javascript">
+		var aptsOnload = function(){
+			YAHOO.util.Event.onDOMReady(YAHOO.force.com.onDOMReady);
+			//when the page is loaded with pending processing of rules
+			if(needMoreProcessing){
+				YAHOO.force.com.waitPanel.show();
+				invokeDoProcessMoreRules();
+			}else if(showChoicePanel){
+				YAHOO.force.com.waitPanel.hide();
+				YAHOO.force.com.choicePanel.show();
+			}
+		}
+		window.onload = combineFunction(window.onload, aptsOnload);
+	</script>
+
+</apex:page>

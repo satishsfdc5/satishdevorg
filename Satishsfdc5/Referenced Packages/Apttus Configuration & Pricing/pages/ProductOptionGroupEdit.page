@@ -1,0 +1,56 @@
+<!--
+ 	Apttus Config & Pricing
+ 	ProductOptionGroupEdit
+ 	 
+ 	@2010-2011 Apttus Inc. All rights reserved.
+ -->
+<apex:page controller="Apttus_Config2.ProductOptionGroupEditController"  
+			showHeader="false" 
+			sidebar="false" 
+			cache="false" 
+			tabStyle="Product2">
+			
+	<apex:form >
+
+		<apex:pageBlock id="idGroupsBlock" title="{!productName}">
+
+			<apex:outputPanel id="idErrorMsg" >
+				<apex:pageMessages />
+			</apex:outputPanel>
+			
+			<apex:pageBlockButtons location="both">
+				<apex:commandButton value="{!$Label.apttus_config2__Save}" action="{!doSave}" />
+				<apex:commandButton value="{!$Label.apttus_config2__Cancel}" action="{!doCancel}" />
+			</apex:pageBlockButtons>
+
+			<apex:pageBlockSection title="{!$Label.apttus_config2__ProductOptionGroups}"
+				columns="1" collapsible="true" >
+
+				<apex:pageBlockTable value="{!pogList}"
+					var="pog" width="100%" >
+
+					<apex:column headerValue="{!$ObjectType.Apttus_Config2__ProductOptionGroup__c.Label}">
+						<apex:outputField value="{!pog.OptionGroupId__r.Name}"
+							style="width:40px;" />
+					</apex:column>
+
+					<apex:column headerValue="{!$ObjectType.Apttus_Config2__ProductOptionGroup__c.Fields.Apttus_Config2__MinOptions__c.Label}">
+						<apex:inputField value="{!pog.Apttus_Config2__MinOptions__c}"
+							style="width:40px;" />
+					</apex:column>
+
+					<apex:column headerValue="{!$ObjectType.Apttus_Config2__ProductOptionGroup__c.Fields.Apttus_Config2__MaxOptions__c.Label}">
+						<apex:inputField value="{!pog.Apttus_Config2__MaxOptions__c}"
+							style="width:40px;" />
+					</apex:column>
+
+					<apex:column headerValue="{!$ObjectType.Apttus_Config2__ProductOptionGroup__c.Fields.Apttus_Config2__ModifiableType__c.Label}">
+						<apex:inputField value="{!pog.Apttus_Config2__ModifiableType__c}" />
+					</apex:column>
+
+				</apex:pageBlockTable>					
+
+			</apex:pageBlockSection>
+		</apex:pageBlock>	
+	</apex:form>
+</apex:page>

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <webLinks>
+        <fullName>CreateAgreementFromOpportunity</fullName>
+        <availability>online</availability>
+        <description>Create agreement from the opportunity</description>
+        <displayType>link</displayType>
+        <height>600</height>
+        <linkType>page</linkType>
+        <masterLabel>Create Agreement</masterLabel>
+        <openType>sidebar</openType>
+        <page>OpportunityAgreement</page>
+        <protected>false</protected>
+    </webLinks>
+    <webLinks>
+        <fullName>CreateOfflineAgreementFromOpportunity</fullName>
+        <availability>online</availability>
+        <description>Create offline agreement from opportunity</description>
+        <displayType>link</displayType>
+        <height>600</height>
+        <linkType>page</linkType>
+        <masterLabel>Create Offline Agreement</masterLabel>
+        <openType>sidebar</openType>
+        <page>OfflineOpportunityAgreement</page>
+        <protected>false</protected>
+    </webLinks>
+    <webLinks>
+        <fullName>NewAgreementFromOpportunity</fullName>
+        <availability>online</availability>
+        <description>Create agreement from the opportunity</description>
+        <displayType>massActionButton</displayType>
+        <encodingKey>UTF-8</encodingKey>
+        <height>600</height>
+        <linkType>url</linkType>
+        <masterLabel>New Agreement (Deprecated)</masterLabel>
+        <openType>sidebar</openType>
+        <protected>false</protected>
+        <requireRowSelection>false</requireRowSelection>
+        <url>/apex/Apttus__OpportunityAgreement?id={!Opportunity.Id}</url>
+    </webLinks>
+    <webLinks>
+        <fullName>NewOfflineAgreementFromOpportunity</fullName>
+        <availability>online</availability>
+        <description>Create offline agreement from opportunity</description>
+        <displayType>massActionButton</displayType>
+        <encodingKey>UTF-8</encodingKey>
+        <height>600</height>
+        <linkType>url</linkType>
+        <masterLabel>New Offline Agreement (Deprecated)</masterLabel>
+        <openType>sidebar</openType>
+        <protected>false</protected>
+        <requireRowSelection>false</requireRowSelection>
+        <url>/apex/Apttus__OfflineOpportunityAgreement?id={!Opportunity.Id}</url>
+    </webLinks>
+</CustomObject>

@@ -1,0 +1,26 @@
+<apex:page standardController="Account" sidebar="false" extensions="AccNewButtonPageController">
+<apex:form >
+    <apex:pageBlock >
+        <apex:pageBlockButtons >
+            
+        	<apex:commandButton action="{!doSave}" value="Save" />
+            <apex:commandButton action="{!Cancel}" value="Cancel" />
+        </apex:pageBlockButtons>
+        <apex:pageBlockSection columns="2" title="Account Information">
+            <apex:inputField value="{!Acc.Name}"/>
+            <apex:inputField value="{!Acc.Type}"/>
+            <apex:inputField value="{!Acc.Industry}"/>
+            <apex:inputField value="{!Acc.website}"/>
+        </apex:pageBlockSection>
+        <apex:pageBlockSection columns="6" title="Opportunity Information">
+            <apex:repeat value="{!opp}" var="o">
+           <apex:inputField value="{!o.Name}"/> 
+           <apex:inputField value="{!o.StageName}"/>
+            <apex:inputField value="{!o.CloseDate}"/>
+                <apex:commandButton action="{!addRow}" value="Add"/>
+            <apex:outputLink >Del</apex:outputLink>
+            </apex:repeat>
+        </apex:pageBlockSection>
+    </apex:pageBlock>
+</apex:form>
+</apex:page>

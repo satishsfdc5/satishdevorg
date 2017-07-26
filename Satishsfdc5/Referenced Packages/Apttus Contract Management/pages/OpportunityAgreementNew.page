@@ -1,0 +1,29 @@
+<!-- 
+    Apttus Contract Management
+    OpportunityAgreementNew
+     
+    @2009-2010 Apttus Inc. All rights reserved.
+
+ -->
+<apex:page standardController="Opportunity" 
+		   extensions="Apttus.OpportunityAgreementNewController" 
+		   action="{!onLoad}" >
+	
+	<apex:form >
+		<!--  required fields -->
+		<apex:outputText value="{!Opportunity.Name}" rendered="false"/>
+		<apex:outputText value="{!Opportunity.AccountId}" rendered="false"/>
+		<apex:outputText value="{!Opportunity.Description}" rendered="false"/>
+		<apex:outputText value="{!Opportunity.OwnerId}" rendered="false"/>
+		<apex:outputText value="{!Opportunity.Amount}" rendered="false"/>
+		<apex:outputText value="{!Opportunity.CloseDate}" rendered="false"/>
+		
+		<apex:pageBlock mode="edit" rendered="{!hasErrors}" >
+			<apex:pageMessages />
+			<apex:pageBlockButtons location="bottom" >
+				<apex:commandButton action="{!doCancel}" value="{!$Label.apttus__Cancel}" immediate="true"/>
+			</apex:pageBlockButtons>
+		</apex:pageBlock>
+	</apex:form>
+	
+</apex:page>

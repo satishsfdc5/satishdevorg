@@ -1,0 +1,97 @@
+<!-- 
+    Apttus Config & Pricing
+    ProductAttributeGroupMemberEdit
+     
+    @2010-2011 Apttus Inc. All rights reserved.
+
+ -->
+<apex:page standardController="Apttus_Config2__ProductAttributeGroupMember__c" 
+	  	   extensions="Apttus_Config2.ProductAttrGroupMbrEditController" 
+           showHeader="false" 
+           sidebar="false" 
+           tabStyle="Apttus_Config2__ProductAttributeGroupMember__c">	
+    
+    <style>
+		textarea {
+			width: 40%;
+		}
+	</style>
+	
+	<apex:sectionHeader title="{!$ObjectType.Product2.Label & ' ' & productSO.Name}" 
+						subtitle="{!$ObjectType.Apttus_Config2__ProductAttributeGroup__c.Label & ' ' & $Label.apttus_config2__Edit}" />
+						
+					
+	<apex:form id="idAttributeGroupMembers">
+		
+		<!--  required fields -->
+		
+		<apex:pageBlock id="idAttributeGroupMembersBlock" mode="edit" >
+			<apex:pageMessages />
+			
+			<apex:pageBlockButtons location="both">
+		        <apex:commandButton value="{!$Label.apttus_config2__Save}" 
+		        					action="{!doSave}" 
+		        					disabled="{!NOT(hasAttributeGroupMembers || hasDeletedAttributeGroupMembers)}" />
+		        <apex:commandButton value="{!$Label.apttus_config2__Cancel}" 
+		        					action="{!doCancel}" 
+		        					immediate="true" />
+		    </apex:pageBlockButtons>
+		    
+		    <apex:pageBlockSection id="idAttributeGroupMembersSection" 
+		    					   title="{!$ObjectType.Apttus_Config2__ProductAttributeGroup__c.LabelPlural}"  
+		    					   columns="2" 
+		    					   collapsible="false" >
+		    					   
+		        <apex:pageBlockTable value="{!attributeGroupMembers}" 
+		        					 var="memberInfo" 
+		        					 columns="5" 
+		        					 width="100%"
+		        					 rendered="{!hasAttributeGroupMembers}" >
+		        	
+		        	<apex:column headerValue="{!$ObjectType.Apttus_Config2__ProductAttributeGroupMember__c.Fields.Apttus_Config2__Sequence__c.Label}" 
+		        				 width="5%" >
+		        		<apex:outputField value="{!memberInfo.memberSO.Apttus_Config2__Sequence__c}" />
+					</apex:column>
+					<apex:column headerValue="{!$ObjectType.Apttus_Config2__ProductAttributeGroupMember__c.Fields.Name.Label}" >
+		        		<apex:outputText id="idName" value="{!memberInfo.memberSO.Name}" />
+					</apex:column>
+					
+					<apex:column headerValue="{!$ObjectType.Apttus_Config2__ProductAttributeGroupMember__c.Fields.Apttus_Config2__AttributeGroupId__c.Label}" >
+		        		<apex:outputField value="{!memberInfo.memberSO.Apttus_Config2__AttributeGroupId__c}" />
+					</apex:column>
+				   	<apex:column width="5%" >
+					   	<apex:commandLink action="{!doDeleteRow}" 
+									  	  value="{!$Label.apttus_config2__Del}" 
+									  	  reRender="idAttributeGroupMembersBlock" >
+							<apex:param name="rowNum" value="{!memberInfo.RowNum}" />			  
+						</apex:commandLink>
+					</apex:column>
+					<apex:column width="5%" >
+				   		<apex:commandLink action="{!doMoveUpRow}" 
+								  	  	  reRender="idAttributeGroupMembersBlock" 
+								  	  	  rendered="{!memberInfo.RowNum > 1}" >
+							<apex:param name="rowNum" value="{!memberInfo.RowNum}" />		
+							<apex:image url="{!$Resource.Apttus_Config2__Image_MoveUp}" 
+	                       				title="{!$Label.apttus_config2__MoveUp}" 
+	                       				alt="{!$Label.apttus_config2__MoveUp}" />
+						</apex:commandLink>
+						<apex:commandLink action="{!doMoveDownRow}" 
+								  	  	  reRender="idAttributeGroupMembersBlock" 
+								  	  	  rendered="{!memberInfo.RowNum < lastRowNumber}" >
+							<apex:param name="rowNum" value="{!memberInfo.RowNum}" />
+							<apex:image url="{!$Resource.Apttus_Config2__Image_MoveDown}" 
+	                       				title="{!$Label.apttus_config2__MoveDown}" 
+	                       				alt="{!$Label.apttus_config2__MoveDown}" />
+						</apex:commandLink>
+				   	</apex:column>
+				   	
+		        </apex:pageBlockTable>
+		        
+		        <apex:outputText value="{!$Label.apttus_config2__NoRecordsToDisplay}" rendered="{!NOT(hasAttributeGroupMembers)}" />
+		    </apex:pageBlockSection>
+		    
+		</apex:pageBlock>
+			    			   
+	</apex:form>
+
+</apex:page>

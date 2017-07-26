@@ -1,0 +1,210 @@
+<!-- 
+    Apttus Config & Pricing
+    PriceRuleset
+     
+    @2010-2011 Apttus Inc. All rights reserved.
+
+ -->
+<apex:page standardController="Apttus_Config2__PriceRuleset__c" 
+	  	   extensions="Apttus_Config2.PriceRulesetController" 
+           showHeader="false" 
+           sidebar="true" 
+           tabStyle="Apttus_Config2__PriceRuleset__c">	
+    
+    <style>
+		textarea {
+			width: 70%;
+		}
+	</style>
+	
+	<apex:sectionHeader title="{!$ObjectType.Apttus_Config2__PriceRuleset__c.Label & ' ' & $Label.apttus_config2__Edit}" 
+						subtitle="{!$Label.apttus_config2__New & ' ' & $ObjectType.Apttus_Config2__PriceRuleset__c.Label}" 
+						rendered="{!ISBLANK(Apttus_Config2__PriceRuleset__c.Id)}" />
+						
+	<apex:sectionHeader title="{!$ObjectType.Apttus_Config2__PriceRuleset__c.Label & ' ' & $Label.apttus_config2__Edit}" 
+						subtitle="{!Apttus_Config2__PriceRuleset__c.Name}" 
+						rendered="{!NOT(ISBLANK(Apttus_Config2__PriceRuleset__c.Id))}" />
+						
+	<apex:form id="idPriceRulesetSO">
+		
+		<!--  required fields -->
+		<apex:outputText value="{!Apttus_Config2__PriceRuleset__c.Apttus_Config2__Criteria__c}" rendered="false" />
+		
+		<apex:pageBlock id="idPriceRulesetBlock" 
+						title="{!$ObjectType.Apttus_Config2__PriceRuleset__c.Label & ' ' & $Label.apttus_config2__Edit}" 
+						mode="edit" >
+			<apex:pageMessages />
+			
+			<apex:pageBlockButtons location="both" rendered="{!NOT(isCriteriaEditMode || isFilterEditMode)}" >
+		        <apex:commandButton value="{!$Label.apttus_config2__Save}" action="{!doSave}" />
+		        <apex:commandButton value="{!$Label.apttus_config2__SaveAndNew}" action="{!doSaveAndNew}" />
+		        <apex:commandButton value="{!$Label.apttus_config2__Cancel}" action="{!doCancel}" immediate="true"/>
+		    </apex:pageBlockButtons>
+		    
+		    <apex:pageBlockSection id="idPriceRulesetSection" 
+		    					   title="{!$Label.apttus_config2__Information}" 
+		    					   columns="2" 
+		    					   collapsible="false" >
+		    	
+		    	<apex:pageBlockSectionItem rendered="{!NOT(isCriteriaEditMode || isFilterEditMode)}" >
+					<apex:outputLabel value="{!$ObjectType.Apttus_Config2__PriceRuleset__c.Fields.Name.Label}" 
+									  for="idName" />
+					<apex:outputPanel styleClass="requiredInput" layout="block">
+   						<apex:outputPanel styleClass="requiredBlock" layout="block"/>
+  						<apex:inputField id="idName" 
+  										 value="{!Apttus_Config2__PriceRuleset__c.Name}" 
+  										 required="true" />
+ 					</apex:outputPanel>
+				</apex:pageBlockSectionItem>
+				<apex:outputField value="{!Apttus_Config2__PriceRuleset__c.Name}" 
+								  rendered="{!isCriteriaEditMode || isFilterEditMode}" />
+  				
+  				<apex:pageBlockSectionItem rendered="{!NOT(isCriteriaEditMode || isFilterEditMode)}" >
+			    	<apex:outputLabel value="{!$ObjectType.Apttus_Config2__PriceRuleset__c.Fields.Apttus_Config2__PriceListId__c.Label}" 
+			    					  for="idPriceListId" />
+			    	<apex:selectList id="idPriceListId" 
+			    					 size="1" 
+			    					 value="{!Apttus_Config2__PriceRuleset__c.Apttus_Config2__PriceListId__c}" 
+			    					 multiselect="false">
+			      		<apex:selectOptions value="{!priceListItems}" />
+			      		<apex:actionSupport event="onchange" reRender="idPriceRulesetBlock" />
+			      	</apex:selectList>
+				</apex:pageBlockSectionItem>
+				<apex:outputField value="{!Apttus_Config2__PriceRuleset__c.Apttus_Config2__PriceListId__c}" 
+								  rendered="{!isCriteriaEditMode || isFilterEditMode}" />
+								  						 
+				<apex:pageBlockSectionItem rendered="{!NOT(isCriteriaEditMode || isFilterEditMode)}" >
+					<apex:outputLabel value="{!$ObjectType.Apttus_Config2__PriceRuleset__c.Fields.Apttus_Config2__Sequence__c.Label}" 
+									  for="idSequence" />
+					<apex:outputPanel styleClass="requiredInput" layout="block">
+   						<apex:outputPanel styleClass="requiredBlock" layout="block"/>
+  						<apex:inputField id="idSequence" 
+  										 value="{!Apttus_Config2__PriceRuleset__c.Apttus_Config2__Sequence__c}" 
+  										 required="true" />
+ 					</apex:outputPanel>
+				</apex:pageBlockSectionItem>
+				<apex:outputField value="{!Apttus_Config2__PriceRuleset__c.Apttus_Config2__Sequence__c}" 
+								  rendered="{!isCriteriaEditMode || isFilterEditMode}" />
+				
+				<apex:pageBlockSectionItem rendered="{!NOT(isCriteriaEditMode || isFilterEditMode)}" >
+			    	<apex:outputLabel value="{!$ObjectType.Apttus_Config2__PriceRuleset__c.Fields.Apttus_Config2__ProductFamily__c.Label}" 
+			    					  for="idProductFamily" />
+			    	<apex:selectList id="idProductFamily" 
+			    					 size="1" 
+			    					 value="{!Apttus_Config2__PriceRuleset__c.Apttus_Config2__ProductFamily__c}" 
+			    					 multiselect="false">
+			      		<apex:selectOptions value="{!productFamilyItems}" />
+			      	</apex:selectList>
+				</apex:pageBlockSectionItem>
+				<apex:outputField value="{!Apttus_Config2__PriceRuleset__c.Apttus_Config2__ProductFamily__c}" 
+								  rendered="{!isCriteriaEditMode || isFilterEditMode}" />
+				
+				<apex:inputField value="{!Apttus_Config2__PriceRuleset__c.Apttus_Config2__Category__c}" 
+								 rendered="{!NOT(isCriteriaEditMode || isFilterEditMode)}" />
+				<apex:outputField value="{!Apttus_Config2__PriceRuleset__c.Apttus_Config2__Category__c}" 
+								  rendered="{!isCriteriaEditMode || isFilterEditMode}" />
+				
+				<apex:pageBlockSectionItem rendered="{!NOT(isCriteriaEditMode || isFilterEditMode)}" >
+			    	<apex:outputLabel value="{!$ObjectType.Apttus_Config2__PriceRuleset__c.Fields.Apttus_Config2__ProductCategory__c.Label}" 
+			    					  for="idProductCategory" />
+			    	<apex:selectList id="idProductCategory" 
+			    					 size="1" 
+			    					 value="{!Apttus_Config2__PriceRuleset__c.Apttus_Config2__ProductCategory__c}" 
+			    					 multiselect="false">
+			      		<apex:selectOptions value="{!productCategoryItems}" />
+			      	</apex:selectList>
+				</apex:pageBlockSectionItem>
+				<apex:outputField value="{!Apttus_Config2__PriceRuleset__c.Apttus_Config2__ProductCategory__c}" 
+								  rendered="{!isCriteriaEditMode || isFilterEditMode}" />
+								  
+				<apex:inputField value="{!Apttus_Config2__PriceRuleset__c.Apttus_Config2__UseType__c}" 
+								 rendered="{!NOT(isCriteriaEditMode || isFilterEditMode)}" />
+				<apex:outputField value="{!Apttus_Config2__PriceRuleset__c.Apttus_Config2__UseType__c}" 
+								  rendered="{!isCriteriaEditMode || isFilterEditMode}" />
+				
+				<apex:inputField value="{!Apttus_Config2__PriceRuleset__c.Apttus_Config2__ProductGroupId__c}" 
+								 rendered="{!NOT(isCriteriaEditMode || isFilterEditMode)}" />
+				<apex:outputField value="{!Apttus_Config2__PriceRuleset__c.Apttus_Config2__ProductGroupId__c}" 
+								  rendered="{!isCriteriaEditMode || isFilterEditMode}" />
+				
+				<apex:inputField value="{!Apttus_Config2__PriceRuleset__c.Apttus_Config2__ApplicationMethod__c}" 
+								 rendered="{!NOT(isCriteriaEditMode || isFilterEditMode)}" />
+				<apex:outputField value="{!Apttus_Config2__PriceRuleset__c.Apttus_Config2__ApplicationMethod__c}" 
+								  rendered="{!isCriteriaEditMode || isFilterEditMode}" />
+				
+				<apex:inputField value="{!Apttus_Config2__PriceRuleset__c.Apttus_Config2__ChargeType__c}" 
+								 rendered="{!NOT(isCriteriaEditMode || isFilterEditMode)}" />
+				<apex:outputField value="{!Apttus_Config2__PriceRuleset__c.Apttus_Config2__ChargeType__c}" 
+								  rendered="{!isCriteriaEditMode || isFilterEditMode}" />
+				
+				<apex:pageBlockSectionItem >
+					<apex:outputLabel value="{!$ObjectType.Apttus_Config2__PriceRuleset__c.Fields.Apttus_Config2__Criteria__c.Label}" 
+									  for="idCriteria" />
+					<apex:panelGrid columns="2">
+						<apex:outputPanel styleClass="{!IF(isCriteriaEditMode, 'errorRow', '')}" layout="block">
+							<apex:inputTextarea id="idCriteria" 
+				        						value="{!criteriaExpr}"  
+			        							rows="2"
+				        						cols="60"
+			        							style="font-weight: bold; width: 350px;"
+			       								disabled="true" 
+			       								title="{!criteriaExpr}" />
+				    	</apex:outputPanel>
+				    	<apex:commandLink action="{!doEditFilter}" 
+				    					  value="{!$Label.apttus_config2__New}" 
+				    					  rendered="{!NOT(isCriteriaEditMode || isFilterEditMode) && 
+				    					  			  NOT(hasCriteriaExpr)}" />
+				    	<apex:commandLink action="{!doEditFilter}" 
+				    					  value="{!$Label.apttus_config2__Edit}" 
+				    					  rendered="{!NOT(isCriteriaEditMode || isFilterEditMode) && 
+				    					  			  hasCriteriaExpr}" />
+					</apex:panelGrid>
+				</apex:pageBlockSectionItem>
+				
+				<apex:inputField value="{!Apttus_Config2__PriceRuleset__c.Apttus_Config2__EffectiveDate__c}" 
+								 rendered="{!NOT(isCriteriaEditMode || isFilterEditMode)}" />
+				<apex:outputField value="{!Apttus_Config2__PriceRuleset__c.Apttus_Config2__EffectiveDate__c}" 
+								  rendered="{!isFilterEditMode}" />
+								  				  				  				  		  				  				  				  				  
+				<apex:inputField value="{!Apttus_Config2__PriceRuleset__c.Apttus_Config2__StopProcessingMoreRules__c}" 
+								 rendered="{!NOT(isCriteriaEditMode || isFilterEditMode)}" />
+				<apex:outputField value="{!Apttus_Config2__PriceRuleset__c.Apttus_Config2__StopProcessingMoreRules__c}" 
+								  rendered="{!isFilterEditMode}" />
+								  
+				<apex:inputField value="{!Apttus_Config2__PriceRuleset__c.Apttus_Config2__ExpirationDate__c}" 
+								 rendered="{!NOT(isCriteriaEditMode || isFilterEditMode)}" />
+				<apex:outputField value="{!Apttus_Config2__PriceRuleset__c.Apttus_Config2__ExpirationDate__c}" 
+								  rendered="{!isFilterEditMode}" />
+				
+				<apex:inputField value="{!Apttus_Config2__PriceRuleset__c.Apttus_Config2__Active__c}" 
+								 rendered="{!NOT(isCriteriaEditMode || isFilterEditMode)}" />
+				<apex:outputField value="{!Apttus_Config2__PriceRuleset__c.Apttus_Config2__Active__c}" 
+								  rendered="{!isFilterEditMode}" />
+								  		   	  
+		    	<apex:inputField value="{!Apttus_Config2__PriceRuleset__c.Apttus_Config2__Description__c}" 
+		    					 rendered="{!NOT(isCriteriaEditMode || isFilterEditMode)}" />
+				<apex:outputField value="{!Apttus_Config2__PriceRuleset__c.Apttus_Config2__Description__c}" 
+								  rendered="{!isFilterEditMode}" />
+								  
+		    </apex:pageBlockSection>
+		        				
+		</apex:pageBlock>
+		
+		<c:PriceRuleList id="idPriceRuleListComponent" 
+	    			     pageController="{!this}"  
+	    			   	 rulesetMO="{!rulesetMO}" />	
+				    			   	   
+		<!--  Search Filter -->
+	    <c:SearchFilter id="idSearchFilter" 
+	    				sObjectName="{!$ObjectType.Apttus_Config2__LineItem__c.Name}" 
+	    				childSObjectName="{!$ObjectType.Apttus_Config2__ProductAttributeValue__c.Name}"  
+	    				relationFieldName="{!$ObjectType.Apttus_Config2__ProductAttributeValue__c.Fields.Apttus_Config2__LineItemId__c.Name}"  
+	    				parentFilterLabel="{!$Label.apttus_config2__LineItem}"  
+	    				childFilterLabel="{!$Label.apttus_config2__Attributes}"  
+	    				pageController="{!this}"
+	    				mode="edit" />	
+		
+			    			   
+	</apex:form>
+
+</apex:page>

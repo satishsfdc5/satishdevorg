@@ -1,0 +1,50 @@
+<!-- 
+    Apttus Contract Management
+    AgreementSubmitChanges
+     
+    @2009-2010 Apttus Inc. All rights reserved.
+
+ -->
+<apex:page standardController="Apttus__APTS_Agreement__c" 
+		   extensions="Apttus.AgreementSubmitChangesController" >
+	
+	<apex:form >
+		<!--  required fields -->
+		<apex:outputText value="{!Apttus__APTS_Agreement__c.Apttus__Version_Number__c}" rendered="false"/>
+		<apex:outputText value="{!Apttus__APTS_Agreement__c.Apttus__Status__c}" rendered="false"/>
+		<apex:outputText value="{!Apttus__APTS_Agreement__c.Apttus__Status_Category__c}" rendered="false"/>
+		<apex:outputText value="{!Apttus__APTS_Agreement__c.Apttus__FF_Agreement_Number__c}" rendered="false"/>
+		<apex:outputText value="{!Apttus__APTS_Agreement__c.Apttus__Contract_Start_Date__c}" rendered="false"/>
+		<apex:outputText value="{!Apttus__APTS_Agreement__c.Apttus__Contract_End_Date__c}" rendered="false"/>
+		<apex:outputText value="{!Apttus__APTS_Agreement__c.Apttus__Agreement_Number__c}" rendered="false"/>
+		<apex:outputText value="{!Apttus__APTS_Agreement__c.Apttus__Agreement_Category__c}" rendered="false"/>
+		<apex:outputText value="{!Apttus__APTS_Agreement__c.Apttus__Requestor__c}" rendered="false"/>
+		<apex:outputText value="{!Apttus__APTS_Agreement__c.OwnerId}" rendered="false"/>
+		
+		<!--  hidden action buttons -->
+		<apex:commandButton id="btnOnLoad" action="{!onLoad}" value="On Load" style="display: none" />
+		
+		<script>
+        	var btnOnLoad = document.getElementById("{!$Component.btnOnLoad}");
+      	</script>
+      	
+		<apex:pageBlock mode="edit" rendered="{!hasErrors}" >
+			<apex:pageMessages />
+			<apex:pageBlockButtons location="bottom" >
+				<apex:commandButton action="{!doCancel}" value="{!$Label.apttus__Cancel}" immediate="true"/>
+			</apex:pageBlockButtons>
+		</apex:pageBlock>
+	</apex:form>
+	
+	<script>
+		// register to invoke the function after the page load
+		var hasErrors = "{!hasErrors}";
+		if (hasErrors.toLowerCase() == 'false') {
+		    window.onload = function() { 
+		    	// on load
+		        btnOnLoad.click();
+		    };
+		}
+	</script>
+	
+</apex:page>

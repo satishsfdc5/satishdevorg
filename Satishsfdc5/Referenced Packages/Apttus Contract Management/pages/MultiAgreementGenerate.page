@@ -1,0 +1,273 @@
+<!-- 
+    Apttus Contract Management
+    MultiAgreementGenerate
+     
+    @2011-2012 Apttus Inc. All rights reserved.
+
+	Summary
+ 	-------
+  	The multiple agreement generate page may be used to generate documents for multiple agreements by passing 
+  	a comma separated list of agreement ids and the ids of their associated template. 
+  	The user must wait for the generation to be completed before moving away from the page otherwise 
+  	the process will be interrupted.
+ 
+	parameters
+    ==========
+    Name			| Required | Description
+    ================|==========|======================================================================================
+    action			| No	   | The generate action. 
+    				|          | Valid values are : Generate_Agreement, Generate_Supporting_Document. 
+    				|		   | The default value is Generate_Agreement. 
+    				|		   |
+    agreementIdsCsv	| Yes      | The comma separated list of agreement ids to generate documents for
+                    |          |
+    templateIdsCsv  | Yes      | The comma separated list of template ids to use for generation. 
+    			    |		   | Each agreement id must have a corresponding template id. 
+                    |          |
+    protectionLevel | No       | The protection level to apply to the generated document. 
+    				|		   | If this parameter is not provided, a default value of 'Full access' will be assumed. 
+                    |          | 
+    docFormat 		| No       | The format of the generated document. 
+    				|		   | If this parameter is not provided, a default value of 'DOC' will be assumed. 
+    				|		   |
+    isDraft 		| No       | The draft document indicator. 
+    				|		   | If this parameter is not provided, a default value of 'false' will be assumed. 				
+   					|		   | 
+   	finishPage		| Yes	   | The name of the finish page to navigate to after the generate process is completed.
+   					|		   | Parameters for the finish page may be passed by prefixing the parameter name with 'finish_'.
+   					|		   | for e.g. if you pass in a parameter finish_id, the finish page will be called 
+   					|		   | with the parameter id. A record id may be passed as the value for the finish page.
+   					|		   |
+    ===================================================================================================================
+    
+ -->
+<apex:page controller="Apttus.MultiAgreementGenerateController" 
+           showHeader="true" 
+           sidebar="true" >	
+	
+	<apex:includescript value="{!$Resource.Apttus__ComplyJSLib}" />
+	
+	<apex:stylesheet value="{!URLFOR($Resource.Apttus__YUILibrary, '/yui/build/assets/skins/sam/skin.css')}" />
+ 
+	<apex:includescript value="{!URLFOR($Resource.Apttus__YUILibrary, '/yui/build/yahoo-dom-event/yahoo-dom-event.js')}" />
+	<apex:includescript value="{!URLFOR($Resource.Apttus__YUILibrary, '/yui/build/dragdrop/dragdrop-min.js')}" />
+	<apex:includescript value="{!URLFOR($Resource.Apttus__YUILibrary, '/yui/build/container/container-min.js')}" />
+	<apex:includescript value="{!URLFOR($Resource.Apttus__YUILibrary, '/yui/build/animation/animation-min.js')}" />
+	
+	<script>
+    
+	    // Create a namespace for our custom functions
+	    YAHOO.namespace("force.com");
+		
+	    // wait panel
+	    
+	    /**
+		 * Builds the wait panel.
+		 */
+	    YAHOO.force.com.buildWaitPanel = function() {
+	        document.body.className = document.body.className + " yui-skin-sam";
+	        YAHOO.force.com.waitPanel = new YAHOO.widget.Panel(
+	            "waitPanel",  // The id of our dialog container
+	            { 
+	                    width           :   "300px", // You can play with this until it's right
+	                    visible         :   false,   // Should be invisible when rendered
+	                    draggable       :   false,   // Make the dialog draggable
+	                    close           :   false,   // Don't include a close title button
+	                    modal           :   true,    // Make it modal
+	                    fixedCenter     :   true,    // Keep centered if window is scrolled
+	                    zindex          :   40,      // Make sure it's on top of everything
+	                    constraintoviewport: true,
+	                    
+	                    // This line adds the appear/disapper fade effect
+	                    effect			:   {effect:YAHOO.widget.ContainerEffect.FADE,duration:0.25}
+        							
+	            }
+	        );
+	        
+	        // header
+	        YAHOO.force.com.waitPanel.setHeader("{!$Label.GeneratingAgreement}");
+			// set image
+			YAHOO.force.com.waitPanel.setBody('<center><img src="{!URLFOR($Resource.Image_LoadingPage)}" /></center>');
+	        // Render the dialog to the document.body level of the DOM
+	        YAHOO.force.com.waitPanel.render(document.body);
+	        
+	    }
+	    
+	    /**
+         * Checks and generates documents for the the given agreements
+         */
+        function doCheckAndGenerateDocs() {
+            
+             // STEP I - get number of documents to generate
+             var numOfDocs = "{!NumOfDocsToGenerate}";
+        
+            if (numOfDocs <= 0) {
+                // no documents to generate, go to finish page
+                return;
+                
+            }
+			
+			// STEP II - get parameters
+			// get the action name
+			var actionName = "{!JSENCODE(ActionName)}";
+			// get the agreement ids
+			var agreementIdsCsv = "{!JSENCODE(AgreementIdsCsv)}";
+			// get the template ids
+			var templateIdsCsv = "{!JSENCODE(TemplateIdsCsv)}";
+			// get the protection level
+			var pLevel = "{!JSENCODE(ProtectionLevel)}";
+			// get the document format
+			var docFormat = "{!JSENCODE(DocumentFormat)}";
+			// get the draft document indicator
+			var isDraft = "{!IsDraft}";
+			
+			// STEP II - generate each agreement
+			var agreementIds = agreementIdsCsv.split(",");
+			var templateIds = templateIdsCsv.split(",");
+			
+            try {
+            
+                // show the modal panel
+                YAHOO.force.com.waitPanel.show();
+                // generate the document
+                doGenerateDoc(actionName, 
+                			  templateIds, 
+                			  agreementIds, 
+                			  pLevel, 
+                			  docFormat, 
+                			  isDraft, 
+                			  numOfDocs, 
+                			  0);
+                    
+            } catch(ex) {
+                // hide modal panel
+                YAHOO.force.com.waitPanel.hide();
+                // display the error
+                erroralert(cERROR_UNKNOWN, ex);
+                // go to finish page
+                goToFinishPage();
+            
+            } 
+            
+        }
+            
+        /**
+         * Generates the document for the given agreement
+         * @param actionName the generate action name
+         * @param agreementIds the array of agreement ids
+         * @param templateIds the array of template ids
+         * @param pLevel the protection level
+         * @param docFormat the document format
+         * @param isDraft the draft document indicator
+         * @param numOfDocs the number of documents to generate
+         * @param currIndex the current document index
+         */
+        function doGenerateDoc(actionName, templateIds, agreementIds, pLevel, docFormat, isDraft, numOfDocs, currIndex) {
+            
+            try {
+                
+                if (currIndex < numOfDocs) {
+                	
+                	// header
+                	var currDoc = currIndex+1;
+                	var status = " (" + currDoc + "/" + numOfDocs + ")";
+                	// update generation status
+	        		YAHOO.force.com.waitPanel.setHeader("{!$Label.GeneratingAgreement}" + status);
+                    // make the call
+                    {!ClassName}.doGenerateDoc(actionName, 
+                    						   templateIds[currIndex], 
+                    						   agreementIds[currIndex], 
+                    						   pLevel, 
+                    						   docFormat, 
+                    						   isDraft, function(result, event) {
+                    
+                        try {
+                        	// check response status
+		                    if (event.status) {
+		                        // ok response, increment the index
+		                        currIndex++;
+		                        // check if done
+		                        if (currIndex < numOfDocs) {
+		                            // more to go
+		                            doGenerateDoc(actionName, 
+		                            			  templateIds, 
+		                            			  agreementIds, 
+		                            			  pLevel, 
+		                            			  docFormat,
+		                            			  isDraft, 
+		                            			  numOfDocs, 
+		                            			  currIndex);
+		                            
+		                        } else {
+		                            // we are done, go to finish page
+		                			goToFinishPage();
+		                        
+		                        }
+		                                
+		                    } else {
+		                        // throw exception
+		                        alert(event.message);
+		                        // hide modal panel
+		                		YAHOO.force.com.waitPanel.hide();
+		                		// go to finish page
+					            goToFinishPage();
+		                				
+		                    } 
+                    
+                        } catch(ex) {
+                        	// hide modal panel
+			                YAHOO.force.com.waitPanel.hide();
+                        	// display the error
+                			erroralert(cERROR_UNKNOWN, ex);
+			                // go to finish page
+			                goToFinishPage();
+                              
+                        } 
+                        
+                    }, {escape:true});
+                  
+                 }
+                  
+            } catch(ex) {
+            	// hide modal panel
+                YAHOO.force.com.waitPanel.hide();
+            	// display the error
+                erroralert(cERROR_UNKNOWN, ex);
+                // go to finish page
+                goToFinishPage();
+                
+            } 
+            
+        }
+            
+        /**
+		 * Go to the finish page
+		 */
+		function goToFinishPage() {
+			// get the return id
+			var finishPage = "{!FinishPage}";
+			// go back to the detail page
+			navigateTo(finishPage);
+			
+		}
+		      
+	    // Function called when the DOM is ready to create the dialog,
+    	// render the dialog into the document body, add our dialog skin
+    	// css to the body tag, and wire up the buttons on our dialog   
+		YAHOO.force.com.onDOMReady = function() {
+			
+			// build the wait panel
+			YAHOO.force.com.buildWaitPanel();
+			// show modal panel
+			YAHOO.force.com.waitPanel.show();
+			// check and generate documents
+            doCheckAndGenerateDocs();
+                
+		}
+		
+	    // build the tree as soon as the DOM is in a usable state
+		YAHOO.util.Event.onDOMReady(YAHOO.force.com.onDOMReady);   	
+		
+	</script>
+	
+</apex:page>

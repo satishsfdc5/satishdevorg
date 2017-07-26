@@ -1,0 +1,63 @@
+<!-- 
+    Apttus Contract Management
+    AgreementTermExEdit
+     
+    @2009-2010 Apttus Inc. All rights reserved.
+
+ -->
+<apex:page standardController="Apttus__Agreement_Term_Exception__c"
+		   extensions="Apttus.AgreementTermExEditController" 
+		   showHeader="true"
+		   sidebar="true" 
+		   tabStyle="Apttus__APTS_Agreement__c"
+		   recordSetVar="agmtTermExceptions">
+	
+	<style>
+		.comments_w {
+			width: 300px;
+		}
+	</style>
+	
+    <apex:sectionHeader title="{!$Label.apttus__Agreement}" />
+    <table>
+	  <tr>
+	    <td>{!$Label.AgreementTermExceptionEditInstruction1}</td>
+	  </tr>
+	  <tr>
+	    <td>{!$Label.AgreementTermExceptionEditInstruction2}</td>
+	  </tr>
+	</table>
+	<apex:form >
+		<apex:pageBlock title="{!$ObjectType.Apttus__Agreement_Term_Exception__c.LabelPlural & ' ' & $Label.apttus__Edit}" >
+	        <apex:pageMessages />
+			<apex:pageBlockButtons >
+				<apex:commandButton id="cmdButtonDoSave" 
+									action="{!save}" 
+									value="{!$Label.apttus__Save}" />
+				<apex:commandButton id="cmdButtonDoCancel" 
+									action="{!cancel}" 
+									value="{!$Label.apttus__Cancel}" /> 
+			</apex:pageBlockButtons>
+			<apex:pageMessages />
+
+			<apex:pageBlockSection title="{!$ObjectType.Apttus__Agreement_Term_Exception__c.LabelPlural}" 
+								   columns="1"
+								   collapsible="false" >
+				<apex:pageBlockTable value="{!selected}" 
+									 var="agmtTermEx"
+									 width="100%" >
+					<apex:column headerValue="{!$ObjectType.Apttus__Agreement_Term_Exception__c.Fields.Apttus__Approval_Status__c.Label}"
+								 value="{!agmtTermEx.Apttus__Approval_Status__c}" />
+					<apex:column headerValue="{!$ObjectType.Apttus__Agreement_Term_Exception__c.Fields.Apttus__Exception__c.Label}"
+								 value="{!agmtTermEx.Apttus__Exception__c}" />
+					<apex:column headerValue="{!$ObjectType.Apttus__Agreement_Term_Exception__c.Fields.Apttus__Description__c.Label}"
+								 value="{!agmtTermEx.Apttus__Description__c}" />
+					<apex:column headerValue="{!$ObjectType.Apttus__Agreement_Term_Exception__c.Fields.Apttus__Comments__c.Label}">
+						<apex:inputField value="{!agmtTermEx.Apttus__Comments__c}"
+										 styleClass="comments_w" />
+					</apex:column>
+				</apex:pageBlockTable>
+			</apex:pageBlockSection>
+		</apex:pageBlock>
+	</apex:form>
+</apex:page>

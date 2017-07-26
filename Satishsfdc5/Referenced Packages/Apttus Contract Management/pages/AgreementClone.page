@@ -1,0 +1,24 @@
+<!-- 
+    Apttus Contract Management
+    AgreementClone
+     
+    @2009-2010 Apttus Inc. All rights reserved.
+
+ -->
+<apex:page standardController="Apttus__APTS_Agreement__c" 
+		   extensions="Apttus.AgreementCloneController" 
+		   action="{!onLoad}" >
+		   
+	<apex:form >	
+		<!--  required fields -->
+		<apex:outputText value="{!Apttus__APTS_Agreement__c.Name}" rendered="false"/>
+		
+		<apex:pageBlock mode="edit" rendered="{!hasErrors}" >
+			<apex:pageMessages />
+			<apex:pageBlockButtons location="bottom" >
+				<apex:commandButton action="{!doCancel}" value="{!$Label.apttus__Cancel}" immediate="true"/>
+			</apex:pageBlockButtons>
+		</apex:pageBlock>
+	</apex:form>
+	
+</apex:page>

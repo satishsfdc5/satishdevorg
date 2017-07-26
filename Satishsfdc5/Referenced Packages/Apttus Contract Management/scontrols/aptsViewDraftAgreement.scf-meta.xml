@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scontrol xmlns="http://soap.sforce.com/2006/04/metadata">
+    <contentSource>HTML</contentSource>
+    <description>Creates a draft version of an agreement by invoking the Apttus Contract Wizard</description>
+    <encodingKey>UTF-8</encodingKey>
+    <fileName>aptsViewDraftAgreement</fileName>
+    <name>aptsViewDraftAgreement (DEPRECATED)</name>
+    <supportsCaching>true</supportsCaching>
+</Scontrol>

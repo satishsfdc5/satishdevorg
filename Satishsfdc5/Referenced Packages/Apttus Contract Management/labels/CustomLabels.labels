@@ -1,0 +1,2479 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomLabels xmlns="http://soap.sforce.com/2006/04/metadata">
+    <labels>
+        <fullName>Action</fullName>
+        <categories>Title</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Action</shortDescription>
+        <value>Action</value>
+    </labels>
+    <labels>
+        <fullName>ActionFailed</fullName>
+        <categories>Error Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Action Failed</shortDescription>
+        <value>Action {0} Failed.</value>
+    </labels>
+    <labels>
+        <fullName>Activate</fullName>
+        <categories>Button Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Activate</shortDescription>
+        <value>Activate</value>
+    </labels>
+    <labels>
+        <fullName>ActivateAgreement</fullName>
+        <categories>Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Activate Agreement</shortDescription>
+        <value>Activate Agreement</value>
+    </labels>
+    <labels>
+        <fullName>ActivateConfirmation</fullName>
+        <categories>Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Activate Confirmation</shortDescription>
+        <value>Are you sure you want to activate ?</value>
+    </labels>
+    <labels>
+        <fullName>ActivateRemoveDocument1</fullName>
+        <categories>Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Activate Remove Document (1)</shortDescription>
+        <value>Please select the document(s) for removal and click</value>
+    </labels>
+    <labels>
+        <fullName>ActivateRemoveDocument2</fullName>
+        <categories>Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Activate Remove Document (2)</shortDescription>
+        <value>The selected document(s) will be removed from the agreement.</value>
+    </labels>
+    <labels>
+        <fullName>ActivateSelectDocument1</fullName>
+        <categories>Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Activate Select Document (1)</shortDescription>
+        <value>Please confirm the documents below contains a copy of the contract.</value>
+    </labels>
+    <labels>
+        <fullName>ActivateSelectDocument2</fullName>
+        <categories>Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Activate Select Document (2)</shortDescription>
+        <value>Please select the appropriate document(s) and click</value>
+    </labels>
+    <labels>
+        <fullName>ActivateSelectSearchableDocument1</fullName>
+        <categories>Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Activate Select Searchable Document (1)</shortDescription>
+        <value>Please select the document(s) for content search and click</value>
+    </labels>
+    <labels>
+        <fullName>ActivateSelectSearchableDocument2</fullName>
+        <categories>Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Activate Select Searchable Document (2)</shortDescription>
+        <value>The selected documents will be moved to the content repository.</value>
+    </labels>
+    <labels>
+        <fullName>ActivatingAgreement</fullName>
+        <categories>Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Activating Agreement</shortDescription>
+        <value>Activating Agreement - Please wait...</value>
+    </labels>
+    <labels>
+        <fullName>Active</fullName>
+        <categories>Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Active</shortDescription>
+        <value>Active</value>
+    </labels>
+    <labels>
+        <fullName>Add</fullName>
+        <categories>Link</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Add</shortDescription>
+        <value>Add</value>
+    </labels>
+    <labels>
+        <fullName>AddRow</fullName>
+        <categories>Link</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Add Row</shortDescription>
+        <value>Add Row</value>
+    </labels>
+    <labels>
+        <fullName>AddTermExceptions</fullName>
+        <categories>Title</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Add Term Exceptions</shortDescription>
+        <value>Add Term Exceptions</value>
+    </labels>
+    <labels>
+        <fullName>AdvancedFilterCondition</fullName>
+        <categories>Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Advanced Filter Condition</shortDescription>
+        <value>Advanced Filter Condition:</value>
+    </labels>
+    <labels>
+        <fullName>AdvancedOptions</fullName>
+        <categories>Link</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Advanced Options</shortDescription>
+        <value>Advanced Options</value>
+    </labels>
+    <labels>
+        <fullName>AfterDate</fullName>
+        <categories>Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>After Date</shortDescription>
+        <value>After Date</value>
+    </labels>
+    <labels>
+        <fullName>AfterDateFieldIsMissing</fullName>
+        <categories>Error Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AfterDate Field is Missing</shortDescription>
+        <value>Error: You must select an after date field</value>
+    </labels>
+    <labels>
+        <fullName>Agreement</fullName>
+        <categories>Title</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Agreement</shortDescription>
+        <value>Agreement</value>
+    </labels>
+    <labels>
+        <fullName>AgreementLocked</fullName>
+        <categories>Error Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Agreement Locked</shortDescription>
+        <value>Agreement is already locked by {0}.</value>
+    </labels>
+    <labels>
+        <fullName>AgreementName</fullName>
+        <categories>Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Agreement Name</shortDescription>
+        <value>Agreement Name</value>
+    </labels>
+    <labels>
+        <fullName>AgreementRuleConditionEditInstruction1</fullName>
+        <categories>Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Agreement Rule Condition EditInstruction (1)</shortDescription>
+        <value>Edit multiple Rule Condition properties for this agreement at once.</value>
+    </labels>
+    <labels>
+        <fullName>AgreementRuleConditionEditInstruction2</fullName>
+        <categories>Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AgreementRuleConditionEditInstruction (2)</shortDescription>
+        <value>Click Save to update all records. Click Cancel to abort all changes.</value>
+    </labels>
+    <labels>
+        <fullName>AgreementTermExceptionEditInstruction1</fullName>
+        <categories>Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Agreement Term Exception Edit Instruction (1)</shortDescription>
+        <value>Edit multiple Agreement Term Exception properties for this agreement at once.</value>
+    </labels>
+    <labels>
+        <fullName>AgreementTermExceptionEditInstruction2</fullName>
+        <categories>Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Agreement Term Exception Edit Instruction (2)</shortDescription>
+        <value>Click Save to update all records. Click Cancel to abort all changes.</value>
+    </labels>
+    <labels>
+        <fullName>AgreementType</fullName>
+        <categories>Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Agreement Type</shortDescription>
+        <value>Agreement Type</value>
+    </labels>
+    <labels>
+        <fullName>AgreementTypeFormatsForProfile</fullName>
+        <categories>Title</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Agreement Type Formats for Profile</shortDescription>
+        <value>Agreement Type Formats for Profile:</value>
+    </labels>
+    <labels>
+        <fullName>Agreements</fullName>
+        <categories>Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Agreements</shortDescription>
+        <value>Agreements</value>
+    </labels>
+    <labels>
+        <fullName>AmendmentsAndRenewals</fullName>
+        <categories>Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amendments and Renewals</shortDescription>
+        <value>Amendments and Renewals</value>
+    </labels>
+    <labels>
+        <fullName>AssignedFormatsForAllProfiles</fullName>
+        <categories>Title</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Assigned Formats for All Profiles</shortDescription>
+        <value>Assigned Formats for All Profiles</value>
+    </labels>
+    <labels>
+        <fullName>AttachAgreement</fullName>
+        <categories>Title</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Attach Agreement</shortDescription>
+        <value>Attach Agreement</value>
+    </labels>
+    <labels>
+        <fullName>AttachFile</fullName>
+        <categories>Button Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Attach File</shortDescription>
+        <value>Attach File</value>
+    </labels>
+    <labels>
+        <fullName>AttachImportFileInstruction</fullName>
+        <categories>Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Attach Import File Instruction</shortDescription>
+        <value>Click the button below to import the document and attach to the agreement.</value>
+    </labels>
+    <labels>
+        <fullName>Attachments</fullName>
+        <categories>Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Attachments</shortDescription>
+        <value>Attachments</value>
+    </labels>
+    <labels>
+        <fullName>AutoPathStatusMessage</fullName>
+        <categories>Status Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Auto Path Status Message</shortDescription>
+        <value>Your agreement conforms to all standard rules.
+A copy of the agreement will be emailed.</value>
+    </labels>
+    <labels>
+        <fullName>AvailableAgreementRecordTypes</fullName>
+        <categories>Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Available Agreement Record Types</shortDescription>
+        <value>Available Agreement Record Types</value>
+    </labels>
+    <labels>
+        <fullName>Back</fullName>
+        <categories>Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Back</shortDescription>
+        <value>Back</value>
+    </labels>
+    <labels>
+        <fullName>BackToList</fullName>
+        <categories>Link</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Back to List</shortDescription>
+        <value>Back to List</value>
+    </labels>
+    <labels>
+        <fullName>BrowseTemplates</fullName>
+        <categories>Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Browse Templates</shortDescription>
+        <value>Browse Templates</value>
+    </labels>
+    <labels>
+        <fullName>ByFieldFilter</fullName>
+        <categories>Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>By Field Filter</shortDescription>
+        <value>By Field Filter</value>
+    </labels>
+    <labels>
+        <fullName>CTGroupActivateConfirmation1</fullName>
+        <categories>Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CTGroup Activate Confirmation (1)</shortDescription>
+        <value>Upon activation, the system will start generating duration summary data for the group.</value>
+    </labels>
+    <labels>
+        <fullName>CTGroupConfirmation</fullName>
+        <categories>Dialog Title</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CTGroup Confirmation</shortDescription>
+        <value>Please Confirm</value>
+    </labels>
+    <labels>
+        <fullName>CTGroupDeactivateConfirmation1</fullName>
+        <categories>Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CTGroup Deactivate Confirmation (1)</shortDescription>
+        <value>System will stop generating summary data for the group.</value>
+    </labels>
+    <labels>
+        <fullName>CTGroupDeactivateConfirmation2</fullName>
+        <categories>Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CTGroup Deactivate Confirmation (2)</shortDescription>
+        <value>System will delete all associated summary data and stop generating new ones.</value>
+    </labels>
+    <labels>
+        <fullName>CTGroupDeactivateConfirmation3</fullName>
+        <categories>Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CTGroup Deactivate Confirmation (3)</shortDescription>
+        <value>There are more than {0} summary records associated with this group.</value>
+    </labels>
+    <labels>
+        <fullName>CTGroupDeactivateJobError</fullName>
+        <categories>Error Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CTGroup Deactivate Job Error</shortDescription>
+        <value>System does not have enough resources to run batch jobs to delete summary details associated with the group.</value>
+    </labels>
+    <labels>
+        <fullName>CTGroupDeleteConfirmation1</fullName>
+        <categories>Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CTGroup Delete Confirmation (1)</shortDescription>
+        <value>Group has to be Inactive to be eligible for deletion.</value>
+    </labels>
+    <labels>
+        <fullName>CTGroupDeleteConfirmation2</fullName>
+        <categories>Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CTGroup Delete Confirmation (2)</shortDescription>
+        <value>Please deactivate the group before attempting to delete.</value>
+    </labels>
+    <labels>
+        <fullName>CTGroupDeleteConfirmation3</fullName>
+        <categories>Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CTGroup Delete Confirmation (3)</shortDescription>
+        <value>Do you want to go to the detail page ?</value>
+    </labels>
+    <labels>
+        <fullName>CTGroupSelectFieldInstruction</fullName>
+        <categories>Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CTGroup Select Field Instruction</shortDescription>
+        <value>Select the field on which the group will be based on:</value>
+    </labels>
+    <labels>
+        <fullName>Cancel</fullName>
+        <categories>Button Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Cancel</shortDescription>
+        <value>Cancel</value>
+    </labels>
+    <labels>
+        <fullName>CancelConfirmation</fullName>
+        <categories>Dialog Title</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Cancel Confirmation</shortDescription>
+        <value>Are You Sure ?</value>
+    </labels>
+    <labels>
+        <fullName>CancelInstruction</fullName>
+        <categories>Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Cancel Instruction</shortDescription>
+        <value>Please click &quot;Yes&quot; to proceed with the &quot;Cancel&quot; action or click &quot;No&quot; to go back.</value>
+    </labels>
+    <labels>
+        <fullName>Checkin</fullName>
+        <categories>Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Checkin</shortDescription>
+        <value>Checkin</value>
+    </labels>
+    <labels>
+        <fullName>Checkout</fullName>
+        <categories>Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Checkout</shortDescription>
+        <value>Checkout</value>
+    </labels>
+    <labels>
+        <fullName>ChildAgreements</fullName>
+        <categories>Title</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Child Agreements</shortDescription>
+        <value>Child Agreements</value>
+    </labels>
+    <labels>
+        <fullName>ClearAdvancedOptions</fullName>
+        <categories>Link</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Clear Advanced Options</shortDescription>
+        <value>Clear Advanced Options</value>
+    </labels>
+    <labels>
+        <fullName>ClickAttachFile</fullName>
+        <categories>Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Click Attach File</shortDescription>
+        <value>Click the &quot;Attach File&quot; button</value>
+    </labels>
+    <labels>
+        <fullName>ClickUploadFile</fullName>
+        <categories>Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Click Upload File</shortDescription>
+        <value>Click the &quot;Upload File&quot; button</value>
+    </labels>
+    <labels>
+        <fullName>Clone</fullName>
+        <categories>Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Clone</shortDescription>
+        <value>Clone</value>
+    </labels>
+    <labels>
+        <fullName>ConfigureFilter</fullName>
+        <categories>Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Configure Filter</shortDescription>
+        <value>Configure Filter</value>
+    </labels>
+    <labels>
+        <fullName>Continue</fullName>
+        <categories>Button Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Continue</shortDescription>
+        <value>Continue</value>
+    </labels>
+    <labels>
+        <fullName>CreateExecutedAgreement</fullName>
+        <categories>Title</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Create Executed Agreement</shortDescription>
+        <value>Create Executed Agreement</value>
+    </labels>
+    <labels>
+        <fullName>CreateExecutedAgreementInstruction</fullName>
+        <categories>Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Create Executed Agreement Instruction</shortDescription>
+        <value>Click the button below to create the executed agreement with the selected document attached to the agreement.</value>
+    </labels>
+    <labels>
+        <fullName>CreateOfflineAgreement</fullName>
+        <categories>Title</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Create Offline Agreement</shortDescription>
+        <value>Create Offline Agreement</value>
+    </labels>
+    <labels>
+        <fullName>CreateOfflineAgreementInstruction</fullName>
+        <categories>Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Create Offline Agreement Instruction</shortDescription>
+        <value>Click the button below to create the offline agreement with the selected document attached to the agreement.</value>
+    </labels>
+    <labels>
+        <fullName>Deactivate</fullName>
+        <categories>Button Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Deactivate</shortDescription>
+        <value>Deactivate</value>
+    </labels>
+    <labels>
+        <fullName>DeactivateConfirmation</fullName>
+        <categories>Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Deactivate Confirmation</shortDescription>
+        <value>Are you sure you want to deactivate ?</value>
+    </labels>
+    <labels>
+        <fullName>Del</fullName>
+        <categories>Link</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Del</shortDescription>
+        <value>Del</value>
+    </labels>
+    <labels>
+        <fullName>Delete</fullName>
+        <categories>Button Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Delete</shortDescription>
+        <value>Delete</value>
+    </labels>
+    <labels>
+        <fullName>DeleteConfirmation</fullName>
+        <categories>Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Delete Confirmation</shortDescription>
+        <value>Are you sure you want to delete ?</value>
+    </labels>
+    <labels>
+        <fullName>DeleteConfirmationMessage</fullName>
+        <categories>Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Delete Confirmation Message</shortDescription>
+        <value>Are you sure?</value>
+    </labels>
+    <labels>
+        <fullName>DeleteConfirmationTitle</fullName>
+        <categories>Dialog Title</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Delete Confirmation Title</shortDescription>
+        <value>Delete Confirmation</value>
+    </labels>
+    <labels>
+        <fullName>Desc</fullName>
+        <categories>Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Desc</shortDescription>
+        <value>Desc</value>
+    </labels>
+    <labels>
+        <fullName>Description</fullName>
+        <categories>Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Description</shortDescription>
+        <value>Description:</value>
+    </labels>
+    <labels>
+        <fullName>DocumentDetail</fullName>
+        <categories>Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Document Detail</shortDescription>
+        <value>Document Detail</value>
+    </labels>
+    <labels>
+        <fullName>DocumentGenerationSuccess</fullName>
+        <categories>Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Document Generation Success</shortDescription>
+        <value>Document generation successful.</value>
+    </labels>
+    <labels>
+        <fullName>DocumentsImported</fullName>
+        <categories>Title</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Documents Imported</shortDescription>
+        <value>Documents Imported:</value>
+    </labels>
+    <labels>
+        <fullName>DocumentsSelectedForActivation</fullName>
+        <categories>Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Documents Selected for Activation</shortDescription>
+        <value>Documents Selected for Activation</value>
+    </labels>
+    <labels>
+        <fullName>DocumentsSelectedForContentSearch</fullName>
+        <categories>Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Documents Selected for Content Search</shortDescription>
+        <value>Documents Selected for Content Search</value>
+    </labels>
+    <labels>
+        <fullName>DocumentsSelectedForRemoval</fullName>
+        <categories>Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Documents Selected for Removal</shortDescription>
+        <value>Documents Selected for Removal</value>
+    </labels>
+    <labels>
+        <fullName>Done</fullName>
+        <categories>Button Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Done</shortDescription>
+        <value>Done</value>
+    </labels>
+    <labels>
+        <fullName>Edit</fullName>
+        <categories>Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Edit</shortDescription>
+        <value>Edit</value>
+    </labels>
+    <labels>
+        <fullName>EditCriteria</fullName>
+        <categories>Title</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Edit Criteria</shortDescription>
+        <value>Edit Criteria</value>
+    </labels>
+    <labels>
+        <fullName>EditGroupDefinition</fullName>
+        <categories>Title</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Edit Group Definition</shortDescription>
+        <value>Edit Group Definition</value>
+    </labels>
+    <labels>
+        <fullName>EditPolicySpecification</fullName>
+        <categories>Title</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Edit Policy Specification</shortDescription>
+        <value>Edit Policy Specification</value>
+    </labels>
+    <labels>
+        <fullName>EmailConfirmation</fullName>
+        <categories>Dialog Title</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Email Confirmation</shortDescription>
+        <value>Email Confirmation</value>
+    </labels>
+    <labels>
+        <fullName>EmailConfirmationInstruction</fullName>
+        <categories>Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Email Confirmation Instruction</shortDescription>
+        <value>For security reasons, please confirm whether email was sent in the previous step.</value>
+    </labels>
+    <labels>
+        <fullName>EnableContentSearch</fullName>
+        <categories>Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Enable Content Search</shortDescription>
+        <value>Enable Content Search</value>
+    </labels>
+    <labels>
+        <fullName>Error</fullName>
+        <categories>Error Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Error</shortDescription>
+        <value>Error</value>
+    </labels>
+    <labels>
+        <fullName>ErrorAmendingAgreement</fullName>
+        <categories>Error Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Error Amending Agreement</shortDescription>
+        <value>ERROR: amending the agreement</value>
+    </labels>
+    <labels>
+        <fullName>ErrorBuildingPage</fullName>
+        <categories>Error Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Error Building Page</shortDescription>
+        <value>ERROR: building the page</value>
+    </labels>
+    <labels>
+        <fullName>ErrorCloningObject</fullName>
+        <categories>Error Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Error Cloning Object</shortDescription>
+        <value>ERROR: cloning the object</value>
+    </labels>
+    <labels>
+        <fullName>ErrorCopyingAttachments</fullName>
+        <categories>Error Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Error Copying Attachments</shortDescription>
+        <value>ERROR: copying attachments</value>
+    </labels>
+    <labels>
+        <fullName>ErrorCopyingChildObjects</fullName>
+        <categories>Error Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Error Copying Child Objects</shortDescription>
+        <value>ERROR: copying child objects</value>
+    </labels>
+    <labels>
+        <fullName>ErrorCreatingAgreement</fullName>
+        <categories>Error Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Error Creating Agreement</shortDescription>
+        <value>ERROR: creating the agreement</value>
+    </labels>
+    <labels>
+        <fullName>ErrorCreatingAgreementDocument</fullName>
+        <categories>Error Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Error Creating Agreement Document</shortDescription>
+        <value>ERROR: creating the agreement document</value>
+    </labels>
+    <labels>
+        <fullName>ErrorCreatingChatterFeed</fullName>
+        <categories>Error Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Error Creating Chatter Feed</shortDescription>
+        <value>ERROR: creating the chatter feed</value>
+    </labels>
+    <labels>
+        <fullName>ErrorCreatingTempObject</fullName>
+        <categories>Error Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Error Creating Temp Object</shortDescription>
+        <value>ERROR: creating temporary object</value>
+    </labels>
+    <labels>
+        <fullName>ErrorDeletingAttachments</fullName>
+        <categories>Error Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Error Deleting Attachments</shortDescription>
+        <value>ERROR: deleting attachments</value>
+    </labels>
+    <labels>
+        <fullName>ErrorDeletingEmailTemplate</fullName>
+        <categories>Error Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Error Deleting Email Template</shortDescription>
+        <value>ERROR: deleting email template</value>
+    </labels>
+    <labels>
+        <fullName>ErrorProtectingDocuments</fullName>
+        <categories>Error Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Error Protecting Documents</shortDescription>
+        <value>ERROR: protecting documents</value>
+    </labels>
+    <labels>
+        <fullName>ErrorRenewingAgreement</fullName>
+        <categories>Error Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Error Renewing Agreement</shortDescription>
+        <value>ERROR: renewing the agreement</value>
+    </labels>
+    <labels>
+        <fullName>ErrorSendingAgreement</fullName>
+        <categories>Error Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Error Sending Agreement</shortDescription>
+        <value>ERROR: sending the agreement</value>
+    </labels>
+    <labels>
+        <fullName>ErrorUnknown</fullName>
+        <categories>Error Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Error Unknown</shortDescription>
+        <value>ERROR: unknown error</value>
+    </labels>
+    <labels>
+        <fullName>ErrorUnknownAction</fullName>
+        <categories>Error Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Error Unknown Action</shortDescription>
+        <value>ERROR: unknown action</value>
+    </labels>
+    <labels>
+        <fullName>ErrorUnprotectingDocuments</fullName>
+        <categories>Error Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Error Unprotecting Documents</shortDescription>
+        <value>ERROR: unprotecting documents</value>
+    </labels>
+    <labels>
+        <fullName>ErrorUpdatingAgreement</fullName>
+        <categories>Error Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Error Updating Agreement</shortDescription>
+        <value>ERROR: updating the agreement</value>
+    </labels>
+    <labels>
+        <fullName>ErrorUpdatingDocuments</fullName>
+        <categories>Error Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Error Updating Documents</shortDescription>
+        <value>ERROR: updating documents</value>
+    </labels>
+    <labels>
+        <fullName>FailedToCreateAuthorTask</fullName>
+        <categories>Error Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Failed to Create Author Task</shortDescription>
+        <value>Failed to create the Author Contract Task.</value>
+    </labels>
+    <labels>
+        <fullName>FailedToCreateReviewTask</fullName>
+        <categories>Error Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Failed to Create Review Task</shortDescription>
+        <value>Failed to create the Requestor Review Task.</value>
+    </labels>
+    <labels>
+        <fullName>Field</fullName>
+        <categories>Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Field</shortDescription>
+        <value>Field</value>
+    </labels>
+    <labels>
+        <fullName>Field2</fullName>
+        <categories>Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Field2</shortDescription>
+        <value>Field:</value>
+    </labels>
+    <labels>
+        <fullName>FileName</fullName>
+        <categories>Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>File Name</shortDescription>
+        <value>File Name</value>
+    </labels>
+    <labels>
+        <fullName>Files</fullName>
+        <categories>Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Files</shortDescription>
+        <value>Files</value>
+    </labels>
+    <labels>
+        <fullName>FilesUploaded</fullName>
+        <categories>Title</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Files Uploaded</shortDescription>
+        <value>Files Uploaded:</value>
+    </labels>
+    <labels>
+        <fullName>Filter</fullName>
+        <categories>Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Filter</shortDescription>
+        <value>Filter</value>
+    </labels>
+    <labels>
+        <fullName>FilterCriteria</fullName>
+        <categories>Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Filter Criteria</shortDescription>
+        <value>Filter Criteria</value>
+    </labels>
+    <labels>
+        <fullName>FilterDetail</fullName>
+        <categories>Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Filter Detail</shortDescription>
+        <value>Filter Detail</value>
+    </labels>
+    <labels>
+        <fullName>Find</fullName>
+        <categories>Button Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Find</shortDescription>
+        <value>Find</value>
+    </labels>
+    <labels>
+        <fullName>FindTermExceptions</fullName>
+        <categories>Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Find Term Exceptions</shortDescription>
+        <value>Find Term Exceptions</value>
+    </labels>
+    <labels>
+        <fullName>Folder</fullName>
+        <categories>Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Folder</shortDescription>
+        <value>Folder</value>
+    </labels>
+    <labels>
+        <fullName>Following</fullName>
+        <categories>Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Following</shortDescription>
+        <value>Following</value>
+    </labels>
+    <labels>
+        <fullName>For</fullName>
+        <categories>Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>For</shortDescription>
+        <value>For</value>
+    </labels>
+    <labels>
+        <fullName>From</fullName>
+        <categories>Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>From</shortDescription>
+        <value>From:</value>
+    </labels>
+    <labels>
+        <fullName>Generate</fullName>
+        <categories>Button Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Generate</shortDescription>
+        <value>Generate</value>
+    </labels>
+    <labels>
+        <fullName>GenerateAgreement</fullName>
+        <categories>Title</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Generate Agreement</shortDescription>
+        <value>Generate Agreement</value>
+    </labels>
+    <labels>
+        <fullName>GenerateSupportingDocument</fullName>
+        <categories>Title</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Generate Supporting Document</shortDescription>
+        <value>Generate Supporting Document</value>
+    </labels>
+    <labels>
+        <fullName>GeneratingAgreement</fullName>
+        <categories>Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Generating Agreement</shortDescription>
+        <value>Generating Agreement - Please wait...</value>
+    </labels>
+    <labels>
+        <fullName>GeneratingDocument</fullName>
+        <categories>Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Generating Document</shortDescription>
+        <value>Generating Document - Please wait...</value>
+    </labels>
+    <labels>
+        <fullName>Go</fullName>
+        <categories>Button Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Go</shortDescription>
+        <value>Go</value>
+    </labels>
+    <labels>
+        <fullName>Group</fullName>
+        <categories>Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Group</shortDescription>
+        <value>Group</value>
+    </labels>
+    <labels>
+        <fullName>Groups</fullName>
+        <categories>Title</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Groups</shortDescription>
+        <value>My Groups</value>
+    </labels>
+    <labels>
+        <fullName>HideFilter</fullName>
+        <categories>Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Hide Filter</shortDescription>
+        <value>Hide Filter</value>
+    </labels>
+    <labels>
+        <fullName>ImportDocumentInstruction</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Import Document Instruction</shortDescription>
+        <value>Please wait until the import of document(s) is completed.</value>
+    </labels>
+    <labels>
+        <fullName>ImportOfflineDocument</fullName>
+        <categories>Title</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Import Offline Document</shortDescription>
+        <value>Import Offline Document</value>
+    </labels>
+    <labels>
+        <fullName>ImportingDocuments</fullName>
+        <categories>Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Importing Documents</shortDescription>
+        <value>Importing Document(s)...</value>
+    </labels>
+    <labels>
+        <fullName>IncludeWatermark</fullName>
+        <categories>Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Include Watermark</shortDescription>
+        <value>Include Watermark</value>
+    </labels>
+    <labels>
+        <fullName>InclusionCriteria</fullName>
+        <categories>Title</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Inclusion Criteria</shortDescription>
+        <value>Inclusion Criteria</value>
+    </labels>
+    <labels>
+        <fullName>Information</fullName>
+        <categories>Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Information</shortDescription>
+        <value>Information</value>
+    </labels>
+    <labels>
+        <fullName>Initiate</fullName>
+        <categories>Button Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Initiate</shortDescription>
+        <value>Initiate</value>
+    </labels>
+    <labels>
+        <fullName>InitiateTermination</fullName>
+        <categories>Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Initiate Termination</shortDescription>
+        <value>Initiate Termination</value>
+    </labels>
+    <labels>
+        <fullName>Insert</fullName>
+        <categories>Button Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Insert</shortDescription>
+        <value>Insert</value>
+    </labels>
+    <labels>
+        <fullName>InsertReference</fullName>
+        <categories>Button Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Insert Reference</shortDescription>
+        <value>Insert Reference</value>
+    </labels>
+    <labels>
+        <fullName>InsufficientPrivileges</fullName>
+        <categories>Title</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Insufficient Privileges</shortDescription>
+        <value>Insufficient Privileges</value>
+    </labels>
+    <labels>
+        <fullName>InsufficientPrivilegesDetail</fullName>
+        <categories>Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Insufficient Privileges Detail</shortDescription>
+        <value>You do not have the level of access necessary to perform the operation you requested. Please contact the owner of the record or your administrator if access is necessary.</value>
+    </labels>
+    <labels>
+        <fullName>InvalidAttachment</fullName>
+        <categories>Error Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>InvalidAttachment</shortDescription>
+        <value>Invalid attachment {0}</value>
+    </labels>
+    <labels>
+        <fullName>InvalidCharacter</fullName>
+        <categories>Error Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Invalid Character</shortDescription>
+        <value>Invalid character string: {0}</value>
+    </labels>
+    <labels>
+        <fullName>InvalidFileNameSize</fullName>
+        <categories>Error Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Invalid File Name Size</shortDescription>
+        <value>Error: The filename exceeds the maximum length allowed, which is {0} characters.</value>
+    </labels>
+    <labels>
+        <fullName>InvalidGenerateAction</fullName>
+        <categories>Error Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Invalid Generate Action</shortDescription>
+        <value>Invalid Action &quot;{0}&quot;.</value>
+    </labels>
+    <labels>
+        <fullName>InvalidImageFormat</fullName>
+        <categories>Error Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Invalid Image Format</shortDescription>
+        <value>Error: Only png, gif or jpeg is supported..</value>
+    </labels>
+    <labels>
+        <fullName>InvalidImageSize</fullName>
+        <categories>Error Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Invalid Image Size</shortDescription>
+        <value>Error: The file size exceeds the maximum size allowed, which is {0} MB.</value>
+    </labels>
+    <labels>
+        <fullName>InvalidMergeField</fullName>
+        <categories>Error Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Invalid Merge Field</shortDescription>
+        <value>INVALID_FIELD: No such column {0} on entity {1}. If you are attempting to use a custom field, be sure to append the &apos;__c&apos; after the custom field name.</value>
+    </labels>
+    <labels>
+        <fullName>InvalidOperator</fullName>
+        <categories>Error Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Invalid Operator</shortDescription>
+        <value>Inequality operator not allowed for this field: {0}</value>
+    </labels>
+    <labels>
+        <fullName>InvalidValue</fullName>
+        <categories>Error Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Invalid Value</shortDescription>
+        <value>Invalid value</value>
+    </labels>
+    <labels>
+        <fullName>Join</fullName>
+        <categories>Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Join</shortDescription>
+        <value>Join</value>
+    </labels>
+    <labels>
+        <fullName>LimitRows</fullName>
+        <categories>Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Limit Rows</shortDescription>
+        <value>Limit Rows</value>
+    </labels>
+    <labels>
+        <fullName>LoadingPage</fullName>
+        <categories>Status Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Loading Page</shortDescription>
+        <value>Loading, please wait...</value>
+    </labels>
+    <labels>
+        <fullName>ManualPathStatusMessage</fullName>
+        <categories>Status Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Manual Path Status Message</shortDescription>
+        <value>Your agreement has been submitted to the queue:
+{0}</value>
+    </labels>
+    <labels>
+        <fullName>Member</fullName>
+        <categories>Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Member</shortDescription>
+        <value>Member</value>
+    </labels>
+    <labels>
+        <fullName>Members</fullName>
+        <categories>Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Members</shortDescription>
+        <value>Members</value>
+    </labels>
+    <labels>
+        <fullName>MergeCallTimeout</fullName>
+        <categories>Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Merge Call Timeout</shortDescription>
+        <value>The Generate action is taking longer than {0} seconds to process.
+Please check back in a few minutes if the document is generated.</value>
+    </labels>
+    <labels>
+        <fullName>MissingRecordTypeForAgreement</fullName>
+        <categories>Error Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Missing RecordType for Agreement</shortDescription>
+        <value>No record type found for the agreement.</value>
+    </labels>
+    <labels>
+        <fullName>MissingTemplateForAgreement</fullName>
+        <categories>Error Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Missing Template for Agreement</shortDescription>
+        <value>Template {0} not found for the agreement.</value>
+    </labels>
+    <labels>
+        <fullName>Name</fullName>
+        <categories>Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Name</shortDescription>
+        <value>Name:</value>
+    </labels>
+    <labels>
+        <fullName>New</fullName>
+        <categories>Title</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>New</shortDescription>
+        <value>New</value>
+    </labels>
+    <labels>
+        <fullName>NewOfflineAgreement</fullName>
+        <categories>Title</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>New Offline Agreement</shortDescription>
+        <value>New Offline Agreement</value>
+    </labels>
+    <labels>
+        <fullName>Next</fullName>
+        <categories>Button Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Next</shortDescription>
+        <value>Next</value>
+    </labels>
+    <labels>
+        <fullName>NextPage</fullName>
+        <categories>Link</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Next Page</shortDescription>
+        <value>Next Page</value>
+    </labels>
+    <labels>
+        <fullName>No</fullName>
+        <categories>Button Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>No</shortDescription>
+        <value>No</value>
+    </labels>
+    <labels>
+        <fullName>NoAttachmentSelected</fullName>
+        <categories>Error Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>No Attachment Selected</shortDescription>
+        <value>At least one document or attachment is required to continue.</value>
+    </labels>
+    <labels>
+        <fullName>NoAttachmentsForActivation</fullName>
+        <categories>Error Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>No Attachments for Activation</shortDescription>
+        <value>No attachment(s) selected for activation.</value>
+    </labels>
+    <labels>
+        <fullName>NoAttachmentsForEmail</fullName>
+        <categories>Error Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>No Attachments for Email</shortDescription>
+        <value>Please generate or attach a document before attempting to send.</value>
+    </labels>
+    <labels>
+        <fullName>NoAttachmentsToDisplay</fullName>
+        <categories>Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>No Attachments to Display</shortDescription>
+        <value>No attachments to display</value>
+    </labels>
+    <labels>
+        <fullName>NoChildAgreementsToDisplay</fullName>
+        <categories>Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>No Child Agreements to Display</shortDescription>
+        <value>No Child Agreements to display</value>
+    </labels>
+    <labels>
+        <fullName>NoDocumentOrAttachmentFound</fullName>
+        <categories>Error Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>No Document or Attachment Found for Activation</shortDescription>
+        <value>No document or attachment found. This agreement must have a document or attachment to continue.</value>
+    </labels>
+    <labels>
+        <fullName>NoDocumentsForTemplate</fullName>
+        <categories>Error Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>No Documents for Template</shortDescription>
+        <value>No documents were found for the template.</value>
+    </labels>
+    <labels>
+        <fullName>NoFilesToDisplay</fullName>
+        <categories>Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>No Files to Display</shortDescription>
+        <value>No files to display</value>
+    </labels>
+    <labels>
+        <fullName>NoFilterCriteria</fullName>
+        <categories>Error Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>No Filter Criteria</shortDescription>
+        <value>No criteria specified for the filter.</value>
+    </labels>
+    <labels>
+        <fullName>NoGroupsToDisplay</fullName>
+        <categories>Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>No Groups to Display</shortDescription>
+        <value>No groups to Display</value>
+    </labels>
+    <labels>
+        <fullName>NoPathStatusMessage</fullName>
+        <categories>Status Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>No Path Status Message</shortDescription>
+        <value>Unable to Submit the agreement.
+Your agreement did not match any rules for submission. Please contact your administrator for assistance.</value>
+    </labels>
+    <labels>
+        <fullName>NoRecordsToDisplay</fullName>
+        <categories>Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>No Records to Display</shortDescription>
+        <value>No records to display</value>
+    </labels>
+    <labels>
+        <fullName>NoRowSelected</fullName>
+        <categories>Error Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>No Row Selected</shortDescription>
+        <value>At least one row must be selected to continue.</value>
+    </labels>
+    <labels>
+        <fullName>NoTemplatesToDisplay</fullName>
+        <categories>Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>No Templates to display</shortDescription>
+        <value>No Templates to display</value>
+    </labels>
+    <labels>
+        <fullName>NotAllowedToDeleteAgreementTermException</fullName>
+        <categories>Warning Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Not Allowed to Delete Agreement Term Exception</shortDescription>
+        <value>The agreement term exception is currently in &quot;Pending Approval&quot; status. Please cancel the term exception before attempting to delete.</value>
+    </labels>
+    <labels>
+        <fullName>NotAllowedToDeleteAgreementTermExceptionMultiple</fullName>
+        <categories>Warning Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Not Allowed to Delete Agreement Term Exception (Multiple)</shortDescription>
+        <value>The following term exception(s) are currently in &quot;Pending Approval&quot; status. Please cancel them before attempting to delete.</value>
+    </labels>
+    <labels>
+        <fullName>NotSubmitted</fullName>
+        <categories>Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Not Submitted</shortDescription>
+        <value>Not Submitted</value>
+    </labels>
+    <labels>
+        <fullName>Object</fullName>
+        <categories>Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Object</shortDescription>
+        <value>Object</value>
+    </labels>
+    <labels>
+        <fullName>Ok</fullName>
+        <categories>Button Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Ok</shortDescription>
+        <value>Ok</value>
+    </labels>
+    <labels>
+        <fullName>Open</fullName>
+        <categories>Button Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Open</shortDescription>
+        <value>Open</value>
+    </labels>
+    <labels>
+        <fullName>Operator</fullName>
+        <categories>Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Operator</shortDescription>
+        <value>Operator</value>
+    </labels>
+    <labels>
+        <fullName>Options</fullName>
+        <categories>Title</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Options</shortDescription>
+        <value>Options</value>
+    </labels>
+    <labels>
+        <fullName>OutOf</fullName>
+        <categories>Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Out Of</shortDescription>
+        <value>out of</value>
+    </labels>
+    <labels>
+        <fullName>Owner</fullName>
+        <categories>Title</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Owner</shortDescription>
+        <value>Owner</value>
+    </labels>
+    <labels>
+        <fullName>PageNbr</fullName>
+        <categories>Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Page #</shortDescription>
+        <value>Page #</value>
+    </labels>
+    <labels>
+        <fullName>ParentAgreement</fullName>
+        <categories>Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Parent Agreement</shortDescription>
+        <value>Parent Agreement</value>
+    </labels>
+    <labels>
+        <fullName>PendingApprovalTermExceptions</fullName>
+        <categories>Title</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Pending Approval Term Exceptions</shortDescription>
+        <value>Pending Approval Term Exceptions</value>
+    </labels>
+    <labels>
+        <fullName>People</fullName>
+        <categories>Title</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>People</shortDescription>
+        <value>People</value>
+    </labels>
+    <labels>
+        <fullName>Period</fullName>
+        <categories>Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Period</shortDescription>
+        <value>Period</value>
+    </labels>
+    <labels>
+        <fullName>Permissions</fullName>
+        <categories>Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Permissions</shortDescription>
+        <value>Permissions</value>
+    </labels>
+    <labels>
+        <fullName>PicklistValueNone</fullName>
+        <categories>Picklist Value</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Picklist value none</shortDescription>
+        <value>--None--</value>
+    </labels>
+    <labels>
+        <fullName>Playbook</fullName>
+        <categories>Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Playbook</shortDescription>
+        <value>Playbook</value>
+    </labels>
+    <labels>
+        <fullName>PleaseWait</fullName>
+        <categories>Status Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Please Wait</shortDescription>
+        <value>Please wait...</value>
+    </labels>
+    <labels>
+        <fullName>PreparingEmail</fullName>
+        <categories>Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Preparing Email</shortDescription>
+        <value>Preparing Email - Please wait...</value>
+    </labels>
+    <labels>
+        <fullName>Prev</fullName>
+        <categories>Link</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Prev</shortDescription>
+        <value>Prev</value>
+    </labels>
+    <labels>
+        <fullName>Preview</fullName>
+        <categories>Button Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Preview</shortDescription>
+        <value>Preview</value>
+    </labels>
+    <labels>
+        <fullName>PreviewAgreement</fullName>
+        <categories>Title</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Preview Agreement</shortDescription>
+        <value>Preview Agreement</value>
+    </labels>
+    <labels>
+        <fullName>PreviewMergeCallTimeout</fullName>
+        <categories>Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Preview Merge Call Timeout</shortDescription>
+        <value>The Preview action is taking longer than {0} seconds to process. 
+Please check back in a few minutes if the preview document is generated.</value>
+    </labels>
+    <labels>
+        <fullName>Previous</fullName>
+        <categories>Button Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Previous</shortDescription>
+        <value>Previous</value>
+    </labels>
+    <labels>
+        <fullName>PreviousPage</fullName>
+        <categories>Link</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Previous Page</shortDescription>
+        <value>Previous Page</value>
+    </labels>
+    <labels>
+        <fullName>PublishCallSubmitted</fullName>
+        <categories>Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Publish Call Submitted</shortDescription>
+        <value>Publish Call {0} has been submitted for processing. Please check the Apex Jobs console to monitor progress.</value>
+    </labels>
+    <labels>
+        <fullName>PublishTemplate</fullName>
+        <categories>Title</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Publish Template</shortDescription>
+        <value>Publish Template</value>
+    </labels>
+    <labels>
+        <fullName>Purge</fullName>
+        <categories>Button Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Purge</shortDescription>
+        <value>Purge</value>
+    </labels>
+    <labels>
+        <fullName>PurgeAgreements</fullName>
+        <categories>Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Purge Agreements</shortDescription>
+        <value>Purge Agreements</value>
+    </labels>
+    <labels>
+        <fullName>ReadOnly</fullName>
+        <categories>Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Read Only</shortDescription>
+        <value>Read Only</value>
+    </labels>
+    <labels>
+        <fullName>RecordTypeName</fullName>
+        <categories>Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Record Type Name</shortDescription>
+        <value>Record Type Name</value>
+    </labels>
+    <labels>
+        <fullName>RecordTypeOfNewRecord</fullName>
+        <categories>Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Record Type Of NewRecord</shortDescription>
+        <value>Record Type of new record</value>
+    </labels>
+    <labels>
+        <fullName>Records</fullName>
+        <categories>Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Records</shortDescription>
+        <value>Records</value>
+    </labels>
+    <labels>
+        <fullName>RefreshStatus</fullName>
+        <categories>Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Refresh Status</shortDescription>
+        <value>refreshing...please wait</value>
+    </labels>
+    <labels>
+        <fullName>Refreshing</fullName>
+        <categories>Status Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Refreshing</shortDescription>
+        <value>refreshing...please wait</value>
+    </labels>
+    <labels>
+        <fullName>RegenerateAgreement</fullName>
+        <categories>Title</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Regenerate Agreement</shortDescription>
+        <value>Regenerate Agreement</value>
+    </labels>
+    <labels>
+        <fullName>Related</fullName>
+        <categories>Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Related</shortDescription>
+        <value>Related</value>
+    </labels>
+    <labels>
+        <fullName>RelatedAgreements</fullName>
+        <categories>Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Related Agreements</shortDescription>
+        <value>Related Agreements</value>
+    </labels>
+    <labels>
+        <fullName>Relationship</fullName>
+        <categories>Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Relationship</shortDescription>
+        <value>Relationship</value>
+    </labels>
+    <labels>
+        <fullName>Remove</fullName>
+        <categories>Link</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Remove</shortDescription>
+        <value>Remove</value>
+    </labels>
+    <labels>
+        <fullName>RemoveDraftDocuments</fullName>
+        <categories>Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Remove Draft Documents</shortDescription>
+        <value>Remove Draft Documents</value>
+    </labels>
+    <labels>
+        <fullName>RemoveRow</fullName>
+        <categories>Link</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Remove Row</shortDescription>
+        <value>Remove Row</value>
+    </labels>
+    <labels>
+        <fullName>RepositoryNotEnabled</fullName>
+        <categories>Error Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Repository Not Enabled</shortDescription>
+        <value>{0} repository is not enabled.</value>
+    </labels>
+    <labels>
+        <fullName>RequiredFieldsAreMissing</fullName>
+        <categories>Error Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Required fields are missing</shortDescription>
+        <value>Required fields are missing</value>
+    </labels>
+    <labels>
+        <fullName>RequiredParameterMissing</fullName>
+        <categories>Error Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Required parameter is missing</shortDescription>
+        <value>Required Parameter Missing {0}</value>
+    </labels>
+    <labels>
+        <fullName>RetainForever</fullName>
+        <categories>Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Retain Forever</shortDescription>
+        <value>Retain Forever</value>
+    </labels>
+    <labels>
+        <fullName>RetentionPolicyEdit</fullName>
+        <categories>Title</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Retention Policy Edit</shortDescription>
+        <value>Retention Policy Edit</value>
+    </labels>
+    <labels>
+        <fullName>Return</fullName>
+        <categories>Button Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Return</shortDescription>
+        <value>Return</value>
+    </labels>
+    <labels>
+        <fullName>ReviewAndActivate</fullName>
+        <categories>Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Review and Activate</shortDescription>
+        <value>Review and Activate</value>
+    </labels>
+    <labels>
+        <fullName>Rule</fullName>
+        <categories>Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Rule</shortDescription>
+        <value>Rule</value>
+    </labels>
+    <labels>
+        <fullName>RuleConditions</fullName>
+        <categories>Title</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Rule Conditions</shortDescription>
+        <value>Rule Conditions</value>
+    </labels>
+    <labels>
+        <fullName>RuleInformation</fullName>
+        <categories>Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Rule Information</shortDescription>
+        <value>Rule Information</value>
+    </labels>
+    <labels>
+        <fullName>Save</fullName>
+        <categories>Button Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Save</shortDescription>
+        <value>Save</value>
+    </labels>
+    <labels>
+        <fullName>SaveAndNew</fullName>
+        <categories>Button Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Save &amp; New</shortDescription>
+        <value>Save &amp; New</value>
+    </labels>
+    <labels>
+        <fullName>SearchAgreementInstruction</fullName>
+        <categories>Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Search Agreement Instruction</shortDescription>
+        <value>Type a Name or Agreement Number and click the Search icon.</value>
+    </labels>
+    <labels>
+        <fullName>SearchFilter</fullName>
+        <categories>Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Search Filter</shortDescription>
+        <value>Search Filter</value>
+    </labels>
+    <labels>
+        <fullName>SearchGroupInstruction</fullName>
+        <categories>Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Search Group Instruction</shortDescription>
+        <value>Type a Group Name and click the Search icon.</value>
+    </labels>
+    <labels>
+        <fullName>SearchPeopleInstruction</fullName>
+        <categories>Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Search People Instruction</shortDescription>
+        <value>Type a Name and click the Search icon.</value>
+    </labels>
+    <labels>
+        <fullName>SearchTemplateInstruction</fullName>
+        <categories>Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Search Template Instruction</shortDescription>
+        <value>Type a Name, Description or Keyword and click the Search icon.</value>
+    </labels>
+    <labels>
+        <fullName>Searching</fullName>
+        <categories>Status Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Searching</shortDescription>
+        <value>searching...please wait</value>
+    </labels>
+    <labels>
+        <fullName>Select</fullName>
+        <categories>Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Select</shortDescription>
+        <value>Select</value>
+    </labels>
+    <labels>
+        <fullName>SelectAgreementRecordType</fullName>
+        <categories>Title</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Select Agreement Record Type</shortDescription>
+        <value>Select Agreement Record Type</value>
+    </labels>
+    <labels>
+        <fullName>SelectAgreementRecordTypeInstruction</fullName>
+        <categories>Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Select Agreement Record Type Instruction</shortDescription>
+        <value>Select a record type for the new agreement. To skip this page in the future, change your record type settings on your personal setup page.</value>
+    </labels>
+    <labels>
+        <fullName>SelectAttachments</fullName>
+        <categories>Title</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Select Attachments</shortDescription>
+        <value>Select Attachments</value>
+    </labels>
+    <labels>
+        <fullName>SelectDocument</fullName>
+        <categories>Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Select Document</shortDescription>
+        <value>Select Document</value>
+    </labels>
+    <labels>
+        <fullName>SelectDocumentProtection</fullName>
+        <categories>Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Select Document Protection</shortDescription>
+        <value>Select Document Protection</value>
+    </labels>
+    <labels>
+        <fullName>SelectDocumentProtectionOptional</fullName>
+        <categories>Title</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Select Document Protection (Optional)</shortDescription>
+        <value>Apply Document Protection (Optional)</value>
+    </labels>
+    <labels>
+        <fullName>SelectEmailTemplateFolderInstruction1</fullName>
+        <categories>Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Selec Email Template Folder Instruction (1)</shortDescription>
+        <value>Please note that if you select a different template later on from the Send Email page, then the attachments to the email will be lost.</value>
+    </labels>
+    <labels>
+        <fullName>SelectEmailTemplateFolderInstruction2</fullName>
+        <categories>Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Select Email Template Folder Instruction (2)</shortDescription>
+        <value>If you do need to select a different template, hit Cancel on the Send Email page, and then reselect the Send For Review/Signature option.</value>
+    </labels>
+    <labels>
+        <fullName>SelectEmailTemplateOptional</fullName>
+        <categories>Title</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Select Email Template (Optional)</shortDescription>
+        <value>Select Email Template (Optional)</value>
+    </labels>
+    <labels>
+        <fullName>SelectField</fullName>
+        <categories>Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Select Field</shortDescription>
+        <value>Select Field</value>
+    </labels>
+    <labels>
+        <fullName>SelectFieldInstruction</fullName>
+        <categories>Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Select Field Instruction</shortDescription>
+        <value>Select a field to upload the image to.</value>
+    </labels>
+    <labels>
+        <fullName>SelectFile</fullName>
+        <categories>Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Select File</shortDescription>
+        <value>Select the File</value>
+    </labels>
+    <labels>
+        <fullName>SelectFileInstruction</fullName>
+        <categories>Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Select File Instruction</shortDescription>
+        <value>Type the path of the file or click the Browse button to select a document to attach to this agreement.</value>
+    </labels>
+    <labels>
+        <fullName>SelectFileInstruction2</fullName>
+        <categories>Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Select File Instruction 2</shortDescription>
+        <value>Select a file from the list.</value>
+    </labels>
+    <labels>
+        <fullName>SelectFileToImportInstruction</fullName>
+        <categories>Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Select File to Import Instruction</shortDescription>
+        <value>Type the path of the file or click the Browse button to select a document to import and attach to this agreement.</value>
+    </labels>
+    <labels>
+        <fullName>SelectFilterObjectInstruction</fullName>
+        <categories>Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Select Filter Object Instruction</shortDescription>
+        <value>Select the object to which this filter applies.</value>
+    </labels>
+    <labels>
+        <fullName>SelectGroup</fullName>
+        <categories>Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Select Group</shortDescription>
+        <value>Select Group</value>
+    </labels>
+    <labels>
+        <fullName>SelectImageFile</fullName>
+        <categories>Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Select Image File</shortDescription>
+        <value>Select the Image</value>
+    </labels>
+    <labels>
+        <fullName>SelectImageToUploadInstruction</fullName>
+        <categories>Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Select Image to Upload Instruction</shortDescription>
+        <value>Type the path of the file or click the Browse button to select an image to upload.</value>
+    </labels>
+    <labels>
+        <fullName>SelectImportFile</fullName>
+        <categories>Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Select Import File</shortDescription>
+        <value>Select the File</value>
+    </labels>
+    <labels>
+        <fullName>SelectObject</fullName>
+        <categories>Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Select Object</shortDescription>
+        <value>Select Object</value>
+    </labels>
+    <labels>
+        <fullName>SelectOutputFormat</fullName>
+        <categories>Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Select Output Format</shortDescription>
+        <value>Select Output Format</value>
+    </labels>
+    <labels>
+        <fullName>SelectPeople</fullName>
+        <categories>Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Select People</shortDescription>
+        <value>Select People</value>
+    </labels>
+    <labels>
+        <fullName>SelectProfile</fullName>
+        <categories>Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Select Profile</shortDescription>
+        <value>Select Profile:</value>
+    </labels>
+    <labels>
+        <fullName>SelectTemplate</fullName>
+        <categories>Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Select Template</shortDescription>
+        <value>Select template from the list below and click Generate</value>
+    </labels>
+    <labels>
+        <fullName>Seq</fullName>
+        <categories>Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Seq</shortDescription>
+        <value>Seq</value>
+    </labels>
+    <labels>
+        <fullName>SetupDocumentOutputFormats</fullName>
+        <categories>Title</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Setup Document Output Formats</shortDescription>
+        <value>Setup Agreement Document Output Formats</value>
+    </labels>
+    <labels>
+        <fullName>ShowAttachmentsFrom</fullName>
+        <categories>Title</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Show Attachments From</shortDescription>
+        <value>Show Attachments From</value>
+    </labels>
+    <labels>
+        <fullName>ShowFilter</fullName>
+        <categories>Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Show Filter</shortDescription>
+        <value>Show Filter</value>
+    </labels>
+    <labels>
+        <fullName>SibilingAgreements</fullName>
+        <categories>Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Sibiling Agreements</shortDescription>
+        <value>Sibiling Agreements</value>
+    </labels>
+    <labels>
+        <fullName>Size</fullName>
+        <categories>Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Size</shortDescription>
+        <value>Size</value>
+    </labels>
+    <labels>
+        <fullName>SortedAscending</fullName>
+        <categories>Title</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Sorted Ascending</shortDescription>
+        <value>Sorted Ascending</value>
+    </labels>
+    <labels>
+        <fullName>SortedDescending</fullName>
+        <categories>Title</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Sorted Descending</shortDescription>
+        <value>Sorted Descending</value>
+    </labels>
+    <labels>
+        <fullName>Sorting</fullName>
+        <categories>Status Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Sorting</shortDescription>
+        <value>sorting...please wait</value>
+    </labels>
+    <labels>
+        <fullName>Step</fullName>
+        <categories>Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Step</shortDescription>
+        <value>Step</value>
+    </labels>
+    <labels>
+        <fullName>StepStats</fullName>
+        <categories>Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Step Stats</shortDescription>
+        <value>Step {0} of {1}</value>
+    </labels>
+    <labels>
+        <fullName>Submit</fullName>
+        <categories>Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Submit</shortDescription>
+        <value>Submit</value>
+    </labels>
+    <labels>
+        <fullName>SubmitDocStatusMessage</fullName>
+        <categories>Status Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Submit Doc Status Message</shortDescription>
+        <value>The action is submitted for processing. Please do not log off until you receive a completion notification.</value>
+    </labels>
+    <labels>
+        <fullName>SubmittingAgreement</fullName>
+        <categories>Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Submitting Agreement</shortDescription>
+        <value>Submitting Agreement - Please wait...</value>
+    </labels>
+    <labels>
+        <fullName>Summary</fullName>
+        <categories>Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Summary</shortDescription>
+        <value>Summary</value>
+    </labels>
+    <labels>
+        <fullName>TemplateInformation</fullName>
+        <categories>Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Template Information</shortDescription>
+        <value>Template Information</value>
+    </labels>
+    <labels>
+        <fullName>TemplateNotValidForAgreement</fullName>
+        <categories>Error Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Template Not Valid for Agreement</shortDescription>
+        <value>Template {0} does not support the agreement type {1}.</value>
+    </labels>
+    <labels>
+        <fullName>TemplateType</fullName>
+        <categories>Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Template Type</shortDescription>
+        <value>Template Type</value>
+    </labels>
+    <labels>
+        <fullName>Templates</fullName>
+        <categories>Title</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Templates</shortDescription>
+        <value>Templates</value>
+    </labels>
+    <labels>
+        <fullName>TermExceptionSearchInstruction</fullName>
+        <categories>Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Term Exception Search Instruction</shortDescription>
+        <value>Enter your filter criteria and click &quot;Find&quot; to begin your search</value>
+    </labels>
+    <labels>
+        <fullName>TextContentViewInstruction</fullName>
+        <categories>Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Text Content View Instruction</shortDescription>
+        <value>Click to View Text Content</value>
+    </labels>
+    <labels>
+        <fullName>To</fullName>
+        <categories>Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>To</shortDescription>
+        <value>To:</value>
+    </labels>
+    <labels>
+        <fullName>Type</fullName>
+        <categories>Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Type</shortDescription>
+        <value>Type</value>
+    </labels>
+    <labels>
+        <fullName>Upload</fullName>
+        <categories>Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Upload</shortDescription>
+        <value>Upload</value>
+    </labels>
+    <labels>
+        <fullName>UploadFile</fullName>
+        <categories>Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Upload File</shortDescription>
+        <value>Upload File</value>
+    </labels>
+    <labels>
+        <fullName>UploadImage</fullName>
+        <categories>Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Upload Image</shortDescription>
+        <value>Upload Image</value>
+    </labels>
+    <labels>
+        <fullName>UploadImageFileInstruction</fullName>
+        <categories>Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Upload Image File Instruction</shortDescription>
+        <value>Click the button below to upload the image</value>
+    </labels>
+    <labels>
+        <fullName>UploadImageStep1</fullName>
+        <categories>Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Upload Image Step (1)</shortDescription>
+        <value>1. Select a Field</value>
+    </labels>
+    <labels>
+        <fullName>UploadImageStep2</fullName>
+        <categories>Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Upload Image Step (2)</shortDescription>
+        <value>2. Select Image</value>
+    </labels>
+    <labels>
+        <fullName>Value</fullName>
+        <categories>Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Value</shortDescription>
+        <value>Value</value>
+    </labels>
+    <labels>
+        <fullName>ValueIsMissing</fullName>
+        <categories>Error Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Value is Missing</shortDescription>
+        <value>You must enter a value</value>
+    </labels>
+    <labels>
+        <fullName>View</fullName>
+        <categories>Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>View</shortDescription>
+        <value>View</value>
+    </labels>
+    <labels>
+        <fullName>ViewDocument</fullName>
+        <categories>Title</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>View Document</shortDescription>
+        <value>View the document</value>
+    </labels>
+    <labels>
+        <fullName>ViewFileInstruction</fullName>
+        <categories>Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>View File Instruction</shortDescription>
+        <value>Click here to view this file</value>
+    </labels>
+    <labels>
+        <fullName>ViewGroupDefinition</fullName>
+        <categories>Title</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>View Group Definition</shortDescription>
+        <value>View Group Definition</value>
+    </labels>
+    <labels>
+        <fullName>Yes</fullName>
+        <categories>Button Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Yes</shortDescription>
+        <value>Yes</value>
+    </labels>
+</CustomLabels>

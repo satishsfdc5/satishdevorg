@@ -1,0 +1,4 @@
+<apex:page standardController="Expense__c">
+  <apex:sectionHeader title="Expense__c" subtitle="{!Expense__c.name}"/>
+  <c:attachmentlist ></c:attachmentlist>
+</apex:page>

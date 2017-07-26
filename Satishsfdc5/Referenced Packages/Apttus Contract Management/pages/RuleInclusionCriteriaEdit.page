@@ -1,0 +1,65 @@
+<!-- 
+    Apttus Contract Management
+    RuleInclusionCriteriaEdit
+     
+    @2009-2011 Apttus Inc. All rights reserved.
+
+ -->
+<apex:page standardController="Apttus__Agreement_Rule__c"  
+		   extensions="Apttus.RuleInclusionCriteriaEditController" 
+           showHeader="true"
+           sidebar="true"
+           cache="false"   
+           tabStyle="Apttus__Agreement_Rule__c">	
+    
+    <apex:stylesheet value="{!$Resource.Apttus__ComplyStyles}" />
+    
+    <apex:sectionHeader title="{!$ObjectType.Apttus__Agreement_Rule__c.Label}" subtitle="{!Apttus__Agreement_Rule__c.Name}"/>
+    
+    <apex:form id="idEditCriteria">
+		<!--  required fields -->
+		<apex:outputText value="{!Apttus__Agreement_Rule__c.Apttus__Rule_Description__c}" rendered="false" />
+		<apex:outputText value="{!Apttus__Agreement_Rule__c.Apttus__Active__c}" rendered="false" />
+		
+		<apex:pageBlock id="idEditCriteriaBlock" title="{!$Label.apttus__EditCriteria}" mode="edit">
+			<apex:pageMessages />
+			
+			<apex:pageBlockButtons location="top">
+		        <apex:commandButton value="{!$Label.apttus__Ok}" 
+		        					action="{!doOk}"  />
+		        <apex:commandButton value="{!$Label.apttus__Cancel}" 
+		        					action="{!doCancel}" 
+		        					immediate="true"  />
+		    </apex:pageBlockButtons>
+		    
+		    <apex:pageBlockSection id="idEditCriteriaSection" 
+		    					   title="{!$Label.apttus__InclusionCriteria}" 
+		    					   columns="2" 
+		    					   collapsible="false" >
+		        
+		        <apex:pageBlockSectionItem >
+					<apex:outputLabel value="{!$ObjectType.Apttus__Agreement_Rule__c.Fields.Apttus__InclusionCriteriaFieldName__c.Label}" 
+									  for="idFieldName" />
+					<apex:selectList id="idFieldName" 
+  									 value="{!Apttus__Agreement_Rule__c.Apttus__InclusionCriteriaFieldName__c}" 
+  									 multiselect="false" 
+  									 required="false" 
+  									 size="1" >
+						<apex:selectOptions value="{!fieldItems}"></apex:selectOptions>
+					</apex:selectList>
+				</apex:pageBlockSectionItem>
+		        <apex:pageBlockSectionItem />
+		        
+		        <apex:inputField value="{!Apttus__Agreement_Rule__c.Apttus__InclusionCriteriaCompOper__c}"/>
+		        <apex:pageBlockSectionItem />
+		        
+		        <apex:inputField value="{!Apttus__Agreement_Rule__c.Apttus__InclusionCriteriaFieldValue__c}"/>
+		        <apex:pageBlockSectionItem />
+		        
+		    </apex:pageBlockSection>
+				    
+		</apex:pageBlock>
+		
+	</apex:form>
+	
+</apex:page>

@@ -1,0 +1,24 @@
+<!-- 
+    Apttus Config & Pricing
+    ConfigSettings
+     
+    @2011-2012 Apttus Inc. All rights reserved.
+
+ -->
+<apex:page cache="false"
+           standardStylesheets="true"
+           setup="true"
+           tabStyle="ConfigSettings__tab">	
+    
+    <apex:sectionHeader title="{!$Label.apttus_config2__ConfigSettings}" />
+	
+	<apex:pageBlock title="{!$Label.apttus_config2__ConfigSettings}" 
+					mode="edit" >
+		
+		<apex:pageBlockSection columns="2" >
+			<apex:outputLink title="{!$Label.apttus_config2__DisplayColumSettings}" 
+			   	  			 value="{!$Page.Apttus_Config2__DisplayColumnSettings}">{!$Label.apttus_config2__DisplayColumSettings}</apex:outputLink>
+		</apex:pageBlockSection>
+		
+	</apex:pageBlock>
+</apex:page>

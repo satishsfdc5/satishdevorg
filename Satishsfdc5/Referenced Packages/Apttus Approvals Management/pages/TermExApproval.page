@@ -1,0 +1,111 @@
+<!-- 
+    Apttus Approvals Management
+    TermExApproval
+     
+    @2010-2011 Apttus Inc. All rights reserved.
+
+ -->
+<apex:page standardController="Apttus_Approval__Term_Exception_Approval__c"
+	extensions="Apttus_Approval.TermExApprovalController">
+
+	<apex:sectionHeader title="{!$ObjectType.Apttus_Approval__Term_Exception_Approval__c.Label}"
+		subtitle="{!termExApproval.Name}" />
+
+	<apex:form >
+	
+		<apex:outputText value="{!Apttus_Approval__Term_Exception_Approval__c.Apttus_Approval__Term_Exception__c}" rendered="false"/>
+		<apex:outputText value="{!Apttus_Approval__Term_Exception_Approval__c.Apttus_Approval__Active__c}" rendered="false"/>
+		<apex:outputText value="{!Apttus_Approval__Term_Exception_Approval__c.Apttus_Approval__Assignee_Id__c}" rendered="false"/>
+		<apex:outputText value="{!Apttus_Approval__Term_Exception_Approval__c.Apttus_Approval__Assignee_Type__c}" rendered="false"/>
+		<apex:outputText value="{!Apttus_Approval__Term_Exception_Approval__c.Apttus_Approval__Assignee_User__c}" rendered="false"/>
+		<apex:outputText value="{!Apttus_Approval__Term_Exception_Approval__c.Apttus_Approval__Assignee_Value__c}" rendered="false"/>
+		<apex:outputText value="{!Apttus_Approval__Term_Exception_Approval__c.Apttus_Approval__Assignee_Description__c}" rendered="false"/>
+		<apex:outputText value="{!Apttus_Approval__Term_Exception_Approval__c.Apttus_Approval__DependsOn__c}" rendered="false"/>
+		<apex:outputText value="{!Apttus_Approval__Term_Exception_Approval__c.Apttus_Approval__Sequence__c}" rendered="false"/>
+		<apex:outputText value="{!Apttus_Approval__Term_Exception_Approval__c.Name}" rendered="false"/>
+		<apex:outputText value="{!Apttus_Approval__Term_Exception_Approval__c.Apttus_Approval__Notify_Only__c}" rendered="false"/>
+		<apex:outputText value="{!Apttus_Approval__Term_Exception_Approval__c.Apttus_Approval__Send_Email__c}" rendered="false"/>
+		
+		<apex:pageBlock id="idPageBlock"
+			title="{!$Label.apttus_approval__EditTermExceptionApproval}" mode="edit">
+
+			<apex:pageMessages />
+
+			<apex:pageBlockButtons >
+				<apex:commandButton action="{!doSave}" value="{!$Label.apttus_approval__Save}" />
+				<apex:commandButton action="{!doCancel}" value="{!$Label.apttus_approval__Cancel}"
+					immediate="true" />
+				<b> <apex:actionStatus id="idStatusWait"
+					startText="{!$Label.apttus_approval__StatusPleaseWait}..." /> </b>
+			</apex:pageBlockButtons>
+
+				
+			<apex:pageBlockSection id="idPageBlockSection"
+				title="{!$Label.apttus_approval__Information}" columns="1">
+
+				<!-- term exception -->
+	            <apex:inputField value="{!termExApproval.Apttus_Approval__Term_Exception__c}" required="true"
+	                    rendered="{!enableTEInput}" />
+				<apex:outputField value="{!termExApproval.Apttus_Approval__Term_Exception__c}" 
+						rendered="{!NOT(enableTEInput)}" />
+				
+				<!-- sequence -->
+				<apex:inputField value="{!termExApproval.Apttus_Approval__Sequence__c}" style="width:60px"/>
+
+				<!-- assignee type -->
+				<apex:inputField id="idAssigneeType"
+					value="{!termExApproval.Apttus_Approval__Assignee_Type__c}">
+					<apex:actionSupport event="onchange" 
+						action="{!doAssigneeTypeChanged}" rerender="idPageBlock"
+						status="idStatusWait" />
+				</apex:inputField>
+
+				<!-- assignee value -->
+                				
+				<apex:pageBlockSectionItem >
+				
+					<apex:outputLabel value="{!$Label.apttus_approval__AssigneeValue}" for="idQueueSelect"
+							rendered="{!NOT(hasTypeUserSelected)}" />
+							
+					<apex:outputPanel >                 
+						<apex:inputText value="{!termExApproval.Apttus_Approval__Assignee_Value__c}"
+								rendered="{!NOT(hasTypeUserSelected)}" />  
+						<apex:commandLink action="{!doSelectQueue}"  
+								rendered="{!hasTypeQueueSelected}" >
+							<apex:outputPanel >
+					    		<img src="/img/s.gif" class="lookupIcon"/>
+							</apex:outputPanel>
+                		</apex:commandLink>
+                 	</apex:outputPanel>
+                 	
+				</apex:pageBlockSectionItem>
+
+				<!-- assignee user -->
+				<apex:inputField value="{!termExApproval.Apttus_Approval__Assignee_User__c}"
+					rendered="{!hasTypeUserSelected}">
+					<apex:actionSupport event="onchange"
+						action="{!doAssigneeUserChanged}" rerender="idPageBlock"
+						status="idStatusWait" />
+				</apex:inputField>
+
+				<!-- description -->
+				<apex:inputField value="{!termExApproval.Apttus_Approval__Assignee_Description__c}" style="width:300px;height:80px"/>
+
+				<!-- dependencies -->
+				<apex:inputField value="{!termExApproval.Apttus_Approval__DependsOn__c}" style="width:300px"/>
+
+				<!-- send email -->
+				<apex:inputField value="{!termExApproval.Apttus_Approval__Send_Email__c}" />
+
+				<!-- notify only -->
+				<apex:inputField value="{!termExApproval.Apttus_Approval__Notify_Only__c}" />
+
+				<!-- active -->
+				<apex:inputField id="idIsActive" value="{!termExApproval.Apttus_Approval__Active__c}" />
+
+			</apex:pageBlockSection>
+
+		</apex:pageBlock>
+
+	</apex:form>
+</apex:page>

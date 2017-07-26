@@ -1,0 +1,64 @@
+<!-- 
+    Apttus Comply-Config Integration
+    AgreementConfiguration
+     
+    @2010-2011 Apttus Inc. All rights reserved.
+	
+	
+	parameters
+    ==========
+    Name			| Required | Description
+    ================|==========|======================================================================================
+    id 				| Yes      | The record id of the agreement
+                    |          |
+    prodfilter_     | No       | Product search filter may be passed by prefixing the parameter name with 'prodfilter_'.
+   					|		   | for e.g. if you pass in a parameter prodfilter_Family=XYZ001, the product family field in 
+   					|		   | the Product object will be used to filter the product records. Multiple parameters
+   					|		   | may be passed. 
+                    |          |
+    prodfilter_oper | No       | The boolean operator to combine multiple search filters. 
+                    |          | Valid values are : AND, OR. The default value is AND. 
+    				|		   |
+    ===================================================================================================================
+    
+ -->
+<apex:page standardController="Apttus__APTS_Agreement__c" 
+		   extensions="Apttus_CMConfig.AgreementConfigurationController" >
+		   
+	<apex:form >
+		<!--  required fields -->
+		<apex:outputText value="{!Apttus__APTS_Agreement__c.Name}" rendered="false" />
+		<apex:outputText value="{!Apttus__APTS_Agreement__c.Apttus__Account__c}" rendered="false" />
+		<apex:outputText value="{!Apttus__APTS_Agreement__c.Apttus__Contract_Start_Date__c}" rendered="false" />
+		<apex:outputText value="{!Apttus__APTS_Agreement__c.Apttus__Contract_End_Date__c}" rendered="false" />
+		<apex:outputText value="{!Apttus__APTS_Agreement__c.Apttus_CMConfig__PriceListId__c}" rendered="false" />
+		<apex:outputText value="{!Apttus__APTS_Agreement__c.Apttus_CMConfig__PricingDate__c}" rendered="false" />
+		
+		<!--  hidden action buttons -->
+		<apex:commandButton id="btnOnLoad" action="{!onLoad}" value="On Load" style="display: none" />
+		
+		<script>
+        	var btnOnLoad = document.getElementById("{!$Component.btnOnLoad}");
+      	</script>
+      	
+		<apex:pageBlock mode="edit" rendered="{!hasErrors}" >
+			<apex:pageMessages />
+			<apex:pageBlockButtons location="bottom" >
+				<apex:commandButton action="{!doCancel}" value="{!$Label.apttus_cmconfig__Cancel}" immediate="true" />
+			</apex:pageBlockButtons>
+		</apex:pageBlock>
+		
+	</apex:form>
+	
+	<script>
+		// register to invoke the function after the page load
+		var hasErrors = "{!hasErrors}";
+		if (hasErrors.toLowerCase() == 'false') {
+		    window.onload = function() { 
+		    	// on load
+		        btnOnLoad.click();
+		    };
+		}
+	</script>
+	
+</apex:page>

@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Follow</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <deprecated>false</deprecated>
+    <description>To identify the different types of relationships between agreements</description>
+    <enableActivities>false</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>false</enableHistory>
+    <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <fields>
+        <fullName>APTS_Contract_From__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Relationship From</label>
+        <referenceTo>APTS_Agreement__c</referenceTo>
+        <relationshipName>R00N50000001Xl0WEAS</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>APTS_Contract_To__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Relationship To</label>
+        <referenceTo>APTS_Agreement__c</referenceTo>
+        <relationshipName>R00N50000001Xl0KEAS</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Relationship_From_Type__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Relationship From Type</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Related NDA Is</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Is NDA For</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Is Master Of</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Is Child Of</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Is Related Contract</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Is SOW Of</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Is Amendment For</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Is Amended By</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Is Superceded By</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Is Renewed By</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Is Renewal For</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Relationship_To_Type__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Relationship To Type</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Related NDA Is</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Is NDA For</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Is Master Of</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Is Child Of</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Is Related Contract</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Is SOW Of</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Is Amendment For</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Is Amended By</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Is Superceded By</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Is Renewal For</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Is Renewal By</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <label>Related Agreement</label>
+    <nameField>
+        <label>Relationship Name</label>
+        <type>Text</type>
+    </nameField>
+    <pluralLabel>Related Agreements</pluralLabel>
+    <searchLayouts/>
+    <sharingModel>ReadWrite</sharingModel>
+</CustomObject>

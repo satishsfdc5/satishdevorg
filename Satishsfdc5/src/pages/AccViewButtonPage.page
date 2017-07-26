@@ -1,0 +1,27 @@
+<apex:page standardController="Account" tabStyle="Account">
+    <style>
+        .activeTab {background-color: #236FBD;
+        			Color:white;
+        			background-image: None}
+        .inActiveTab {background-color: lightGrey;
+        			  Color:black;
+        			  background-image: None}
+    </style>
+    <apex:tabPanel switchType="Client" selectedTab="tabdetails" id="AccountTabPanel" tabClass="activeTab" inactiveTabClass="inActiveTab">
+    	<apex:tab label="Details" name="AccDetails" id="tabdetails">
+            <apex:detail relatedList="false" title="true"/>
+        </apex:tab>
+        <apex:tab label="Contacts" name="Contacts" id="tabContact">
+            <apex:relatedList subject="{!Account}" list="Contacts"/>
+        </apex:tab>
+        <apex:tab label="opportunities" name="Opportunities" id="tabOpp">
+            <apex:relatedList subject="{!Account}" list="Opportunities"/>
+        </apex:tab>
+        <apex:tab label="Open Activities" name="OpenActivites" id="tabopenAct">
+            <apex:relatedList subject="{!Account}" list="OpenActivities"/>
+        </apex:tab>
+        <apex:tab label="Notes and Attachements" name="NotesandAttachments" id="tabNoteAtt">
+            <apex:relatedList subject="{!Account}" list="CombinedAttachments"/>
+        </apex:tab>
+    </apex:tabPanel>
+</apex:page>

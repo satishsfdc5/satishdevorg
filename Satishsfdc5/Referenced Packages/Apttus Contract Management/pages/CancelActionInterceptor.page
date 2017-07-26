@@ -1,0 +1,92 @@
+<!-- 
+    Apttus Contract Management
+    CancelActionInterceptor
+     
+    @2009-2010 Apttus Inc. All rights reserved.
+
+ -->
+<apex:page controller="Apttus.CancelActionController" 
+		   tabStyle="Apttus__APTS_Agreement__c">
+	
+	<apex:stylesheet value="{!URLFOR($Resource.Apttus__YUILibrary, '/yui/build/assets/skins/sam/skin.css')}" />
+ 
+	<apex:includescript value="{!URLFOR($Resource.Apttus__YUILibrary, '/yui/build/yahoo-dom-event/yahoo-dom-event.js')}" />
+	<apex:includescript value="{!URLFOR($Resource.Apttus__YUILibrary, '/yui/build/dragdrop/dragdrop-min.js')}" />
+	<apex:includescript value="{!URLFOR($Resource.Apttus__YUILibrary, '/yui/build/container/container-min.js')}" />
+	<apex:includescript value="{!URLFOR($Resource.Apttus__YUILibrary, '/yui/build/animation/animation-min.js')}" />
+	
+	<script>
+    
+	    // Create a namespace for our custom functions
+	    YAHOO.namespace("force.com");
+	
+	    // Function called when we want to show the dialog
+	    YAHOO.force.com.showMe = function() {
+	        document.getElementById("confirmationPanel").style.display = "block";
+	        YAHOO.force.com.myDialog.show();
+	    }
+	   
+	   // Function called when we want to hide the dialog
+	    YAHOO.force.com.hideMe = function() {
+	        YAHOO.force.com.myDialog.hide();
+	    }
+
+	    // Function called when the DOM is ready to create the dialog,
+	    // render the dialog into the document body, add our dialog skin
+	    // css to the body tag, and wire up the buttons on our dialog    
+	    YAHOO.force.com.init = function() {
+	        document.body.className = document.body.className + " yui-skin-sam";
+	        YAHOO.force.com.myDialog = new YAHOO.widget.Panel(
+	            "confirmationPanel",  // The id of our dialog container
+	            { 
+	                    width           :   "300px", // You can play with this until it's right
+	                    visible         :   false,   // Should be invisible when rendered
+	                    draggable       :   true,    // Make the dialog draggable
+	                    close           :   false,   // Don't include a close title button
+	                    modal           :   true,    // Make it modal
+	                    fixedCenter     :   true,    // Keep centered if window is scrolled
+	                    zindex          :   40,      // Make sure it's on top of everything
+	                    
+	                    // This line adds the appear/disapper fade effect
+	                    effect          :   {effect:YAHOO.widget.ContainerEffect.FADE,duration:0.35} 
+	            }
+	         );
+	        
+	        // Render the dialog to the document.body level of the DOM
+	        YAHOO.force.com.myDialog.render(document.body);
+	        // display the dialog
+	        YAHOO.force.com.showMe();
+	    }
+    
+	    // Add the init method to the window.load event
+	    YAHOO.util.Event.addListener(window, "load", YAHOO.force.com.init);
+	</script>
+	
+	<!-- This is the content of the modal dialog -->
+	<div id="confirmationPanel" style="display: none" >
+	    <div class="hd">
+	        <apex:outputText value="{!$Label.apttus__CancelConfirmation}" />
+	    </div> 
+	    <div class="bd">
+	        <apex:form >
+	            <apex:actionRegion >
+	                <div style="text-align: center;" >
+	                    <apex:commandButton value="{!$Label.apttus__Yes}" 
+	                    					action="{!doOK}" 
+	                    					oncomplete="YAHOO.force.com.hideMe();" />
+	                    <apex:commandButton value="{!$Label.apttus__No}" 
+	                    					action="{!doCancel}" 
+	                    					immediate="true" 
+	                    					oncomplete="YAHOO.force.com.hideMe();" />
+	                </div>
+	            </apex:actionRegion>
+	        </apex:form>
+	    </div>
+	    <div class="ft" style="font-size: 10px; font-weight: bold;">
+	        <apex:outputPanel layout="block">
+	            {!$Label.apttus__CancelInstruction}
+	        </apex:outputPanel>
+	    </div>
+	</div>
+
+</apex:page>

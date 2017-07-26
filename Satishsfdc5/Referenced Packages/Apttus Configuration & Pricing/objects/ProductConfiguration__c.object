@@ -1,0 +1,397 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Follow</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <deprecated>false</deprecated>
+    <description>Represents a product configuration</description>
+    <enableActivities>true</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>false</enableHistory>
+    <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <fields>
+        <fullName>AccountId__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <deprecated>false</deprecated>
+        <description>ID of the associated account</description>
+        <externalId>false</externalId>
+        <label>Account</label>
+        <referenceTo>Account</referenceTo>
+        <relationshipLabel>Configurations</relationshipLabel>
+        <relationshipName>Configurations</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>AncestorId__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <deprecated>false</deprecated>
+        <description>ID of the ancestor configuration</description>
+        <externalId>false</externalId>
+        <label>Ancestor</label>
+        <referenceTo>ProductConfiguration__c</referenceTo>
+        <relationshipLabel>Derived Configurations</relationshipLabel>
+        <relationshipName>DerivedConfigurations</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>BaseRelationCount__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Counts the number of line items related to base product.</description>
+        <externalId>false</externalId>
+        <label>Base Relation Count</label>
+        <summaryFilterItems>
+            <field>LineItem__c.HasBaseProduct__c</field>
+            <operation>equals</operation>
+            <value>true</value>
+        </summaryFilterItems>
+        <summaryForeignKey>LineItem__c.ConfigurationId__c</summaryForeignKey>
+        <summaryOperation>count</summaryOperation>
+        <trackTrending>false</trackTrending>
+        <type>Summary</type>
+    </fields>
+    <fields>
+        <fullName>BusinessObjectId__c</fullName>
+        <deprecated>false</deprecated>
+        <description>ID of the business object associated with the configuration</description>
+        <externalId>false</externalId>
+        <label>Business Object</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>BusinessObjectType__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The type of the business object associated with the configuration</description>
+        <externalId>false</externalId>
+        <label>Business Object Type</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Agreement</fullName>
+                <default>true</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Proposal</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Comments__c</fullName>
+        <deprecated>false</deprecated>
+        <description>memo text entered by the user</description>
+        <externalId>false</externalId>
+        <label>Comments</label>
+        <length>4000</length>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>5</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Description__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The description for the product configuration</description>
+        <externalId>false</externalId>
+        <label>Description</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>EffectiveDate__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The configuration effective date.</description>
+        <externalId>false</externalId>
+        <label>Effective Date</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>ExpectedEndDate__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The expected end date for products and services</description>
+        <externalId>false</externalId>
+        <label>Expected End Date</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>ExpectedStartDate__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The expected start date for products and services</description>
+        <externalId>false</externalId>
+        <label>Expected Start Date</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>FinalizedDate__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Date when the configuration was finalized</description>
+        <externalId>false</externalId>
+        <label>Finalized Date</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>IsPricePending__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <description>Indicates whether pricing is pending for line items in the configuration</description>
+        <externalId>false</externalId>
+        <label>Is Price Pending</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>IsTransient__c</fullName>
+        <defaultValue>true</defaultValue>
+        <deprecated>false</deprecated>
+        <description>Indicates a transient configuration version that may get abandoned. A new configuration version is in transient state until the version is explicitly saved by the user.</description>
+        <externalId>false</externalId>
+        <label>Is Transient</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>LineItemsAwaitingPrice__c</fullName>
+        <deprecated>false</deprecated>
+        <description>A comma separated list of line item numbers awaiting pricing</description>
+        <externalId>false</externalId>
+        <label>Line Items Awaiting Price</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>NumberOfItems__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Indicates the number of line items associated with the product configuration</description>
+        <externalId>false</externalId>
+        <label>Number Of Items</label>
+        <summaryForeignKey>LineItem__c.ConfigurationId__c</summaryForeignKey>
+        <summaryOperation>count</summaryOperation>
+        <trackTrending>false</trackTrending>
+        <type>Summary</type>
+    </fields>
+    <fields>
+        <fullName>PriceListId__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <deprecated>false</deprecated>
+        <description>ID of the price list associated with the configuration</description>
+        <externalId>false</externalId>
+        <label>Price List</label>
+        <referenceTo>PriceList__c</referenceTo>
+        <relationshipLabel>Configurations</relationshipLabel>
+        <relationshipName>Configurations</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>PrimordialId__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <deprecated>false</deprecated>
+        <description>ID of the primordial configuration</description>
+        <externalId>false</externalId>
+        <label>Primordial</label>
+        <referenceTo>ProductConfiguration__c</referenceTo>
+        <relationshipLabel>Descendant Configurations</relationshipLabel>
+        <relationshipName>DescendantConfigurations</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Status__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The current status of the configuration</description>
+        <externalId>false</externalId>
+        <label>Status</label>
+        <picklist>
+            <picklistValues>
+                <fullName>New</fullName>
+                <default>true</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Ready For Approvals</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Ready For Finalization</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Finalized</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Superseded</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Abandoned</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>SummaryGroupType__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The summary group preference</description>
+        <externalId>false</externalId>
+        <label>Summary Group Type</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Category</fullName>
+                <default>true</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Product</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Ad Hoc</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>VersionNumber__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The version number. The number increments with each version of the configuration, for example, 1, 2, 3.</description>
+        <externalId>false</externalId>
+        <label>Version Number</label>
+        <precision>4</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <label>Product Configuration</label>
+    <listViews>
+        <fullName>All</fullName>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+    </listViews>
+    <nameField>
+        <label>Configuration Name</label>
+        <type>Text</type>
+    </nameField>
+    <pluralLabel>Product Configurations</pluralLabel>
+    <searchLayouts>
+        <customTabListAdditionalFields>VersionNumber__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Description__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>PriceListId__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>EffectiveDate__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Status__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>FinalizedDate__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>SummaryGroupType__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>OWNER.ALIAS</customTabListAdditionalFields>
+        <customTabListAdditionalFields>LAST_ACTIVITY</customTabListAdditionalFields>
+        <excludedStandardButtons>Accept</excludedStandardButtons>
+        <excludedStandardButtons>New</excludedStandardButtons>
+        <lookupDialogsAdditionalFields>VersionNumber__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>Description__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>PriceListId__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>EffectiveDate__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>Status__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>FinalizedDate__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>SummaryGroupType__c</lookupDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>VersionNumber__c</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>Description__c</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>PriceListId__c</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>EffectiveDate__c</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>Status__c</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>FinalizedDate__c</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>SummaryGroupType__c</lookupPhoneDialogsAdditionalFields>
+        <searchFilterFields>NAME</searchFilterFields>
+        <searchFilterFields>Description__c</searchFilterFields>
+        <searchFilterFields>PriceListId__c</searchFilterFields>
+        <searchFilterFields>EffectiveDate__c</searchFilterFields>
+        <searchFilterFields>Status__c</searchFilterFields>
+        <searchFilterFields>FinalizedDate__c</searchFilterFields>
+        <searchFilterFields>SummaryGroupType__c</searchFilterFields>
+        <searchResultsAdditionalFields>VersionNumber__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Description__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>PriceListId__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>EffectiveDate__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Status__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>FinalizedDate__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>SummaryGroupType__c</searchResultsAdditionalFields>
+    </searchLayouts>
+    <sharingModel>ReadWrite</sharingModel>
+</CustomObject>

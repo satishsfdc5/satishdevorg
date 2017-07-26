@@ -1,0 +1,30 @@
+<!-- 
+	/**
+	 *	Apttus Approvals Management
+	 *	ApprovalContextCancel
+	 *	 
+	 *	@2011 Apttus Inc. All rights reserved.
+	 */
+-->
+<apex:page standardController="Apttus_Approval__Approval_Request__c"
+		extensions="Apttus_Approval.ApprovalContextCancelController" 
+		recordSetVar="ApprovalReqList" 
+		action="{!doCancelApprovalRequests}">
+		
+    <apex:form >
+    
+        <apex:pageBlock title="{pageTitle}">
+
+            <apex:pageMessages />
+            
+            <apex:pageBlockButtons >
+                <apex:outputPanel >
+                    <apex:commandButton action="{!doCancel}" value="{!$Label.apttus_approval__Return}" />
+                </apex:outputPanel>
+            </apex:pageBlockButtons>
+            
+		</apex:pageBlock>
+            
+    </apex:form>
+    
+</apex:page>

@@ -1,0 +1,10 @@
+<!-- 
+    Apttus Contract Management
+    ChatterUserPage
+     
+    @2011-2012 Apttus Inc. All rights reserved.
+
+ -->
+<apex:page showHeader="false" sidebar="false">
+    <chatter:newsfeed id="idChatterNewsfeedComponent"  />
+</apex:page>

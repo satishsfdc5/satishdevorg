@@ -1,0 +1,13 @@
+<apex:page controller="youtubeIntegration" >
+
+    <apex:form >
+        <apex:inputText value="{!searchText}"/>
+          <apex:commandButton value="Search" action="{!show}" reRender="one" />
+        <apex:pageBlock id="one">
+          <apex:pageBlockTable value="{!result}" var="a">
+              <apex:column value="{!a}" />
+          </apex:pageBlockTable>
+        </apex:pageBlock>
+    </apex:form>
+
+</apex:page>

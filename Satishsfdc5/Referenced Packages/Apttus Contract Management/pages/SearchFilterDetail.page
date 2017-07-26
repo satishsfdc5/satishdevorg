@@ -1,0 +1,10 @@
+<!-- 
+    Apttus Contract Management
+    SearchFilterDetail
+     
+    @2012-2013 Apttus Inc. All rights reserved.
+
+ -->
+<apex:page standardController="Apttus__SearchFilter__c" 
+	  	   extensions="Apttus.SearchFilterDetailController" 
+           action="{!onLoad}" />

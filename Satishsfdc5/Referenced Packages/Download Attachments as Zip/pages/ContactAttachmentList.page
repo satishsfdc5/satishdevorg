@@ -1,0 +1,4 @@
+<apex:page standardController="Contact">
+  <apex:sectionHeader title="Contact" subtitle="{!Contact.name}"/>
+  <c:AttachmentList ></c:AttachmentList>
+</apex:page>

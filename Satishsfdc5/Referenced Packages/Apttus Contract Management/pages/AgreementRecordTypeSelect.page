@@ -1,0 +1,47 @@
+<!-- 
+    Apttus Contract Management
+    AgreementRecordTypeSelect
+     
+    @2009-2010 Apttus Inc. All rights reserved.
+
+ -->
+<apex:page controller="Apttus.AgreementRecordTypeSelectController" tabStyle="Apttus__APTS_Agreement__c" action="{!onLoad}">
+	<apex:form >
+		<apex:outputPanel id="message">
+            <p/>
+            <apex:outputText value="{!$Label.apttus__SelectAgreementRecordTypeInstruction}" /> <p/>
+        </apex:outputPanel>
+		<apex:pageBlock title="{!$Label.apttus__SelectAgreementRecordType}" mode="edit">
+			<apex:pageMessages />
+			<apex:pageBlockButtons location="bottom" >
+				<apex:commandButton action="{!doContinue}" 
+									value="{!$Label.apttus__Continue}" />
+				<apex:commandButton action="{!doCancel}" 
+									value="{!$Label.apttus__Cancel}" 
+									immediate="true"/>
+			</apex:pageBlockButtons>
+			<apex:outputLabel >{!$Label.RecordTypeOfNewRecord} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</apex:outputLabel>
+			<c:RecordTypeList id="idRecordType" 
+							  recordType="{!recordType}" 
+							  sObjectType="Apttus__APTS_Agreement__c">
+			</c:RecordTypeList>
+		</apex:pageBlock>
+		<apex:outputPanel id="info">
+			<p/>
+			<apex:outputText style="font-weight: bold" value="{!$Label.apttus__AvailableAgreementRecordTypes}" /><p/>
+        </apex:outputPanel>
+		<apex:pageBlock mode="detail">
+		<apex:pageBlockTable value="{!RecordTypes}" 
+							 var="item" 
+							 columns="2">
+				<apex:column headerValue="{!$Label.apttus__RecordTypeName}" >
+					<apex:outputText value="{!item.Name}"/>
+				</apex:column>
+				<apex:column headerValue="{!$ObjectType.RecordType.Fields.Description.Label}" >
+					<apex:outputText value="{!item.Description}"/>
+				</apex:column>
+			</apex:pageBlockTable>
+		</apex:pageBlock>
+	</apex:form>
+	
+</apex:page>

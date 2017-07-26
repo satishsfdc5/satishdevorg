@@ -1,0 +1,42 @@
+<!-- 
+    Apttus Config & Pricing
+    HierarchyViewDelete
+     
+    @2010-2011 Apttus Inc. All rights reserved.
+
+ -->
+<apex:page standardController="Apttus_Config2__ClassificationName__c" 
+		   extensions="Apttus_Config2.HierarchyViewDeleteController" 
+           showHeader="true"
+           sidebar="true"
+           cache="false"  
+           tabStyle="HierarchyViewUpdate__tab"
+           action="{!doDeleteView}" >	
+    
+    <apex:sectionHeader title="{!$Label.apttus_config2__HierarchyViewDelete}" />
+						
+    <apex:form id="idClassificationNameSO">
+		<!--  required fields -->
+		<apex:outputText value="{!Apttus_Config2__ClassificationName__c.Apttus_Config2__HierarchyLabel__c}" rendered="false"/>
+		
+		<apex:pageBlock id="idClassificationNameBlock" mode="edit">
+			<apex:pageMessages />
+			
+			<apex:pageBlockButtons location="bottom" >
+				<apex:commandButton action="{!doCancel}" value="{!$Label.apttus_config2__Return}" immediate="true" />
+			</apex:pageBlockButtons>
+			
+			<apex:outputPanel >
+				<apex:outputText style="font-weight: bold" value="{!statusText}" />
+			</apex:outputPanel>    	
+					 
+		</apex:pageBlock>
+		
+		<!--  batch job monitor -->
+	    <c:BatchJobMonitor id="idBatchJobMonitor" 
+	    				   pageController="{!this}" 
+	    				   jobClassName="HierarchyViewDeleteJob" />
+		
+	</apex:form>
+	
+</apex:page>

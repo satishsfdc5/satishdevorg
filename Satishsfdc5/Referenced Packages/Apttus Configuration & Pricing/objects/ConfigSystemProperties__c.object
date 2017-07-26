@@ -1,0 +1,472 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customSettingsType>List</customSettingsType>
+    <description>Configuration &amp; Pricing System properties. The record should be named as &quot;System Properties&quot;.</description>
+    <enableEnhancedLookup>false</enableEnhancedLookup>
+    <enableFeeds>false</enableFeeds>
+    <fields>
+        <fullName>AlertInclude__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <description>Whether to display include products in an alert dialog.(DEPRECATED)</description>
+        <externalId>false</externalId>
+        <inlineHelpText>This custom setting is deprecated</inlineHelpText>
+        <label>Alert Include (D)</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>AlertSelectedExclude__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <description>Whether to display exclude message using alert dialog (DEPRECATED)</description>
+        <externalId>false</externalId>
+        <inlineHelpText>This custom setting is deprecated</inlineHelpText>
+        <label>Alert Selected Exclude (D)</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>BaseProductRelationField__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The API name of the product field that associates a child product with base product.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The API name of the product field that associates a child product with base product.</inlineHelpText>
+        <label>Base Product Relation Field</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>DeferPricingUntilCart__c</fullName>
+        <defaultValue>true</defaultValue>
+        <deprecated>false</deprecated>
+        <description>Indicator to defer pricing until the cart page is displayed.</description>
+        <externalId>false</externalId>
+        <label>Defer Pricing Until Cart</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>DisableConstraintRules__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <description>Indicates whether constraint rules are disabled</description>
+        <externalId>false</externalId>
+        <inlineHelpText>A global setting to turn off constraint rules.</inlineHelpText>
+        <label>Disable Constraint Rules</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>EnableAggregatePricing__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <description>Indicates whether aggregate pricing is enabled</description>
+        <externalId>false</externalId>
+        <inlineHelpText>A global setting to enable aggregate price rules.</inlineHelpText>
+        <label>Enable Aggregate Pricing</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>EnableDefaultingForOptions__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <description>Indicates whether defaulting is enabled for options</description>
+        <externalId>false</externalId>
+        <inlineHelpText>A global setting to enable option defaulting rules.</inlineHelpText>
+        <label>Enable Defaulting For Options</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>EnableDefaultingForProducts__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <description>Indicates whether defaulting is enabled for products</description>
+        <externalId>false</externalId>
+        <inlineHelpText>A global setting to enable product defaulting rules.</inlineHelpText>
+        <label>Enable Defaulting For Products</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>EnableExternalPricing__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <description>Indicates whether pricing will be done externally</description>
+        <externalId>false</externalId>
+        <inlineHelpText>A global setting to enable external price calls. The external pricing call must be coded and associated with the reprice all button in the view cart page.</inlineHelpText>
+        <label>Enable External Pricing</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>EnableMatrixPricingForOptions__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <description>Indicates whether matrix pricing is enabled for options</description>
+        <externalId>false</externalId>
+        <inlineHelpText>A global setting to enable matrix pricing for options.</inlineHelpText>
+        <label>Enable Matrix Pricing For Options</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>GuidePageDefault__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The default guide page for product selection</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The default guide page for product selection</inlineHelpText>
+        <label>Guide Page Default</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>HideAssetActions__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Comma separated list  of asset actions which should be hidden.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Comma separated values of Increment, Amend, Renew, Cancel actions. Listed actions will be hidden from the users.</inlineHelpText>
+        <label>Hide Asset Actions</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>HideResolveConfigLink__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <description>Whether to hide resolve configuration error page link.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>When checked the link to the resolve configuration error page is hidden. It is displayed along with the constraint rule messages.</inlineHelpText>
+        <label>Hide Resolve Config Link</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>HideSubtotalsInCart__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <description>Indicates whether subtotals should be hidden in the cart view</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Indicates whether subtotals should be hidden in the cart view</inlineHelpText>
+        <label>Hide Subtotals In Cart</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>IndicateErrorTypeExclude__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <description>Indicate products excluded by error type exclude action (DEPRECATED)</description>
+        <externalId>false</externalId>
+        <inlineHelpText>This custom setting is deprecated</inlineHelpText>
+        <label>Indicate Error Type Exclude (D)</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>IndicateWarningTypeExclude__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <description>Indicate products excluded by warning type exclude rule actions (DEPRECATED)</description>
+        <externalId>false</externalId>
+        <inlineHelpText>This custom setting is deprecated</inlineHelpText>
+        <label>Indicate Warning Type Exclude (D)</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>InstanceUrl__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The Salesforce instance url</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The url of your Salesforce instance. The instance url will be used to create an absolute url for your custom pages.</inlineHelpText>
+        <label>Instance Url</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Url</type>
+    </fields>
+    <fields>
+        <fullName>KeepAbandonedCarts__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <description>Indicates whether abandoned carts should be kept</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Indicates whether abandoned carts should be kept</inlineHelpText>
+        <label>Keep Abandoned Carts</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>MaxAdjustmentLines__c</fullName>
+        <defaultValue>1</defaultValue>
+        <deprecated>false</deprecated>
+        <description>Indicates the maximum number of discount lines allowed for a line item.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Indicates the maximum number of discount lines allowed for a line item.</inlineHelpText>
+        <label>Max Adjustment Lines</label>
+        <precision>3</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>MaxConstraintRulesRoundTrip__c</fullName>
+        <defaultValue>3</defaultValue>
+        <deprecated>false</deprecated>
+        <description>This is the maximum number of round trips after which the constraint rule processing should stop.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>This is the maximum number of round trips after which the constraint rule processing should stop. Round trip happens only when auto included products trigger more rules.</inlineHelpText>
+        <label>Max Constraint Rules Round Trip</label>
+        <precision>1</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>MiscChargeTypes__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Enter the list of miscellaneous charge types. Each charge type should be separated by a new line.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Enter the list of miscellaneous charge types. Each charge type should be separated by a new line.</inlineHelpText>
+        <label>Misc Charge Types</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>OptionsPageDefault__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The default page for configuring product options</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Enter the list of miscellaneous charge types. Each charge type should be separated by a new line. 
+Valid values are :
+=============
+SelectConfigOptions 
+SelectConfigOptionsTabView
+SelectConfigOptionsListView</inlineHelpText>
+        <label>Options Page Default</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>PreventErrorExcludeSelection__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <description>Whether to prevent selection of products listed by error type exclude rule action</description>
+        <externalId>false</externalId>
+        <label>Prevent Error Exclude Selection</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>PreventErrorTypeExcludeSelection__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <description>Prevent selection of products excluded by error type exclude rule action. Hides select button (DEPRECATED)</description>
+        <externalId>false</externalId>
+        <inlineHelpText>This custom setting is deprecated</inlineHelpText>
+        <label>Prevent Error Type Exclude Selection (D)</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>ProductAttributeDetailPage__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The custom page to capture product attribute detail information</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The custom page to capture product attribute detail information</inlineHelpText>
+        <label>Product Attribute Detail Page</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ProductTotalingHierarchy__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Enter the list of product fields that represent the product totaling hierarchy. Each product field name should be separated by a new line.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Enter the list of product fields that represent the product totaling hierarchy. Each product field name should be separated by a new line.</inlineHelpText>
+        <label>Product Totaling Hierarchy</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>SearchAttributeDefaultPage__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The custom page to capture search attribute default information</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The custom page to capture search attribute default information</inlineHelpText>
+        <label>Search Attribute Default Page</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>SearchAttributeValuePage__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The custom page to capture search attribute values</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The custom page to capture search attribute values</inlineHelpText>
+        <label>Search Attribute Value Page</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>SearchCategoryDefault__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The default search category.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The default category to search using the text entered in the search box during product selection.</inlineHelpText>
+        <label>Search Category Default</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ShowErrorInHeader__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <description>Whether to show error type rule action messages in page header.(DEPRECATED)</description>
+        <externalId>false</externalId>
+        <inlineHelpText>This custom setting is deprecated</inlineHelpText>
+        <label>Show Error In Header (D)</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>ShowInfoInHeader__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <description>Whether to show information message from auto include or auto exclude in the header</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Whether to show information message from auto include or auto exclude in the header</inlineHelpText>
+        <label>Show Info In Header</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>ShowMessageInline__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <description>Show error and warning messages along with the product name</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Show error and warning messages along with the product name</inlineHelpText>
+        <label>Show Message Inline</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>ShowWarningInHeader__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <description>Whether to show warning type rule action messages in header (DEPRECATED)</description>
+        <externalId>false</externalId>
+        <inlineHelpText>This custom setting is deprecated</inlineHelpText>
+        <label>Show Warning In Header (D)</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>SkipReview__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <description>Indicates whether the review step should be skipped for items in the cart</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Indicates whether the review step should be skipped for items in the cart</inlineHelpText>
+        <label>Skip Review</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>TotalingGroupType__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The totaling group preference.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The default value for the summary group type picklist. For Product based totaling, also indicate the fields which form the hierarchy using the Product Hierarchy Fields custom setting.
+Valid values are:
+=============
+Category
+Product</inlineHelpText>
+        <label>Totaling Group Type</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ViewCartCustomFields2__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Enter the list of additional custom fields from the line item object displayed in the custom view cart page</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Enter the list of additional custom fields from the line item object displayed in the custom view cart page</inlineHelpText>
+        <label>View Cart Custom Fields 2</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>ViewCartCustomFields__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Enter the list of custom fields from the line item object displayed in the custom view cart page</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Enter the list of custom fields from the line item object displayed in the custom view cart page. Additional fields may be entered using the View Cart Custom Fields 2 custom setting.</inlineHelpText>
+        <label>View Cart Custom Fields</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>ViewCartPage__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The custom page to view cart information</description>
+        <externalId>false</externalId>
+        <label>View Cart Page</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ViewCartTotalCustomFields__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Enter the list of custom fields from the summary group object displayed in the custom view cart page</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Enter the list of custom fields from the summary group object displayed in the custom view cart page</inlineHelpText>
+        <label>View Cart Total Custom Fields</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <label>Config System Properties</label>
+    <visibility>Public</visibility>
+</CustomObject>

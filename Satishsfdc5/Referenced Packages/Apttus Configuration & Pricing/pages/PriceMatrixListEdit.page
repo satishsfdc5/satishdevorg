@@ -1,0 +1,109 @@
+<!-- 
+    Apttus Config & Pricing
+    PriceMatrixListEdit
+     
+    @2010-2011 Apttus Inc. All rights reserved.
+
+ -->
+<apex:page standardController="Apttus_Config2__PriceMatrix__c" 
+	  	   extensions="Apttus_Config2.PriceMatrixListEditController" 
+           showHeader="false" 
+           sidebar="false" 
+           tabStyle="Apttus_Config2__PriceMatrix__c">	
+    
+    <apex:stylesheet value="{!$Resource.Apttus_Config2__ConfigStyles}" />
+    
+    <style>
+		textarea {
+			width: 40%;
+		}
+	</style>
+	
+	<apex:sectionHeader title="{!$ObjectType.Apttus_Config2__PriceList__c.Label & ' ' & priceListItemSO.PriceListId__r.Name}" 
+						subtitle="{!$ObjectType.Apttus_Config2__PriceMatrix__c.LabelPlural & ' ' & $Label.apttus_config2__Edit}" />
+						
+	<apex:form id="idPriceMatrices">
+		
+		<!--  required fields -->
+		
+		<apex:pageBlock id="idPriceMatricesBlock" mode="edit" >
+			<apex:pageMessages />
+			
+			<apex:pageBlockButtons location="both">
+		        <apex:commandButton value="{!$Label.apttus_config2__Save}" 
+		        					action="{!doSave}" 
+		        					disabled="{!NOT(hasMatrices || hasDeletedMatrices)}" />
+		        <apex:commandButton value="{!$Label.apttus_config2__Cancel}" 
+		        					action="{!doCancel}" 
+		        					immediate="true" />
+		    </apex:pageBlockButtons>
+		    
+		    <apex:pageBlockSection id="idPriceMatricesSection" 
+		    					   title="{!$ObjectType.Apttus_Config2__PriceMatrix__c.LabelPlural}"  
+		    					   columns="2" 
+		    					   collapsible="false" >
+		    					   
+		        <apex:pageBlockTable value="{!matrices}" 
+		        					 var="matrixInfo" 
+		        					 columns="8" 
+		        					 rowClasses="oddRow,evenRow"
+		        					 width="100%"
+		        					 rendered="{!hasMatrices}" >
+		        	
+		        	<apex:column headerValue="{!$ObjectType.Apttus_Config2__PriceMatrix__c.Fields.Apttus_Config2__Sequence__c.Label}" 
+		        				 width="5%" >
+		        		<apex:outputField value="{!matrixInfo.matrixSO.Apttus_Config2__Sequence__c}" />
+					</apex:column>
+					
+					<apex:column headerValue="{!$ObjectType.Apttus_Config2__PriceMatrix__c.Fields.Name.Label}" >
+		        		<apex:outputText id="idName" value="{!matrixInfo.matrixSO.Name}" />
+					</apex:column>
+					
+					<apex:column headerValue="{!$ObjectType.Apttus_Config2__PriceMatrix__c.Fields.Apttus_Config2__MatrixType__c.Label}" >
+		        		<apex:outputText id="idMatrixType" value="{!matrixInfo.matrixSO.Apttus_Config2__MatrixType__c}" />
+					</apex:column>
+					
+					<apex:column headerValue="{!$ObjectType.Apttus_Config2__PriceMatrix__c.Fields.Apttus_Config2__Description__c.Label}" >
+		        		<apex:outputField value="{!matrixInfo.matrixSO.Apttus_Config2__Description__c}" />
+					</apex:column>
+					
+					<apex:column headerValue="{!$ObjectType.Apttus_Config2__PriceMatrix__c.Fields.Apttus_Config2__StopProcessingMoreMatrices__c.Label}" >
+		        		<apex:inputField id="idStopMatrices" value="{!matrixInfo.matrixSO.Apttus_Config2__StopProcessingMoreMatrices__c}" />
+					</apex:column>
+					
+				   	<apex:column width="5%" >
+					   	<apex:commandLink action="{!doDeleteRow}" 
+									  	  value="{!$Label.apttus_config2__Del}" 
+									  	  reRender="idPriceMatricesBlock" >
+							<apex:param name="rowNum" value="{!matrixInfo.RowNum}" />			  
+						</apex:commandLink>
+					</apex:column>
+					<apex:column width="5%" >
+				   		<apex:commandLink action="{!doMoveUpRow}" 
+								  	  	  reRender="idPriceMatricesBlock" 
+								  	  	  rendered="{!matrixInfo.RowNum > 1}" >
+							<apex:param name="rowNum" value="{!matrixInfo.RowNum}" />		
+							<apex:image url="{!$Resource.Apttus_Config2__Image_MoveUp}" 
+	                       				title="{!$Label.apttus_config2__MoveUp}" 
+	                       				alt="{!$Label.apttus_config2__MoveUp}" />
+						</apex:commandLink>
+						<apex:commandLink action="{!doMoveDownRow}" 
+								  	  	  reRender="idPriceMatricesBlock" 
+								  	  	  rendered="{!matrixInfo.RowNum < lastRowNumber}" >
+							<apex:param name="rowNum" value="{!matrixInfo.RowNum}" />
+							<apex:image url="{!$Resource.Apttus_Config2__Image_MoveDown}" 
+	                       				title="{!$Label.apttus_config2__MoveDown}" 
+	                       				alt="{!$Label.apttus_config2__MoveDown}" />
+						</apex:commandLink>
+				   	</apex:column>
+				   	
+		        </apex:pageBlockTable>
+		        
+		        <apex:outputText value="{!$Label.apttus_config2__NoRecordsToDisplay}" rendered="{!NOT(hasMatrices)}" />
+		    </apex:pageBlockSection>
+		    
+		</apex:pageBlock>
+			    			   
+	</apex:form>
+
+</apex:page>

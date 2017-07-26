@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <field>Proposal__c.Proposal_Name__c</field>
+    </columns>
+    <columns>
+        <field>Proposal__c.RFP_Intake_Date__c</field>
+    </columns>
+    <columns>
+        <field>Proposal__c.Strategic_Importance__c</field>
+    </columns>
+    <columns>
+        <field>Proposal__c.RFP_Value__c</field>
+    </columns>
+    <format>Tabular</format>
+    <name>RFPs by Value</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>CustomEntity$Proposal__c@Proposal__c.Account__c</reportType>
+    <scope>user</scope>
+    <showDetails>true</showDetails>
+    <timeFrameFilter>
+        <dateColumn>Proposal__c.Internal_Deadline__c</dateColumn>
+        <interval>INTERVAL_CUSTOM</interval>
+    </timeFrameFilter>
+</Report>

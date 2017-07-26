@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customSettingsType>Hierarchy</customSettingsType>
+    <description>Configuration &amp; Pricing User preferences</description>
+    <enableEnhancedLookup>false</enableEnhancedLookup>
+    <enableFeeds>false</enableFeeds>
+    <fields>
+        <fullName>CategoryPreference__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Category preferences for the user or profile. Enter a comma separated list of category names.</description>
+        <externalId>false</externalId>
+        <label>Category Preference</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CollapseErrorMessage__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <description>whether to collapse error message</description>
+        <externalId>false</externalId>
+        <label>Collapse Error Message</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>CollapseInfoMessage__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <description>Whether to collapse info message</description>
+        <externalId>false</externalId>
+        <label>Collapse Info Message</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>CollapseWarningMessage__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <description>Whether to collapse warning message</description>
+        <externalId>false</externalId>
+        <label>Collapse Warning Message</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>ItemsPerPage__c</fullName>
+        <defaultValue>10</defaultValue>
+        <deprecated>false</deprecated>
+        <description>The number of browsed or searched products to show in the product selection page. valid values are 5, 10, 15, 20 &amp; 25.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The number of browsed or searched products to show in the product selection page. valid values are 5, 10, 15, 20 &amp; 25.</inlineHelpText>
+        <label>Items Per Page</label>
+        <precision>4</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>SelectedProductsPerPage__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The number of selected products to show in the configuration pages. Valid values are 5, 10, 15, 20 &amp; 25.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The number of selected products to show in the configuration pages. Valid values are 5, 10, 15, 20 &amp; 25.</inlineHelpText>
+        <label>Selected Products Per Page</label>
+        <precision>4</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <label>Config User Preferences</label>
+    <visibility>Public</visibility>
+</CustomObject>
