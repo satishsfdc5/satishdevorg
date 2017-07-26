@@ -3,7 +3,7 @@ public class AccNewButtonPageController {
     public Account Acc {get; set;}
     public Id accid;
     
-    //This is test. This is test. This is test. This is new test.
+    //SK - Test Comments
     public AccNewButtonPageController(ApexPages.StandardController sc){
        opp = new List<Opportunity>();
        Acc = new Account();
